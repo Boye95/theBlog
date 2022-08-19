@@ -13,6 +13,7 @@ module.exports = {
         sfprod: ["SF-Prodisplay", "serif"],
         sfproth: ["SFProText-Heavy", "serif"],
         sfprotr: ["SFProText-Regular", "serif"],
+        zeit: ["Zeit-Light", "sans-serif"],
       }
     },
   },

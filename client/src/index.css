@@ -31,3 +31,7 @@
     font-family: 'SFProText-Regular';
     src: url('./assets/fonts/SFProText-Regular.woff');
 }
+@font-face {
+    font-family: 'Zeit-Light';
+    src: url('./assets/fonts/Zeit-Light.woff');
+}
