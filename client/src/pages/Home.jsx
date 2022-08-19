@@ -1,9 +1,10 @@
 import React from 'react'
+import { Header } from '../components'
 
-export default function Home() {
-    return (
-        <div className='font-sfmono bg-slate-400 p-4 w-8 text-center'>
-            ggrrrr
-        </div>
-    )
+export default function Home () {
+  return (
+    <div className=''>
+        <Header />
+    </div>
+  )
 }
