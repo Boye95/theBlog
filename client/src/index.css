@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Font Familys */
+@font-face {
+    font-family: 'NY-ExtraLarge';
+    src: url('./assets/fonts/NY-Extralarge.woff');
+}
+@font-face {
+    font-family: 'NY-Medium';
+    src: url('./assets/fonts/NY-Medium.woff');
+}
+@font-face {
+    font-family: 'NY-Small';
+    src: url('./assets/fonts/NY-Small.woff');
+}
+@font-face {
+    font-family: 'SF-Mono';
+    src: url('./assets/fonts/SF-Mono.woff');
+}
+@font-face {
+    font-family: 'SF-Prodisplay';
+    src: url('./assets/fonts/SF-Prodisplay.woff');
+}
+@font-face {
+    font-family: 'SFProText-Heavy';
+    src: url('./assets/fonts/SFProText-Heavy.woff');
+}
+@font-face {
+    font-family: 'SFProText-Regular';
+    src: url('./assets/fonts/SFProText-Regular.woff');
+}

@@ -4,7 +4,17 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        nylarge: ["NY-ExtraLarge", "sans-serif"],
+        nymedium: ["NY-Medium", "sans-serif"],
+        nysmall: ["NY-Small", "sans-serif"],
+        sfmono: ["SF-Mono", "serif"],
+        sfprod: ["SF-Prodisplay", "serif"],
+        sfproth: ["SFProText-Heavy", "serif"],
+        sfprotr: ["SFProText-Regular", "serif"],
+      }
+    },
   },
   plugins: [],
 }
