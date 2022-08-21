@@ -1,26 +1,31 @@
 import React from 'react'
+import Ticker from 'react-ticker'
 
 export default function Footer () {
   return (
     <footer className='w-full bg-black text-white absolute bottom-0 h-96'>
-      <div className='w-full '>
-        <span>DIGITAL PRODUCT DESIGN</span>
-        <span>REMOTE WORK</span>
-        <span>UX DESIGN</span>
-        <span>DISTRIBUTED TEAMS</span>
-        <span>CREATIVITY</span>
-        <span>STRATEGY</span>
-        <span>SUSPENSE</span>
-        <span>GROWTH</span>
-        <span>DIGITAL PRODUCT DESIGN</span>
-        <span>REMOTE WORK</span>
-        <span>UX DESIGN</span>
-        <span>DISTRIBUTED TEAMS</span>
-        <span>CREATIVITY</span>
-        <span>STRATEGY</span>
-        <span>SUSPENSE</span>
-        <span>GROWTH</span>
-      </div>
+      <Ticker>
+        {({ index }) => (
+          <div className='w-full flex justify-between gap-4 font-sfproth text-2xl whitespace-nowrap ev'>
+            <span>DIGITAL PRODUCT DESIGN</span>
+            <span>REMOTE WORK</span>
+            <span>UX DESIGN</span>
+            <span>DISTRIBUTED TEAMS</span>
+            <span>CREATIVITY</span>
+            <span>STRATEGY</span>
+            <span>SUSPENSE</span>
+            <span>GROWTH</span>
+            <span>DIGITAL PRODUCT DESIGN</span>
+            <span>REMOTE WORK</span>
+            <span>UX DESIGN</span>
+            <span>DISTRIBUTED TEAMS</span>
+            <span>CREATIVITY</span>
+            <span>STRATEGY</span>
+            <span>SUSPENSE</span>
+            <span>GROWTH</span>
+          </div>
+        )}
+      </Ticker>
       <div className=''>
         <div className='red'>ÓNYÉ ŃKÚZÍ</div>
         <p className=''>
@@ -28,12 +33,12 @@ export default function Footer () {
           tempus erat egestas efficitur. In hac habitasse platea dictumst. Fusce
           a nunc eget ligula suscipit finibus.
         </p>
-        <div className="">
+        <div className=''>
           <a href='#'>Twitter</a>
           <a href='#'>LinkedIn</a>
           <a href='#'>Github</a>
         </div>
-        <div className="">
+        <div className=''>
           <span>© 2022 Adeboye Folaranmi</span>
           <span>All rights reserved.</span>
         </div>
