@@ -4,25 +4,26 @@ import Ticker from 'react-ticker'
 export default function Footer () {
   return (
     <footer className='w-full bg-black text-white absolute bottom-0 h-96'>
-      <Ticker>
+      <Ticker speed={10} mode={'chain'}>
         {({ index }) => (
-          <div className='w-full flex justify-between gap-4 font-sfproth text-2xl whitespace-nowrap ev'>
-            <span>DIGITAL PRODUCT DESIGN</span>
-            <span>REMOTE WORK</span>
-            <span>UX DESIGN</span>
-            <span>DISTRIBUTED TEAMS</span>
-            <span>CREATIVITY</span>
-            <span>STRATEGY</span>
-            <span>SUSPENSE</span>
-            <span>GROWTH</span>
-            <span>DIGITAL PRODUCT DESIGN</span>
-            <span>REMOTE WORK</span>
-            <span>UX DESIGN</span>
-            <span>DISTRIBUTED TEAMS</span>
-            <span>CREATIVITY</span>
-            <span>STRATEGY</span>
-            <span>SUSPENSE</span>
-            <span>GROWTH</span>
+          <div className='font-sfproth text-2xl whitespace-nowrap flex'>
+            <p>DIGITAL PRODUCT DESIGN</p>
+            <p>REMOTE WORK</p>
+            <p>UX DESIGN</p>
+            <p>DISTRIBUTED TEAMS</p>
+            <p>CREATIVITY</p>
+            <p>STRATEGY</p>
+            <p>SUSPENSE</p>
+            <p>GROWTH</p>
+            <p>DIGITAL PRODUCT DESIGN</p>
+            <p>REMOTE WORK</p>
+            <p>UX DESIGN</p>
+            <p>DISTRIBUTED TEAMS</p>
+            <p>CREATIVITY</p>
+            <p>STRATEGY</p>
+            <p>SUSPENSE</p>
+            <p>GROWTH</p>
+            <p>{index}</p>
           </div>
         )}
       </Ticker>
