@@ -32,7 +32,7 @@ let Tick = () => {
 
 export default function Footer () {
   return (
-    <footer className='w-full bg-black text-white absolute bottom-0 h-96'>
+    <footer className='w-full bg-black text-white h-96'>
       <Tick />
       <div className='mt-24 flex flex-col items-center gap-6'>
         <div className='font-zeit text-3xl'>ÓNYÉ ŃKÚZÍ</div>

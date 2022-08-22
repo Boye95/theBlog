@@ -1,10 +1,11 @@
 import React from 'react'
-import { Footer, Header } from '../components'
+import { BlogsLists, Footer, Header } from '../components'
 
 export default function Home () {
   return (
     <div className=''>
         <Header />
+        <BlogsLists />
         <Footer />
     </div>
   )
