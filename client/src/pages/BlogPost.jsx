@@ -6,6 +6,7 @@ import avatar from '../assets/avatar.png'
 import inpostimg from '../assets/inpostimgs/1.png'
 import { FaTwitterSquare, FaFacebookSquare } from 'react-icons/fa'
 import OtherArticles from '../components/OtherArticles'
+import { Newsletter } from '../components'
 
 export default function BlogPost () {
   return (
@@ -150,6 +151,10 @@ export default function BlogPost () {
         <h2 className='font-nylarge text-4xl text-center'>What to read next</h2>
 
         <OtherArticles />
+      </div>
+
+      <div className="mt-16 w-2/5 mx-auto mb-20">
+        <Newsletter />
       </div>
     </div>
   )
