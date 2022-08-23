@@ -1,5 +1,6 @@
 import React from 'react'
 
+import eyes from '../assets/eyes.svg'
 import img1 from '../assets/postimages/1.png'
 import avatar from '../assets/avatar.png'
 import inpostimg from '../assets/inpostimgs/1.png'
@@ -129,13 +130,19 @@ export default function BlogPost () {
             <div className='mt-4 flex items-center gap-4'>
               <img src={avatar} alt='' className='w-16 rounded-3xl' />
               <p className='font-nymedium'>
-                <span className='font-sfproth'>ADEBOYE FOLARANMI</span> is a Design Founder & Advisor, Berlin School of
-                Creative Leadership Executive MBA participant, Zippie advisor,
-                Wolt co-founder, and Nordic Rose stakeholder.
+                <span className='font-sfproth'>ADEBOYE FOLARANMI</span> is a
+                Design Founder & Advisor, Berlin School of Creative Leadership
+                Executive MBA participant, Zippie advisor, Wolt co-founder, and
+                Nordic Rose stakeholder.
               </p>
             </div>
           </div>
         </div>
+      </div>
+
+      <div className='relative'>
+        <p className='mt-24 h-1 w-full bg-red-400'></p>
+        <img src={eyes} alt="" className='absolute -top-7 inset-x-2/4' />
       </div>
     </div>
   )

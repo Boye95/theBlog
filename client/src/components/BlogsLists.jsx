@@ -2,6 +2,7 @@ import React from 'react'
 
 import img1 from '../assets/postimages/1.png'
 import img2 from '../assets/postimages/2.png'
+import Post from './Post'
 
 export default function BlogsLists () {
   return (
@@ -21,54 +22,16 @@ export default function BlogsLists () {
         <h3 className="mt-8 text-center font-nylarge text-2xl">All Articles</h3>
 
         <div id='bloglists' className="mt-7 grid grid-cols-2 gap-6 gap-y-8 mb-20">
-            <div id='blog' className="text-center">
-                <img src={img2} alt="" />
-                <p className="font-sfprod mt-4 mx-auto w-11/12">Here are some things you should know regarding how we work</p>
-            </div>
-            <div id='blog' className="text-center">
-                <img src={img2} alt="" />
-                <p className="font-sfprod mt-4 mx-auto w-11/12">Here are some things you should know regarding how we work</p>
-            </div>
-            <div id='blog' className="text-center">
-                <img src={img2} alt="" />
-                <p className="font-sfprod mt-4 mx-auto w-11/12">Here are some things you should know regarding how we work</p>
-            </div>
-            <div id='blog' className="text-center">
-                <img src={img2} alt="" />
-                <p className="font-sfprod mt-4 mx-auto w-11/12">Here are some things you should know regarding how we work</p>
-            </div>
-            <div id='blog' className="text-center">
-                <img src={img2} alt="" />
-                <p className="font-sfprod mt-4 mx-auto w-11/12">Here are some things you should know regarding how we work</p>
-            </div>
-            <div id='blog' className="text-center">
-                <img src={img2} alt="" />
-                <p className="font-sfprod mt-4 mx-auto w-11/12">Here are some things you should know regarding how we work</p>
-            </div>
-            <div id='blog' className="text-center">
-                <img src={img2} alt="" />
-                <p className="font-sfprod mt-4 mx-auto w-11/12">Here are some things you should know regarding how we work</p>
-            </div>
-            <div id='blog' className="text-center">
-                <img src={img2} alt="" />
-                <p className="font-sfprod mt-4 mx-auto w-11/12">Here are some things you should know regarding how we work</p>
-            </div>
-            <div id='blog' className="text-center">
-                <img src={img2} alt="" />
-                <p className="font-sfprod mt-4 mx-auto w-11/12">Here are some things you should know regarding how we work</p>
-            </div>
-            <div id='blog' className="text-center">
-                <img src={img2} alt="" />
-                <p className="font-sfprod mt-4 mx-auto w-11/12">Here are some things you should know regarding how we work</p>
-            </div>
-            <div id='blog' className="text-center">
-                <img src={img2} alt="" />
-                <p className="font-sfprod mt-4 mx-auto w-11/12">Here are some things you should know regarding how we work</p>
-            </div>
-            <div id='blog' className="text-center">
-                <img src={img2} alt="" />
-                <p className="font-sfprod mt-4 mx-auto w-11/12">Here are some things you should know regarding how we work</p>
-            </div>
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
         </div>
       </div>
     </div>
