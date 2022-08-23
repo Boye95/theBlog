@@ -14,7 +14,7 @@ let Tick = () => {
             <span>CREATIVITY</span>
             <span className='font-sfprotr'>STRATEGY</span>
             <span>SUSPENSE</span>
-            <span className='font-sfprotr'>GROWTH #{index}</span>
+            <span className='font-sfprotr'>GROWTH</span>
             <span>DIGITAL PRODUCT DESIGN</span>
             <span className='font-sfprotr'>REMOTE WORK</span>
             <span>UX DESIGN</span>
@@ -32,7 +32,7 @@ let Tick = () => {
 
 export default function Footer () {
   return (
-    <footer className='w-full bg-black text-white h-96'>
+    <footer className='w-full bg-black text-white h-auto pb-4'>
       <Tick />
       <div className='mt-24 flex flex-col items-center gap-6'>
         <div className='font-zeit text-3xl'>ÓNYÉ ŃKÚZÍ</div>

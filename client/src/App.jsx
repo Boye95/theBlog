@@ -1,10 +1,14 @@
+import { Header, Footer } from './components'
 import { BlogPost, Home, Login, Publish, Tags } from './pages'
+
 
 function App() {
 
   return (
     <>
-      <Home />
+      <Header />
+      <BlogPost /> 
+      <Footer />
     </>
   )
 }
