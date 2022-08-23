@@ -3,7 +3,7 @@ import Ticker from 'react-ticker'
 
 let Tick = () => {
   return (
-    <Ticker speed={10}>
+    <Ticker speed={5}>
       {({index}) => (
         <>
           <div className='font-sfproth text-2xl whitespace-nowrap flex gap-4'>

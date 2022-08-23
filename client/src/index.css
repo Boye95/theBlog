@@ -35,3 +35,19 @@
     font-family: 'Zeit-Light';
     src: url('./assets/fonts/Zeit-Light.woff');
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #000000;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b1b0b0;
+  }

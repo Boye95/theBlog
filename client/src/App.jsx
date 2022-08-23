@@ -1,15 +1,17 @@
 import { Header, Footer } from './components'
-import { BlogPost, Home, Login, Publish, Tags } from './pages'
+import { BlogPost, Home, Login, Publish, Tags, Register } from './pages'
 
 
 function App() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       {/* <Home /> */}
-      <BlogPost /> 
-      <Footer />
+      {/* <BlogPost />  */}
+      {/* <Login /> */}
+      <Register />
+      {/* <Footer /> */}
     </>
   )
 }
