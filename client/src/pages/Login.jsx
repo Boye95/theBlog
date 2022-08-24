@@ -1,81 +1,72 @@
 import React from 'react'
-import moon from '../assets/moon.jpg'
+import sun from '../assets/sun.jpg'
+import { FcGoogle } from 'react-icons/fc'
 
-export default function Login() {
-    return (
-        <div className='flex'>
-            <div className="w-3/6">
-                <img src={moon} alt="" className='h-screen rounded-lg' />
+export default function Login () {
+  return (
+    <div className='flex'>
+      <img src={sun} alt='' className='h-screen rounded-lg w-3/6' bg-cover />
+      <div className='w-3/6'>
+        <div id='signin' className='bg-white flex flex-col items-center '>
+          <h2 className='font-nylarge font-bold text-gray-800 text-3xl mt-12 text-center mx-auto'>
+            It's nice to have you back!
+          </h2>
+          <div id='form-bodylogin' className='mt-24'>
+            <div className='font-sfprotr flex items-center justify-center mx-auto gap-2 py-1 w-60 border-2 border-black rounded-2xl hover:border-1'>
+              <FcGoogle className='' />
+              <p className=''>Sign in with Google</p>
             </div>
-            <div className="">
-                <h1 className="">
-                    Welcome back to your Blog
-                </h1>
-                <div id="signup" class="bg-white lg:w-3/5 flex flex-col items-center ">
-			<h2 class="font-extrabold text-gray-800 text-3xl mt-12 text-center mx-auto">Register as a Tutor</h2>
-			<div id="form-body" class="mt-24">
-				<h1 class="font-bold text-2xl text-gray-700 mx-4">Sign up.</h1>
-				<p class="mt-4 font-semibold text-gray-700 mx-4">Let's create your account,</p>
+            <p className='mx-4 my-4 font-sfprotr text-lg'>or</p>
+            <h1 className='font-bold font-sfprod text-2xl text-gray-700 mx-4'>
+              Sign in with Email.
+            </h1>
 
-				<form class="mt-4  mx-4">
-					<div class="flex flex-col sm:flex-row py-4 gap-8 text-gray-700">
-						<div class="sm:w-1/2">
-							 <div class="flex flex-col ">
-							 	<label for="full-name">Full Name</label>
-							 	<input class="mt-2 h-8 border border-gray-700 rounded outline-none p-2 focus:ring-4 ring-green-400" type="text" id="full-name" name="full-name" required />
-							 </div>
+            <form className='mt-4  mx-4'>
+              <div className='flex flex-col gap-6 font-sfprotr'>
+                <div className='flex flex-col'>
+                  <label for='mail'>Email</label>
+                  <input
+                    className='mt-2 h-8 border border-gray-700 rounded outline-none p-2 focus:ring-4 ring-black'
+                    type='email'
+                    id='maill'
+                    name='mail'
+                    required
+                  />
+                </div>
 
-							 <div class="flex flex-col  mt-4 ">
-							 	<label for="phone">Phone Number</label>
-							 	<input class="mt-2 h-8 border border-gray-700 rounded outline-none p-2 focus:ring-4 ring-green-400" type="tel" id="phone" name="phone" required />
-							 </div>
+                <div className='flex flex-col'>
+                  <label for='passs'>Password</label>
+                  <input
+                    className='mt-2 h-8  border border-gray-700 rounded outline-none p-2 focus:ring-4 ring-black'
+                    type='password'
+                    id='passs'
+                    name='passs'
+                    required
+                  />
+                </div>
 
-							 <div class="flex flex-col  mt-4 ">
-							 	<label for="mail">Email</label>
-							 	<input class="mt-2 h-8 border border-gray-700 rounded outline-none p-2 focus:ring-4 ring-green-400" type="email" id="mail" name="mail" required />
-							 </div>
-						</div>
+                <button
+                  type='submit'
+                  className='mt-2 flex mx-auto px-28 py-2 text-gray-100 font-bold font-sfprotr text-lg bg-black rounded-sm outline-none '
+                >
+                  Login
+                </button>
+              </div>
+            </form>
+          </div>
 
-						<div class="sm:w-1/2">
-							<div class="flex flex-col  ">
-							   <label for="gender">Gender</label>
-			                   <select class="mt-2 h-8  border border-gray-700 rounded outline-none px-2 focus:ring-4 ring-green-400" id="gender" name="gender">
-			                        <option value="Male">Male</option>
-			                        <option value="female">Female</option>
-			                        <option value="other">Other</option>
-			                   </select>
-							</div>
-
-							<div class="flex flex-col  mt-4 ">
-							 	<label for="pass">Password</label>
-							 	<input class="mt-2 h-8  border border-gray-700 rounded outline-none p-2 focus:ring-4 ring-green-400" type="password" id="pass" name="pass" required />
-							</div>
-
-							<div class="flex flex-col  mt-4 ">
-							 	<label for="pass2">Confirm Password</label>
-							 	<input class="mt-2 h-8  border border-gray-700 rounded outline-none p-2 focus:ring-4 ring-green-400" type="password" id="pass2" name="pass2" required />
-							</div>
-						</div>
-					</div>
-
-					<div class="flex flex-col">
-						<div class="flex gap-2 items-center mt-2">
-						 	<input class="focus:ring-4 ring-green-400" type="checkbox" id="checked" name="checked" required />
-						 	<label for="checked">By creating an account i accept to the <a class="underline text-blue-400" href="#">terms of use</a> and our <a class="underline text-blue-400" href="#">privacy policy</a>.</label>
-						</div>
-
-						<div class="flex mt-4">
-						 	<a class="px-28 h-8 text-gray-100 font-bold text-lg mx-auto bg-green-400 rounded-sm outline-none content-center" href="step-1.html">Submit</a>
-						</div>
-					</div>	 
-				</form>
-			</div>
-
-			<div class="my-8">
-				<p class="">Already a member? <span class="font-bold"><a class="text-blue-400" href="#">Log in</a></span></p>
-			</div>	
-            </div>
+          <div className='my-8'>
+            <p className='font-sfprotr'>
+              Not a member?{' '}
+              <span className='font-bold font-sfprotr'>
+                <a className='text-black' href='#'>
+                  Register
+                </a>
+              </span>
+            </p>
+          </div>
         </div>
-        </div>
-    )
+      </div>
+    </div>
+  )
 }
