@@ -26,7 +26,7 @@ export default function Login () {
             <form className='mt-4  mx-4'>
               <div className='flex flex-col gap-6 font-sfprotr'>
                 <div className='flex flex-col'>
-                  <label for='mail'>Email</label>
+                  <label htmlFor='mail'>Email</label>
                   <input
                     className='mt-2 h-8 border border-gray-700 rounded outline-none p-2 focus:ring-4 ring-black'
                     type='email'
@@ -37,7 +37,7 @@ export default function Login () {
                 </div>
 
                 <div className='flex flex-col'>
-                  <label for='passs'>Password</label>
+                  <label htmlFor='passs'>Password</label>
                   <input
                     className='mt-2 h-8  border border-gray-700 rounded outline-none p-2 focus:ring-4 ring-black'
                     type='password'

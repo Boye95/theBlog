@@ -27,7 +27,7 @@ export default function Register () {
             <form className='mt-4  mx-4'>
               <div className='grid grid-cols-2 gap-6 font-sfprotr'>
                 <div className='flex flex-col '>
-                  <label for='name'>Name</label>
+                  <label htmlFor='name'>Name</label>
                   <input
                     className='mt-2 h-8 border border-gray-700 rounded outline-none p-2 focus:ring-4 ring-black'
                     type='text'
@@ -38,7 +38,7 @@ export default function Register () {
                 </div>
 
                 <div className='flex flex-col'>
-                  <label for='mail'>Email</label>
+                  <label htmlFor='mail'>Email</label>
                   <input
                     className='mt-2 h-8 border border-gray-700 rounded outline-none p-2 focus:ring-4 ring-black'
                     type='email'
@@ -49,7 +49,7 @@ export default function Register () {
                 </div>
 
                 <div className='flex flex-col'>
-                  <label for='pass'>Password</label>
+                  <label htmlFor='pass'>Password</label>
                   <input
                     className='mt-2 h-8  border border-gray-700 rounded outline-none p-2 focus:ring-4 ring-black'
                     type='password'
@@ -60,7 +60,7 @@ export default function Register () {
                 </div>
 
                 <div className='flex flex-col'>
-                  <label for='pass2'>Confirm Password</label>
+                  <label htmlFor='pass2'>Confirm Password</label>
                   <input
                     className='mt-2 h-8  border border-gray-700 rounded outline-none p-2 focus:ring-4 ring-black'
                     type='password'
