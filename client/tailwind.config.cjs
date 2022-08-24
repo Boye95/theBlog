@@ -14,7 +14,11 @@ module.exports = {
         sfproth: ["SFProText-Heavy", "serif"],
         sfprotr: ["SFProText-Regular", "serif"],
         zeit: ["Zeit-Light", "sans-serif"],
-      }
+      },
+      // backgroundImage: {
+      //   'moon': "url('/src/assets/moon.jpg')",
+      //   'sun': "url('/src/assets/sun.jpg')",
+      // }
     },
   },
   plugins: [],
