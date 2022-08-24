@@ -5,7 +5,7 @@ import { FcGoogle } from 'react-icons/fc'
 export default function Login () {
   return (
     <div className='flex'>
-      <div className="rounded-lg w-3/6 bg-[url('../assets/sun.jpg')] bg-cover">
+      <div className='rounded-lg w-3/6 bg-[url("../assets/sun.jpg")] bg-cover z-50'>
         www
       </div>
       <div className='w-3/6'>
