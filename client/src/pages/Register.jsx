@@ -1,19 +1,25 @@
 import React from 'react'
 import moon from '../assets/moon.jpg'
+import { FcGoogle } from 'react-icons/fc'
 
 export default function Register () {
   return (
     <div className='flex'>
-      <div className='w-3/6'>
-        <img src={moon} alt='' className='h-screen rounded-lg' />
-      </div>
+      <img src={moon} alt='' className='h-screen rounded-lg w-3/6' />
       <div className='w-3/6'>
         <div id='signup' className='bg-white flex flex-col items-center '>
           <h2 className='font-nylarge font-bold text-gray-800 text-3xl mt-12 text-center mx-auto'>
             Register and Get your Blog On!
           </h2>
           <div id='form-body' className='mt-24'>
-            <h1 className='font-bold font-sfprod text-2xl text-gray-700 mx-4'>Sign up.</h1>
+            <div className='font-sfprotr flex items-center justify-center mx-auto gap-2 py-1 w-60 border-2 border-black rounded-2xl hover:border-1'>
+              <FcGoogle className='' />
+              <p className=''>Sign up with Google</p>
+            </div>
+            <p className="mx-4 my-4 font-sfprotr text-lg">or</p>
+            <h1 className='font-bold font-sfprod text-2xl text-gray-700 mx-4'>
+              Sign up with Email.
+            </h1>
             <p className='mt-4 text-gray-700 mx-4 font-sfprotr'>
               Let's create your account,
             </p>
