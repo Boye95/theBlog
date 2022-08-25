@@ -1,18 +1,18 @@
 import React from 'react'
-import moon from '../assets/moon.jpg'
 import { FcGoogle } from 'react-icons/fc'
 
 export default function Register () {
   return (
     <div className='flex'>
-      <img src={moon} alt='' className='h-screen rounded-lg w-3/6' />
+    <div className='rounded-lg w-3/6 bg-moon h-screen bg-cover'>
+    </div>
       <div className='w-3/6'>
         <div id='signup' className='bg-white flex flex-col items-center '>
           <h2 className='font-nylarge font-bold text-gray-800 text-3xl mt-12 text-center mx-auto'>
             Register and Get your Blog On!
           </h2>
           <div id='form-body' className='mt-24'>
-            <div className='font-sfprotr flex items-center justify-center mx-auto gap-2 py-1 w-60 border-2 border-black rounded-2xl hover:border-1'>
+            <div className='font-sfprotr flex items-center justify-center mx-auto gap-2 py-1 w-60 border-2 border-black rounded-2xl hover:border-gray-400'>
               <FcGoogle className='' />
               <p className=''>Sign up with Google</p>
             </div>
@@ -29,7 +29,7 @@ export default function Register () {
                 <div className='flex flex-col '>
                   <label htmlFor='name'>Name</label>
                   <input
-                    className='mt-2 h-8 border border-gray-700 rounded outline-none p-2 focus:ring-4 ring-black'
+                    className='mt-2 h-8 border border-gray-700 rounded outline-none p-2 focus:ring-4 ring-black ring-offset-2'
                     type='text'
                     id='full-name'
                     name='name'
@@ -40,7 +40,7 @@ export default function Register () {
                 <div className='flex flex-col'>
                   <label htmlFor='mail'>Email</label>
                   <input
-                    className='mt-2 h-8 border border-gray-700 rounded outline-none p-2 focus:ring-4 ring-black'
+                    className='mt-2 h-8 border border-gray-700 rounded outline-none p-2 focus:ring-4 ring-black ring-offset-2'
                     type='email'
                     id='mail'
                     name='mail'
@@ -51,7 +51,7 @@ export default function Register () {
                 <div className='flex flex-col'>
                   <label htmlFor='pass'>Password</label>
                   <input
-                    className='mt-2 h-8  border border-gray-700 rounded outline-none p-2 focus:ring-4 ring-black'
+                    className='mt-2 h-8  border border-gray-700 rounded outline-none p-2 focus:ring-4 ring-black ring-offset-2'
                     type='password'
                     id='pass'
                     name='pass'
@@ -62,7 +62,7 @@ export default function Register () {
                 <div className='flex flex-col'>
                   <label htmlFor='pass2'>Confirm Password</label>
                   <input
-                    className='mt-2 h-8  border border-gray-700 rounded outline-none p-2 focus:ring-4 ring-black'
+                    className='mt-2 h-8  border border-gray-700 rounded outline-none p-2 focus:ring-4 ring-black ring-offset-2'
                     type='password'
                     id='pass2'
                     name='pass2'
@@ -73,7 +73,7 @@ export default function Register () {
 
               <button
                 type='submit'
-                className='mt-7 flex mx-auto px-28 py-2 text-gray-100 font-bold font-sfprotr text-lg bg-black rounded-sm outline-none '
+                className='mt-7 flex mx-auto px-20 ring-black ring-offset-2 ring-2 py-2 text-gray-100 font-bold font-sfprotr text-lg bg-black rounded-lg outline-none transition-colors hover:ring-0'
               >
                 Register Me
               </button>
@@ -84,7 +84,7 @@ export default function Register () {
             <p className='font-sfprotr'>
               Already a member?{' '}
               <span className='font-bold font-sfprotr'>
-                <a className='text-black' href='#'>
+                <a className='text-black hover:underline' href='#'>
                   Log in
                 </a>
               </span>
