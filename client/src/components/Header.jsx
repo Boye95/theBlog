@@ -1,15 +1,17 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Header () {
   return (
     <header className='border-b-2'>
       <div className='w-5/6 mx-auto h-20 flex justify-between items-center'>
-        <div className='uppercase w-3/5 font-zeit text-4xl'>ónyé ńkúzí</div>
+        <Link to='/' className='uppercase w-3/5 font-zeit text-4xl'>ónyé ńkúzí</Link>
         <nav className='w-2/5 flex justify-evenly font-nysmall'>
-          <a href='#' className='hover:text-gray-400'>Blog</a>
-          <a href='#' className='hover:text-gray-400'>About</a>
-          <a href='#' className='hover:text-gray-400'>Links</a>
-          <a href='#' className='hover:text-gray-400'>Projects</a>
+          <Link to='/' className='hover:text-gray-400'>Blog</Link>
+          <Link to='/about' className='hover:text-gray-400'>About</Link>
+          <Link to='/login' className='hover:text-gray-400'>Login</Link>
+          <Link to='/register' className='hover:text-gray-400'>Register</Link>
+          <Link to='/project' className='hover:text-gray-400'>Projects</Link>
         </nav>
       </div>
     </header>
