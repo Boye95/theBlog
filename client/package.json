@@ -12,8 +12,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
-    "react-infinite-scroller": "^1.2.6",
-    "react-ticker": "^1.3.2"
+    "react-infinite-ticker": "^1.0.0-rc.1",
+    "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",

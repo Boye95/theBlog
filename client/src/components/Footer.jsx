@@ -1,32 +1,30 @@
 import React from 'react'
-import Ticker from 'react-ticker'
+import { HorizontalTicker } from 'react-infinite-ticker'
 
 let Tick = () => {
   return (
-    <Ticker speed={5}>
-      {({index}) => (
-        <>
-          <div className='font-sfproth text-2xl whitespace-nowrap flex gap-4'>
-            <span>DIGITAL PRODUCT DESIGN</span>
-            <span className='font-sfprotr'>REMOTE WORK</span>
-            <span>UX DESIGN</span>
-            <span className='font-sfprotr'>DISTRIBUTED TEAMS</span>
-            <span>CREATIVITY</span>
-            <span className='font-sfprotr'>STRATEGY</span>
-            <span>SUSPENSE</span>
-            <span className='font-sfprotr'>GROWTH</span>
-            <span>DIGITAL PRODUCT DESIGN</span>
-            <span className='font-sfprotr'>REMOTE WORK</span>
-            <span>UX DESIGN</span>
-            <span className='font-sfprotr'>DISTRIBUTED TEAMS</span>
-            <span>CREATIVITY</span>
-            <span className='font-sfprotr'>STRATEGY</span>
-            <span>SUSPENSE</span>
-            <span className='font-sfprotr'>GROWTH</span>
-          </div>
-        </>
-      )}
-    </Ticker>
+    <>
+      <div className='font-sfproth text-2xl whitespace-nowrap '>
+        <HorizontalTicker className='flex justify-between gap-8'>
+          <div className='mr-2'>DIGITAL PRODUCT DESIGN </div>
+          <div className='font-sfprotr mr-2'>REMOTE WORK</div>
+          <div className='mr-2'>UX DESIGN</div>
+          <div className='font-sfprotr mr-2'>DISTRIBUTED TEAMS</div>
+          <div className='mr-2'>CREATIVITY</div>
+          <div className='font-sfprotr mr-2'>STRATEGY</div>
+          <div className='mr-2'>SUSPENSE</div>
+          <div className='font-sfprotr mr-2'>GROWTH</div>
+          <div className='mr-2'>DIGITAL PRODUCT DESIGN</div>
+          <div className='font-sfprotr mr-2'>REMOTE WORK</div>
+          <div className='mr-2'>UX DESIGN</div>
+          <div className='font-sfprotr mr-2'>DISTRIBUTED TEAMS</div>
+          <div className='mr-2'>CREATIVITY</div>
+          <div className='font-sfprotr mr-2'>STRATEGY</div>
+          <div className='mr-2'>SUSPENSE</div>
+          <div className='font-sfprotr mr-2'>GROWTH</div>
+        </HorizontalTicker>
+      </div>
+    </>
   )
 }
 
@@ -42,9 +40,15 @@ export default function Footer () {
           a nunc eget ligula suscipit finibus.
         </p>
         <div className='flex gap-4 font-sfprotr text-sm [&>*]:underline'>
-          <a href='#' className='hover:no-underline'>Twitter</a>
-          <a href='#' className='hover:no-underline'>LinkedIn</a>
-          <a href='#' className='hover:no-underline'>Github</a>
+          <a href='#' className='hover:no-underline'>
+            Twitter
+          </a>
+          <a href='#' className='hover:no-underline'>
+            LinkedIn
+          </a>
+          <a href='#' className='hover:no-underline'>
+            Github
+          </a>
         </div>
         <div className='font-sfprotr text-sm flex flex-col items-center'>
           <span>© 2022 Adeboye Folaranmi</span>
