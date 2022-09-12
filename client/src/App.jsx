@@ -11,6 +11,8 @@ function App () {
         <Route path='/blogpost' element={<BlogPost />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/publish' element={<Publish />} />
+        
       </Routes>
       <Footer />
     </>
