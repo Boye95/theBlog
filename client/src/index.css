@@ -51,3 +51,8 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #b1b0b0;
   }
+
+  /* vanilla css for footer item child elements */
+  /* #ticker:nth-child(even) {
+    @apply font-sfprotr mr-2 bg-yellow-300;
+  } */

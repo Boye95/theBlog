@@ -6,7 +6,7 @@ let Tick = () => {
     <>
       <div className='font-sfproth text-2xl whitespace-nowrap '>
         <HorizontalTicker className='flex justify-between gap-8'>
-          <div className='mr-2'>DIGITAL PRODUCT DESIGN </div>
+          <div className='mr-2'>DIGITAL PRODUCT DESIGN</div>
           <div className='font-sfprotr mr-2'>REMOTE WORK</div>
           <div className='mr-2'>UX DESIGN</div>
           <div className='font-sfprotr mr-2'>DISTRIBUTED TEAMS</div>
