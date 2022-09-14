@@ -8,7 +8,7 @@ export default function Publish () {
   return (
     <div>
       <MDEditor value={value} onChange={setValue} />
-      <MDEditor.Markdown source={value} style={{ whiteSpace: 'pre-wrap' }} />
+      {/* <MDEditor.Markdown source={value} style={{ whiteSpace: 'pre-wrap' }} /> */}
     </div>
   )
 }
