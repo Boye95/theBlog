@@ -2,57 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /* Font Familys */
 @font-face {
-    font-family: 'NY-ExtraLarge';
-    src: url('./assets/fonts/NY-Extralarge.woff');
+  font-family: "NY-ExtraLarge";
+  src: url("./assets/fonts/NY-Extralarge.woff");
 }
 @font-face {
-    font-family: 'NY-Medium';
-    src: url('./assets/fonts/NY-Medium.woff');
+  font-family: "NY-Medium";
+  src: url("./assets/fonts/NY-Medium.woff");
 }
 @font-face {
-    font-family: 'NY-Small';
-    src: url('./assets/fonts/NY-Small.woff');
+  font-family: "NY-Small";
+  src: url("./assets/fonts/NY-Small.woff");
 }
 @font-face {
-    font-family: 'SF-Mono';
-    src: url('./assets/fonts/SF-Mono.woff');
+  font-family: "SF-Mono";
+  src: url("./assets/fonts/SF-Mono.woff");
 }
 @font-face {
-    font-family: 'SF-Prodisplay';
-    src: url('./assets/fonts/SF-Prodisplay.woff');
+  font-family: "SF-Prodisplay";
+  src: url("./assets/fonts/SF-Prodisplay.woff");
 }
 @font-face {
-    font-family: 'SFProText-Heavy';
-    src: url('./assets/fonts/SFProText-Heavy.woff');
+  font-family: "SFProText-Heavy";
+  src: url("./assets/fonts/SFProText-Heavy.woff");
 }
 @font-face {
-    font-family: 'SFProText-Regular';
-    src: url('./assets/fonts/SFProText-Regular.woff');
+  font-family: "SFProText-Regular";
+  src: url("./assets/fonts/SFProText-Regular.woff");
 }
 @font-face {
-    font-family: 'Zeit-Light';
-    src: url('./assets/fonts/Zeit-Light.woff');
+  font-family: "Zeit-Light";
+  src: url("./assets/fonts/Zeit-Light.woff");
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: #000000;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: #b1b0b0;
-  }
+  width: 10px;
+}
 
-  /* vanilla css for footer item child elements */
-  /* #ticker:nth-child(even) {
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b1b0b0;
+}
+
+/* vanilla css for footer item child elements */
+/* @layer components {
+  #ticker:nth-child(even) {
     @apply font-sfprotr mr-2 bg-yellow-300;
-  } */
+  }
+} */

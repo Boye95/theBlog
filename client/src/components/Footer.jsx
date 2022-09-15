@@ -5,23 +5,25 @@ let Tick = () => {
   return (
     <>
       <div className='font-sfproth text-2xl whitespace-nowrap '>
-        <HorizontalTicker className='flex justify-between gap-8'>
-          <div className='mr-2'>DIGITAL PRODUCT DESIGN</div>
-          <div className='font-sfprotr mr-2'>REMOTE WORK</div>
-          <div className='mr-2'>UX DESIGN</div>
-          <div className='font-sfprotr mr-2'>DISTRIBUTED TEAMS</div>
-          <div className='mr-2'>CREATIVITY</div>
-          <div className='font-sfprotr mr-2'>STRATEGY</div>
-          <div className='mr-2'>SUSPENSE</div>
-          <div className='font-sfprotr mr-2'>GROWTH</div>
-          <div className='mr-2'>DIGITAL PRODUCT DESIGN</div>
-          <div className='font-sfprotr mr-2'>REMOTE WORK</div>
-          <div className='mr-2'>UX DESIGN</div>
-          <div className='font-sfprotr mr-2'>DISTRIBUTED TEAMS</div>
-          <div className='mr-2'>CREATIVITY</div>
-          <div className='font-sfprotr mr-2'>STRATEGY</div>
-          <div className='mr-2'>SUSPENSE</div>
-          <div className='font-sfprotr mr-2'>GROWTH</div>
+        <HorizontalTicker className=''>
+          <div className='flex justify-between gap-6'>
+            <span>DIGITAL PRODUCT DESIGN</span>
+            <span className='font-sfprotr'>REMOTE WORK</span>
+            <span>UX DESIGN</span>
+            <span className='font-sfprotr'>DISTRIBUTED TEAMS</span>
+            <span>CREATIVITY</span>
+            <span className='font-sfprotr'>STRATEGY</span>
+            <span>SUSPENSE</span>
+            <span className='font-sfprotr'>GROWTH</span>
+            <span>DIGITAL PRODUCT DESIGN</span>
+            <span className='font-sfprotr'>REMOTE WORK</span>
+            <span>UX DESIGN</span>
+            <span className='font-sfprotr'>DISTRIBUTED TEAMS</span>
+            <span>CREATIVITY</span>
+            <span className='font-sfprotr'>STRATEGY</span>
+            <span>SUSPENSE</span>
+            <span className='font-sfprotr'>GROWTH</span>
+          </div>
         </HorizontalTicker>
       </div>
     </>
