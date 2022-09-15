@@ -14,6 +14,15 @@ let Tick = () => {
             <span>CREATIVITY</span>
             <span className='font-sfprotr'>STRATEGY</span>
             <span>SUSPENSE</span>
+          </div>
+          <div className='ml-8 flex justify-between gap-6'>
+            <span>DIGITAL PRODUCT DESIGN</span>
+            <span className='font-sfprotr'>REMOTE WORK</span>
+            <span>UX DESIGN</span>
+            <span className='font-sfprotr'>DISTRIBUTED TEAMS</span>
+            <span>CREATIVITY</span>
+            <span className='font-sfprotr'>STRATEGY</span>
+            <span>SUSPENSE</span>
             <span className='font-sfprotr'>GROWTH</span>
             <span>DIGITAL PRODUCT DESIGN</span>
             <span className='font-sfprotr'>REMOTE WORK</span>
