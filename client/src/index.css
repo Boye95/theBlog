@@ -57,4 +57,7 @@
   .navlink {
     @apply h-full px-4 flex items-center hover:text-gray-400;
   }
+  .navlinks {
+    @apply  hover:text-gray-400;
+  }
 }
