@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { FiMenu } from 'react-icons/fi'
 
 export default function Header () {
   // This styling will be applied to a <NavLink> when the
@@ -11,12 +12,12 @@ export default function Header () {
   let activeClassName = '2px solid black'
 
   return (
-    <header className='border-b-2'>
+    <header className='border-b-2 w-ful'>
       <div className='w-5/6 mx-auto h-20 flex justify-between items-center'>
-        <NavLink to='/' className='uppercase w-3/5 font-zeit text-4xl'>
+        <NavLink to='/' className='uppercase w-3/6 font-zeit text-4xl'>
           ónyé ńkúzí
         </NavLink>
-        <nav className='w-2/5 h-full flex justify-between items-center font-nysmall'>
+        <nav className='w-3/6 h-full flex justify-between items-center font-nysmall'>
           <NavLink
             to='/'
             className='navlink'

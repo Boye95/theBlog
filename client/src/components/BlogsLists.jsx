@@ -10,10 +10,10 @@ export default function BlogsLists () {
     <div className='w-3/5 mx-auto mt-9 xl:w-4/5 lg:w-full'>
       <div
         id='article1'
-        className='flex flex-col items-center border-b-2 pb-11'
+        className='flex flex-col items-center border-gray-400 border-b-2 pb-11'
       >
-        <Link to='/blogpost' className='w-4/5 lg:w-full'>
-          <img src={img1} alt='mainpost' />
+        <Link to='/blogpost' className='w-4/5 lg:w-full lg:mx-auto'>
+          <img src={img1} alt='mainpost' className='lg:mx-auto' />
         </Link>
         <Link to='/blogpost' className='font-nylarge w-4/5 text-4xl text-center mt-7 md:text-xl hover:underline'>
           <h1>
