@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /* Font Familys */
 @font-face {
   font-family: "NY-ExtraLarge";
@@ -54,8 +53,8 @@
 }
 
 /* vanilla css for footer item child elements */
-/* @layer components {
-  #ticker:nth-child(even) {
-    @apply font-sfprotr mr-2 bg-yellow-300;
+@layer components {
+  .navlink {
+    @apply h-full px-4 flex items-center hover:text-gray-400;
   }
-} */
+}
