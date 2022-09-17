@@ -22,7 +22,10 @@ export default function Header () {
   return (
     <header className='border-b-2 w-full'>
       <div className='w-5/6 mx-auto h-20 flex justify-between items-center ham:w-full ham:px-4'>
-        <NavLink to='/' className='uppercase w-3/6 font-zeit text-4xl md:text-2xl md:w-4/6 lg:text-3xl'>
+        <NavLink
+          to='/'
+          className='uppercase w-3/6 font-zeit text-4xl md:text-2xl md:w-4/6 lg:text-3xl'
+        >
           ónyé ńkúzí
         </NavLink>
         <nav className='w-3/6 h-full flex justify-between items-center font-nysmall ham:hidden'>
@@ -64,19 +67,34 @@ export default function Header () {
           </NavLink>
         </nav>
 
-        <FiMenu className='hidden cursor-pointer ham:flex' size={38} onClick={handleShowMenu} />
+        <FiMenu
+          className='hidden cursor-pointer ham:flex'
+          size={38}
+          onClick={handleShowMenu}
+        />
       </div>
 
       {/* Hamburger nav conditional display code */}
-      <div className={showMenu ? 'flex flex-col absolute top-0 bg-white h-full w-full transition-all ease-in z-10' : 'hidden'}>
+      <div
+        className={
+          showMenu
+            ? 'flex flex-col absolute top-0 bg-white h-full w-full z-10'
+            : 'hidden'
+        }
+      >
         <div className='mt-6 flex justify-end pr-2'>
-          <GrClose className='cursor-pointer' size={38} onClick={handleShowMenu} />
+          <GrClose
+            className='cursor-pointer'
+            size={38}
+            onClick={handleShowMenu}
+          />
         </div>
         <div className='mt-8 flex flex-col items-center gap-4 text-lg font-nysmall'>
           <NavLink
             to='/'
             className='navlinks'
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            onClick={handleShowMenu}
           >
             Blog
           </NavLink>
@@ -84,6 +102,7 @@ export default function Header () {
             to='/about'
             className='navlinks'
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            onClick={handleShowMenu}
           >
             About
           </NavLink>
@@ -91,6 +110,7 @@ export default function Header () {
             to='/login'
             className='navlinks'
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            onClick={handleShowMenu}
           >
             Login
           </NavLink>
@@ -98,6 +118,7 @@ export default function Header () {
             to='/register'
             className='navlinks'
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            onClick={handleShowMenu}
           >
             Register
           </NavLink>
@@ -106,6 +127,7 @@ export default function Header () {
             to='/publish'
             className='navlinks'
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            onClick={handleShowMenu}
           >
             Publish
           </NavLink>
