@@ -1,11 +1,13 @@
 import React from 'react'
 import { FcGoogle } from 'react-icons/fc'
+import type from '../../src/assets/typewriter.png'
 
 export default function Register () {
   return (
     <div className='flex'>
-    <div className='rounded-lg w-3/6 bg-moon h-screen bg-cover'>
-    </div>
+      <div className='rounded-lg w-3/6 bg-gradient-to-b from-orange-300 to-orange-700 h-screen flex justify-center items-center'>
+        <img src={type} alt='' className='h-3/5 w-auto' />
+      </div>
       <div className='w-3/6'>
         <div id='signup' className='bg-white flex flex-col items-center '>
           <h2 className='font-nylarge font-bold text-gray-800 text-3xl mt-12 text-center mx-auto'>
@@ -16,7 +18,7 @@ export default function Register () {
               <FcGoogle className='' />
               <p className=''>Sign up with Google</p>
             </div>
-            <p className="mx-4 my-4 font-sfprotr text-lg">or</p>
+            <p className='mx-4 my-4 font-sfprotr text-lg'>or</p>
             <h1 className='font-bold font-sfprod text-2xl text-gray-700 mx-4'>
               Sign up with Email.
             </h1>

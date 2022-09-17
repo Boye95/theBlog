@@ -1,10 +1,13 @@
 import React from 'react'
 import { FcGoogle } from 'react-icons/fc'
+import type from '../../src/assets/typewriter.png'
 
 export default function Login () {
   return (
     <div className='flex'>
-      <div className='rounded-lg w-3/6 bg-sun h-screen bg-cover'></div>
+      <div className='rounded-lg w-3/6 bg-gradient-to-b from-gray-300 to-black h-screen flex justify-center items-center'>
+        <img src={type} alt="" className="h-3/5 w-auto" />
+      </div>
       <div className='w-3/6'>
         <div id='signin' className='bg-white flex flex-col items-center '>
           <h2 className='font-nylarge font-bold text-gray-800 text-3xl mt-12 text-center mx-auto'>
