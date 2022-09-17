@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
 import { VscEye, VscEyeClosed } from 'react-icons/vsc'
 import type from '../../src/assets/typewriter.png'
@@ -83,9 +84,9 @@ export default function Login () {
             <p className='font-sfprotr'>
               Not a member?{' '}
               <span className='font-bold font-sfprotr'>
-                <a className='text-black hover:underline' href='#'>
+                <Link to='/register' className='text-black hover:underline' href='#'>
                   Register
-                </a>
+                </Link>
               </span>
             </p>
           </div>
