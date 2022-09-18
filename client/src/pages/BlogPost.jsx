@@ -25,7 +25,7 @@ export default function BlogPost () {
       <div className='mt-8 w-3/6 border-t-2 border-black mx-auto ham:w-11/12 xl:w-4/6'>
         <div id='postinfo' className='mt-8 flex sm:flex-col sm:gap-5'>
           <div className='flex gap-2 w-4/6 sm:w-full'>
-            <div className='bg-red-400 w-12 h-12 rounded-3xl overflow-hidden'>
+            <div className='w-12 h-12 rounded-3xl overflow-hidden'>
               <img src={avatar} alt='' className='w-full' />
             </div>
             <div className=''>
@@ -132,7 +132,7 @@ export default function BlogPost () {
 
           <div className='mt-9 border-t-2 border-dotted border-black'>
             <div className='mt-4 flex items-center gap-4 sm:text-sm'>
-              <div className='bg-red-300 w-32 rounded-full overflow-hidden'>
+              <div className='w-32 rounded-full overflow-hidden'>
                 <img src={avatar} alt='' className='w-full h-full' />
               </div>
               <p className='font-nymedium'>
@@ -157,7 +157,7 @@ export default function BlogPost () {
         <OtherArticles />
       </div>
 
-      <div className='mt-16 w-2/5 mx-auto mb-20'>
+      <div className='mt-16 w-2/5 mx-auto mb-20 xl:w-3/5 sm:w-11/12 xs:w-full'>
         <Newsletter />
       </div>
     </div>
