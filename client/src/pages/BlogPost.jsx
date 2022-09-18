@@ -151,8 +151,8 @@ export default function BlogPost () {
         <img src={eyes} alt='' className='absolute -top-7 inset-x-2/4' />
       </div>
 
-      <div className='mt-16 w-3/5 mx-auto'>
-        <h2 className='font-nylarge text-4xl text-center'>What to read next</h2>
+      <div className='mt-16 w-3/5 mx-auto ham:w-4/5'>
+        <h2 className='font-nylarge text-4xl text-center lg:text-3xl sm:text-2xl'>What to read next</h2>
 
         <OtherArticles />
       </div>

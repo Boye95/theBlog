@@ -7,7 +7,7 @@ export default function Post () {
     <div>
       <div
         id='blog'
-        className='flex flex-col justify-center items-center sm:w-4/5 md:w-3/5 md:mx-auto'
+        className='flex flex-col justify-center items-center sm:w-4/5 md:w-4/5 md:mx-auto'
       >
         <Link to='/blogpost'>
           <img src={img2} alt='' className='w-80' />
