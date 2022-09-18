@@ -12,20 +12,22 @@ export default function BlogPost () {
   return (
     <div className=''>
       <div id='article1' className='flex flex-col items-center'>
-        <h1 className='font-nylarge w-3/6 text-4xl text-center mt-7'>
+        <h1 className='font-nylarge w-3/6 text-4xl text-center mt-7 ham:w-5/6 sm:w-11/12 sm:text-3xl '>
           A few words about this blog platform, Ghost, and how this site was
           made
         </h1>
-        <h3 className='font-sfmono text-lg w-2/5 text-center mt-8'>
+        <h3 className='font-sfmono text-lg w-2/5 text-center mt-8 ham:w-3/5 sm:w-11/12 sm:text-sm'>
           Why Ghost (& Figma) instead of Medium, WordPress or other options?
         </h3>
         <img src={img1} alt='mainpost' className='mt-8' />
       </div>
 
-      <div className='mt-8 w-3/6 border-t-2 border-black mx-auto'>
-        <div id='postinfo' className='mt-8 flex'>
-          <div className='flex gap-2 w-3/6'>
-            <img src={avatar} alt='' className='w-12 rounded-3xl' />
+      <div className='mt-8 w-3/6 border-t-2 border-black mx-auto ham:w-11/12 xl:w-4/6'>
+        <div id='postinfo' className='mt-8 flex sm:flex-col sm:gap-5'>
+          <div className='flex gap-2 w-4/6 sm:w-full'>
+            <div className='bg-red-400 w-12 h-12 rounded-3xl overflow-hidden'>
+              <img src={avatar} alt='' className='w-full' />
+            </div>
             <div className=''>
               <h4 className='font-sfproth'>ADEBOYE FOLARANMI</h4>
               <div className='font-sfprotr'>
@@ -34,7 +36,7 @@ export default function BlogPost () {
               </div>
             </div>
           </div>
-          <div className='flex w-3/6 justify-end items-center gap-2'>
+          <div className='flex w-3/6 justify-end items-center gap-2 sm:w-full sm:[&>*]:w-3/6'>
             <div className='border-2 rounded py-1 w-16'>
               <FaFacebookSquare className='w-8 h-6 mx-auto' />
             </div>
@@ -129,8 +131,10 @@ export default function BlogPost () {
           </div>
 
           <div className='mt-9 border-t-2 border-dotted border-black'>
-            <div className='mt-4 flex items-center gap-4'>
-              <img src={avatar} alt='' className='w-16 rounded-3xl' />
+            <div className='mt-4 flex items-center gap-4 sm:text-sm'>
+              <div className='bg-red-300 w-32 rounded-full overflow-hidden'>
+                <img src={avatar} alt='' className='w-full h-full' />
+              </div>
               <p className='font-nymedium'>
                 <span className='font-sfproth'>ADEBOYE FOLARANMI</span> is a
                 Design Founder & Advisor, Berlin School of Creative Leadership
@@ -153,7 +157,7 @@ export default function BlogPost () {
         <OtherArticles />
       </div>
 
-      <div className="mt-16 w-2/5 mx-auto mb-20">
+      <div className='mt-16 w-2/5 mx-auto mb-20'>
         <Newsletter />
       </div>
     </div>
