@@ -116,13 +116,13 @@ export default function BlogPost () {
           </div>
 
           <div className='mt-8 flex w-full items-center gap-2'>
-            <div className='border-2 rounded py-2 w-3/6 flex justify-center font-sfprotr'>
+            <div className='border-2 rounded py-2 w-3/6 flex justify-center items-center font-sfprotr'>
               <FaFacebookSquare className='w-8 h-6' />
-              <p className=''>Share on Facebook</p>
+              <p className='sm:text-[14px]'>Share on Facebook</p>
             </div>
-            <div className='border-2 rounded py-2 w-3/6 flex justify-center font-sfprotr'>
+            <div className='border-2 rounded py-2 w-3/6 flex justify-center items-center font-sfprotr'>
               <FaTwitterSquare className='w-8 h-6' />
-              <p className=''>Share on Twitter</p>
+              <p className='sm:text-[14px]'>Share on Twitter</p>
             </div>
           </div>
 
