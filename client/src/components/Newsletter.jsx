@@ -15,7 +15,7 @@ export default function Newsletter () {
             placeholder='Enter your email...'
             className='outline-none w-4/6 h-full p-1'
           />
-          <div className='font-sfprotr text-white flex justify-center items-center bg-black w-2/6 h-full transition-all hover:bg-gray-600'>
+          <div className='font-sfprotr text-white flex justify-center items-center bg-black w-3/6 h-full transition-all hover:bg-gray-600'>
             SIGN UP
           </div>
         </div>

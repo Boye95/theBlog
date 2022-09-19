@@ -4,7 +4,7 @@ import { HorizontalTicker } from 'react-infinite-ticker'
 let Tick = () => {
   return (
     <>
-      <div className='font-sfproth text-2xl whitespace-nowrap '>
+      <div className='font-sfproth text-2xl whitespace-nowrap sm:pt-4 sm:text-[15.5px]'>
         <HorizontalTicker className=''>
           <div className='flex justify-between gap-6'>
             <span>DIGITAL PRODUCT DESIGN</span>
@@ -43,7 +43,7 @@ export default function Footer () {
   return (
     <footer className='w-full bg-black text-white h-auto pb-4'>
       <Tick />
-      <div className='mt-24 flex flex-col items-center gap-6'>
+      <div className='mt-24 flex flex-col items-center gap-6 sm:mt-16'>
         <div className='font-zeit text-3xl sm:text-2xl'>ÓNYÉ ŃKÚZÍ</div>
         <p className='w-2/6 text-center font-nysmall text-sm ham:w-4/6'>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu velit
