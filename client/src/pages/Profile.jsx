@@ -4,14 +4,17 @@ import img4 from '../assets/postimages/4.png'
 const Profile = () => {
   return (
     <div className='flex '>
-      <div className='flex flex-col mx-8 pt-9 w-4/6 h-screen border-blue-200 border-r-2'>
+      <div className='scroll-no flex flex-col mx-8 pt-9 w-4/6 h-screen overflow-scroll border-blue-200 border-r-2'>
+        <div className="text-xl font-sfprotr font-semibold px-2 mb-5">
+            Welcome Home, Boye.
+        </div>
         <div className='text-2xl w-fit p-2 mb-8 font-sfprod border-b-8 border-black'>
           Your Blog Posts
         </div>
-        <div className='w-11/12 flex flex-col gap-6'>
-          <div className='flex gap-3 border-2 rounded-md overflow-hidden hover:border-emerald-300 hover:ring-1'>
+        <div className='w-11/12 flex flex-col gap-6 mb-9'>
+          <div className='flex gap-3 h-52 border-2 rounded-md overflow-hidden transition hover:border-emerald-300 hover:ring-1'>
             <img src={img4} alt='' className='' />
-            <div className=''>
+            <div className='p-1'>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
               adipisci esse voluptatibus quos perspiciatis laborum minima
               laudantium eum ab libero, dolore, facere optio alias nostrum
@@ -22,9 +25,9 @@ const Profile = () => {
               debitis exercitationem commodi nam? Quibusdam?
             </div>
           </div>
-          <div className='flex gap-3 border-2 rounded-md overflow-hidden hover:border-emerald-300 hover:ring-1'>
+          <div className='flex gap-3 h-52 border-2 rounded-md overflow-hidden transition hover:border-emerald-300 hover:ring-1'>
             <img src={img4} alt='' className='' />
-            <div className=''>
+            <div className='p-1'>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
               adipisci esse voluptatibus quos perspiciatis laborum minima
               laudantium eum ab libero, dolore, facere optio alias nostrum
@@ -35,9 +38,9 @@ const Profile = () => {
               debitis exercitationem commodi nam? Quibusdam?
             </div>
           </div>
-          <div className='flex gap-3 border-2 rounded-md overflow-hidden hover:border-emerald-300 hover:ring-1'>
+          <div className='flex gap-3 h-52 border-2 rounded-md overflow-hidden transition hover:border-emerald-300 hover:ring-1'>
             <img src={img4} alt='' className='' />
-            <div className=''>
+            <div className='p-1'>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
               adipisci esse voluptatibus quos perspiciatis laborum minima
               laudantium eum ab libero, dolore, facere optio alias nostrum
@@ -48,9 +51,9 @@ const Profile = () => {
               debitis exercitationem commodi nam? Quibusdam?
             </div>
           </div>
-          <div className='flex gap-3 border-2 rounded-md overflow-hidden hover:border-emerald-300 hover:ring-1'>
+          <div className='flex gap-3 h-52 border-2 rounded-md overflow-hidden transition hover:border-emerald-300 hover:ring-1'>
             <img src={img4} alt='' className='' />
-            <div className=''>
+            <div className='p-1'>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
               adipisci esse voluptatibus quos perspiciatis laborum minima
               laudantium eum ab libero, dolore, facere optio alias nostrum

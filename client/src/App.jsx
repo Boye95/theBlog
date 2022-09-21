@@ -13,7 +13,6 @@ import {
 function App () {
   return (
     <>
-      <Header />
       <Routes>
         <Route element={<Layout />}>
           <Route path='/' element={<Home />} />

@@ -60,4 +60,14 @@
   .navlinks {
     @apply  hover:text-gray-400 uppercase font-extrabold;
   }
+
+  /* Chrome, Safari and Opera */
+  .scroll-no::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scroll-no {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }
