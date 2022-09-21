@@ -1,11 +1,66 @@
 import avatar from '../assets/avatar.png'
+import img4 from '../assets/postimages/4.png'
 
 const Profile = () => {
   return (
     <div className='flex '>
-      <div className='flex flex-col mx-8 mt-9 w-4/6 h-screen border-blue-200 border-r-2'>
-        <div className="text-3xl font-sfprod">
-            Your House of Magic!
+      <div className='flex flex-col mx-8 pt-9 w-4/6 h-screen border-blue-200 border-r-2'>
+        <div className='text-2xl w-fit p-2 mb-8 font-sfprod border-b-8 border-black'>
+          Your Blog Posts
+        </div>
+        <div className='w-11/12 flex flex-col gap-6'>
+          <div className='flex gap-3 border-2 rounded-md overflow-hidden hover:border-emerald-300 hover:ring-1'>
+            <img src={img4} alt='' className='' />
+            <div className=''>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
+              adipisci esse voluptatibus quos perspiciatis laborum minima
+              laudantium eum ab libero, dolore, facere optio alias nostrum
+              debitis exercitationem commodi nam? Quibusdam?
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
+              adipisci esse voluptatibus quos perspiciatis laborum minima
+              laudantium eum ab libero, dolore, facere optio alias nostrum
+              debitis exercitationem commodi nam? Quibusdam?
+            </div>
+          </div>
+          <div className='flex gap-3 border-2 rounded-md overflow-hidden hover:border-emerald-300 hover:ring-1'>
+            <img src={img4} alt='' className='' />
+            <div className=''>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
+              adipisci esse voluptatibus quos perspiciatis laborum minima
+              laudantium eum ab libero, dolore, facere optio alias nostrum
+              debitis exercitationem commodi nam? Quibusdam?
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
+              adipisci esse voluptatibus quos perspiciatis laborum minima
+              laudantium eum ab libero, dolore, facere optio alias nostrum
+              debitis exercitationem commodi nam? Quibusdam?
+            </div>
+          </div>
+          <div className='flex gap-3 border-2 rounded-md overflow-hidden hover:border-emerald-300 hover:ring-1'>
+            <img src={img4} alt='' className='' />
+            <div className=''>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
+              adipisci esse voluptatibus quos perspiciatis laborum minima
+              laudantium eum ab libero, dolore, facere optio alias nostrum
+              debitis exercitationem commodi nam? Quibusdam?
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
+              adipisci esse voluptatibus quos perspiciatis laborum minima
+              laudantium eum ab libero, dolore, facere optio alias nostrum
+              debitis exercitationem commodi nam? Quibusdam?
+            </div>
+          </div>
+          <div className='flex gap-3 border-2 rounded-md overflow-hidden hover:border-emerald-300 hover:ring-1'>
+            <img src={img4} alt='' className='' />
+            <div className=''>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
+              adipisci esse voluptatibus quos perspiciatis laborum minima
+              laudantium eum ab libero, dolore, facere optio alias nostrum
+              debitis exercitationem commodi nam? Quibusdam?
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
+              adipisci esse voluptatibus quos perspiciatis laborum minima
+              laudantium eum ab libero, dolore, facere optio alias nostrum
+              debitis exercitationem commodi nam? Quibusdam?
+            </div>
+          </div>
         </div>
       </div>
       <div className='w-2/6 flex flex-col items-center mt-8'>
@@ -13,7 +68,9 @@ const Profile = () => {
           <img src={avatar} alt='' className='h-full w-full ' />
         </div>
 
-        <div className="mt-5 font-sfproth text-lg text-gray-700">ADEBOYE FOLARANMI</div>
+        <div className='mt-5 font-sfproth text-lg text-gray-700'>
+          ADEBOYE FOLARANMI
+        </div>
       </div>
     </div>
   )
