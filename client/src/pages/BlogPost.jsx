@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 import eyes from '../assets/eyes.svg'
 import img1 from '../assets/postimages/1.png'
 import avatar from '../assets/avatar.png'
@@ -29,7 +29,7 @@ export default function BlogPost () {
               <img src={avatar} alt='' className='w-full' />
             </div>
             <div className=''>
-              <h4 className='font-sfproth'>ADEBOYE FOLARANMI</h4>
+              <Link to="/profile" className='font-sfproth'>ADEBOYE FOLARANMI</Link>
               <div className='font-sfprotr'>
                 <span>Apr 15, 2022 </span>
                 <span>· 4 min read</span>
