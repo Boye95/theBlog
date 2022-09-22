@@ -61,6 +61,18 @@
     @apply  hover:text-gray-400 uppercase font-extrabold;
   }
 
+  /* styles for scroll ticker */
+
+  .tick {
+    /* overflow: hidden; */
+    animation: ticking 35s linear infinite;
+  }
+
+  @keyframes ticking {
+    0% {transform: translateX(0);}
+    100% {transform: translateX(-300vw);}
+  }
+
   /* Chrome, Safari and Opera */
   .scroll-no::-webkit-scrollbar {
     width: 2px;

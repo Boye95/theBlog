@@ -1,39 +1,32 @@
 import React from 'react'
-import { HorizontalTicker } from 'react-infinite-ticker'
 
 let Tick = () => {
   return (
     <>
-      <div className='font-sfproth text-2xl whitespace-nowrap sm:pt-4 sm:text-[15.5px]'>
-        <HorizontalTicker className=''>
-          <div className='flex justify-between gap-6'>
-            <span>DIGITAL PRODUCT DESIGN</span>
-            <span className='font-sfprotr'>REMOTE WORK</span>
-            <span>UX DESIGN</span>
-            <span className='font-sfprotr'>DISTRIBUTED TEAMS</span>
-            <span>CREATIVITY</span>
-            <span className='font-sfprotr'>STRATEGY</span>
-            <span>SUSPENSE</span>
-          </div>
-          <div className='ml-8 flex justify-between gap-6'>
-            <span>DIGITAL PRODUCT DESIGN</span>
-            <span className='font-sfprotr'>REMOTE WORK</span>
-            <span>UX DESIGN</span>
-            <span className='font-sfprotr'>DISTRIBUTED TEAMS</span>
-            <span>CREATIVITY</span>
-            <span className='font-sfprotr'>STRATEGY</span>
-            <span>SUSPENSE</span>
-            <span className='font-sfprotr'>GROWTH</span>
-            <span>DIGITAL PRODUCT DESIGN</span>
-            <span className='font-sfprotr'>REMOTE WORK</span>
-            <span>UX DESIGN</span>
-            <span className='font-sfprotr'>DISTRIBUTED TEAMS</span>
-            <span>CREATIVITY</span>
-            <span className='font-sfprotr'>STRATEGY</span>
-            <span>SUSPENSE</span>
-            <span className='font-sfprotr'>GROWTH</span>
-          </div>
-        </HorizontalTicker>
+      <div className='tick flex gap-5 font-sfproth text-2xl whitespace-nowrap sm:pt-4 sm:text-[15.5px]'>
+        <span>DIGITAL PRODUCT DESIGN</span>
+        <span className='font-sfprotr'>REMOTE WORK</span>
+        <span>UX DESIGN</span>
+        <span className='font-sfprotr'>DISTRIBUTED TEAMS</span>
+        <span>CREATIVITY</span>
+        <span className='font-sfprotr'>STRATEGY</span>
+        <span>SUSPENSE</span>
+        <span>DIGITAL PRODUCT DESIGN</span>
+        <span className='font-sfprotr'>REMOTE WORK</span>
+        <span>UX DESIGN</span>
+        <span className='font-sfprotr'>DISTRIBUTED TEAMS</span>
+        <span>CREATIVITY</span>
+        <span className='font-sfprotr'>STRATEGY</span>
+        <span>SUSPENSE</span>
+        <span className='font-sfprotr'>GROWTH</span>
+        <span>DIGITAL PRODUCT DESIGN</span>
+        <span className='font-sfprotr'>REMOTE WORK</span>
+        <span>UX DESIGN</span>
+        <span className='font-sfprotr'>DISTRIBUTED TEAMS</span>
+        <span>CREATIVITY</span>
+        <span className='font-sfprotr'>STRATEGY</span>
+        <span>SUSPENSE</span>
+        <span className='font-sfprotr'>GROWTH</span>
       </div>
     </>
   )
@@ -41,7 +34,7 @@ let Tick = () => {
 
 export default function Footer () {
   return (
-    <footer className='w-full bg-black text-white h-auto pb-4'>
+    <footer className='w-full bg-black text-white h-auto pb-4 overflow-hidden'>
       <Tick />
       <div className='mt-24 flex flex-col items-center gap-6 sm:mt-16'>
         <div className='font-zeit text-3xl sm:text-2xl'>ÓNYÉ ŃKÚZÍ</div>
