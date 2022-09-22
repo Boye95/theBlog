@@ -63,11 +63,11 @@
 
   /* Chrome, Safari and Opera */
   .scroll-no::-webkit-scrollbar {
-    display: none;
+    width: 2px;
   }
 
   .scroll-no {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: 2px; /* IE and Edge */
+    scrollbar-width: 2px; /* Firefox */
   }
 }
