@@ -1,33 +1,36 @@
 import React from 'react'
+import Marquee from 'react-fast-marquee'
 
 let Tick = () => {
   return (
     <>
-      <div className='tick flex gap-5 font-sfproth text-2xl whitespace-nowrap sm:pt-4 sm:text-[15.5px]'>
-        <span>DIGITAL PRODUCT DESIGN</span>
-        <span className='font-sfprotr'>REMOTE WORK</span>
-        <span>UX DESIGN</span>
-        <span className='font-sfprotr'>DISTRIBUTED TEAMS</span>
-        <span>CREATIVITY</span>
-        <span className='font-sfprotr'>STRATEGY</span>
-        <span>SUSPENSE</span>
-        <span>DIGITAL PRODUCT DESIGN</span>
-        <span className='font-sfprotr'>REMOTE WORK</span>
-        <span>UX DESIGN</span>
-        <span className='font-sfprotr'>DISTRIBUTED TEAMS</span>
-        <span>CREATIVITY</span>
-        <span className='font-sfprotr'>STRATEGY</span>
-        <span>SUSPENSE</span>
-        <span className='font-sfprotr'>GROWTH</span>
-        <span>DIGITAL PRODUCT DESIGN</span>
-        <span className='font-sfprotr'>REMOTE WORK</span>
-        <span>UX DESIGN</span>
-        <span className='font-sfprotr'>DISTRIBUTED TEAMS</span>
-        <span>CREATIVITY</span>
-        <span className='font-sfprotr'>STRATEGY</span>
-        <span>SUSPENSE</span>
-        <span className='font-sfprotr'>GROWTH</span>
-      </div>
+      <Marquee speed={70} gradient={false}>
+        <div className='tick flex gap-5 font-sfproth text-2xl whitespace-nowrap sm:pt-4 sm:text-[15.5px]'>
+          <span>DIGITAL PRODUCT DESIGN</span>
+          <span className='font-sfprotr'>REMOTE WORK</span>
+          <span>UX DESIGN</span>
+          <span className='font-sfprotr'>DISTRIBUTED TEAMS</span>
+          <span>CREATIVITY</span>
+          <span className='font-sfprotr'>STRATEGY</span>
+          <span>SUSPENSE</span>
+          <span>DIGITAL PRODUCT DESIGN</span>
+          <span className='font-sfprotr'>REMOTE WORK</span>
+          <span>UX DESIGN</span>
+          <span className='font-sfprotr'>DISTRIBUTED TEAMS</span>
+          <span>CREATIVITY</span>
+          <span className='font-sfprotr'>STRATEGY</span>
+          <span>SUSPENSE</span>
+          <span className='font-sfprotr'>GROWTH</span>
+          <span>DIGITAL PRODUCT DESIGN</span>
+          <span className='font-sfprotr'>REMOTE WORK</span>
+          <span>UX DESIGN</span>
+          <span className='font-sfprotr'>DISTRIBUTED TEAMS</span>
+          <span>CREATIVITY</span>
+          <span className='font-sfprotr'>STRATEGY</span>
+          <span>SUSPENSE</span>
+          <span className='font-sfprotr mr-2'>GROWTH</span>
+        </div>
+      </Marquee>
     </>
   )
 }

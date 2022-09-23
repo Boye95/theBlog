@@ -62,10 +62,9 @@
   }
 
   /* styles for scroll ticker */
-
   .tick {
     /* overflow: hidden; */
-    animation: ticking 35s linear infinite;
+    /* animation: ticking 35s linear infinite; */
   }
 
   @keyframes ticking {
