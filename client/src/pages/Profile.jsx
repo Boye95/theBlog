@@ -14,22 +14,31 @@ const Profile = () => {
 
   return (
     <div className='flex '>
-      <div className='scroll-no flex flex-col mx-8 pt-9 w-4/6 h-screen overflow-scroll border-blue-200 border-r-2 ham:w-full ham:border-none ham:overflow-visible'>
+      <div className='scroll-no flex flex-col mx-8 pt-9 w-4/6 h-screen overflow-scroll border-blue-200 border-r-2 ham:w-full ham:border-none ham:overflow-visible sm:mx-2'>
         <div className='w-11/12 flex justify-between px-2 mb-5 ham:w-full'>
           <div className='text-xl font-sfprotr font-semibold sm:text-[17px]'>
             Welcome Home, Boye.
           </div>
           <div className='relative flex gap-3 items-center'>
-            <Link to='/' className='flex items-center gap-2 bg-gray-300 rounded p-1 transition hover:bg-gray-100'>
+            <Link
+              to='/'
+              className='flex items-center gap-2 bg-gray-300 rounded p-1 transition hover:bg-gray-100'
+            >
               <BiArrowBack className='sm:text-2xl' />
               <p className='sm:text-[13px] sm:hidden'>Blog Home</p>
             </Link>
-            <div
-              onClick={handleShowEdit}
-              className='h-8 w-8 cursor-pointer rounded-full overflow-hidden ring ring-gray-600 ring-offset-2 hover:ring-blue-400'
-            >
-              <img src={avatar} alt='' className='h-full w-full' />
-            </div>
+            <Link to='/profile' className='relative'>
+              <span className='flex h-3 w-3 absolute -right-2 top-0'>
+                <span className='animate-ping absolute inline-flex h-3 w-3 rounded-full bg-gray-400 opacity-75'></span>
+                <span className='relative inline-flex rounded-full h-3 w-3 bg-gray-700'></span>
+              </span>
+              <div
+                onClick={handleShowEdit}
+                className='h-8 w-8 cursor-pointer rounded-full overflow-hidden ring ring-gray-600 ring-offset-2 hover:ring-blue-400'
+              >
+                <img src={avatar} alt='' className='h-full w-full' />
+              </div>
+            </Link>
             <Link
               to='/'
               className={
