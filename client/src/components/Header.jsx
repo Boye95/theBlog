@@ -78,7 +78,7 @@ export default function Header () {
       <div
         className={
           showMenu
-            ? 'flex flex-col absolute top-0 bg-white h-full w-full z-10'
+            ? 'flex flex-col absolute top-0 bg-white h-screen w-full overflow-hidden'
             : 'hidden'
         }
       >
