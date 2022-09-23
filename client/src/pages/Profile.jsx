@@ -16,13 +16,13 @@ const Profile = () => {
     <div className='flex '>
       <div className='scroll-no flex flex-col mx-8 pt-9 w-4/6 h-screen overflow-scroll border-blue-200 border-r-2 ham:w-full ham:border-none ham:overflow-visible'>
         <div className='w-11/12 flex justify-between px-2 mb-5 ham:w-full'>
-          <div className='text-xl font-sfprotr font-semibold sm:text-[15px]'>
+          <div className='text-xl font-sfprotr font-semibold sm:text-[17px]'>
             Welcome Home, Boye.
           </div>
           <div className='relative flex gap-3 items-center'>
             <Link to='/' className='flex items-center gap-2 bg-gray-300 rounded p-1 transition hover:bg-gray-100'>
-              <BiArrowBack />
-              <p className='sm:text-[13px]'>Blog Home</p>
+              <BiArrowBack className='sm:text-2xl' />
+              <p className='sm:text-[13px] sm:hidden'>Blog Home</p>
             </Link>
             <div
               onClick={handleShowEdit}

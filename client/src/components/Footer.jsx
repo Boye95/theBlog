@@ -5,7 +5,7 @@ let Tick = () => {
   return (
     <>
       <Marquee speed={70} gradient={false}>
-        <div className='tick flex gap-5 font-sfproth text-2xl whitespace-nowrap sm:pt-4 sm:text-[15.5px]'>
+        <div className='tick flex gap-5 font-sfproth text-2xl whitespace-nowrap sm:pt-2 sm:text-[15.5px]'>
           <span>DIGITAL PRODUCT DESIGN</span>
           <span className='font-sfprotr'>REMOTE WORK</span>
           <span>UX DESIGN</span>
