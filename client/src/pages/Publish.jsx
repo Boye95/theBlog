@@ -1,13 +1,16 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import avatar from '../assets/avatar.png'
 import { Link } from 'react-router-dom'
 import { BiArrowBack } from 'react-icons/bi'
-// import { EditorState } from 'draft-js'
-// import { Editor } from 'react-draft-wysiwyg'
-// import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
+import { EditorState } from 'draft-js'
+import { Editor } from 'react-draft-wysiwyg'
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
 export default function Publish () {
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createEmpty()
+  )
+
   return (
     <div className='mt-5'>
       <div className='w-11/12 mx-auto flex justify-between px-2 mb-5 ham:w-full sm:px-4'>
@@ -41,7 +44,14 @@ export default function Publish () {
         </div>
       </div>
 
-      {/* <Editor /> */}
+      <Editor
+        editorState={editorState}
+        // onChange={setEditorState}
+        onEditorStateChange={setEditorState}
+        wrapperClassName='wrapper-class'
+        editorClassName='editor-class'
+        toolbarClassName='toolbar-class'
+      />
     </div>
   )
 }
