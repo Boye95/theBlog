@@ -9,6 +9,11 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <script>const global = {}</script>
+    <script>
+      window.setImmediate = window.setTimeout;
+    </script>
+    <script>
+      const global = {};
+    </script>
   </body>
 </html>

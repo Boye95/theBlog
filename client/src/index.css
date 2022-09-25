@@ -58,19 +58,20 @@
     @apply h-full px-4 flex items-center hover:text-gray-400;
   }
   .navlinks {
-    @apply  hover:text-gray-400 uppercase font-extrabold;
+    @apply hover:text-gray-400 uppercase font-extrabold;
   }
 
-  /* styles for scroll ticker */
-  .tick {
-    /* overflow: hidden; */
-    /* animation: ticking 35s linear infinite; */
-  }
+  /* React-draft-wysiwyg editor styling */
 
-  @keyframes ticking {
-    0% {transform: translateX(0);}
-    100% {transform: translateX(-300vw);}
+  /* .wrapper-class {
+    @apply h-4/6 p-2 border-2 border-emerald-400;
   }
+  .editor-class {
+    @apply bg-gray-100 p-2 border-2 border-blue-300;
+  }
+  .toolbar-class {
+    @apply border-2 border-blue-300;
+  } */
 
   /* Chrome, Safari and Opera */
   .scroll-no::-webkit-scrollbar {

@@ -2,14 +2,22 @@ import React, { useState } from 'react'
 import avatar from '../assets/avatar.png'
 import { Link } from 'react-router-dom'
 import { BiArrowBack } from 'react-icons/bi'
-import { EditorState } from 'draft-js'
-import { Editor } from 'react-draft-wysiwyg'
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
+// Import the Slate editor factory.
+import { createEditor } from 'slate'
+
+// Import the Slate components and React plugin.
+import { Slate, Editable, withReact } from 'slate-react'
+
+const initialValue = [
+  {
+    type: 'paragraph',
+    children: [{ text: 'A line of text in a paragraph.' }]
+  }
+]
 
 export default function Publish () {
-  const [editorState, setEditorState] = useState(() =>
-    EditorState.createEmpty()
-  )
+  // Create a Slate editor object that won't change across renders.
+  const [editor] = useState(() => withReact(createEditor()))
 
   return (
     <div className='mt-5'>
@@ -44,14 +52,9 @@ export default function Publish () {
         </div>
       </div>
 
-      <Editor
-        editorState={editorState}
-        // onChange={setEditorState}
-        onEditorStateChange={setEditorState}
-        wrapperClassName='wrapper-class'
-        editorClassName='editor-class'
-        toolbarClassName='toolbar-class'
-      />
+      <Slate editor={editor} value={initialValue}>
+        <Editable />
+      </Slate>
     </div>
   )
 }
