@@ -28,8 +28,8 @@ export default function Publish () {
           </Link>
           <Link to='/profile' className='relative '>
             <span className='flex h-3 w-3 absolute -right-2 top-0'>
-              <span className='animate-ping absolute inline-flex h-3 w-3 rounded-full bg-gray-400 opacity-75'></span>
-              <span className='relative inline-flex rounded-full h-3 w-3 bg-gray-700'></span>
+              <span className='animate-ping absolute inline-flex h-3 w-3 rounded-full bg-green-400 opacity-75'></span>
+              <span className='relative inline-flex rounded-full h-3 w-3 bg-emerald-500'></span>
             </span>
             <div className='h-8 w-8 cursor-pointer rounded-full overflow-hidden ring ring-gray-600 ring-offset-2 hover:ring-blue-400'>
               <img src={avatar} alt='' className='h-full w-full' />

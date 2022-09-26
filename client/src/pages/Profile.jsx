@@ -29,8 +29,8 @@ const Profile = () => {
             </Link>
             <Link to='/profile' className='relative'>
               <span className='flex h-3 w-3 absolute -right-2 top-0'>
-                <span className='animate-ping absolute inline-flex h-3 w-3 rounded-full bg-gray-400 opacity-75'></span>
-                <span className='relative inline-flex rounded-full h-3 w-3 bg-gray-700'></span>
+                <span className='animate-ping absolute inline-flex h-3 w-3 rounded-full bg-green-300 opacity-75'></span>
+                <span className='relative inline-flex rounded-full h-3 w-3 bg-emerald-500'></span>
               </span>
               <div
                 onClick={handleShowEdit}
