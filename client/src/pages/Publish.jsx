@@ -7,7 +7,7 @@ export default function Publish () {
 
   return (
     <div className='mt-5'>
-      <div className='w-11/12 mx-auto flex justify-between px-2 mb-5 ham:w-full sm:px-4'>
+      <div className='w-11/12 mx-auto flex justify-between px-2 py-4 mb-5 bg-white border-b-4 shadow-xl border-gray-600 fixed top-0 z-10 ham:w-full sm:px-4 '>
         <h1 className='text-xl font-sfprotr font-semibold sm:text-[17px]'>
           Tell a Story, Boye
         </h1>
@@ -15,7 +15,7 @@ export default function Publish () {
         <div className='flex gap-3 items-center'>
           <Link
             to='/'
-            className='text-white bg-black rounded p-1 font-sfprod px-8 transition hover:bg-gray-600 sm:px-4'
+            className='text-white bg-black rounded p-1 font-sfprod px-8 ring-2 ring-gray-700 ring-offset-2 transition hover:bg-gray-600 hover:ring-gray-400 sm:px-4'
           >
             Publish
           </Link>
@@ -38,7 +38,7 @@ export default function Publish () {
         </div>
       </div>
 
-      
+      <div className="h-screen mt-[4.5rem]"></div>
     </div>
   )
 }
