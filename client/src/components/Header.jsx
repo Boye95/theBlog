@@ -78,18 +78,18 @@ export default function Header () {
       <div
         className={
           showMenu
-            ? 'flex flex-col absolute top-0 bg-white h-screen w-full overflow-hidden'
+            ? 'flex flex-col absolute top-5 right-0 bg-gray-50 h-auto w-3/6 rounded shadow-2xl overflow-hidden'
             : 'hidden'
         }
       >
-        <div className='mt-6 flex justify-end pr-2'>
+        <div className='mt-1 mr-3 flex justify-end pr-2 '>
           <GrClose
-            className='cursor-pointer'
-            size={38}
+            className='cursor-pointer rounded ring-2'
+            size={30}
             onClick={handleShowMenu}
           />
         </div>
-        <div className='mt-8 flex flex-col items-center gap-4 text-lg font-nysmall'>
+        <div className='mt-8 pb-9 flex flex-col items-center gap-4 text-lg font-sfprod'>
           <NavLink
             to='/'
             className='navlinks'
