@@ -2,22 +2,8 @@ import React, { useState } from 'react'
 import avatar from '../assets/avatar.png'
 import { Link } from 'react-router-dom'
 import { BiArrowBack } from 'react-icons/bi'
-// Import the Slate editor factory.
-import { createEditor } from 'slate'
-
-// Import the Slate components and React plugin.
-import { Slate, Editable, withReact } from 'slate-react'
-
-const initialValue = [
-  {
-    type: 'paragraph',
-    children: [{ text: 'A line of text in a paragraph.' }]
-  }
-]
 
 export default function Publish () {
-  // Create a Slate editor object that won't change across renders.
-  const [editor] = useState(() => withReact(createEditor()))
 
   return (
     <div className='mt-5'>
@@ -52,18 +38,7 @@ export default function Publish () {
         </div>
       </div>
 
-      <Slate editor={editor} value={initialValue}>
-        <Editable
-          onKeyDown={event => {
-            if (event.key === '&') {
-              // Prevent the ampersand character from being inserted.
-              event.preventDefault()
-              // Execute the `insertText` method when the event occurs.
-              editor.insertText('and')
-            }
-          }}
-        />
-      </Slate>
+      
     </div>
   )
 }
