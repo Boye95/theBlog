@@ -23,7 +23,7 @@ const NoteViewer = () => {
   return (
     <EditorComposer>
       <Editor hashtagsEnabled={true} emojisEnabled={true}>
-        <ToolbarPlugin defaultFontSize='20px'>
+        <ToolbarPlugin defaultFontSize='20px' className='toolbar'>
           <FontFamilyDropdown />
           <FontSizeDropdown />
           <Divider />

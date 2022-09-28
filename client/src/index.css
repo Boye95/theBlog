@@ -52,6 +52,11 @@
   background: #b1b0b0;
 }
 
+/* .toolbar {
+  background-color: rgba(147, 165, 113, 0.527);
+  padding: 0px
+} */
+
 /* vanilla css for footer item child elements */
 @layer components {
   .navlink {
@@ -61,17 +66,11 @@
     @apply hover:text-gray-400 uppercase font-extrabold;
   }
 
-  /* React-draft-wysiwyg editor styling */
+  /* Verbum editor styling */
 
-  /* .wrapper-class {
-    @apply h-4/6 p-2 border-2 border-emerald-400;
-  }
-  .editor-class {
-    @apply bg-gray-100 p-2 border-2 border-blue-300;
-  }
-  .toolbar-class {
-    @apply border-2 border-blue-300;
-  } */
+  .toolbar {
+    @apply border-2 border-red-300 p-0;
+  } 
 
   /* Chrome, Safari and Opera */
   .scroll-no::-webkit-scrollbar {
