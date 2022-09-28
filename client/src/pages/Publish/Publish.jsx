@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import avatar from '../assets/avatar.png'
+import avatar from '../../assets/avatar.png'
 import { Link } from 'react-router-dom'
 import { BiArrowBack } from 'react-icons/bi'
 
@@ -38,7 +38,8 @@ export default function Publish () {
         </div>
       </div>
 
-      <div className="h-screen mt-[4.5rem]"></div>
+      <div className='h-screen mt-[7rem]'>
+      </div>
     </div>
   )
 }
