@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC } from 'react'
 import {
   EditorComposer,
   Editor,
@@ -16,14 +16,14 @@ import {
   TextColorPicker,
   TextFormatDropdown,
   UnderlineButton,
-  Divider,
-} from 'verbum';
+  Divider
+} from 'verbum'
 
 const NoteViewer = () => {
   return (
     <EditorComposer>
-      <Editor hashtagsEnabled={true}>
-        <ToolbarPlugin defaultFontSize="20px">
+      <Editor hashtagsEnabled={true} emojisEnabled={true}>
+        <ToolbarPlugin defaultFontSize='20px'>
           <FontFamilyDropdown />
           <FontSizeDropdown />
           <Divider />
@@ -36,13 +36,21 @@ const NoteViewer = () => {
           <BackgroundColorPicker />
           <TextFormatDropdown />
           <Divider />
-          <InsertDropdown enablePoll={true} />
+          <InsertDropdown
+            enablePoll={true}
+            enableTwitter={true}
+            enableYoutube={true}
+            enableExcalidraw={true}
+            enableHorizontalRule={true}
+            enableEquations={true}
+            enableStickyNote={true}
+          />
           <Divider />
           <AlignDropdown />
         </ToolbarPlugin>
       </Editor>
     </EditorComposer>
-  );
-};
+  )
+}
 
-export default NoteViewer;
+export default NoteViewer
