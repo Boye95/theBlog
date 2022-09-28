@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import avatar from '../../assets/avatar.png'
 import { Link } from 'react-router-dom'
 import { BiArrowBack } from 'react-icons/bi'
+import NoteViewer from './LexicalFiles/LexicalEditor'
 
 export default function Publish () {
 
@@ -39,6 +40,7 @@ export default function Publish () {
       </div>
 
       <div className='h-screen mt-[7rem]'>
+        <NoteViewer />
       </div>
     </div>
   )
