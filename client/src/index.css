@@ -37,7 +37,8 @@
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
+  height: 2px;
 }
 
 ::-webkit-scrollbar-track {
@@ -52,18 +53,9 @@
   background: #b1b0b0;
 }
 
-.editor-shell {
-  position: relative;
-}
-.link-editor {
-  background-color: rgba(147, 219, 13, 0.527);
-  padding: 0px;
-  position: absolute;
-  width: 10rem;
-  left: 90rem;
-  top: 50%;
-
-}
+/* .toolbar button.toolbar-item {
+  background-color: blue;;
+} */
 
 /* vanilla css for footer item child elements */
 @layer components {
@@ -76,9 +68,19 @@
 
   /* Verbum editor styling */
 
+  .editor-shell {
+    @apply w-[80%];
+  }
   .toolbar {
-    @apply border-2 border-red-300 p-0;
-  } 
+    @apply p-0 px-4 flex items-center justify-evenly bg-gray-500 h-[3rem] text-white;
+  }
+  .toolbar button.toolbar-item, .toolbar select.toolbar-item {
+    @apply bg-white;
+  }
+
+  .toolbar::-webkit-scrollbar-thumb {
+    @apply bg-yellow-600;
+  }
 
   /* Chrome, Safari and Opera */
   .scroll-no::-webkit-scrollbar {

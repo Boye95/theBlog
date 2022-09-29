@@ -22,32 +22,30 @@ import {
 const NoteViewer = () => {
   return (
     <form className=''>
-      <div className=''>
+      <div className='flex flex-col items-center '>
+        <label htmlFor='blogimg'>
+          <input type='file' name='blogimg' id='blogimg' required />
+        </label>
         <div className=''>
-          <label htmlFor='blogimg'>
-            <input type='file' name='blogimg' id='blogimg' required />
-          </label>
-          <div className=''>
-            <input
-              type='text'
-              name='blogTitle'
-              id='blogTitle'
-              placeholder='Title...'
-              className=''
-              required
-            />
-            <input
-              type='text'
-              name='blogSubtitle'
-              id='blogSubtitle'
-              placeholder='Subtitle...'
-              className=''
-              required
-            />
-          </div>
+          <input
+            type='text'
+            name='blogTitle'
+            id='blogTitle'
+            placeholder='Title...'
+            className=''
+            required
+          />
+          <input
+            type='text'
+            name='blogSubtitle'
+            id='blogSubtitle'
+            placeholder='Subtitle...'
+            className=''
+            required
+          />
         </div>
       </div>
-      <EditorComposer>
+      <EditorComposer className='editor-shell bg-red-500'>
         <Editor
           hashtagsEnabled={true}
           emojisEnabled={true}
