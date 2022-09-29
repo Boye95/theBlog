@@ -52,10 +52,18 @@
   background: #b1b0b0;
 }
 
-/* .toolbar {
-  background-color: rgba(147, 165, 113, 0.527);
-  padding: 0px
-} */
+.editor-shell {
+  position: relative;
+}
+.link-editor {
+  background-color: rgba(147, 219, 13, 0.527);
+  padding: 0px;
+  position: absolute;
+  width: 10rem;
+  left: 90rem;
+  top: 50%;
+
+}
 
 /* vanilla css for footer item child elements */
 @layer components {
