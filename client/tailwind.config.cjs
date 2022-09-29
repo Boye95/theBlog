@@ -21,6 +21,9 @@ module.exports = {
       sm: { max: "639px" },
       // => @media (max-width: 639px) { ... }
 
+      lexical: { max: "600px" },
+      // => @media (max-width: 600px) { ... }
+
       xs: { max: "400px" },
       // => @media (max-width: 400px) { ... }
     },

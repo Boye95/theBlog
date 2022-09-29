@@ -53,6 +53,9 @@
   background: #b1b0b0;
 }
 
+.link-editor {
+  @apply absolute left-2/4 -translate-x-2/4 translate-y-0 w-[15rem] bg-black lexical:-translate-x-2/4 xs:translate-x-[10%];
+}
 /* .toolbar button.toolbar-item {
   background-color: blue;;
 } */
@@ -69,13 +72,17 @@
   /* Verbum editor styling */
 
   .editor-shell {
-    @apply w-[80%];
+    @apply ring-2 w-5/6;
   }
   .toolbar {
-    @apply p-0 px-4 flex items-center justify-evenly bg-gray-500 h-[3rem] text-white;
+    @apply w-full px-2 flex items-center justify-start bg-gray-500 h-[3rem] text-white;
   }
-  .toolbar button.toolbar-item, .toolbar select.toolbar-item {
+  .toolbar button.toolbar-item,
+  .toolbar select.toolbar-item {
     @apply bg-white;
+  }
+  .toolbar select.toolbar-item {
+    @apply mr-3;
   }
 
   .toolbar::-webkit-scrollbar-thumb {
