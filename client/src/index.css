@@ -54,8 +54,33 @@
 }
 
 .link-editor {
-  @apply absolute left-2/4 -translate-x-2/4 translate-y-0 w-[15rem] bg-black lexical:-translate-x-2/4 xs:translate-x-[10%];
+  position: absolute;
+  width: 50%;
+  left: 50% !important;
+  transform: translate(-50%, 0);
+  @apply mx-auto bg-gray-500 sm:w-4/6;
 }
+
+.character-style-popup {
+  position: absolute;
+  left: 50% !important;
+  top: 300px !important;
+  transform: translate(-50%, 0);
+  @apply flex items-center mx-auto xs:w-[80%] xs:overflow-x-auto xs:h-[3rem] xs:p-0;
+}
+
+iframe {
+  @apply mx-auto;
+}
+/* #twitter-widget-0 {
+  display: flex;
+  justify-content: center;
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  background: yellow;
+} */
+
 /* .toolbar button.toolbar-item {
   background-color: blue;;
 } */
