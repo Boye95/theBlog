@@ -72,6 +72,10 @@
 iframe {
   @apply mx-auto;
 }
+
+.ContentEditable__root {
+  @apply min-h-[30rem];
+}
 /* #twitter-widget-0 {
   display: flex;
   justify-content: center;
@@ -97,21 +101,26 @@ iframe {
   /* Verbum editor styling */
 
   .editor-shell {
-    @apply ring-2 w-5/6;
+    @apply w-full min-h-[30rem] font-nymedium rounded-tr-[10px] rounded-tl-[10px] ring-gray-700 ring-offset-2 ring-2 border-2 transition focus-within:border-emerald-300 focus-within:ring-emerald-300 focus-within:shadow-emerald-300 focus-within:shadow-[0_0_25px];
   }
+
+  .editor-shell .editor-container {
+    @apply border-2;
+  }
+
   .toolbar {
-    @apply w-full px-2 flex items-center justify-start bg-gray-500 h-[3rem] text-white;
+    @apply w-full px-2 flex items-center justify-start gap-1 border-2 h-[3.5rem] text-white;
   }
   .toolbar button.toolbar-item,
   .toolbar select.toolbar-item {
-    @apply bg-white;
+    @apply bg-white border-2 border-blue-300 ring-2 ring-gray-700 ring-offset-2 focus:outline-none;
   }
   .toolbar select.toolbar-item {
-    @apply mr-3;
+    @apply mr-3 w-[5rem];
   }
 
   .toolbar::-webkit-scrollbar-thumb {
-    @apply bg-yellow-600;
+    @apply bg-gray-400;
   }
 
   /* Chrome, Safari and Opera */
