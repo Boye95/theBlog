@@ -50,7 +50,7 @@ const NoteViewer = () => {
             name='blogSubtitle'
             id='blogSubtitle'
             placeholder='Subtitle...'
-            className='ring-gray-700 ring-offset-2 ring-2 border-2 w-[98%] max-w-[1000px] mx-auto mt-2 text-2xl px-3 font-sfmono transition focus:border-emerald-300 focus:ring-emerald-300 focus:shadow-emerald-300 focus:shadow-[0_0_15px]'
+            className='ring-gray-700 ring-offset-2 ring-2 border-2 w-full max-w-[1050px] mx-auto mt-2 text-2xl px-3 font-sfmono transition focus:border-emerald-300 focus:ring-emerald-300 focus:shadow-emerald-300 focus:shadow-[0_0_15px]'
             required
           />
         </div>
