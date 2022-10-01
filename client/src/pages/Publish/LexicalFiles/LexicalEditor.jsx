@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { IoIosAddCircleOutline } from 'react-icons/io'
 import { FC } from 'react'
 import {
@@ -21,6 +22,12 @@ import {
 } from 'verbum'
 
 const NoteViewer = () => {
+  // const [value, setValue] = useState('');
+
+  // let handleValue = () => {
+
+  // }
+
   return (
     <form className='w-[80%] mx-auto'>
       <div className='flex flex-col items-center w-full mx-auto'>
