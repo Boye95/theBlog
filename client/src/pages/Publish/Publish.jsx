@@ -39,7 +39,7 @@ export default function Publish () {
         </div>
       </div>
 
-      <div className='h-screen mt-[6rem]'>
+      <div className='h-screen mt-[9rem]'>
         <NoteViewer />
       </div>
     </div>
