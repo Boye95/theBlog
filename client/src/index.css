@@ -76,6 +76,14 @@ iframe {
 .ContentEditable__root {
   @apply min-h-[30rem];
 }
+
+.PlaygroundEditorTheme__ul {
+  list-style-type: disc;
+}
+
+/* .PlaygroundEditorTheme__listItemChecked, .PlaygroundEditorTheme__listItemUnchecked {
+  list-style-type: square;
+} */
 /* #twitter-widget-0 {
   display: flex;
   justify-content: center;
