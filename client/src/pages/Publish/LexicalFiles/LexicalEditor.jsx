@@ -21,8 +21,10 @@ import {
   Divider
 } from 'verbum'
 
+
 const NoteViewer = () => {
   const [editorState, setEditorState] = useState()
+  const [editorInstance, setEditorInstance] = useState()
 
   return (
     <form className='w-[80%] mx-auto ham:w-[95%]'>
@@ -66,9 +68,11 @@ const NoteViewer = () => {
           hashtagsEnabled={true}
           emojisEnabled={true}
           placeholder='Say your piece...'
-          onChange={(state) => {
+          onChange={(state, instance) => {
             setEditorState(state)
+            setEditorInstance(instance)
             console.log(state)
+            console.log(instance)
           }}
         >
           <ToolbarPlugin defaultFontSize='20px' className='toolbar'>
