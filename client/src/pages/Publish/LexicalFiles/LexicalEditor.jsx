@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { $convertToMarkdownString, TRANSFORMERS } from '@lexical/markdown'
 import { IoIosAddCircleOutline } from 'react-icons/io'
 import { FC } from 'react'
 import {
@@ -21,10 +22,21 @@ import {
   Divider
 } from 'verbum'
 
-
 const NoteViewer = () => {
   const [editorState, setEditorState] = useState()
   const [editorInstance, setEditorInstance] = useState()
+
+  let handleChange = (state, instance) => {
+    setEditorState(state)
+    setEditorInstance(instance)
+    console.log(editorState)
+    // console.log(state)
+    // console.log(instance)
+    instance.update(() => {
+      const markdown = $convertToMarkdownString(TRANSFORMERS)
+      console.log(markdown)
+    })
+  }
 
   return (
     <form className='w-[80%] mx-auto ham:w-[95%]'>
@@ -63,17 +75,15 @@ const NoteViewer = () => {
           />
         </div>
       </div>
+      <div className='h-[10rem] bg-gray-700 text-gray-50 rounded mt-4 p-2'>
+        rhrhth
+      </div>
       <EditorComposer className='editor-shell'>
         <Editor
           hashtagsEnabled={true}
           emojisEnabled={true}
           placeholder='Say your piece...'
-          onChange={(state, instance) => {
-            setEditorState(state)
-            setEditorInstance(instance)
-            console.log(state)
-            console.log(instance)
-          }}
+          onChange={handleChange}
         >
           <ToolbarPlugin defaultFontSize='20px' className='toolbar'>
             <FontFamilyDropdown />
@@ -83,6 +93,7 @@ const NoteViewer = () => {
             <ItalicButton />
             <UnderlineButton />
             <CodeFormatButton />
+            <Divider />
             <InsertLinkButton />
             <TextColorPicker />
             <BackgroundColorPicker />

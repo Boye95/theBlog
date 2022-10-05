@@ -80,7 +80,6 @@ iframe {
 .PlaygroundEditorTheme__ul {
   list-style-type: disc;
 }
-
 /* .PlaygroundEditorTheme__listItemChecked, .PlaygroundEditorTheme__listItemUnchecked {
   list-style-type: square;
 } */
@@ -117,14 +116,19 @@ iframe {
   }
 
   .toolbar {
-    @apply w-full px-2 flex items-center justify-start gap-1 border-2 h-[3.5rem] text-white;
+    @apply w-full px-2 flex items-center justify-between gap-1 border-2 h-[3.5rem] text-white;
   }
+
+  /* .divide {
+    @apply bg-red-400 w-5;
+  } */
+  
   .toolbar button.toolbar-item,
   .toolbar select.toolbar-item {
     @apply bg-white border-2 border-blue-300 ring-2 ring-gray-700 ring-offset-2 focus:outline-none;
   }
   .toolbar select.toolbar-item {
-    @apply mr-3 w-[5rem];
+    @apply mr-4 w-[5rem];
   }
 
   .toolbar::-webkit-scrollbar-thumb {
