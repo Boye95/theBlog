@@ -29,9 +29,9 @@ const NoteViewer = () => {
   let handleChange = (state, instance) => {
     setEditorState(state)
     setEditorInstance(instance)
-    console.log(editorState)
+    // console.log(editorState)
     // console.log(state)
-    // console.log(instance)
+    console.log(instance)
     instance.update(() => {
       const markdown = $convertToMarkdownString(TRANSFORMERS)
       console.log(markdown)
@@ -76,7 +76,7 @@ const NoteViewer = () => {
         </div>
       </div>
       <div className='h-[10rem] bg-gray-700 text-gray-50 rounded mt-4 p-2'>
-        rhrhth
+        {editorInstance}
       </div>
       <EditorComposer className='editor-shell'>
         <Editor
