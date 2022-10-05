@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { $convertToMarkdownString, TRANSFORMERS } from '@lexical/markdown'
+import {$generateHtmlFromNodes} from '@lexical/html';
 import { IoIosAddCircleOutline } from 'react-icons/io'
 import { FC } from 'react'
 import {
@@ -34,6 +35,8 @@ const NoteViewer = () => {
     console.log(instance)
     instance.update(() => {
       const markdown = $convertToMarkdownString(TRANSFORMERS)
+      const htmlString = $generateHtmlFromNodes(instance, null);
+      console.log(htmlString);
       console.log(markdown)
     })
   }
@@ -76,12 +79,13 @@ const NoteViewer = () => {
         </div>
       </div>
       <div className='h-[10rem] bg-gray-700 text-gray-50 rounded mt-4 p-2'>
-        {editorInstance}
+        {editorState}
       </div>
       <EditorComposer className='editor-shell'>
         <Editor
           hashtagsEnabled={true}
           emojisEnabled={true}
+          actionsEnabled={true}
           placeholder='Say your piece...'
           onChange={handleChange}
         >

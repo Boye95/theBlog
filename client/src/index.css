@@ -116,7 +116,7 @@ iframe {
   }
 
   .toolbar {
-    @apply w-full px-2 flex items-center justify-between gap-1 border-2 h-[3.5rem] text-white;
+    @apply w-full px-2 flex items-center justify-start gap-1 border-2 h-[3.5rem] text-white;
   }
 
   /* .divide {
