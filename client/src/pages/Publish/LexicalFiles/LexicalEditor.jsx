@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import ReactMarkdown from 'react-markdown'
 import { $convertToMarkdownString, TRANSFORMERS } from '@lexical/markdown'
 import {$generateHtmlFromNodes} from '@lexical/html';
 import { IoIosAddCircleOutline } from 'react-icons/io'
@@ -28,16 +29,15 @@ const NoteViewer = () => {
   const [editorInstance, setEditorInstance] = useState()
 
   let handleChange = (state, instance) => {
-    setEditorState(state)
-    setEditorInstance(instance)
+    // setEditorInstance(instance)
     // console.log(editorState)
     // console.log(state)
-    console.log(instance)
+    // console.log(instance)
     instance.update(() => {
       const markdown = $convertToMarkdownString(TRANSFORMERS)
       const htmlString = $generateHtmlFromNodes(instance, null);
-      console.log(htmlString);
-      console.log(markdown)
+      setEditorState(markdown)
+      setEditorInstance(htmlString);
     })
   }
 
@@ -58,7 +58,6 @@ const NoteViewer = () => {
             required
           />
         </label>
-        {/* <div>{values}</div> */}
         <div className='flex flex-col w-full gap-2 [&>*]:h-[3rem] [&>*]:outline-none [&>*]:rounded'>
           <input
             type='text'
@@ -78,8 +77,13 @@ const NoteViewer = () => {
           />
         </div>
       </div>
-      <div className='h-[10rem] bg-gray-700 text-gray-50 rounded mt-4 p-2'>
+      <div className='h-[10rem] bg-gray-700 text-gray-50 rounded mt-4 p-2 overflow-scroll'>
+        {{editorInstance}}
+      </div>
+      <div className='h-[10rem] bg-emerald-500 text-gray-50 rounded mt-4 p-2 overflow-scroll'>
+        <ReactMarkdown>
         {editorState}
+        </ReactMarkdown>
       </div>
       <EditorComposer className='editor-shell'>
         <Editor
