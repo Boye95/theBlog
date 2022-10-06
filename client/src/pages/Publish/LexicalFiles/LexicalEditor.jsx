@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { $convertToMarkdownString, TRANSFORMERS } from '@lexical/markdown'
-import {$generateHtmlFromNodes} from '@lexical/html';
+import { $generateHtmlFromNodes } from '@lexical/html'
 import { IoIosAddCircleOutline } from 'react-icons/io'
 import { FC } from 'react'
 import {
@@ -35,9 +35,10 @@ const NoteViewer = () => {
     // console.log(instance)
     instance.update(() => {
       const markdown = $convertToMarkdownString(TRANSFORMERS)
-      const htmlString = $generateHtmlFromNodes(instance, null);
-      setEditorState(markdown)
-      setEditorInstance(htmlString);
+      const htmlString = $generateHtmlFromNodes(instance, null)
+      setEditorInstance(markdown)
+      setEditorState(htmlString)
+      // setEditorInstance(htmlString)
     })
   }
 
@@ -77,14 +78,12 @@ const NoteViewer = () => {
           />
         </div>
       </div>
-      <div className='h-[10rem] bg-gray-700 text-gray-50 rounded mt-4 p-2 overflow-scroll'>
-        {{editorInstance}}
+      {/* <div className='h-[10rem] bg-gray-700 text-gray-50 rounded mt-4 p-2 overflow-scroll'>
+        {editorState}
       </div>
       <div className='h-[10rem] bg-emerald-500 text-gray-50 rounded mt-4 p-2 overflow-scroll'>
-        <ReactMarkdown>
-        {editorState}
-        </ReactMarkdown>
-      </div>
+        <ReactMarkdown>{editorInstance}</ReactMarkdown>
+      </div> */}
       <EditorComposer className='editor-shell'>
         <Editor
           hashtagsEnabled={true}

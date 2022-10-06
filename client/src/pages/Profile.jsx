@@ -6,11 +6,11 @@ import { FaUserEdit } from 'react-icons/fa'
 import { BiArrowBack } from 'react-icons/bi'
 
 const Profile = () => {
-  const [showEdit, setShowEdit] = useState(false)
+  // const [showEdit, setShowEdit] = useState(false)
 
-  let handleShowEdit = () => {
-    setShowEdit(!showEdit)
-  }
+  // let handleShowEdit = () => {
+  //   setShowEdit(!showEdit)
+  // }
 
   return (
     <div className='flex '>
@@ -33,26 +33,25 @@ const Profile = () => {
                 <span className='relative inline-flex rounded-full h-3 w-3 bg-emerald-500'></span>
               </span>
               <div
-                onClick={handleShowEdit}
+                // onClick={handleShowEdit}
                 className='h-8 w-8 cursor-pointer rounded-full overflow-hidden ring ring-gray-600 ring-offset-2 hover:ring-blue-400'
               >
                 <img src={avatar} alt='' className='h-full w-full' />
               </div>
             </Link>
-            <Link
-              to='/'
-              className={
-                showEdit
-                  ? 'absolute top-11 right-0 w-[6rem] text-center rounded p-1 bg-gray-200 text-blue-800 hover:bg-gray-400'
-                  : 'hidden'
-              }
-            >
-              Edit Profile
-            </Link>
           </div>
         </div>
-        <div className='text-2xl w-fit p-2 mb-8 font-sfprod border-b-8 border-black sm:text-lg sm:border-b-4'>
-          Your Blog Posts
+        <div className='w-11/12 flex justify-between items-end mb-8 ham:w-full'>
+          <div className='text-2xl w-fit p-1 bg-green-50 font-sfprod border-b-8 border-black ham:text-lg sm:border-b-4'>
+            Your Blog Posts
+          </div>
+          <Link
+            to='/'
+            className='flex items-center gap-1 w-fit text-center rounded p-2 bg-gray-800 text-gray-50 border-1 border-gray-200 ring-2 ring-gray-700 ring-offset-2 hover:bg-gray-400 ham:p-1 ham:text-sm'
+          >
+            <FaUserEdit />
+            <p className=''> Edit Your Profile</p>
+          </Link>
         </div>
         <div className='w-11/12 flex flex-col gap-6 mb-9 ham:w-full'>
           <div className='flex gap-3 h-52 w-full border-2 rounded-md transition hover:ring-blue-400 hover:ring-2 hover:ring-offset-2 sm:flex-col sm:h-auto'>
@@ -123,7 +122,7 @@ const Profile = () => {
         </div>
       </div>
       <div className='w-2/6 flex flex-col items-center mt-8 ham:hidden'>
-        <div className='h-[10rem] w-[10rem] border-2 border-gray-200 ring-4 ring-gray-400 hover:ring-2 rounded-full overflow-hidden'>
+        <div className='h-[10rem] w-[10rem] border-2 border-emerald-200 ring-2 ring-emerald-400 ring-offset-2 hover:ring-emerald-700 rounded-full overflow-hidden'>
           <img src={avatar} alt='' className='h-full w-full ' />
         </div>
 
@@ -131,6 +130,14 @@ const Profile = () => {
           ADEBOYE FOLARANMI
         </div>
 
+        <div className='flex flex-col items-start mt-4'>
+          <p className='font-sfprod italic '>About me</p>
+          <p className='font-sfprotr'>
+            ADEBOYE FOLARANMI is a Design Founder & Advisor, Berlin School of
+            Creative Leadership Executive MBA participant, Zippie advisor, Wolt
+            co-founder, and Nordic Rose stakeholder.
+          </p>
+        </div>
         <Link
           to='/'
           className='flex items-center gap-2 bg-blue-400 p-2 mt-4 rounded font-sfprod transition hover:bg-blue-200'
