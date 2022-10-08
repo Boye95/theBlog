@@ -1,7 +1,7 @@
 export { default as BlogPost } from './BlogPost'
 export { default as Home } from './Home'
 export { default as Login } from './Login'
-export { default as Profile } from './Profile'
+export { default as Profile } from './Profile/Profile'
 export { default as Publish } from './Publish/Publish'
 export { default as Tags } from './Tags'
 export { default as Register } from './Register'
