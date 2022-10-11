@@ -14,6 +14,8 @@ const EditProfile = () => {
           <RiImageAddLine className='text-3xl opacity-60 relative top-[40%] left-[50%] -translate-x-[50%]' />
 
           <img src={avatar} alt='' className='h-full w-full opacity-20' />
+          {/* Edit Profilee page */}
+          
         </div>
       </label>
     </div>
