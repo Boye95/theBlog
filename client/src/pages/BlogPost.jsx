@@ -5,6 +5,7 @@ import img1 from '../assets/postimages/1.png'
 import avatar from '../assets/avatar.png'
 import inpostimg from '../assets/inpostimgs/1.png'
 import { FaTwitterSquare, FaFacebookSquare } from 'react-icons/fa'
+import { BiEdit } from 'react-icons/bi'
 import OtherArticles from '../components/OtherArticles'
 import { Newsletter } from '../components'
 
@@ -37,6 +38,9 @@ export default function BlogPost () {
             </div>
           </div>
           <div className='flex w-3/6 justify-end items-center gap-2 sm:w-full sm:[&>*]:w-3/6'>
+            <div className='border-2 rounded py-1 w-16'>
+              <BiEdit className='w-8 h-6 mx-auto' />
+            </div>
             <div className='border-2 rounded py-1 w-16'>
               <FaFacebookSquare className='w-8 h-6 mx-auto' />
             </div>
