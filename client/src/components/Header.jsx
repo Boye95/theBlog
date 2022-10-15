@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { FiMenu } from 'react-icons/fi'
 import { GrClose } from 'react-icons/gr'
+import avatar from '../assets/avatar.png'
 
 export default function Header () {
   // Navbar display script
@@ -64,6 +65,23 @@ export default function Header () {
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Publish
+          </NavLink>
+
+          <NavLink
+            to='/profile'
+            className='relative'
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
+            <span className='flex h-3 w-3 absolute -right-2 top-0'>
+              <span className='animate-ping absolute inline-flex h-3 w-3 rounded-full bg-green-300 opacity-75'></span>
+              <span className='relative inline-flex rounded-full h-3 w-3 bg-emerald-500'></span>
+            </span>
+            <div
+              // onClick={handleShowEdit}
+              className='h-8 w-8 cursor-pointer rounded-full overflow-hidden ring ring-gray-600 ring-offset-2 hover:ring-blue-400'
+            >
+              <img src={avatar} alt='' className='h-full w-full' />
+            </div>
           </NavLink>
         </nav>
 
