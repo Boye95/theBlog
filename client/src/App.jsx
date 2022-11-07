@@ -7,8 +7,10 @@ import {
   Profile,
   Publish,
   Tags,
-  Register
+  Register,
+  Auth0
 } from './pages'
+
 
 function App () {
   return (
@@ -22,6 +24,7 @@ function App () {
         <Route path='/register' element={<Register />} />
         <Route path='/publish' element={<Publish />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/auth0' element={<Auth0 />} />
       </Routes>
     </>
   )

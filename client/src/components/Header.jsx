@@ -40,7 +40,7 @@ export default function Header () {
           <NavLink
             to='/about'
             className='navlink'
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+             
           >
             About
           </NavLink>
