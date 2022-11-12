@@ -6,6 +6,7 @@ export default function Auth0 () {
     isAuthenticated,
     error,
     user,
+    loginWithPopup,
     loginWithRedirect,
     logout
   } = useAuth0()
@@ -20,13 +21,13 @@ export default function Auth0 () {
   if (isAuthenticated) {
     return (
       <div>
-        Hello {user.name}{' '}
+        Hello {JSON.stringify(user, null, 2)}
         <button onClick={() => logout({ returnTo: window.location.origin })}>
           Log out
         </button>
       </div>
     )
   } else {
-    return <button onClick={loginWithRedirect}>Log in</button>
+    return <button onClick={loginWithPopup}>Log in</button>
   }
 }
