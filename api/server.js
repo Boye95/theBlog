@@ -9,7 +9,7 @@ const blogPostsRoute = require("./routes/blogPostsRoute");
 app.use(express.json())
 
 // API routes
-app.use("/api", blogPostsRoute);
+app.use("/api/blogposts", blogPostsRoute);
 
 // Connect to MongoDB
 mongoose
