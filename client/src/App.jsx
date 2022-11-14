@@ -25,6 +25,7 @@ function App () {
         <Route path='/publish' element={<Publish />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/auth0' element={<Auth0 />} />
+        <Route path="/tags" element={<Tags />} />
       </Routes>
     </>
   )
