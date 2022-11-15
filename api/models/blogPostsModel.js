@@ -15,8 +15,14 @@ const BlogPostSchema = new Schema({
         required: true
     },
     displayImage: {
-        type: String,
-        required: true
+        url: {
+            type: String,
+            required: true
+        },
+        public_id: {
+            type: String,
+            required: true
+        }
     },
     tags: {
         type: Array,
