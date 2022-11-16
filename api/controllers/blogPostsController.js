@@ -1,6 +1,7 @@
 const BlogPost = require("../models/blogPostsModel");
 const mongoose = require("mongoose");
 const cloudinary = require("cloudinary").v2;
+// const multer = require('multer');
 
 
 // const storage = multer.diskStorage({
@@ -72,7 +73,7 @@ exports.getSingleBlogPost = async (req, res) => {
 
 // Create a new blog post
 exports.createBlogPost = async (req, res) => {
-  const { title, subtitle, body, displayImage, tags} = req.body
+  const { title, subtitle, body, displayImage} = req.body
 
   try {
     const result = await cloudinary.uploader.upload(displayImage, {
@@ -87,7 +88,7 @@ exports.createBlogPost = async (req, res) => {
         url: result.secure_url,
         public_id: result.public_id,
       },
-      tags
+      // tags
     });
     res.status(201).json({
       status: "success",

@@ -48,13 +48,20 @@ const NoteViewer = () => {
 
   const mutation = useMutation(postBlog)
 
-  const handleMutation = () => {
+  const handleMutation = (e) => {
+    e.preventDefault()
+    console.log({
+      title,
+      subtitle,
+      body: editorState,
+      displayImage,
+    })
     mutation.mutate({
       title,
       subtitle,
       body: editorState,
       displayImage,
-      tags
+      // tags
     })
   }
 
@@ -74,7 +81,11 @@ const NoteViewer = () => {
   }
 
   return (
-    <form className='w-[80%] mx-auto ham:w-[95%]' encType='multipart/form-data'>
+    <form
+      className='w-[80%] mx-auto ham:w-[95%]'
+      encType='multipart/form-data'
+      onSubmit={handleMutation}
+    >
       <div className='flex flex-col items-center w-full mx-auto'>
         <label
           htmlFor='blogimg'
@@ -87,10 +98,15 @@ const NoteViewer = () => {
             name='blogimg'
             id='blogimg'
             className='hidden'
-            onChange={e => setDisplayImage(URL.createObjectURL(e.target.files[0]))}
+            onChange={e =>
+              setDisplayImage(URL.createObjectURL(e.target.files[0]))
+            }
             required
           />
         </label>
+        <div className='h-[10rem] bg-emerald-500 text-gray-50 rounded mt-4 p-2 overflow-scroll'>
+          {displayImage && <img src={displayImage} alt='blog post display' />}
+        </div>
         <div className='flex flex-col w-full gap-2 [&>*]:h-[3rem] [&>*]:outline-none [&>*]:rounded'>
           <input
             type='text'
@@ -114,9 +130,6 @@ const NoteViewer = () => {
       </div>
       <div className='h-[10rem] bg-gray-700 text-gray-50 rounded mt-4 p-2 overflow-scroll'>
         {editorState}
-      </div>
-      <div className='h-[10rem] bg-emerald-500 text-gray-50 rounded mt-4 p-2 overflow-scroll'>
-        {displayImage && <img src={displayImage} alt='blog post display' />}
       </div>
       <EditorComposer className='editor-shell'>
         <Editor
@@ -154,6 +167,13 @@ const NoteViewer = () => {
           </ToolbarPlugin>
         </Editor>
       </EditorComposer>
+
+      <button
+        className='mb-4 flex items-center justify-center gap-2 font-nylarge cursor-pointer h-[3rem] text-2xl text-white w-full max-w-[1050px] bg-gray-700 ring-gray-700 rounded ring-offset-2 ring-2 border-2 border-gray-700 transition hover:bg-gray-800'
+        type='submit'
+      >
+        Publish
+      </button>
     </form>
   )
 }
