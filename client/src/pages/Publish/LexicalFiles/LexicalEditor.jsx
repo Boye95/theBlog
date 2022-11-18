@@ -5,16 +5,6 @@ import { $generateHtmlFromNodes } from '@lexical/html'
 import { IoIosAddCircleOutline } from 'react-icons/io'
 import { FC } from 'react'
 
-// axios and react query
-import { useMutation, useQuery } from '@tanstack/react-query'
-import axios from 'axios'
-
-// axios query
-const postBlog = async data => {
-  const res = await axios.post('http://127.0.0.1:4000/api/blogposts', data)
-  return res.data
-}
-
 import {
   EditorComposer,
   Editor,
@@ -35,6 +25,10 @@ import {
   Divider
 } from 'verbum'
 
+// axios and react query
+import { useMutation, useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+
 const NoteViewer = () => {
   const [editorState, setEditorState] = useState()
   const [editorInstance, setEditorInstance] = useState()
@@ -44,32 +38,29 @@ const NoteViewer = () => {
   const [subtitle, setSubtitle] = useState('')
   // const [body, setBody] = useState('')
   const [displayImage, setDisplayImage] = useState('')
-  const [tags, setTags] = useState([])
+  const [tags, setTags] = useState(['dhdhddh', 'djdjhd'])
+  
+  // axios query
+  const postBlog = async data => {
+    const res = await axios.post('http://127.0.0.1:4000/api/blogposts', data)
+    return res
+  }
+  const { mutate, isLoading } = useMutation(postBlog)
 
-  const mutation = useMutation(postBlog)
+  const handleImage = e => {
+    const file = e.target.files[0]
+    setFileToBase(file)
+  }
 
-  const handleMutation = (e) => {
-    e.preventDefault()
-    console.log({
-      title,
-      subtitle,
-      body: editorState,
-      displayImage,
-    })
-    mutation.mutate({
-      title,
-      subtitle,
-      body: editorState,
-      displayImage,
-      // tags
-    })
+  const setFileToBase = file => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => {
+      setDisplayImage(reader.result)
+    }
   }
 
   let handleChange = (state, instance) => {
-    // setEditorInstance(instance)
-    // console.log(editorState)
-    // console.log(state)
-    // console.log(instance)
     instance.update(() => {
       const markdown = $convertToMarkdownString(TRANSFORMERS)
       const htmlString = $generateHtmlFromNodes(instance, null)
@@ -80,11 +71,24 @@ const NoteViewer = () => {
     })
   }
 
+  const handleSubmit = e => {
+    e.preventDefault()
+    const did = {
+      title: title,
+      subtitle: subtitle,
+      body: editorState,
+      displayImage: displayImage,
+      tags: tags
+    }
+    console.log(did)
+    mutate(did)
+  }
+
   return (
     <form
       className='w-[80%] mx-auto ham:w-[95%]'
       encType='multipart/form-data'
-      onSubmit={handleMutation}
+      onSubmit={handleSubmit}
     >
       <div className='flex flex-col items-center w-full mx-auto'>
         <label
@@ -95,12 +99,10 @@ const NoteViewer = () => {
           <p className='sm:text-xl'>Click to Add Post Image</p>
           <input
             type='file'
-            name='blogimg'
+            name='displayName'
             id='blogimg'
             className='hidden'
-            onChange={e =>
-              setDisplayImage(URL.createObjectURL(e.target.files[0]))
-            }
+            onChange={handleImage}
             required
           />
         </label>
@@ -110,7 +112,7 @@ const NoteViewer = () => {
         <div className='flex flex-col w-full gap-2 [&>*]:h-[3rem] [&>*]:outline-none [&>*]:rounded'>
           <input
             type='text'
-            name='blogTitle'
+            name='title'
             id='blogTitle'
             placeholder='Title...'
             className='w-full max-w-[1050px] mx-auto ring-gray-700 ring-offset-2 ring-2 border-2 text-3xl px-3 font-nylarge transition focus:border-emerald-300 focus:ring-emerald-300 focus:shadow-emerald-300 focus:shadow-[0_0_15px] sm:text-2xl'
@@ -119,7 +121,7 @@ const NoteViewer = () => {
           />
           <input
             type='text'
-            name='blogSubtitle'
+            name='subtitle'
             id='blogSubtitle'
             placeholder='Subtitle...'
             className='ring-gray-700 ring-offset-2 ring-2 border-2 w-full max-w-[1050px] mx-auto mt-2 text-2xl px-3 font-sfmono transition focus:border-emerald-300 focus:ring-emerald-300 focus:shadow-emerald-300 focus:shadow-[0_0_15px] sm:text-xl'
