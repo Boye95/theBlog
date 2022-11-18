@@ -24,10 +24,10 @@ const BlogPostSchema = new Schema({
             required: true
         }
     },
-    // tags: {
-    //     type: Array,
-    //     required: false
-    // }
+    tags: {
+        type: Array,
+        required: false
+    }
 }, { timestamps: true })
 
 module.exports = mongoose.model('BlogPost', BlogPostSchema)

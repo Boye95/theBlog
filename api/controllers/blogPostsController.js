@@ -1,34 +1,23 @@
 const BlogPost = require("../models/blogPostsModel");
 const mongoose = require("mongoose");
+const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
-// const multer = require('multer');
-
-
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, "images");
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, file.originalname);
-//   },
-// });
-
-// const imageFilter = (req, file, cb) => {
-//   if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
-//     return cb(new Error("Only image files are allowed!"), false);
-//   }
-//   cb(null, true);
-// };
-
-// const upload = multer({
-//   storage: storage,
-//   fileFilter: imageFilter,
-// });
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
 cloudinary.config({
-  secure: true
+  secure: true,
 });
 
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "boye",
+  },
+});
+
+exports.upload = multer({
+  storage: storage,
+});
 
 // Get all blog posts
 exports.getAllBlogPosts = async (req, res) => {
@@ -73,13 +62,10 @@ exports.getSingleBlogPost = async (req, res) => {
 
 // Create a new blog post
 exports.createBlogPost = async (req, res) => {
-  const { title, subtitle, body, displayImage} = req.body
+  const { title, subtitle, body, displayImage, tags} = req.body
 
   try {
-    const result = await cloudinary.uploader.upload(displayImage, {
-      folder: "blog-posts-images",
-      // transformation: [{ width: 500, height: 500, crop: "limit" }],
-    });
+    const result = await cloudinary.uploader.upload(req.file.path);
     const newPost = await BlogPost.create({
       title,
       subtitle,
@@ -88,7 +74,7 @@ exports.createBlogPost = async (req, res) => {
         url: result.secure_url,
         public_id: result.public_id,
       },
-      // tags
+      tags
     });
     res.status(201).json({
       status: "success",

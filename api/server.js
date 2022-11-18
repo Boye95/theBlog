@@ -8,32 +8,16 @@ const app = express();
 const mongoose = require("mongoose");
 const blogPostsRoute = require("./routes/blogPostsRoute");
 const imageUploadRoute = require("./routes/imageUploadRoute");
+const tagsRoute = require('./routes/tagsRoute');
 
-
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
 app.use(cors());
 
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, "images");
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, file.originalname);
-//   },
-// });
-
-// const upload = multer({
-//   storage: storage,
-// });
-
-// app.post("/api/upload", upload.single("image"), (req, res) => {
-//   res.status(200).json("File uploaded");
-// });
 
 // API routes
 app.use("/api/blogposts", blogPostsRoute);
 app.use("/api/upload", imageUploadRoute);
-
+app.use("/api/tags", tagsRoute);
 
 // Connect to MongoDB
 mongoose
