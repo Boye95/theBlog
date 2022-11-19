@@ -1,13 +1,11 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-// const multer = require("multer");
 
 // Create express instance
 const app = express();
 const mongoose = require("mongoose");
 const blogPostsRoute = require("./routes/blogPostsRoute");
-const imageUploadRoute = require("./routes/imageUploadRoute");
 const tagsRoute = require('./routes/tagsRoute');
 
 app.use(express.json({ limit: "50mb" }));
@@ -16,7 +14,6 @@ app.use(cors());
 
 // API routes
 app.use("/api/blogposts", blogPostsRoute);
-app.use("/api/upload", imageUploadRoute);
 app.use("/api/tags", tagsRoute);
 
 // Connect to MongoDB

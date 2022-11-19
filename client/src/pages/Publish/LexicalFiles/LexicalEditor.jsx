@@ -26,7 +26,7 @@ import {
 } from 'verbum'
 
 // axios and react query
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
 const NoteViewer = () => {
@@ -38,14 +38,12 @@ const NoteViewer = () => {
   const [subtitle, setSubtitle] = useState('')
   // const [body, setBody] = useState('')
   const [displayImage, setDisplayImage] = useState('')
-  const [tags, setTags] = useState(['dhdhddh', 'djdjhd'])
-  
-  // axios query
-  const postBlog = async data => {
+  const [tags, setTags] = useState(['tag1', 'tag2'])
+
+  const fetchTags = async data => {
     const res = await axios.post('http://127.0.0.1:4000/api/blogposts', data)
     return res
   }
-  const { mutate, isLoading } = useMutation(postBlog)
 
   const handleImage = e => {
     const file = e.target.files[0]
@@ -70,18 +68,18 @@ const NoteViewer = () => {
       // setEditorInstance(json)
     })
   }
-
+  const { mutate, isLoading } = useMutation(fetchTags)
   const handleSubmit = e => {
     e.preventDefault()
-    const did = {
-      title: title,
-      subtitle: subtitle,
+    const tgs = {
+      title,
+      subtitle,
       body: editorState,
-      displayImage: displayImage,
-      tags: tags
+      displayImage,
+      tags
     }
-    console.log(did)
-    mutate(did)
+    console.log(tgs)
+    mutate(tgs)
   }
 
   return (
@@ -99,7 +97,7 @@ const NoteViewer = () => {
           <p className='sm:text-xl'>Click to Add Post Image</p>
           <input
             type='file'
-            name='displayName'
+            name='displayImage'
             id='blogimg'
             className='hidden'
             onChange={handleImage}

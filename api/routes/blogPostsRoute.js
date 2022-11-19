@@ -7,7 +7,6 @@ const {
   createBlogPost,
   deleteBlogPost,
   updateBlogPost,
-  upload
 } = require("../controllers/blogPostsController");
 
 const router = express.Router();
@@ -19,7 +18,7 @@ router.get("/", getAllBlogPosts);
 router.get("/:id", getSingleBlogPost);
 
 // Create a new blog post
-router.post("/", upload.single("displayImage"), createBlogPost);
+router.post("/", createBlogPost);
 
 // Delete a blog post
 router.delete("/:id", deleteBlogPost);

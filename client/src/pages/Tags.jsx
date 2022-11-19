@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import { useQuery, useMutation } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
 const fetchTags = async data => {
   const res = await axios.post('http://127.0.0.1:4000/api/tags', data)
   return res
 }
-// console.log(fetchTags())
 
 export default function Tags () {
   const { mutate, isLoading } = useMutation(fetchTags)
