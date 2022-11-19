@@ -71,15 +71,15 @@ const NoteViewer = () => {
   const { mutate, isLoading } = useMutation(fetchTags)
   const handleSubmit = e => {
     e.preventDefault()
-    const tgs = {
+    const post = {
       title,
       subtitle,
       body: editorState,
       displayImage,
       tags
     }
-    console.log(tgs)
-    mutate(tgs)
+    console.log(post)
+    mutate(post)
   }
 
   return (
