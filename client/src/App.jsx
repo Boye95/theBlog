@@ -18,7 +18,7 @@ function App () {
       <Routes>
         <Route element={<Layout />}>
           <Route path='/' element={<Home />} />
-          <Route path='/blogpost' element={<BlogPost />} />
+          <Route path='/blogpost/:postID' element={<BlogPost />} />
         </Route>
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
