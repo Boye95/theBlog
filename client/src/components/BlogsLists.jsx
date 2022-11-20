@@ -50,18 +50,11 @@ export default function BlogsLists () {
               id='bloglists'
               className='mt-7 grid grid-cols-2 justify-center gap-6 gap-y-8 mb-20 md:grid-cols-1 md:justify-center'
             >
-              <Post />
-              <Post />
-              <Post />
-              <Post />
-              <Post />
-              <Post />
-              <Post />
-              <Post />
-              <Post />
-              <Post />
-              <Post />
-              <Post />
+              {posts.map((post, index) => {
+                if (index > 0) {
+                  return <Post key={post._id} post={post} />
+                }
+              })}
             </div>
           </div>
         </div>
