@@ -9,7 +9,7 @@ cloudinary.config({
 // Get all blog posts
 exports.getAllBlogPosts = async (req, res) => {
   try {
-    const posts = await BlogPost.find();
+    const posts = await BlogPost.find().sort({ createdAt: -1 });
     res.status(200).json({
       status: "success",
       results: posts.length,
