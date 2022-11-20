@@ -42,11 +42,6 @@ export default function Publish () {
   const [tags, setTags] = useState(['tag1', 'tag2', 'tag3'])
   const [ disable, setDisable ] = useState(false)
 
-  const navigate = useNavigate()
-  const fetchTags = async data => {
-    const res = await axios.post('http://127.0.0.1:4000/api/blogposts', data)
-    return res
-  }
 
   const handleImage = e => {
     const file = e.target.files[0]
@@ -71,7 +66,22 @@ export default function Publish () {
       // setEditorInstance(json)
     })
   }
-  const { mutate, isLoading } = useMutation(fetchTags)
+
+  const navigate = useNavigate()
+  const fetchTags = async data => {
+    const res = await axios.post('http://127.0.0.1:4000/api/blogposts', data)
+    return res
+  }
+
+  const { mutate, isLoading, isError, isSuccess } = useMutation(fetchTags, {
+    onSuccess: () => {
+      console.log('success')
+      navigate('/')
+    },
+    onError: () => {
+      console.log('error')
+    },
+  })
   const handleSubmit = e => {
     e.preventDefault()
     const post = {
@@ -83,13 +93,13 @@ export default function Publish () {
     }
     setDisable(true)
     mutate(post)
-    setTitle('')
-    setSubtitle('')
-    setEditorState('')
-    setDisplayImage('')
-    setTags([])
+    // setTitle('')
+    // setSubtitle('')
+    // setEditorState('')
+    // setDisplayImage('')
+    // setTags([])
     console.log(post)
-    navigate('/')
+    // navigate('/')
   }
 
   return (
