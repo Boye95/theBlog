@@ -86,6 +86,8 @@ exports.deleteBlogPost = async (req, res) => {
   }
 
   try {
+    const getBlog = await BlogPost.findById(req.params.id)
+    await cloudinary.uploader.destroy(getBlog.displayImage.public_id)
     const post = await BlogPost.findByIdAndDelete(req.params.id);
     res.status(200).json({
       status: "success",
