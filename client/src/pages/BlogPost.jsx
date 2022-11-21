@@ -23,16 +23,17 @@ export default function BlogPost () {
 
   const { data, isLoading, error } = useQuery(['singlePost'], fetchSinglePost)
   const post = data?.data?.post
-  console.log(post)
+  // console.log(post)
 
-  // const postBody = post?.body
+  const postBody = post?.body
   // let handleBody = (state, postBody) => {
-  //   postBody.read(() => {
+  //   postBody.update(() => {
   //     const htmlString = $generateHtmlFromNodes(postBody, null)
   //     console.log(htmlString)
   //   })
   // }
   // handleBody()
+  
 
   return (
     <div className=''>
