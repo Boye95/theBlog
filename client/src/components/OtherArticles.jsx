@@ -8,10 +8,10 @@ const fetchOtherPosts = async () => {
 }
 
 export default function OtherArticles({post, path}) {
-  console.log(post)
+  // console.log(post)
   const { data, isLoading, error } = useQuery(['otherPosts'], fetchOtherPosts)
   const otherPosts = data?.data?.posts
-  console.log(otherPosts)
+  // console.log(otherPosts)
 
   return (
     <div className='mt-8 grid grid-cols-3 gap-6 gap-y-8 mb-20 lg:grid-cols-2 sm:grid-cols-1'>

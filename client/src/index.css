@@ -111,6 +111,9 @@ iframe {
     @apply w-full min-h-[30rem] max-w-[1050px] font-nymedium rounded-tr-[10px] rounded-tl-[10px] ring-gray-700 ring-offset-2 ring-2 border-2 transition focus-within:border-emerald-300 focus-within:ring-emerald-300 focus-within:shadow-emerald-300 focus-within:shadow-[0_0_25px];
   }
 
+  .tiny_body {
+    @apply font-nymedium;
+  }
   .editor-shell .editor-container {
     @apply border-2;
   }

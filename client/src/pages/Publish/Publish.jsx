@@ -5,43 +5,23 @@ import { BiArrowBack } from 'react-icons/bi'
 import { $convertToMarkdownString, TRANSFORMERS } from '@lexical/markdown'
 import { $generateHtmlFromNodes } from '@lexical/html'
 import { IoIosAddCircleOutline } from 'react-icons/io'
-
-import {
-  EditorComposer,
-  Editor,
-  ToolbarPlugin,
-  AlignDropdown,
-  BackgroundColorPicker,
-  BoldButton,
-  CodeFormatButton,
-  FloatingLinkEditor,
-  FontFamilyDropdown,
-  FontSizeDropdown,
-  InsertDropdown,
-  InsertLinkButton,
-  ItalicButton,
-  TextColorPicker,
-  TextFormatDropdown,
-  UnderlineButton,
-  Divider
-} from 'verbum'
+import { Editor } from '@tinymce/tinymce-react'
 
 // axios and react query
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
 export default function Publish () {
-  const [editorState, setEditorState] = useState()
-  const [editorInstance, setEditorInstance] = useState()
+  // const [editorState, setEditorState] = useState()
+  // const [editorInstance, setEditorInstance] = useState()
 
   // states for each input in the form
   const [title, setTitle] = useState('')
   const [subtitle, setSubtitle] = useState('')
-  // const [body, setBody] = useState('')
+  const [body, setBody] = useState('')
   const [displayImage, setDisplayImage] = useState('')
   const [tags, setTags] = useState(['tag1', 'tag2', 'tag3'])
-  const [ disable, setDisable ] = useState(false)
-
+  const [disable, setDisable] = useState(false)
 
   const handleImage = e => {
     const file = e.target.files[0]
@@ -54,17 +34,6 @@ export default function Publish () {
     reader.onload = () => {
       setDisplayImage(reader.result)
     }
-  }
-
-  let handleChange = (state, instance) => {
-    instance.update(() => {
-      const markdown = $convertToMarkdownString(TRANSFORMERS)
-      const htmlString = $generateHtmlFromNodes(instance, null)
-      const json = JSON.stringify(instance)
-      // setEditorInstance(markdown)
-      setEditorState(json)
-      // setEditorInstance(json)
-    })
   }
 
   const navigate = useNavigate()
@@ -80,26 +49,20 @@ export default function Publish () {
     },
     onError: () => {
       console.log('error')
-    },
+    }
   })
   const handleSubmit = e => {
     e.preventDefault()
     const post = {
       title,
       subtitle,
-      body: editorState,
+      body,
       displayImage,
       tags
     }
     setDisable(true)
     mutate(post)
-    // setTitle('')
-    // setSubtitle('')
-    // setEditorState('')
-    // setDisplayImage('')
-    // setTags([])
     console.log(post)
-    // navigate('/')
   }
 
   return (
@@ -189,42 +152,48 @@ export default function Publish () {
           {/* <div className='h-[10rem] bg-gray-700 text-gray-50 rounded mt-4 p-2 overflow-scroll'>
             {editorState}
           </div> */}
-          <EditorComposer className='editor-shell'>
+          <div className='mt-7 w-full min-h-[30rem] max-w-[1050px] font-nymedium rounded-tr-[10px] rounded-tl-[10px] ring-gray-700 ring-offset-2 ring-2 border-2 transition focus-within:border-emerald-300 focus-within:ring-emerald-300 focus-within:shadow-emerald-300 focus-within:shadow-[0_0_25px]'>
             <Editor
-              hashtagsEnabled={true}
-              emojisEnabled={true}
-              actionsEnabled={true}
-              placeholder='Say your piece...'
-              onChange={handleChange}
-            >
-              <ToolbarPlugin defaultFontSize='20px' className='toolbar'>
-                <FontFamilyDropdown />
-                <FontSizeDropdown />
-                <Divider />
-                <BoldButton />
-                <ItalicButton />
-                <UnderlineButton />
-                <CodeFormatButton />
-                <Divider />
-                <InsertLinkButton />
-                <TextColorPicker />
-                <BackgroundColorPicker />
-                <TextFormatDropdown />
-                <Divider />
-                <InsertDropdown
-                  enablePoll={true}
-                  enableTwitter={true}
-                  enableYoutube={true}
-                  enableExcalidraw={true}
-                  enableHorizontalRule={true}
-                  enableEquations={true}
-                  enableStickyNote={true}
-                />
-                <Divider />
-                <AlignDropdown />
-              </ToolbarPlugin>
-            </Editor>
-          </EditorComposer>
+              apiKey='mk3t00giiyqt48pkpkk19x5es04efdg6r5b3ndaa4hz5if9k'
+              // onInit={(evt, editor) => (editorRef.current = editor)}
+              initialValue='<p>This is the initial content of the editor.</p>'
+              init={{
+                height: 500,
+                // menubar: false,
+                plugins: [
+                  'advlist',
+                  'media',
+                  'autolink',
+                  'lists',
+                  'link',
+                  'image',
+                  'charmap',
+                  'preview',
+                  'anchor',
+                  'searchreplace',
+                  'visualblocks',
+                  'code',
+                  'fullscreen',
+                  'insertdatetime',
+                  'media',
+                  'table',
+                  'code',
+                  'help',
+                  'wordcount'
+                ],
+                menubar: 'file edit view insert format tools table help',
+                toolbar:
+                  'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+                toolbar_sticky: true,
+                content_style: `body { 
+              font-family:NY-Medium,sans-serif; 
+              font-size:14px;
+            }`,
+                body_class: 'tiny_body'
+              }}
+              onEditorChange={newText => setBody(newText)}
+            />
+          </div>
         </form>
       </div>
     </div>
