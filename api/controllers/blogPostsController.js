@@ -105,7 +105,16 @@ exports.deleteBlogPost = async (req, res) => {
 
 // Update a blog post
 exports.updateBlogPost = async (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    return res.status(400).json({ message: `Can't update non-existent post` });
+  }
+
   try {
+    const getBlog = await BlogPost.findById(req.params.id)
+    await cloudinary.uploader.destroy(getBlog.displayImage.public_id)
+    const result = await cloudinary.uploader.upload(req.body.displayImage, {
+      folder: "boye"
+    });
     const post = await BlogPost.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
