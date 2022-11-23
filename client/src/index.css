@@ -53,48 +53,9 @@
   background: #b1b0b0;
 }
 
-.link-editor {
-  position: absolute;
-  width: 50%;
-  left: 50% !important;
-  transform: translate(-50%, 0);
-  @apply mx-auto bg-gray-500 sm:w-4/6;
-}
-
-.character-style-popup {
-  position: absolute;
-  left: 50% !important;
-  top: 300px !important;
-  transform: translate(-50%, 0);
-  @apply flex items-center mx-auto xs:w-[80%] xs:overflow-x-auto xs:h-[3rem] xs:p-0;
-}
-
 iframe {
   @apply mx-auto;
 }
-
-.ContentEditable__root {
-  @apply min-h-[30rem];
-}
-
-.PlaygroundEditorTheme__ul {
-  list-style-type: disc;
-}
-/* .PlaygroundEditorTheme__listItemChecked, .PlaygroundEditorTheme__listItemUnchecked {
-  list-style-type: square;
-} */
-/* #twitter-widget-0 {
-  display: flex;
-  justify-content: center;
-  max-width: 100% !important;
-  width: 100% !important;
-  margin: 0 auto !important;
-  background: yellow;
-} */
-
-/* .toolbar button.toolbar-item {
-  background-color: blue;;
-} */
 
 /* vanilla css for footer item child elements */
 @layer components {
@@ -105,44 +66,13 @@ iframe {
     @apply hover:text-gray-400 uppercase font-extrabold;
   }
 
-  /* Verbum editor styling */
-
-  .editor-shell {
-    @apply w-full min-h-[30rem] max-w-[1050px] font-nymedium rounded-tr-[10px] rounded-tl-[10px] ring-gray-700 ring-offset-2 ring-2 border-2 transition focus-within:border-emerald-300 focus-within:ring-emerald-300 focus-within:shadow-emerald-300 focus-within:shadow-[0_0_25px];
-  }
 
   .post_body h1, h2, h3, h4, h5, h6 {
     @apply font-bold my-2 font-nylarge;
   }
 
   .post_body p {
-    @apply my-4;
-  }
-  .tiny_body {
-    @apply font-nymedium;
-  }
-  .editor-shell .editor-container {
-    @apply border-2;
-  }
-
-  .toolbar {
-    @apply w-full px-2 flex items-center justify-start gap-1 border-2 h-[3.5rem] text-white;
-  }
-
-  /* .divide {
-    @apply bg-red-400 w-5;
-  } */
-  
-  .toolbar button.toolbar-item,
-  .toolbar select.toolbar-item {
-    @apply bg-white border-2 border-blue-300 ring-2 ring-gray-700 ring-offset-2 focus:outline-none;
-  }
-  .toolbar select.toolbar-item {
-    @apply mr-4 w-[5rem];
-  }
-
-  .toolbar::-webkit-scrollbar-thumb {
-    @apply bg-gray-400;
+    @apply my-4 font-nysmall xs:text-sm;
   }
 
   /* Chrome, Safari and Opera */

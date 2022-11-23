@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import avatar from '../../assets/avatar.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { BiArrowBack } from 'react-icons/bi'
-import { $convertToMarkdownString, TRANSFORMERS } from '@lexical/markdown'
-import { $generateHtmlFromNodes } from '@lexical/html'
 import { IoIosAddCircleOutline } from 'react-icons/io'
 import { Editor } from '@tinymce/tinymce-react'
 
@@ -12,9 +10,6 @@ import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
 export default function Publish () {
-  // const [editorState, setEditorState] = useState()
-  // const [editorInstance, setEditorInstance] = useState()
-
   // states for each input in the form
   const [title, setTitle] = useState('')
   const [subtitle, setSubtitle] = useState('')
@@ -108,6 +103,15 @@ export default function Publish () {
           onSubmit={handleSubmit}
         >
           <div className='flex flex-col items-center w-full mx-auto'>
+            {displayImage && (
+              <div className='h-[30rem] w-full rounded mx-auto my-2 md:h-[15rem]'>
+                <img
+                  src={displayImage}
+                  alt='blog post display'
+                  className='w-full h-full object-cover rounded'
+                />
+              </div>
+            )}
             <label
               htmlFor='blogimg'
               className='mb-4 flex items-center justify-center gap-2 font-nylarge cursor-pointer h-[3rem] text-2xl text-white w-full max-w-[1050px] bg-gray-700 ring-gray-700 rounded ring-offset-2 ring-2 border-2 border-gray-700 transition hover:bg-gray-800'
@@ -123,11 +127,6 @@ export default function Publish () {
                 required
               />
             </label>
-            <div className='h-auto rounded mx-auto p-2'>
-              {displayImage && (
-                <img src={displayImage} alt='blog post display' />
-              )}
-            </div>
             <div className='flex flex-col w-full gap-2 [&>*]:h-[3rem] [&>*]:outline-none [&>*]:rounded'>
               <input
                 type='text'
@@ -149,9 +148,6 @@ export default function Publish () {
               />
             </div>
           </div>
-          {/* <div className='h-[10rem] bg-gray-700 text-gray-50 rounded mt-4 p-2 overflow-scroll'>
-            {editorState}
-          </div> */}
           <div className='mt-7 w-full min-h-[30rem] max-w-[1050px] font-nymedium rounded-tr-[10px] rounded-tl-[10px] ring-gray-700 ring-offset-2 ring-2 border-2 transition focus-within:border-emerald-300 focus-within:ring-emerald-300 focus-within:shadow-emerald-300 focus-within:shadow-[0_0_25px]'>
             <Editor
               apiKey='mk3t00giiyqt48pkpkk19x5es04efdg6r5b3ndaa4hz5if9k'
