@@ -33,7 +33,7 @@ export default function BlogPost () {
 
   const postBody = post?.body
   const clean = DOMPurify.sanitize(postBody)
-  // console.log(postBody)
+  console.log(postBody)
   // let handleBody = (state, postBody) => {
   //   postBody.update(() => {
   //     const htmlString = $generateHtmlFromNodes(postBody, null)
@@ -115,8 +115,8 @@ export default function BlogPost () {
               </div>
             </div>
 
-            <div id='postcontent' className='mt-16'>
-              <div dangerouslySetInnerHTML={{__html:clean}} />
+            <div id='postcontent' className='mt-16 font-nysmall'>
+              <div className='post_body' dangerouslySetInnerHTML={{__html:clean}} />
             </div>
 
             <div className=''>
