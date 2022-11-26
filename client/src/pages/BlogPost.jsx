@@ -18,7 +18,6 @@ import DOMPurify from 'isomorphic-dompurify'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
-
 const ConfirmDeletePost = ({ path, deleteState }) => {
   const deletePost = async () => {
     const del = await axios.delete(
@@ -90,7 +89,7 @@ export default function BlogPost () {
   const [displayImage, setDisplayImage] = useState('')
   const [tags, setTags] = useState(['rfrf'])
   const [disable, setDisable] = useState(false)
-  const [updateMode, setUpdateMode] = useState(true)
+  const [updateMode, setUpdateMode] = useState(false)
 
   const [trackImageSelection, setTrackImageSelection] = useState(false)
 
@@ -123,8 +122,6 @@ export default function BlogPost () {
     ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling']
   })
 
-
-
   // handle image
   const handleImage = e => {
     const file = e.target.files[0]
@@ -155,9 +152,8 @@ export default function BlogPost () {
     isSuccess: isUpdated
   } = useMutation(updatePost, {
     onSuccess: () => {
-      setUpdateMode(false)
-      // navigate(`/`)
       window.location.reload()
+      setUpdateMode(false)
       console.log('updated')
     },
     onError: () => {
@@ -165,7 +161,7 @@ export default function BlogPost () {
     }
   })
 
-  console.log(updateMode)
+  // console.log(updateMode)
   var yemi
   {
     !trackImageSelection
@@ -183,22 +179,21 @@ export default function BlogPost () {
     }
     isUpdate(newEdits)
     setDisable(true)
-    // setUpdateMode(false)
     console.log(newEdits)
   }
   // Persisting the updateMode state
-  useEffect(() => {
-    const updateModeState = localStorage.getItem('updateMode')
-    if (updateModeState === 'true') {
-      setUpdateMode(true)
-    } else {
-      setUpdateMode(false)
-    }
-  }, [])
+  // useEffect(() => {
+  //   const updateModeState = localStorage.getItem('updateMode')
+  //   if (updateModeState === 'true') {
+  //     setUpdateMode(true)
+  //   } else {
+  //     setUpdateMode(false)
+  //   }
+  // }, [])
 
-  useEffect(() => {
-    localStorage.setItem('updateMode', updateMode)
-  }, [updateMode])
+  // useEffect(() => {
+  //   localStorage.setItem('updateMode', updateMode)
+  // }, [updateMode])
 
   return (
     <div className='relative'>
@@ -364,7 +359,7 @@ export default function BlogPost () {
                   <div className='flex w-3/6 justify-end items-center gap-2 sm:w-full sm:[&>*]:w-3/6'>
                     <div
                       className='border-2 rounded py-1 w-16 cursor-pointer ring-gray-700 transition-all hover:border-gray-400 hover:ring-1'
-                      onClick={() => setUpdateMode(false)}
+                      onClick={() => setUpdateMode(true)}
                     >
                       <BiEdit className='w-8 h-6 mx-auto' />
                     </div>
