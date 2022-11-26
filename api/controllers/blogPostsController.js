@@ -49,11 +49,11 @@ exports.getSingleBlogPost = async (req, res) => {
 
 // Create a new blog post
 exports.createBlogPost = async (req, res) => {
-  const { title, subtitle, body, displayImage, tags} = req.body
+  const { title, subtitle, body, displayImage, tags } = req.body;
 
   try {
     const result = await cloudinary.uploader.upload(displayImage, {
-      folder: "boye"
+      folder: "boye",
     });
     const newPost = await BlogPost.create({
       title,
@@ -63,7 +63,7 @@ exports.createBlogPost = async (req, res) => {
         url: result.secure_url,
         public_id: result.public_id,
       },
-      tags
+      tags,
     });
     res.status(201).json({
       status: "success",
@@ -86,8 +86,8 @@ exports.deleteBlogPost = async (req, res) => {
   }
 
   try {
-    const getBlog = await BlogPost.findById(req.params.id)
-    await cloudinary.uploader.destroy(getBlog.displayImage.public_id)
+    const getBlog = await BlogPost.findById(req.params.id);
+    await cloudinary.uploader.destroy(getBlog.displayImage.public_id);
     const post = await BlogPost.findByIdAndDelete(req.params.id);
     res.status(200).json({
       status: "success",
@@ -105,17 +105,31 @@ exports.deleteBlogPost = async (req, res) => {
 
 // Update a blog post
 exports.updateBlogPost = async (req, res) => {
+  const { title, subtitle, body, displayImage, tags } = req.body;
+
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     return res.status(400).json({ message: `Can't update non-existent post` });
   }
 
   try {
-    const getBlog = await BlogPost.findById(req.params.id)
-    await cloudinary.uploader.destroy(getBlog.displayImage.public_id)
-    const result = await cloudinary.uploader.upload(req.body.displayImage, {
-      folder: "boye"
+    const getBlog = await BlogPost.findById(req.params.id);
+    if (displayImage !== getBlog.displayImage.url) {
+      await cloudinary.uploader.destroy(getBlog.displayImage.public_id);
+    }
+    const result = await cloudinary.uploader.upload(displayImage, {
+      folder: "boye",
     });
-    const post = await BlogPost.findByIdAndUpdate(req.params.id, req.body, {
+    const updatedPost = {
+      title,
+      subtitle,
+      body,
+      displayImage: {
+        url: result.secure_url,
+        public_id: result.public_id,
+      },
+      tags,
+    };
+    const post = await BlogPost.findByIdAndUpdate(req.params.id, updatedPost, {
       new: true,
       runValidators: true,
     });

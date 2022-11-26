@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import moment from 'moment'
 import eyes from '../assets/eyes.svg'
@@ -10,12 +10,14 @@ import { BiEdit } from 'react-icons/bi'
 import { IoIosAddCircleOutline } from 'react-icons/io'
 import { OtherArticles, Newsletter } from '../components'
 import { Editor } from '@tinymce/tinymce-react'
+// import { Base64, encode, decode } from 'js-base64'
 
 import DOMPurify from 'isomorphic-dompurify'
 
 // axios and react query
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
+
 
 const ConfirmDeletePost = ({ path, deleteState }) => {
   const deletePost = async () => {
@@ -29,7 +31,7 @@ const ConfirmDeletePost = ({ path, deleteState }) => {
     deletePost,
     {
       onSuccess: () => {
-        window.location.replace('/')
+        location.reload()
       }
     }
   )
@@ -86,10 +88,13 @@ export default function BlogPost () {
   const [subtitle, setSubtitle] = useState('')
   const [body, setBody] = useState('')
   const [displayImage, setDisplayImage] = useState('')
-  const [tags, setTags] = useState([])
+  const [tags, setTags] = useState(['rfrf'])
   const [disable, setDisable] = useState(false)
   const [updateMode, setUpdateMode] = useState(true)
 
+  const [trackImageSelection, setTrackImageSelection] = useState(false)
+
+  const navigate = useNavigate()
   const location = useLocation()
   const path = location.pathname.split('/')[2]
 
@@ -98,8 +103,19 @@ export default function BlogPost () {
     return res.json()
   }
 
-  const { data, isLoading, error } = useQuery(['singlePost'], fetchSinglePost)
+  const { data, isLoading, error } = useQuery(['singlePost'], fetchSinglePost, {
+    onSuccess: data => {
+      const postSet = data?.data?.post
+      setTitle(postSet.title)
+      setSubtitle(postSet.subtitle)
+      setBody(postSet.body)
+      // setDisplayImage(postSet.displayImage.url)
+      setTags(postSet.tags)
+    }
+  })
+
   const post = data?.data?.post
+  // track image selection
 
   const postBody = post?.body
   const clean = DOMPurify.sanitize(postBody, {
@@ -107,10 +123,13 @@ export default function BlogPost () {
     ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling']
   })
 
+
+
   // handle image
   const handleImage = e => {
     const file = e.target.files[0]
     setFileToBase(file)
+    setTrackImageSelection(true)
   }
 
   const setFileToBase = file => {
@@ -121,8 +140,11 @@ export default function BlogPost () {
     }
   }
 
-  const updatePost = async () => {
-    const res = await axios.patch(`http://localhost:4000/api/blogposts/${path}`)
+  const updatePost = async data => {
+    const res = await axios.patch(
+      `http://localhost:4000/api/blogposts/${path}`,
+      data
+    )
     return res
   }
 
@@ -133,6 +155,8 @@ export default function BlogPost () {
     isSuccess: isUpdated
   } = useMutation(updatePost, {
     onSuccess: () => {
+      setUpdateMode(false)
+      // navigate(`/`)
       window.location.reload()
       console.log('updated')
     },
@@ -141,19 +165,40 @@ export default function BlogPost () {
     }
   })
 
+  console.log(updateMode)
+  var yemi
+  {
+    !trackImageSelection
+      ? (yemi = post?.displayImage.url)
+      : (yemi = displayImage)
+  }
   const handleUpdate = e => {
     e.preventDefault()
-    // const newEdits = {
-    //   title,
-    //   subtitle,
-    //   body,
-    //   displayImage,
-    //   tags
-    // }
-    isUpdate()
+    const newEdits = {
+      title,
+      subtitle,
+      body,
+      displayImage: yemi,
+      tags
+    }
+    isUpdate(newEdits)
     setDisable(true)
-    console.log("clcked")
+    // setUpdateMode(false)
+    console.log(newEdits)
   }
+  // Persisting the updateMode state
+  useEffect(() => {
+    const updateModeState = localStorage.getItem('updateMode')
+    if (updateModeState === 'true') {
+      setUpdateMode(true)
+    } else {
+      setUpdateMode(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('updateMode', updateMode)
+  }, [updateMode])
 
   return (
     <div className='relative'>
@@ -166,11 +211,43 @@ export default function BlogPost () {
              rounded p-1 font-sfprod px-8 ring-2 ring-black
              z-10 
              ring-offset-2 ring-offset-gray-600 transition hover:bg-gray-600 hover:ring-gray-400 sm:px-4 
-             disabled:opacity-50 disabled:cursor-not-allowed'
-            disabled={disable}
+             disabled:opacity-80 disabled:cursor-not-allowed'
+            // disabled={disable}
           >
-            Update
+            {isUpdating ? 'Updating...' : isUpdated ? 'Updated' : 'Update'}
           </button>
+          {displayImage ? (
+            <div className='h-[30rem] w-full rounded mx-auto my-2 md:h-[15rem]'>
+              <img
+                src={displayImage}
+                alt='blog post display'
+                className='w-full h-full object-cover rounded'
+              />
+            </div>
+          ) : (
+            <div className='h-[30rem] w-full rounded mx-auto my-2 md:h-[15rem]'>
+              <img
+                src={post?.displayImage.url}
+                alt='blog post display'
+                className='w-full h-full object-cover rounded'
+              />
+            </div>
+          )}
+          <label
+            htmlFor='blogimg'
+            className='mb-4 flex items-center justify-center gap-2 font-nylarge cursor-pointer h-[3rem] text-2xl text-white w-full max-w-[1050px] bg-gray-700 ring-gray-700 rounded ring-offset-2 ring-2 border-2 border-gray-700 transition hover:bg-gray-800 hover:ring-offset-1'
+          >
+            <IoIosAddCircleOutline className='' />
+            <p className='sm:text-xl'>Click to Replace Post Image</p>
+            <input
+              type='file'
+              name='displayImage'
+              id='blogimg'
+              className='hidden'
+              onChange={handleImage}
+              // required
+            />
+          </label>
           <form
             id='form'
             className='w-[80%] mx-auto ham:w-[95%]'
@@ -178,38 +255,6 @@ export default function BlogPost () {
             onSubmit={handleUpdate}
           >
             <div className='flex flex-col items-center w-full mx-auto'>
-              {displayImage ? (
-                <div className='h-[30rem] w-full rounded mx-auto my-2 md:h-[15rem]'>
-                  <img
-                    src={displayImage}
-                    alt='blog post display'
-                    className='w-full h-full object-cover rounded'
-                  />
-                </div>
-              ) : (
-                <div className='h-[30rem] w-full rounded mx-auto my-2 md:h-[15rem]'>
-                  <img
-                    src={post?.displayImage.url}
-                    alt='blog post display'
-                    className='w-full h-full object-cover rounded'
-                  />
-                </div>
-              )}
-              <label
-                htmlFor='blogimg'
-                className='mb-4 flex items-center justify-center gap-2 font-nylarge cursor-pointer h-[3rem] text-2xl text-white w-full max-w-[1050px] bg-gray-700 ring-gray-700 rounded ring-offset-2 ring-2 border-2 border-gray-700 transition hover:bg-gray-800'
-              >
-                <IoIosAddCircleOutline className='' />
-                <p className='sm:text-xl'>Click to Replace Post Image</p>
-                <input
-                  type='file'
-                  name='displayImage'
-                  id='blogimg'
-                  className='hidden'
-                  onChange={handleImage}
-                  // required
-                />
-              </label>
               <div className='flex flex-col w-full gap-2 [&>*]:h-[3rem] [&>*]:outline-none [&>*]:rounded'>
                 <input
                   type='text'
@@ -319,7 +364,7 @@ export default function BlogPost () {
                   <div className='flex w-3/6 justify-end items-center gap-2 sm:w-full sm:[&>*]:w-3/6'>
                     <div
                       className='border-2 rounded py-1 w-16 cursor-pointer ring-gray-700 transition-all hover:border-gray-400 hover:ring-1'
-                      onClick={() => setUpdateMode(!updateMode)}
+                      onClick={() => setUpdateMode(false)}
                     >
                       <BiEdit className='w-8 h-6 mx-auto' />
                     </div>
