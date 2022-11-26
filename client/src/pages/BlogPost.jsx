@@ -181,19 +181,6 @@ export default function BlogPost () {
     setDisable(true)
     console.log(newEdits)
   }
-  // Persisting the updateMode state
-  // useEffect(() => {
-  //   const updateModeState = localStorage.getItem('updateMode')
-  //   if (updateModeState === 'true') {
-  //     setUpdateMode(true)
-  //   } else {
-  //     setUpdateMode(false)
-  //   }
-  // }, [])
-
-  // useEffect(() => {
-  //   localStorage.setItem('updateMode', updateMode)
-  // }, [updateMode])
 
   return (
     <div className='relative'>

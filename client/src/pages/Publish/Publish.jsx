@@ -72,7 +72,7 @@ export default function Publish () {
             type='submit'
             form='form'
             className='text-white bg-black rounded p-1 font-sfprod px-8 ring-2 ring-gray-700 ring-offset-2 transition hover:bg-gray-600 hover:ring-gray-400 sm:px-4 disabled:opacity-50 disabled:cursor-not-allowed'
-            disabled={disable}
+            // disabled={disable}
           >
             Publish
           </button>

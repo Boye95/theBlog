@@ -107,7 +107,7 @@ export default function Header () {
             onClick={handleShowMenu}
           />
         </div>
-        <div className='mt-8 pb-9 flex flex-col items-center gap-4 text-lg font-sfprod'>
+        <div className='z-40 bg-white mt-8 pb-9 flex flex-col items-center gap-4 text-lg font-sfprod'>
           <NavLink
             to='/'
             className='navlinks'
