@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const TagsSchema = new Schema(
   {
     name: {
-      type: String,
+      type: Array,
       required: true,
     },
   },
