@@ -31,6 +31,7 @@ const ConfirmDeletePost = ({ path, deleteState }) => {
     {
       onSuccess: () => {
         location.reload()
+        location.href = '/'
       }
     }
   )
