@@ -194,48 +194,50 @@ export default function BlogPost () {
              z-10 
              ring-offset-2 ring-offset-gray-600 transition hover:bg-gray-600 hover:ring-gray-400 sm:px-4 
              disabled:opacity-80 disabled:cursor-not-allowed'
-            // disabled={disable}
+            disabled={disable}
           >
             {isUpdating ? 'Updating...' : isUpdated ? 'Updated' : 'Update'}
           </button>
-          {displayImage ? (
-            <div className='h-[30rem] w-full rounded mx-auto my-2 md:h-[15rem]'>
-              <img
-                src={displayImage}
-                alt='blog post display'
-                className='w-full h-full object-cover rounded'
-              />
-            </div>
-          ) : (
-            <div className='h-[30rem] w-full rounded mx-auto my-2 md:h-[15rem]'>
-              <img
-                src={post?.displayImage.url}
-                alt='blog post display'
-                className='w-full h-full object-cover rounded'
-              />
-            </div>
-          )}
-          <label
-            htmlFor='blogimg'
-            className='mb-4 flex items-center justify-center gap-2 font-nylarge cursor-pointer h-[3rem] text-2xl text-white w-full max-w-[1050px] bg-gray-700 ring-gray-700 rounded ring-offset-2 ring-2 border-2 border-gray-700 transition hover:bg-gray-800 hover:ring-offset-1'
-          >
-            <IoIosAddCircleOutline className='' />
-            <p className='sm:text-xl'>Click to Replace Post Image</p>
-            <input
-              type='file'
-              name='displayImage'
-              id='blogimg'
-              className='hidden'
-              onChange={handleImage}
-              // required
-            />
-          </label>
           <form
             id='form'
             className='w-[80%] mx-auto ham:w-[95%]'
             encType='multipart/form-data'
             onSubmit={handleUpdate}
           >
+            {displayImage ? (
+              <div className='h-[30rem] w-full rounded mx-auto my-2 md:h-[15rem]'>
+                <img
+                  src={displayImage}
+                  alt='blog post display'
+                  className='w-full h-full object-cover rounded'
+                />
+              </div>
+            ) : (
+              <div className='h-[30rem] w-full rounded mx-auto my-2 md:h-[15rem]'>
+                <img
+                  src={post?.displayImage.url}
+                  alt='blog post display'
+                  className='w-full h-full object-cover rounded'
+                />
+              </div>
+            )}
+            <label
+              htmlFor='blogimg'
+              className='mb-4 mx-auto flex items-center justify-center gap-2 font-nylarge cursor-pointer h-[3rem] text-2xl text-white w-full max-w-[1050px] bg-gray-700 ring-gray-700 rounded ring-offset-2 ring-2 border-2 border-gray-700 transition hover:bg-gray-800 hover:ring-offset-1'
+            >
+              <IoIosAddCircleOutline className='' />
+              <p className='sm:text-xl xs:text-[0.9rem]'>
+                Click to Update Post Image
+              </p>
+              <input
+                type='file'
+                name='displayImage'
+                id='blogimg'
+                className='hidden'
+                onChange={handleImage}
+                // required
+              />
+            </label>
             <div className='flex flex-col items-center w-full mx-auto'>
               <div className='flex flex-col w-full gap-2 [&>*]:h-[3rem] [&>*]:outline-none [&>*]:rounded'>
                 <input
@@ -260,7 +262,7 @@ export default function BlogPost () {
                 />
               </div>
             </div>
-            <div className='mt-7 w-full min-h-[30rem] max-w-[1050px] font-nymedium rounded-tr-[10px] rounded-tl-[10px] ring-gray-700 ring-offset-2 ring-2 border-2 transition focus-within:border-emerald-300 focus-within:ring-emerald-300 focus-within:shadow-emerald-300 focus-within:shadow-[0_0_25px]'>
+            <div className='mx-auto mt-7 w-full min-h-[30rem] max-w-[1050px] font-nymedium rounded-tr-[10px] rounded-tl-[10px] ring-gray-700 ring-offset-2 ring-2 border-2 transition focus-within:border-emerald-300 focus-within:ring-emerald-300 focus-within:shadow-emerald-300 focus-within:shadow-[0_0_25px]'>
               <Editor
                 apiKey='mk3t00giiyqt48pkpkk19x5es04efdg6r5b3ndaa4hz5if9k'
                 // onInit={(evt, editor) => (editorRef.current = editor)}
@@ -337,9 +339,12 @@ export default function BlogPost () {
                       <Link to='/profile' className='font-sfproth'>
                         ADEBOYE FOLARANMI
                       </Link>
-                      <div className='font-sfprotr flex gap-2 xl:text-sm'>
-                        <span>{moment(post?.createdAt).format('lll')}</span>
-                        <span>· 4 min read</span>
+                      <div className='font-sfprotr flex justify-between gap-2 xl:text-sm'>
+                        <div className='flex flex-col'>
+                          <span>{moment(post?.createdAt).format('lll')}</span>
+                          <span>{post?.updatedAt !== post?.createdAt && `Updated: ${moment(post?.updatedAt).format('lll')}`}</span>
+                        </div>
+                        <span>• 4 min read</span>
                       </div>
                     </div>
                   </div>
