@@ -5,8 +5,9 @@ const Schema = mongoose.Schema;
 const TagsSchema = new Schema(
   {
     name: {
-      type: Array,
+      type: String,
       required: true,
+      unique: true,
     },
   },
   { timestamps: true }
