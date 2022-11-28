@@ -182,7 +182,7 @@ export default function BlogPost () {
     setDisable(true)
     console.log(newEdits)
   }
-
+  // console.log(post)
   return (
     <div className='relative'>
       {updateMode ? (
@@ -343,7 +343,12 @@ export default function BlogPost () {
                       <div className='font-sfprotr flex justify-between gap-2 xl:text-sm'>
                         <div className='flex flex-col'>
                           <span>{moment(post?.createdAt).format('lll')}</span>
-                          <span>{post?.updatedAt !== post?.createdAt && `Updated: ${moment(post?.updatedAt).format('lll')}`}</span>
+                          <span>
+                            {post?.updatedAt !== post?.createdAt &&
+                              `Updated: ${moment(post?.updatedAt).format(
+                                'lll'
+                              )}`}
+                          </span>
                         </div>
                         <span>• 4 min read</span>
                       </div>
@@ -391,7 +396,17 @@ export default function BlogPost () {
                   </div>
 
                   <div className='font-sfprotr mt-7'>
-                    Tags: product, design, culture
+                    Tags:{'  '}
+                    {post.tags.map((tag, index) => {
+                      return (
+                        <Link 
+                        to={`/tags/${tag}`} 
+                        className='transition-all hover:underline hover:font-bold' 
+                        key={index}>
+                          {index === post.tags.length - 1 ? tag : `${tag}, `}
+                        </Link>
+                      )
+                    })}
                   </div>
 
                   <div className='mt-9 border-t-2 border-dotted border-black'>
