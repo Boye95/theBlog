@@ -400,7 +400,7 @@ export default function BlogPost () {
                     {post.tags.map((tag, index) => {
                       return (
                         <Link 
-                        to={`/tags/${tag}`} 
+                        to={`/?tags=${tag}`} 
                         className='transition-all hover:underline hover:font-bold' 
                         key={index}>
                           {index === post.tags.length - 1 ? tag : `${tag}, `}
