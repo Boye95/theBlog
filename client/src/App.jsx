@@ -19,13 +19,14 @@ function App () {
         <Route element={<Layout />}>
           <Route path='/' element={<Home />} />
           <Route path='/blogpost/:postID' element={<BlogPost />} />
+        <Route path="/tags" element={<Tags />} />
+
         </Route>
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/publish' element={<Publish />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/auth0' element={<Auth0 />} />
-        <Route path="/tags" element={<Tags />} />
       </Routes>
     </>
   )
