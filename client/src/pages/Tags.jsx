@@ -22,7 +22,7 @@ export default function Tags () {
           return (
             <Link
               to={`/tags/${tag.id}`}
-              key={tag.id}
+              key={tag._id}
               className='flex gap-2 bg-white rounded-lg shadow-lg w-fit mx-4
                my-2 p-2 border hover:shadow-md hover:ring hover:ring-gray-300 
                hover:ring-opacity-50 hover:ring-offset-2 hover:ring-offset-gray-100 

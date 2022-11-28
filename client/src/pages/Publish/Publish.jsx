@@ -15,7 +15,7 @@ export default function Publish () {
   const [subtitle, setSubtitle] = useState('')
   const [body, setBody] = useState('')
   const [displayImage, setDisplayImage] = useState('')
-  const [tags, setTags] = useState(['tag1', 'tag2', 'tag3'])
+  const [tags, setTags] = useState(['tag1', 'tag4', 'tag3'])
   const [disable, setDisable] = useState(false)
 
   const handleImage = e => {

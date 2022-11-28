@@ -8,8 +8,18 @@ cloudinary.config({
 
 // Get all blog posts
 exports.getAllBlogPosts = async (req, res) => {
+  tagName = req.query.tags;
   try {
-    const posts = await BlogPost.find().sort({ createdAt: -1 });
+    let posts;
+    if (tagName) {
+      posts = await BlogPost.find({
+        tags: {
+          $in: [tagName],
+        },
+      });
+    } else {
+      posts = await BlogPost.find().sort({ createdAt: -1 });
+    }
     res.status(200).json({
       status: "success",
       results: posts.length,
