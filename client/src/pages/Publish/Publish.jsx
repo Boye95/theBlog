@@ -3,20 +3,41 @@ import avatar from '../../assets/avatar.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { BiArrowBack } from 'react-icons/bi'
 import { IoIosAddCircleOutline } from 'react-icons/io'
+import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai'
 import { Editor } from '@tinymce/tinymce-react'
 
 // axios and react query
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
+const getTags = async () => {
+  const { data } = await axios.get('http://127.0.0.1:4000/api/tags')
+  return data
+}
 export default function Publish () {
   // states for each input in the form
   const [title, setTitle] = useState('')
   const [subtitle, setSubtitle] = useState('')
   const [body, setBody] = useState('')
   const [displayImage, setDisplayImage] = useState('')
-  const [tags, setTags] = useState(['tag1', 'tag4', 'tag3'])
+  const [tags, setTags] = useState([])
   const [disable, setDisable] = useState(false)
+  // state to check if a tag has been selected
+  const [tagSelected, setTagSelected] = useState(null)
+  console.log(tags)
+
+  // get tags to be chosen and saved
+  const { data, isLoading: tagLoading, error } = useQuery(['tags'], getTags)
+  const taglist = data?.data?.tags
+  // console.log(taglist)
+
+  const handleTags = e => {
+    if (e.target.checked) {
+      setTags([...tags, e.target.value])
+    } else {
+      setTags(tags.filter(tag => tag !== e.target.value))
+    }
+  }
 
   const handleImage = e => {
     const file = e.target.files[0]
@@ -189,6 +210,40 @@ export default function Publish () {
               }}
               onEditorChange={newText => setBody(newText)}
             />
+          </div>
+
+          <div className='flex flex-wrap justify-center mt-6 '>
+            {tagLoading ? (
+              <div className=''>Fetting tags...</div>
+            ) : taglist ? (
+              taglist.map(tag => {
+                return (
+                  <div
+                    key={tag._id}
+                    className='flex items-center gap-2
+                  border-2 border-gray-700 ring-gray-700 ring-offset-2 ring-2 
+                  rounded-md px-2 py-1 my-2 mx-2 cursor-pointer 
+                  hover:bg-gray-700 hover:border-gray-800 
+                  hover:ring-gray-800 transition checked:bg-emerald-500'
+                  >
+                    <label
+                      htmlFor={tag._id}
+                      className='flex items-center gap-2 cursor-pointer'
+                    >
+                      <input
+                        type='checkbox'
+                        name='tags'
+                        id={tag._id}
+                        value={tag.name}
+                        className='hidden checked:bg-emerald-500'
+                        onChange={handleTags}
+                      />
+                      {tag.name} <span>{tagSelected === tag.name ? tag.name : '34'}</span>
+                    </label>
+                  </div>
+                )
+              })
+            ) : null}
           </div>
         </form>
       </div>
