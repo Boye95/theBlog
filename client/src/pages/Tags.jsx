@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useSearchParams, useLocation } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
+import Post from '../components/Post'
 import axios from 'axios'
 
 const getTags = async () => {
@@ -17,13 +18,20 @@ export default function Tags () {
 
   const location = useLocation()
   const tagQuery = location.search.split('=')[1]
-  console.log(tagQuery)
+  const [squery, setSquery] = useState()
+  // console.log(tagQuery)
   const fetchTagPosts = async () => {
-    const res = await fetch(`http://localhost:4000/api/blogposts?tags=${tagQuery}`)
+    const res = await fetch(
+      `http://localhost:4000/api/blogposts?tags=${squery}`
+    )
     return res.json()
   }
-  const { data: tagData, isLoading: tagLoading, error: tagError } = useQuery(['tagPosts'], fetchTagPosts)
-  console.log(tagData)
+  const { data: tagData, isLoading: tagLoading, error: tagError } = useQuery(
+    ['tagPosts'],
+    fetchTagPosts
+  )
+  const tagPosts = tagData?.data?.posts
+  console.log(tagPosts)
   return (
     <div className='flex flex-col justify-center'>
       <div className='flex flex-wrap justify-center'>
@@ -33,6 +41,8 @@ export default function Tags () {
               <div
                 onClick={() => {
                   setSearchParams({ tags: tag.name })
+                  setSquery(tag.name)
+                  console.log('clicke me')
                 }}
                 key={tag._id}
                 className='flex gap-2 bg-white rounded-lg shadow-lg w-fit mx-4
@@ -40,7 +50,7 @@ export default function Tags () {
                hover:ring-opacity-50 hover:ring-offset-2 hover:ring-offset-gray-100 
                hover:bg-emerald-400 hover:text-white transition duration-300 ease-in-out
                transform hover:-translate-y-1 hover:scale-102 
-               [&]'
+               [&] cursor-pointer'
               >
                 <p>{tag.name}</p>
                 <p
@@ -53,7 +63,18 @@ export default function Tags () {
             )
           })}
       </div>
-      <div className=''></div>
+      <div className='flex flex-col mt-6'>
+        <h2 className='text-center text-2xl'>
+          {tagQuery ? `Posts under ${tagQuery} tag` : ''}
+        </h2>
+        {tagLoading ? (
+          <p>Loading Posts...</p>
+        ) : (
+          tagPosts.map(post => {
+            return <Post key={post._id} post={post} />
+          })
+        )}
+      </div>
     </div>
   )
 }
