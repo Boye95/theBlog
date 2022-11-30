@@ -31,7 +31,6 @@ export default function Publish () {
   const taglist = data?.data?.tags
   // console.log(taglist)
 
-
   const handleImage = e => {
     const file = e.target.files[0]
     setFileToBase(file)
@@ -205,16 +204,26 @@ export default function Publish () {
             />
           </div>
 
-          <div className='flex flex-wrap justify-center mt-6 '>
-            {tagLoading ? (
-              <div className=''>Fetching tags...</div>
-            ) : taglist ? (
-              taglist.map(tag => {
-                return (
-                  <TagItem key={tag._id} tag={tag} tagState={tags} setTagState={setTags} />
-                )
-              })
-            ) : null}
+          <div className='mt-6 flex flex-col items-center gap-2 font-nysmall'>
+            <p className='font-bold'>
+              Select tags that captures your story-a maximum of 3 tags
+            </p>
+            <div className='flex flex-wrap justify-center '>
+              {tagLoading ? (
+                <div className=''>Fetching tags...</div>
+              ) : taglist ? (
+                taglist.map(tag => {
+                  return (
+                    <TagItem
+                      key={tag._id}
+                      tag={tag}
+                      tagState={tags}
+                      setTagState={setTags}
+                    />
+                  )
+                })
+              ) : null}
+            </div>
           </div>
         </form>
       </div>
