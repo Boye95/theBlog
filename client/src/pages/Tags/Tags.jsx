@@ -26,10 +26,11 @@ export default function Tags () {
     )
     return res.json()
   }
-  const { data: tagData, isLoading: tagLoading, error: tagError } = useQuery(
-    ['tagPosts'],
-    fetchTagPosts
-  )
+  const {
+    data: tagData,
+    isLoading: tagLoading,
+    error: tagError
+  } = useQuery(['tagPosts'], fetchTagPosts)
   const tagPosts = tagData?.data?.posts
   console.log(tagPosts)
   return (
@@ -63,17 +64,19 @@ export default function Tags () {
             )
           })}
       </div>
-      <div className='flex flex-col mt-6'>
+      <div className='flex flex-col gap-3 items-center justify-center mt-6'>
         <h2 className='text-center text-2xl'>
           {tagQuery ? `Posts under ${tagQuery} tag` : ''}
         </h2>
-        {tagLoading ? (
-          <p>Loading Posts...</p>
-        ) : (
-          tagPosts.map(post => {
-            return <Post key={post._id} post={post} />
-          })
-        )}
+        <div className='grid grid-cols-3 gap-6 gap-y-8 mb-20 lg:grid-cols-2 sm:grid-cols-1'>
+          {tagLoading ? (
+            <p>Loading Posts...</p>
+          ) : (
+            tagPosts.map(post => {
+              return <Post key={post._id} post={post} />
+            })
+          )}
+        </div>
       </div>
     </div>
   )
