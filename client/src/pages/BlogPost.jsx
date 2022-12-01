@@ -9,6 +9,7 @@ import { AiOutlineDelete } from 'react-icons/ai'
 import { BiEdit } from 'react-icons/bi'
 import { IoIosAddCircleOutline } from 'react-icons/io'
 import { OtherArticles, Newsletter } from '../components'
+// import PostByTag from './Tags/PostsByTag'
 import { Editor } from '@tinymce/tinymce-react'
 // import { Base64, encode, decode } from 'js-base64'
 
@@ -404,7 +405,7 @@ export default function BlogPost () {
                     {post.tags.map((tag, index) => {
                       return (
                         <Link 
-                        to={`/?tags=${tag}`} 
+                        to={`/tags/${tag}`} 
                         className='transition-all hover:underline hover:font-bold' 
                         key={index}>
                           {index === post.tags.length - 1 ? tag : `${tag}, `}

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useSearchParams, useLocation } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import Post from '../../components/Post'
+// import PostByTag from './PostsByTag'
 import axios from 'axios'
 
 const getTags = async () => {
