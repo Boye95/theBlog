@@ -21,7 +21,7 @@ export default function Tags () {
       <div className='flex flex-wrap justify-center'>
         {data &&
           taglist.map(tag => {
-            console.log(tag)
+            // console.log(tag)
             return (
               <Link
                 to={`/tags/${tag.name}`}

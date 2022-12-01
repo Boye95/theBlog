@@ -25,13 +25,16 @@ export default function PostByTag () {
         <AiFillTag className='text-2xl' />
         <h1 className='text-3xl font-bold text-gray-800'>{tag}</h1>
         <div className='text-2xl flex'>
-          <p className='relative top-0 text-emerald-500'>{posts?.length}</p>
-          <p className='relative top-0 -left-3 transition-all hover:-translate-y-0.5'>{posts?.length}</p>
+          <p className='relative top-0 left-1 text-emerald-500'>{posts?.length}</p>
+          <p className='relative top-0 -left-2.5 text-red-700 transition-all hover:-translate-y-0.5'>{posts?.length}</p>
+          <p className='relative top-0 -left-7 transition-all hover:-translate-y-0.5'>{posts?.length}</p>
         </div>
       </header>
 
       <div className="mt-5 grid grid-cols-3 gap-6 gap-y-8 mb-20 lg:grid-cols-2 sm:grid-cols-1">
-        {posts?.map(post => {
+        {isLoading ? (
+            <div className="">Loading...</div>
+        ) : posts?.map(post => {
             return <Post key={post._id} post={post} />
         })}
       </div>

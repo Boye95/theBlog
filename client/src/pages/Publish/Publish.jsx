@@ -24,7 +24,7 @@ export default function Publish () {
   const [displayImage, setDisplayImage] = useState('')
   const [tags, setTags] = useState([])
   const [disable, setDisable] = useState(false)
-  console.log(tags)
+  // console.log(tags)
 
   // get tags to be chosen and saved
   const { data, isLoading: tagLoading, error } = useQuery(['tags'], getTags)
