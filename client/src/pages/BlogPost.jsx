@@ -314,7 +314,11 @@ export default function BlogPost () {
               <ConfirmDeletePost path={path} deleteState={setWannaDelete} />
             </div>
           )}
-          {data && (
+          {isLoading ? (
+            <div className="">Loading...</div>
+          ) : error ? (
+            <div className=''>{error}</div>
+          ) : (
             <div className=''>
               <div id='article1' className='flex flex-col items-center'>
                 <h1 className='font-nylarge w-3/6 text-4xl text-center mt-7 ham:w-5/6 sm:w-11/12 sm:text-3xl '>
