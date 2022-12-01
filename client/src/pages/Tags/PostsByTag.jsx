@@ -17,7 +17,7 @@ export default function PostByTag () {
     fetchPostsByTag(tag)
   )
   const posts = data?.data?.posts
-  console.log(posts)
+//   console.log(posts)
 
   return (
     <div className='font-sfproth w-3/6 border-b-2 border-black mx-auto ham:w-11/12 xl:w-4/6'>

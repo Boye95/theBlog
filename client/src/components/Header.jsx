@@ -38,11 +38,11 @@ export default function Header () {
             Blog
           </NavLink>
           <NavLink
-            to='/about'
+            to='/tags'
             className='navlink'
-             
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            About
+            Tags
           </NavLink>
           <NavLink
             to='/login'
@@ -117,12 +117,12 @@ export default function Header () {
             Blog
           </NavLink>
           <NavLink
-            to='/about'
+            to='/tags'
             className='navlinks'
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
             onClick={handleShowMenu}
           >
-            About
+            Tags
           </NavLink>
           <NavLink
             to='/login'
