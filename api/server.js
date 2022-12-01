@@ -6,15 +6,16 @@ const cors = require("cors");
 const app = express();
 const mongoose = require("mongoose");
 const blogPostsRoute = require("./routes/blogPostsRoute");
-const tagsRoute = require('./routes/tagsRoute');
+const tagsRoute = require("./routes/tagsRoute");
+const userRoute = require("./routes/userRoute");
 
 app.use(express.json({ limit: "50mb" }));
 app.use(cors());
 
-
 // API routes
 app.use("/api/blogposts", blogPostsRoute);
 app.use("/api/tags", tagsRoute);
+app.use("/api/users", userRoute);
 
 // Connect to MongoDB
 mongoose
