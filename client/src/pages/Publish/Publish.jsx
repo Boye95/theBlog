@@ -163,7 +163,7 @@ export default function Publish () {
           </div>
           <div className='mt-7 w-full min-h-[30rem] max-w-[1050px] font-nymedium rounded-tr-[10px] rounded-tl-[10px] ring-gray-700 ring-offset-2 ring-2 border-2 transition focus-within:border-emerald-300 focus-within:ring-emerald-300 focus-within:shadow-emerald-300 focus-within:shadow-[0_0_25px]'>
             <Editor
-              apiKey='mk3t00giiyqt48pkpkk19x5es04efdg6r5b3ndaa4hz5if9k'
+              apiKey={import.meta.env.VITE_TINY_API_KEY}
               // onInit={(evt, editor) => (editorRef.current = editor)}
               initialValue='<p>This is the initial content of the editor.</p>'
               init={{
