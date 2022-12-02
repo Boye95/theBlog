@@ -8,7 +8,6 @@ import {
   Publish,
   Tags,
   Register,
-  Auth0,
   PostsByTag
 } from './pages'
 
@@ -26,7 +25,6 @@ function App () {
         <Route path='/register' element={<Register />} />
         <Route path='/publish' element={<Publish />} />
         <Route path='/profile' element={<Profile />} />
-        <Route path='/auth0' element={<Auth0 />} />
       </Routes>
     </>
   )

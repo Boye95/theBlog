@@ -1,9 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { FcGoogle } from 'react-icons/fc'
 import { VscEye, VscEyeClosed } from 'react-icons/vsc'
-import typew from '../../src/assets/typewriter.png'
+import typew from '../../assets/typewriter.png'
+import GoogleSignIn from './GoogleSignIn'
+
 
 export default function Register () {
   // show/hide password logic
@@ -25,8 +26,7 @@ export default function Register () {
           </h2>
           <div id='form-body' className='mt-24 sm:mt-12'>
             <div className='font-sfprotr flex items-center justify-center mx-auto gap-2 py-1 w-60 border-2 border-black rounded-2xl hover:border-gray-400'>
-              <FcGoogle className='' />
-              <p className=''>Sign up with Google</p>
+              <GoogleSignIn actionText='signup_with' />
             </div>
             <p className='mx-4 my-4 font-sfprotr text-lg sm:text-center'>or</p>
             <h1 className='font-bold font-sfprod text-2xl text-gray-700 mx-4 sm:text-center'>
@@ -122,7 +122,11 @@ export default function Register () {
             <p className='font-sfprotr'>
               Already a member?{' '}
               <span className='font-bold font-sfprotr'>
-                <Link to='/login' className='text-black hover:underline' href='#'>
+                <Link
+                  to='/login'
+                  className='text-black hover:underline'
+                  href='#'
+                >
                   Log in
                 </Link>
               </span>

@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { FcGoogle } from 'react-icons/fc'
 import { VscEye, VscEyeClosed } from 'react-icons/vsc'
-import type from '../../src/assets/typewriter.png'
+import type from '../../assets/typewriter.png'
+import GoogleSignIn from './GoogleSignIn'
 
 export default function Login () {
   // show/hide password logic
@@ -25,8 +25,7 @@ export default function Login () {
           </h2>
           <div id='form-bodylogin' className='mt-24 sm:mt-12'>
             <div className='font-sfprotr flex items-center justify-center mx-auto gap-2 py-1 w-60 border-2 border-black rounded-2xl hover:border-gray-400'>
-              <FcGoogle className='' />
-              <p className=''>Sign in with Google</p>
+              <GoogleSignIn actionText='Sign In with Google' />
             </div>
             <p className='mx-4 my-4 font-sfprotr text-lg sm:text-center'>or</p>
             <h1 className='font-bold font-sfprod text-2xl text-gray-700 mx-4 sm:text-center'>
