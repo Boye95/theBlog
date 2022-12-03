@@ -65,6 +65,13 @@ exports.createBlogPost = async (req, res) => {
     const result = await cloudinary.uploader.upload(displayImage, {
       folder: "boye",
     });
+    // tags length should less than or equal to 3
+    if (tags.length > 3) {
+      return res.status(400).json({
+        status: "fail",
+        message: "You can only add a maximum of 3 tags",
+      });
+    }
     const newPost = await BlogPost.create({
       title,
       subtitle,
