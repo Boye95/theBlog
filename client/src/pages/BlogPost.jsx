@@ -117,7 +117,7 @@ export default function BlogPost () {
 
   const post = data?.data?.post
   // track image selection
-
+  console.log(post)
   const postBody = post?.body
   const clean = DOMPurify.sanitize(postBody, {
     ADD_TAGS: ['iframe'],
@@ -343,7 +343,7 @@ export default function BlogPost () {
                     </div>
                     <div className=''>
                       <Link to='/profile' className='font-sfproth'>
-                        ADEBOYE FOLARANMI
+                        {post?.authorInfo?.name.toUpperCase()}
                       </Link>
                       <div className='font-sfprotr flex justify-between gap-2 xl:text-sm'>
                         <div className='flex flex-col'>
