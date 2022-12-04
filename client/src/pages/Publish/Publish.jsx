@@ -23,7 +23,6 @@ export default function Publish () {
   const [body, setBody] = useState('')
   const [displayImage, setDisplayImage] = useState('')
   const [tags, setTags] = useState([])
-  const [disable, setDisable] = useState(false)
   // console.log(tags)
 
   // get tags to be chosen and saved
@@ -68,7 +67,6 @@ export default function Publish () {
       displayImage,
       tags
     }
-    setDisable(true)
     mutate(post)
     console.log(post)
   }
@@ -85,7 +83,7 @@ export default function Publish () {
             type='submit'
             form='form'
             className='text-white bg-black rounded p-1 font-sfprod px-8 ring-2 ring-gray-700 ring-offset-2 transition hover:bg-gray-600 hover:ring-gray-400 sm:px-4 disabled:opacity-50 disabled:cursor-not-allowed'
-            // disabled={disable}
+            disabled={isLoading}
           >
             Publish
           </button>

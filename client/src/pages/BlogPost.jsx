@@ -341,7 +341,7 @@ export default function BlogPost () {
                 <div id='postinfo' className='mt-8 flex sm:flex-col sm:gap-5'>
                   <div className='flex gap-2 w-4/6 sm:w-full'>
                     <div className='w-12 h-12 rounded-3xl overflow-hidden'>
-                      {/* {post.authorInfo.avatar ? (
+                      {post.authorInfo.avatar ? (
                         <img
                           src={post.authorInfo.avatar}
                           alt=''
@@ -353,11 +353,11 @@ export default function BlogPost () {
                           alt=''
                           className='w-full'
                         />
-                      )} */}
+                      )}
                     </div>
                     <div className=''>
                       <Link to='/profile' className='font-sfproth'>
-                        {/* {post?.authorInfo?.name.toUpperCase()} */}
+                        {post?.authorInfo?.name.toUpperCase()}
                       </Link>
                       <div className='font-sfprotr flex justify-between gap-2 xl:text-sm'>
                         <div className='flex flex-col'>
