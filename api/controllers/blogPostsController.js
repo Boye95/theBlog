@@ -1,6 +1,7 @@
 const BlogPost = require("../models/blogPostsModel");
 const User = require("../models/userModel");
 const mongoose = require("mongoose");
+const { calculate } = require("calculate-readtime");
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
@@ -48,6 +49,7 @@ exports.getSingleBlogPost = async (req, res) => {
       status: "success",
       data: {
         post,
+        readTime: calculate(post.body),
       },
     });
   } catch (error) {

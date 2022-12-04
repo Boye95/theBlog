@@ -27,15 +27,17 @@ const ConfirmDeletePost = ({ path, deleteState }) => {
     return del
   }
 
-  const { mutate, isLoading: isDeleting, isError, isSuccess } = useMutation(
-    deletePost,
-    {
-      onSuccess: () => {
-        location.reload()
-        location.href = '/'
-      }
+  const {
+    mutate,
+    isLoading: isDeleting,
+    isError,
+    isSuccess
+  } = useMutation(deletePost, {
+    onSuccess: () => {
+      location.reload()
+      location.href = '/'
     }
-  )
+  })
   const handleDelete = () => {
     mutate()
   }
@@ -90,7 +92,6 @@ export default function BlogPost () {
   const [body, setBody] = useState('')
   const [displayImage, setDisplayImage] = useState('')
   const [tags, setTags] = useState(['rfrf'])
-  const [disable, setDisable] = useState(false)
   const [updateMode, setUpdateMode] = useState(false)
 
   const [trackImageSelection, setTrackImageSelection] = useState(false)
@@ -117,7 +118,9 @@ export default function BlogPost () {
 
   const post = data?.data?.post
   // track image selection
-  console.log(post)
+  // console.log(post)
+  const readTime = data?.data?.readTime
+
   const postBody = post?.body
   const clean = DOMPurify.sanitize(postBody, {
     ADD_TAGS: ['iframe'],
@@ -180,7 +183,6 @@ export default function BlogPost () {
       tags
     }
     isUpdate(newEdits)
-    setDisable(true)
     console.log(newEdits)
   }
   // console.log(post)
@@ -196,7 +198,7 @@ export default function BlogPost () {
              z-10 
              ring-offset-2 ring-offset-gray-600 transition hover:bg-gray-600 hover:ring-gray-400 sm:px-4 
              disabled:opacity-80 disabled:cursor-not-allowed'
-            disabled={disable}
+            disabled={isUpdating}
           >
             {isUpdating ? 'Updating...' : isUpdated ? 'Updated' : 'Update'}
           </button>
@@ -316,7 +318,7 @@ export default function BlogPost () {
             </div>
           )}
           {isLoading ? (
-            <div className="">Loading...</div>
+            <div className=''>Loading...</div>
           ) : error ? (
             <div className=''>{error}</div>
           ) : (
@@ -339,11 +341,23 @@ export default function BlogPost () {
                 <div id='postinfo' className='mt-8 flex sm:flex-col sm:gap-5'>
                   <div className='flex gap-2 w-4/6 sm:w-full'>
                     <div className='w-12 h-12 rounded-3xl overflow-hidden'>
-                      <img src={avatar} alt='' className='w-full' />
+                      {/* {post.authorInfo.avatar ? (
+                        <img
+                          src={post.authorInfo.avatar}
+                          alt=''
+                          className='w-full'
+                        />
+                      ) : (
+                        <img
+                          src='https://t3.ftcdn.net/jpg/01/18/01/98/360_F_118019822_6CKXP6rXmVhDOzbXZlLqEM2ya4HhYzSV.jpg'
+                          alt=''
+                          className='w-full'
+                        />
+                      )} */}
                     </div>
                     <div className=''>
                       <Link to='/profile' className='font-sfproth'>
-                        {post?.authorInfo?.name.toUpperCase()}
+                        {/* {post?.authorInfo?.name.toUpperCase()} */}
                       </Link>
                       <div className='font-sfprotr flex justify-between gap-2 xl:text-sm'>
                         <div className='flex flex-col'>
@@ -355,7 +369,7 @@ export default function BlogPost () {
                               )}`}
                           </span>
                         </div>
-                        <span>• 4 min read</span>
+                        <span>•{` ${readTime} read`}</span>
                       </div>
                     </div>
                   </div>
@@ -404,10 +418,11 @@ export default function BlogPost () {
                     Tags:{'  '}
                     {post.tags.map((tag, index) => {
                       return (
-                        <Link 
-                        to={`/tags/${tag}`} 
-                        className='transition-all hover:underline hover:font-bold' 
-                        key={index}>
+                        <Link
+                          to={`/tags/${tag}`}
+                          className='transition-all hover:underline hover:font-bold'
+                          key={index}
+                        >
                           {index === post.tags.length - 1 ? tag : `${tag}, `}
                         </Link>
                       )
