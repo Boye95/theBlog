@@ -1,4 +1,5 @@
 const BlogPost = require("../models/blogPostsModel");
+const User = require("../models/userModel");
 const mongoose = require("mongoose");
 const cloudinary = require("cloudinary").v2;
 
@@ -59,7 +60,7 @@ exports.getSingleBlogPost = async (req, res) => {
 
 // Create a new blog post
 exports.createBlogPost = async (req, res) => {
-  const { title, subtitle, body, displayImage, tags } = req.body;
+  const { title, subtitle, body, displayImage, tags, authorInfo } = req.body;
 
   try {
     const result = await cloudinary.uploader.upload(displayImage, {
@@ -72,6 +73,11 @@ exports.createBlogPost = async (req, res) => {
         message: "You can only add a maximum of 3 tags",
       });
     }
+
+    // add author info to req.body
+    const userInfo = req.userId;
+    const getAuthorInfo = await User.findById(userInfo);
+    // console.log(getAuthorInfo)
     const newPost = await BlogPost.create({
       title,
       subtitle,
@@ -81,6 +87,7 @@ exports.createBlogPost = async (req, res) => {
         public_id: result.public_id,
       },
       tags,
+      authorInfo: getAuthorInfo,
     });
     res.status(201).json({
       status: "success",
