@@ -1,26 +1,15 @@
 import React from 'react'
-import { useState, useContext } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { VscEye, VscEyeClosed } from 'react-icons/vsc'
 import typew from '../../assets/typewriter.png'
 import GoogleSignIn from './GoogleSignIn'
 
-import { AuthContext } from '../../authcontext/Context'
-
-import { useMutation } from '@tanstack/react-query'
-import axios from 'axios'
-
-const registerUser = async user => {
-  const res = await axios.post('http://127.0.0.1:4000/api/users/register', user)
-  return res.data
-}
+import {useSignup} from '../../hooks/useSignup'
 
 export default function Register () {
   // show/hide password logic
   const [showPass, setShowPass] = useState(false)
-
-  // get dispatch from context
-  const { dispatch, isAuth } = useContext(AuthContext)
 
   // register form states
   const [name, setName] = useState('')
@@ -28,21 +17,13 @@ export default function Register () {
   const [password, setPassword] = useState('')
   const [avatar, setAvatar] = useState('')
 
-  const { data, mutate, isLoading, isError, isSuccess, error } =
-    useMutation(registerUser)
+  // destructure signup function from useSignup hook
+  const { signup, isLoading, isError, isSuccess } = useSignup()
 
   const handleRegister = e => {
     e.preventDefault()
     const user = { name, email, password, avatar }
-    mutate(user, {
-      onSuccess: data => {
-        dispatch({ type: 'LOGIN', payload: data })
-        console.log(data)
-      },
-      onError: error => {
-        console.log(error)
-      }
-    })
+    signup(user)
     console.log(user)
   }
 
