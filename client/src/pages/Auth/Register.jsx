@@ -1,14 +1,50 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { VscEye, VscEyeClosed } from 'react-icons/vsc'
 import typew from '../../assets/typewriter.png'
 import GoogleSignIn from './GoogleSignIn'
 
+import { AuthContext } from '../../authcontext/Context'
+
+import { useMutation } from '@tanstack/react-query'
+import axios from 'axios'
+
+const registerUser = async user => {
+  const res = await axios.post('http://127.0.0.1:4000/api/users/register', user)
+  return res.data
+}
 
 export default function Register () {
   // show/hide password logic
   const [showPass, setShowPass] = useState(false)
+
+  // get dispatch from context
+  const { dispatch, isAuth } = useContext(AuthContext)
+
+  // register form states
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [avatar, setAvatar] = useState('')
+
+  const { data, mutate, isLoading, isError, isSuccess, error } =
+    useMutation(registerUser)
+
+  const handleRegister = e => {
+    e.preventDefault()
+    const user = { name, email, password, avatar }
+    mutate(user, {
+      onSuccess: data => {
+        dispatch({ type: 'LOGIN', payload: data })
+        console.log(data)
+      },
+      onError: error => {
+        console.log(error)
+      }
+    })
+    console.log(user)
+  }
 
   let handleShowPass = () => {
     setShowPass(!showPass)
@@ -36,7 +72,11 @@ export default function Register () {
               Let's create your account,
             </p>
 
-            <form className='mt-4  mx-4'>
+            <form
+              className='mt-4  mx-4'
+              encType='multipart/form-data'
+              onSubmit={handleRegister}
+            >
               <div className='grid grid-cols-2 gap-6 font-sfprotr sm:grid-cols-1'>
                 <div className='flex flex-col '>
                   <label htmlFor='name'>Name</label>
@@ -45,6 +85,7 @@ export default function Register () {
                     type='text'
                     id='full-name'
                     name='name'
+                    onChange={e => setName(e.target.value)}
                     required
                   />
                 </div>
@@ -56,6 +97,7 @@ export default function Register () {
                     type='email'
                     id='mail'
                     name='mail'
+                    onChange={e => setEmail(e.target.value)}
                     required
                   />
                 </div>
@@ -68,6 +110,7 @@ export default function Register () {
                       type={showPass ? 'text' : 'password'}
                       id='pass'
                       name='pass'
+                      onChange={e => setPassword(e.target.value)}
                       required
                     />
                     {showPass ? (
