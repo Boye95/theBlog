@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import avatar from '../../assets/avatar.png'
 import { Link } from 'react-router-dom'
 import { FaUserCog } from 'react-icons/fa'
@@ -6,12 +6,17 @@ import { BiArrowBack } from 'react-icons/bi'
 import { CgProfile } from 'react-icons/cg'
 import { GoBook } from 'react-icons/go'
 
+import { AuthContext } from '../../AuthContext/Context'
+
 // import profile components
 import ProfileInfo from './ProfileInfo'
 import PersonalBlog from './PersonalBlog'
 import EditProfile from './EditProfile'
 
 const Profile = () => {
+  const { user } = useContext(AuthContext)
+
+
   const [active, setActive] = useState('profile')
 
   return (
@@ -86,7 +91,7 @@ const Profile = () => {
 
         <div className='mt-[6rem] pt-4 px-1 w-[100%] h-[83vh] overflow-scroll'>
           {active === 'profile' ? (
-            <ProfileInfo />
+            <ProfileInfo user={user} />
           ) : active === 'posts' ? (
             <PersonalBlog />
           ) : active === 'edit' ? (
