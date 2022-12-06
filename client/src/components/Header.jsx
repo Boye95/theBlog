@@ -1,11 +1,16 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { FiMenu } from 'react-icons/fi'
 import { GrClose } from 'react-icons/gr'
 import avatar from '../assets/avatar.png'
+import { AuthContext } from '../authcontext/Context'
+import { useSignout } from '../hooks/useSignout'
 
 export default function Header () {
+  const { user, dispatch } = useContext(AuthContext)
+  const { signout } = useSignout()
+
   // Navbar display script
   let [showMenu, setShowMenu] = useState(false)
 
@@ -45,44 +50,54 @@ export default function Header () {
             Tags
           </NavLink>
           <NavLink
-            to='/login'
-            className='navlink'
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Login
-          </NavLink>
-          <NavLink
-            to='/register'
-            className='navlink'
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Register
-          </NavLink>
-          {/* <NavLink to='/project' className='navlink'>Projects</NavLink> */}
-          <NavLink
             to='/publish'
             className='navlink'
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Publish
           </NavLink>
+          {user ? (
+            <button onClick={signout} className='navlink'>
+              Logout
+            </button>
+          ) : (
+            <>
+              <NavLink
+                to='/login'
+                className='navlink'
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              >
+                Login
+              </NavLink>
+              <NavLink
+                to='/register'
+                className='navlink'
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              >
+                Register
+              </NavLink>
+            </>
+          )}
+          {/* <NavLink to='/project' className='navlink'>Projects</NavLink> */}
 
-          <NavLink
-            to='/profile'
-            className='relative'
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            <span className='flex h-3 w-3 absolute -right-2 top-0'>
-              <span className='animate-ping absolute inline-flex h-3 w-3 rounded-full bg-green-300 opacity-75'></span>
-              <span className='relative inline-flex rounded-full h-3 w-3 bg-emerald-500'></span>
-            </span>
-            <div
-              // onClick={handleShowEdit}
-              className='h-8 w-8 cursor-pointer rounded-full overflow-hidden ring ring-gray-600 ring-offset-2 hover:ring-blue-400'
+          {user && (
+            <NavLink
+              to='/profile'
+              className='relative'
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
-              <img src={avatar} alt='' className='h-full w-full' />
-            </div>
-          </NavLink>
+              <span className='flex h-3 w-3 absolute -right-2 top-0'>
+                <span className='animate-ping absolute inline-flex h-3 w-3 rounded-full bg-green-300 opacity-75'></span>
+                <span className='relative inline-flex rounded-full h-3 w-3 bg-emerald-500'></span>
+              </span>
+              <div
+                // onClick={handleShowEdit}
+                className='h-8 w-8 cursor-pointer rounded-full overflow-hidden ring ring-gray-600 ring-offset-2 hover:ring-blue-400'
+              >
+                <img src={avatar} alt='' className='h-full w-full' />
+              </div>
+            </NavLink>
+          )}
         </nav>
 
         <FiMenu

@@ -174,6 +174,7 @@ export default function Register () {
               <button
                 type='submit'
                 className='w-fit justify-center mt-7 flex mx-auto px-8 ring-black ring-offset-2 ring-2 py-1 text-gray-100 font-bold font-sfprotr text-md bg-black rounded-lg outline-none transition-colors hover:ring-0 sm:w-full'
+                disbled={isLoading}
               >
                 Register Me
               </button>
