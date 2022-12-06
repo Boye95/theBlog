@@ -210,6 +210,7 @@ export default function Header () {
               to='/publish'
               className='navlinks'
               style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              onClick={handleShowMenu}
             >
               Publish
             </NavLink>

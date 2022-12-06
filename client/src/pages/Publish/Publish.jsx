@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import avatar from '../../assets/avatar.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { BiArrowBack } from 'react-icons/bi'
 import { IoIosAddCircleOutline } from 'react-icons/io'
 import { Editor } from '@tinymce/tinymce-react'
+
+import { AuthContext } from '../../AuthContext/Context'
+
 
 // import TagItem component
 import TagItem from './TagItem'
@@ -17,6 +20,9 @@ const getTags = async () => {
   return data
 }
 export default function Publish () {
+  const {user, isLoading: postLoading, isError: postError} = useContext(AuthContext)
+  const token = user?.data?.token
+
   // states for each input in the form
   const [title, setTitle] = useState('')
   const [subtitle, setSubtitle] = useState('')
@@ -45,7 +51,11 @@ export default function Publish () {
 
   const navigate = useNavigate()
   const fetchTags = async data => {
-    const res = await axios.post('http://127.0.0.1:4000/api/blogposts', data)
+    const res = await axios.post('http://127.0.0.1:4000/api/blogposts', data, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
     return res
   }
 
@@ -53,6 +63,7 @@ export default function Publish () {
     onSuccess: () => {
       console.log('success')
       navigate('/')
+      window.location.reload()
     },
     onError: () => {
       console.log('error')
@@ -67,9 +78,14 @@ export default function Publish () {
       displayImage,
       tags
     }
-    mutate(post)
+    if (user) {
+      mutate(post)
+    }
     console.log(post)
+    console.log(postLoading)
   }
+  console.log(postLoading)
+
 
   return (
     <div className='mt-5'>
@@ -83,7 +99,7 @@ export default function Publish () {
             type='submit'
             form='form'
             className='text-white bg-black rounded p-1 font-sfprod px-8 ring-2 ring-gray-700 ring-offset-2 transition hover:bg-gray-600 hover:ring-gray-400 sm:px-4 disabled:opacity-50 disabled:cursor-not-allowed'
-            disabled={isLoading}
+            disabled={postLoading}
           >
             Publish
           </button>
@@ -203,7 +219,7 @@ export default function Publish () {
           </div>
 
           <div className='mt-6 flex flex-col items-center gap-2 font-nysmall'>
-            <p className='font-bold'>
+            <p className='font-bold text-center'>
               Select tags that captures your story-a maximum of 3 tags
             </p>
             <div className='flex flex-wrap justify-center '>
