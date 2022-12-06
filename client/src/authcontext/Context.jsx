@@ -12,15 +12,7 @@ export const AuthContext = createContext(INITIAL_STATE);
 export const AuthContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(authReducer, INITIAL_STATE);
     
-    // useEffect(() => {
-    //     const userr = localStorage.getItem("user", JSON.stringify('user'));
-        
-    //     if (userr) {
-    //         dispatch({ type: "LOGIN", payload: userr });
-    //     } else {
-    //         dispatch({ type: "LOGOUT" });
-    //     }
-    // }, []);
+    
     console.log(state);
     return (
         <AuthContext.Provider

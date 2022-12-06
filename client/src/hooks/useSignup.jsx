@@ -32,9 +32,9 @@ export const useSignup = () => {
         dispatch({ type: 'LOGIN', payload: data })
         localStorage.setItem('user', JSON.stringify(data))
         navigate('/')
+        window.location.reload()
       },
       onError: error => {
-        console.log(error.response.data.errors)
         setIsError(error.response.data.errors.msg)
       }
     })
@@ -42,9 +42,6 @@ export const useSignup = () => {
     if (signupLoading) {
       setIsLoading(true)
     }
-    // if (signupError) {
-    //   setIsError(error.response.data.errors.msg)
-    // }
     if (signupSuccess) {
       setIsSuccess(true)
     }

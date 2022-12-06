@@ -36,7 +36,6 @@ export const useSignin = () => {
         window.location.reload()
       },
       onError: error => {
-        console.log(error.response.data.errors)
         setIsError(error.response.data.errors.msg)
       }
     })

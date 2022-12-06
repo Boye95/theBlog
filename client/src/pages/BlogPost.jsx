@@ -24,7 +24,7 @@ import axios from 'axios'
 const ConfirmDeletePost = ({ path, deleteState }) => {
   const { user, isAuth, dispatch } = useContext(AuthContext)
   const token = user?.data?.token
-  console.log(token)
+  // console.log(token)
   const deletePost = async () => {
     const del = await axios.delete(
       `http://localhost:4000/api/blogposts/${path}`,
@@ -98,7 +98,7 @@ const ConfirmDeletePost = ({ path, deleteState }) => {
 export default function BlogPost () {
   const { user, isAuth, dispatch } = useContext(AuthContext)
   const token = user?.data?.token
-  console.log(token)
+  // console.log(token)
 
   const [wannaDelete, setWannaDelete] = useState(false)
 
