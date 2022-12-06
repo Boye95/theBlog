@@ -16,24 +16,24 @@ exports.registerUser = async (req, res) => {
     // Check if user already exists
     let user = await User.findOne({ email });
     if (user) {
-      return res.status(400).json({ errors: [{ msg: "User already exists" }] });
+      return res.status(400).json({ errors: { msg: "User already exists" } });
     }
 
     // Check if email is valid
     if (!validator.isEmail(email)) {
-      return res.status(400).json({ errors: [{ msg: "Invalid email" }] });
+      return res.status(400).json({ errors: { msg: "Invalid email" } });
     }
     // Check if password is valid
     if (!validator.isStrongPassword(password)) {
       return res
         .status(400)
-        .json({ errors: [{ msg: "Password not strong enough" }] });
+        .json({ errors: { msg: "Password not strong enough" } });
     }
     // check if fields are empty
     if (!name || !email || !password) {
       return res
         .status(400)
-        .json({ errors: [{ msg: "Please fill all fields" }] });
+        .json({ errors: { msg: "Please fill all fields" } });
     }
 
     // hash password
@@ -74,11 +74,11 @@ exports.loginUser = async (req, res) => {
     // Check if user exists
     let registeredUser = await User.findOne({ email });
     if (!registeredUser) {
-      return res.status(400).json({ errors: [{ msg: "Invalid credentials" }] });
+      return res.status(400).json({ errors: { msg: "Invalid credentials" } });
     }
     const isMatch = await bcrypt.compare(password, registeredUser.password);
     if (!isMatch) {
-      return res.status(400).json({ errors: [{ msg: "Invalid credentials" }] });
+      return res.status(400).json({ errors: { msg: "Invalid credentials" } });
     }
 
     // Create a token
