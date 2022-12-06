@@ -143,7 +143,7 @@ export default function Header () {
         animate={{ x: showMenu ? 0 : '100%' }}
         className={
           showMenu
-            ? 'flex flex-col absolute top-0 right-0 pt-5 bg-gray-50 h-full w-full rounded shadow-2xl overflow-hidden'
+            ? 'z-10 flex flex-col absolute top-0 right-0 pt-5 bg-gray-50 h-full w-full rounded shadow-2xl overflow-hidden'
             : 'hidden'
         }
       >
@@ -215,7 +215,13 @@ export default function Header () {
             </NavLink>
           )}
           {user ? (
-            <button onClick={signout} className='navlinks'>
+            <button
+              onClick={() => {
+                signout()
+                handleShowMenu()
+              }}
+              className='navlinks'
+            >
               Logout
             </button>
           ) : (

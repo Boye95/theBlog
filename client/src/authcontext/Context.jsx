@@ -13,9 +13,14 @@ export const AuthContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(authReducer, INITIAL_STATE);
     
     // useEffect(() => {
-    //     localStorage.setItem("user", JSON.stringify(state.user));
+    //     const userr = localStorage.getItem("user", JSON.stringify('user'));
         
-    // }, [state.user]);
+    //     if (userr) {
+    //         dispatch({ type: "LOGIN", payload: userr });
+    //     } else {
+    //         dispatch({ type: "LOGOUT" });
+    //     }
+    // }, []);
     console.log(state);
     return (
         <AuthContext.Provider

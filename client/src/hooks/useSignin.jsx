@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react'
 import { AuthContext } from '../authcontext/Context'
-import {useNavigate} from 'react-router-dom'
+import {useLocation, useNavigate} from 'react-router-dom'
 
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
@@ -17,6 +17,7 @@ export const useSignin = () => {
   const [isSuccess, setIsSuccess] = useState(false)
 
   const navigate = useNavigate()
+  const location = useLocation()
 
   const {
     data,
@@ -32,6 +33,7 @@ export const useSignin = () => {
         dispatch({ type: 'LOGIN', payload: data })
         localStorage.setItem('user', JSON.stringify(data))
         navigate('/')
+        window.location.reload()
       },
       onError: error => {
         console.log(error.response.data.errors)

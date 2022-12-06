@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import moment from 'moment'
@@ -15,14 +15,24 @@ import { Editor } from '@tinymce/tinymce-react'
 
 import DOMPurify from 'isomorphic-dompurify'
 
+import { AuthContext } from '../AuthContext/Context'
+
 // axios and react query
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
 const ConfirmDeletePost = ({ path, deleteState }) => {
+  const { user, isAuth, dispatch } = useContext(AuthContext)
+  const token = user?.data?.token
+  console.log(token)
   const deletePost = async () => {
     const del = await axios.delete(
-      `http://localhost:4000/api/blogposts/${path}`
+      `http://localhost:4000/api/blogposts/${path}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
     )
     return del
   }
@@ -39,7 +49,9 @@ const ConfirmDeletePost = ({ path, deleteState }) => {
     }
   })
   const handleDelete = () => {
-    mutate()
+    if (user) {
+      mutate()
+    }
   }
 
   return (
@@ -84,6 +96,10 @@ const ConfirmDeletePost = ({ path, deleteState }) => {
 }
 
 export default function BlogPost () {
+  const { user, isAuth, dispatch } = useContext(AuthContext)
+  const token = user?.data?.token
+  console.log(token)
+
   const [wannaDelete, setWannaDelete] = useState(false)
 
   // set state for the blog post update
@@ -145,7 +161,12 @@ export default function BlogPost () {
   const updatePost = async data => {
     const res = await axios.patch(
       `http://localhost:4000/api/blogposts/${path}`,
-      data
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
     )
     return res
   }
@@ -182,7 +203,9 @@ export default function BlogPost () {
       displayImage: yemi,
       tags
     }
-    isUpdate(newEdits)
+    if (user) {
+      isUpdate(newEdits)
+    }
     console.log(newEdits)
   }
   // console.log(post)
@@ -374,21 +397,21 @@ export default function BlogPost () {
                     </div>
                   </div>
                   <div className='flex w-3/6 justify-end items-center gap-2 sm:w-full sm:[&>*]:w-3/6'>
-                    <div
+                    {user && (<div
                       className='border-2 rounded py-1 w-16 cursor-pointer ring-gray-700 transition-all hover:border-gray-400 hover:ring-1'
                       onClick={() => setUpdateMode(true)}
                     >
                       <BiEdit className='w-8 h-6 mx-auto' />
-                    </div>
-                    <div
+                    </div>)}
+                    {user && (<div
                       className='border-2 rounded py-1 w-16 cursor-pointer ring-gray-700 transition-all hover:border-gray-400 hover:ring-1'
                       onClick={() => setWannaDelete(!wannaDelete)}
                     >
                       <AiOutlineDelete className='w-8 h-6 mx-auto' />
-                    </div>
-                    {/* <div className='border-2 rounded py-1 w-16 cursor-pointer ring-gray-700 transition-all hover:border-gray-400 hover:ring-1'>
-                  <FaFacebookSquare className='w-8 h-6 mx-auto' />
-                </div> */}
+                    </div>)}
+                    {!user && (<div className='border-2 rounded py-1 w-16 cursor-pointer ring-gray-700 transition-all hover:border-gray-400 hover:ring-1'>
+                      <FaFacebookSquare className='w-8 h-6 mx-auto' />
+                    </div>)}
                     <div className='border-2 rounded py-1 w-16 cursor-pointer ring-gray-700 transition-all hover:border-gray-400 hover:ring-1'>
                       <FaTwitterSquare className='w-8 h-6 mx-auto' />
                     </div>
