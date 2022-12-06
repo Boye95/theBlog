@@ -231,6 +231,7 @@ export default function Header () {
                 to='/login'
                 className='navlinks'
                 style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                onClick={handleShowMenu}
               >
                 Login
               </NavLink>
@@ -238,6 +239,7 @@ export default function Header () {
                 to='/register'
                 className='navlinks'
                 style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                onClick={handleShowMenu}
               >
                 Register
               </NavLink>

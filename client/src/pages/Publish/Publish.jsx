@@ -82,9 +82,9 @@ export default function Publish () {
       mutate(post)
     }
     console.log(post)
-    console.log(postLoading)
+    // console.log(postLoading)
   }
-  console.log(postLoading)
+  // console.log(postLoading)
 
 
   return (

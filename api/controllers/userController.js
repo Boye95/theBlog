@@ -11,7 +11,7 @@ cloudinary.config({
 
 // Register a  new user
 exports.registerUser = async (req, res) => {
-  const { name, email, password, avatar } = req.body;
+  const { name, email, password, avatar, about } = req.body;
   try {
     // Check if user already exists
     let user = await User.findOne({ email });
@@ -46,6 +46,7 @@ exports.registerUser = async (req, res) => {
       email,
       password: hashedPassword,
       avatar,
+      about,
     });
 
     // Create a token

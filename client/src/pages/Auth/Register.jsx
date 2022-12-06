@@ -18,6 +18,7 @@ export default function Register () {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [about, setAbout] = useState('')
   const [avatar, setAvatar] = useState('')
   const [error, setError] = useState('')
 
@@ -30,7 +31,7 @@ export default function Register () {
     } else {
       setError('')
     }
-    const user = { name, email, password, avatar }
+    const user = { name, email, password, avatar, about }
     signup(user)
     if (isError === '') {
       setIsError('')
@@ -174,7 +175,7 @@ export default function Register () {
               <button
                 type='submit'
                 className='w-fit justify-center mt-7 flex mx-auto px-8 ring-black ring-offset-2 ring-2 py-1 text-gray-100 font-bold font-sfprotr text-md bg-black rounded-lg outline-none transition-colors hover:ring-0 sm:w-full'
-                disbled={isLoading}
+                disabled={isLoading}
               >
                 Register Me
               </button>
