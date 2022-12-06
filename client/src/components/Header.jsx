@@ -123,11 +123,19 @@ export default function Header () {
           )}
         </nav>
 
-        <FiMenu
-          className='hidden cursor-pointer ham:flex'
-          size={38}
-          onClick={handleShowMenu}
-        />
+        <div className='relative'>
+          {user && (
+            <span className='flex h-3 w-3 absolute -right-0.5 top-0.5'>
+              <span className='animate-ping absolute inline-flex h-3 w-3 rounded-full bg-green-300 opacity-75'></span>
+              <span className='relative inline-flex rounded-full h-3 w-3 bg-emerald-500'></span>
+            </span>
+          )}
+          <FiMenu
+            className='hidden cursor-pointer ham:flex'
+            size={38}
+            onClick={handleShowMenu}
+          />
+        </div>
       </div>
 
       {/* Hamburger nav conditional display code */}
@@ -140,7 +148,7 @@ export default function Header () {
         }
       >
         <div
-          className={`mt-1 mr-3 flex items-center p-2 px-2 ${
+          className={`mt-1 mr-3 flex items-center pl-4 p-2 px-2 ${
             !user ? 'justify-end' : 'justify-between'
           }`}
         >
