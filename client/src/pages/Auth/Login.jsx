@@ -5,9 +5,28 @@ import { VscEye, VscEyeClosed } from 'react-icons/vsc'
 import type from '../../assets/typewriter.png'
 import GoogleSignIn from './GoogleSignIn'
 
+import { useSignin } from '../../hooks/useSignin'
+
 export default function Login () {
+  // destructure signin function from useSignin hook
+  const { signin, isLoading, isError, setIsError, isSuccess } = useSignin()
+
   // show/hide password logic
   const [showPass, setShowPass] = useState(false)
+
+  // form items states
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleLogin = e => {
+    e.preventDefault()
+    const user = {
+      email,
+      password
+    }
+    signin(user)
+    console.log(user)
+  }
 
   let handleShowPass = () => {
     setShowPass(!showPass)
@@ -32,27 +51,36 @@ export default function Login () {
               Sign in with Email.
             </h1>
 
-            <form className='mt-4  mx-4'>
+            <form
+              className='mt-4  mx-4'
+              encType='multipart/form-data'
+              onSubmit={handleLogin}
+            >
+              {isError && <div className='w-full bg-red-500 rounded-lg p-2 font-sfmono mb-2'>
+                {isError}
+              </div>}
               <div className='flex flex-col gap-6 font-sfprotr'>
                 <div className='flex flex-col'>
                   <label htmlFor='mail'>Email</label>
                   <input
-                    className='mt-2 h-8 border border-gray-700 rounded outline-none p-2 focus:ring-4 ring-black ring-offset-2'
+                    className='mt-2 h-8 border border-gray-700 rounded outline-none p-2 ring-2 transiton-all focus:ring-4 ring-black ring-offset-2'
                     type='email'
                     id='maill'
                     name='mail'
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                   />
                 </div>
 
                 <div className='flex flex-col'>
                   <label htmlFor='passs'>Password</label>
-                  <div className='flex items-center mt-2 h-8  border border-gray-700 rounded outline-none focus-within:ring-4 ring-black ring-offset-2'>
+                  <div className='flex items-center mt-2 h-8  border border-gray-700 rounded outline-none ring-2 transiton-all focus-within:ring-4 ring-black ring-offset-2'>
                     <input
                       className='h-7 w-5/6 outline-none p-2'
                       type={showPass ? 'text' : 'password'}
                       id='passs'
                       name='passs'
+                      onChange={(e) => setPassword(e.target.value)}
                       required
                     />
                     {showPass ? (
@@ -71,7 +99,7 @@ export default function Login () {
 
                 <button
                   type='submit'
-                  className='mt-2 flex mx-auto px-28 py-2 ring-black ring-offset-2 ring-2 text-gray-100 font-bold font-sfprotr text-lg bg-black rounded-lg outline-none transition-colors hover:ring-0'
+                  className='w-full justify-center mt-2 flex mx-auto px-8 ring-black ring-offset-2 ring-2 py-1 text-gray-100 font-bold font-sfprotr text-md bg-black rounded-lg outline-none transition-colors hover:ring-0'
                 >
                   Login
                 </button>
@@ -83,7 +111,11 @@ export default function Login () {
             <p className='font-sfprotr'>
               Not a member?{' '}
               <span className='font-bold font-sfprotr'>
-                <Link to='/register' className='text-black hover:underline' href='#'>
+                <Link
+                  to='/register'
+                  className='text-black hover:underline'
+                  href='#'
+                >
                   Register
                 </Link>
               </span>

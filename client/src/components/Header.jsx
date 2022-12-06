@@ -49,13 +49,15 @@ export default function Header () {
           >
             Tags
           </NavLink>
-          <NavLink
-            to='/publish'
-            className='navlink'
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Publish
-          </NavLink>
+          {user && (
+            <NavLink
+              to='/publish'
+              className='navlink'
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              Publish
+            </NavLink>
+          )}
           {user ? (
             <button onClick={signout} className='navlink'>
               Logout
@@ -94,7 +96,19 @@ export default function Header () {
                 // onClick={handleShowEdit}
                 className='h-8 w-8 cursor-pointer rounded-full overflow-hidden ring ring-gray-600 ring-offset-2 hover:ring-blue-400'
               >
-                <img src={avatar} alt='' className='h-full w-full' />
+                {user.data.registeredUser.avatar ? (
+                  <img
+                    src={user.data.registeredUser.avatar}
+                    alt=''
+                    className='w-full'
+                  />
+                ) : (
+                  <img
+                    src='https://t3.ftcdn.net/jpg/01/18/01/98/360_F_118019822_6CKXP6rXmVhDOzbXZlLqEM2ya4HhYzSV.jpg'
+                    alt=''
+                    className='w-full'
+                  />
+                )}
               </div>
             </NavLink>
           )}
@@ -115,7 +129,37 @@ export default function Header () {
             : 'hidden'
         }
       >
-        <div className='mt-1 mr-3 flex justify-end pr-2 '>
+        <div className={`mt-1 mr-3 flex items-center p-2 px-2 ${!user ? 'justify-end' : 'justify-between'}`}>
+          {user && (
+            <NavLink
+              to='/profile'
+              className='relative'
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              <span className='flex h-3 w-3 absolute -right-2 top-0'>
+                <span className='animate-ping absolute inline-flex h-3 w-3 rounded-full bg-green-300 opacity-75'></span>
+                <span className='relative inline-flex rounded-full h-3 w-3 bg-emerald-500'></span>
+              </span>
+              <div
+                // onClick={handleShowEdit}
+                className='h-8 w-8 cursor-pointer rounded-full overflow-hidden ring ring-gray-600 ring-offset-2 hover:ring-blue-400'
+              >
+                {user.data.registeredUser.avatar ? (
+                  <img
+                    src={user.data.registeredUser.avatar}
+                    alt=''
+                    className='w-full'
+                  />
+                ) : (
+                  <img
+                    src='https://t3.ftcdn.net/jpg/01/18/01/98/360_F_118019822_6CKXP6rXmVhDOzbXZlLqEM2ya4HhYzSV.jpg'
+                    alt=''
+                    className='w-full'
+                  />
+                )}
+              </div>
+            </NavLink>
+          )}
           <GrClose
             className='cursor-pointer rounded ring-2'
             size={30}
@@ -139,31 +183,37 @@ export default function Header () {
           >
             Tags
           </NavLink>
-          <NavLink
-            to='/login'
-            className='navlinks'
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            onClick={handleShowMenu}
-          >
-            Login
-          </NavLink>
-          <NavLink
-            to='/register'
-            className='navlinks'
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            onClick={handleShowMenu}
-          >
-            Register
-          </NavLink>
-          {/* <NavLink to='/project' className='navlink'>Projects</NavLink> */}
-          <NavLink
-            to='/publish'
-            className='navlinks'
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            onClick={handleShowMenu}
-          >
-            Publish
-          </NavLink>
+          {user && (
+            <NavLink
+              to='/publish'
+              className='navlinks'
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              Publish
+            </NavLink>
+          )}
+          {user ? (
+            <button onClick={signout} className='navlinks'>
+              Logout
+            </button>
+          ) : (
+            <>
+              <NavLink
+                to='/login'
+                className='navlinks'
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              >
+                Login
+              </NavLink>
+              <NavLink
+                to='/register'
+                className='navlinks'
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              >
+                Register
+              </NavLink>
+            </>
+          )}
         </div>
       </div>
     </header>
