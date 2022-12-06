@@ -3,9 +3,10 @@ import { useState, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { FiMenu } from 'react-icons/fi'
 import { GrClose } from 'react-icons/gr'
-import avatar from '../assets/avatar.png'
 import { AuthContext } from '../authcontext/Context'
 import { useSignout } from '../hooks/useSignout'
+
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Header () {
   const { user, dispatch } = useContext(AuthContext)
@@ -16,6 +17,14 @@ export default function Header () {
 
   let handleShowMenu = () => {
     setShowMenu(!showMenu)
+
+    // Disables Background Scrolling whilst the SideDrawer/Modal is open
+    if (typeof window != 'undefined' && window.document) {
+      document.body.style.overflow = 'hidden'
+    }
+    if (showMenu) {
+      document.body.style.overflow = 'auto'
+    }
   }
   // This styling will be applied to a <NavLink> when the
   // route that it links to is currently selected.
@@ -26,7 +35,7 @@ export default function Header () {
   let activeClassName = '2px solid black'
 
   return (
-    <header className='border-b-2 w-full'>
+    <header className={`border-b-2 w-full`}>
       <div className='w-5/6 mx-auto h-20 flex justify-between items-center ham:w-full ham:px-4'>
         <NavLink
           to='/'
@@ -122,14 +131,19 @@ export default function Header () {
       </div>
 
       {/* Hamburger nav conditional display code */}
-      <div
+      <motion.div
+        animate={{ x: showMenu ? 0 : '100%' }}
         className={
           showMenu
-            ? 'flex flex-col absolute top-5 right-0 bg-gray-50 h-auto w-3/6 rounded shadow-2xl overflow-hidden'
+            ? 'flex flex-col absolute top-0 right-0 pt-5 bg-gray-50 h-full w-full rounded shadow-2xl overflow-hidden'
             : 'hidden'
         }
       >
-        <div className={`mt-1 mr-3 flex items-center p-2 px-2 ${!user ? 'justify-end' : 'justify-between'}`}>
+        <div
+          className={`mt-1 mr-3 flex items-center p-2 px-2 ${
+            !user ? 'justify-end' : 'justify-between'
+          }`}
+        >
           {user && (
             <NavLink
               to='/profile'
@@ -166,7 +180,7 @@ export default function Header () {
             onClick={handleShowMenu}
           />
         </div>
-        <div className='z-40 bg-white mt-8 pb-9 flex flex-col items-center gap-4 text-lg font-sfprod'>
+        <div className='z-40 h-full flex flex-col justify-center items-center gap-4 text-lg font-sfproth'>
           <NavLink
             to='/'
             className='navlinks'
@@ -215,7 +229,7 @@ export default function Header () {
             </>
           )}
         </div>
-      </div>
+      </motion.div>
     </header>
   )
 }

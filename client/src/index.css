@@ -57,6 +57,7 @@ iframe {
   @apply mx-auto;
 }
 
+
 /* vanilla css for footer item child elements */
 @layer components {
   .navlink {
