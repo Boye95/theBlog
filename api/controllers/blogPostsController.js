@@ -11,12 +11,21 @@ cloudinary.config({
 // Get all blog posts
 exports.getAllBlogPosts = async (req, res) => {
   tagName = req.query.tags;
+  // query for blogpost by a particular author
+  authorId = req.query.authorId;
+
   try {
     let posts;
     if (tagName) {
       posts = await BlogPost.find({
         tags: {
           $in: [tagName],
+        },
+      });
+    } else if (authorId) {
+      posts = await BlogPost.find({
+        authorInfo: {
+          $in: [authorId],
         },
       });
     } else {
