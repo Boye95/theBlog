@@ -22,13 +22,14 @@ exports.getAllBlogPosts = async (req, res) => {
           $in: [tagName],
         },
       });
-    } else if (authorId) {
+    } else if(authorId) {
+      // query nested object property
       posts = await BlogPost.find({
         authorInfo: {
-          $in: [authorId],
-        },
-      });
-    } else {
+          $in: {_id: authorId}
+        }
+      })
+    }else {
       posts = await BlogPost.find().sort({ createdAt: -1 });
     }
     res.status(200).json({

@@ -7,7 +7,7 @@ const app = express();
 const mongoose = require("mongoose");
 const blogPostsRoute = require("./routes/blogPostsRoute");
 const tagsRoute = require("./routes/tagsRoute");
-const userRoute = require("./routes/userRoute");
+const userRoute = require("./routes/authRoute");
 
 app.use(express.json({ limit: "50mb" }));
 app.use(cors());

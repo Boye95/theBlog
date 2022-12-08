@@ -9,94 +9,17 @@ cloudinary.config({
   secure: true,
 });
 
-// Register a  new user
-exports.registerUser = async (req, res) => {
-  const { name, email, password, avatar, about } = req.body;
-  try {
-    // Check if user already exists
-    let user = await User.findOne({ email });
-    if (user) {
-      return res.status(400).json({ errors: { msg: "User already exists" } });
+// update a user
+exports.updateUser = async (req, res) => {
+    const { name, email, password, avatar, about } = req.body;
+    if (req.body.userId !== req.params.id) {
+        return res.json({ message: "You can update only your account!" });
     }
-
-    // Check if email is valid
-    if (!validator.isEmail(email)) {
-      return res.status(400).json({ errors: { msg: "Invalid email" } });
+    try {
+        // delete old avatar from cloudinary
+        // get avatar public_id from db
+        const avatarId = await User.findById(req.params.id).select("avatar.public_id"); 
+        // delete avatar from cloudinary
+        if (avatarId || avatarId === avatar.)
     }
-    // Check if password is valid
-    if (!validator.isStrongPassword(password)) {
-      return res
-        .status(400)
-        .json({ errors: { msg: "Password not strong enough" } });
-    }
-    // check if fields are empty
-    if (!name || !email || !password) {
-      return res
-        .status(400)
-        .json({ errors: { msg: "Please fill all fields" } });
-    }
-
-    // hash password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-
-    // Create a new user
-    let newUser = await User.create({
-      name,
-      email,
-      password: hashedPassword,
-      avatar,
-      about,
-    });
-
-    // Create a token
-    const token = jwt.sign({ id: newUser._id }, process.env.SECRET, {
-      expiresIn: "30d",
-    });
-    res.status(200).json({
-      status: "success",
-      data: {
-        newUser,
-        token,
-      },
-    });
-  } catch (error) {
-    res.status(404).json({
-      status: "fail",
-      message: error,
-    });
-  }
-};
-
-// Login a user
-exports.loginUser = async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    // Check if user exists
-    let registeredUser = await User.findOne({ email });
-    if (!registeredUser) {
-      return res.status(400).json({ errors: { msg: "Invalid credentials" } });
-    }
-    const isMatch = await bcrypt.compare(password, registeredUser.password);
-    if (!isMatch) {
-      return res.status(400).json({ errors: { msg: "Invalid credentials" } });
-    }
-
-    // Create a token
-    const token = jwt.sign({ id: registeredUser._id }, process.env.SECRET, {
-      expiresIn: "30d",
-    });
-    res.status(200).json({
-      status: "success",
-      data: {
-        registeredUser,
-        token,
-      },
-    });
-  } catch (error) {
-    res.status(404).json({
-      status: "fail",
-      message: error,
-    });
-  }
-};
+}
