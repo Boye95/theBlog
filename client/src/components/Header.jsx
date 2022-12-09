@@ -105,9 +105,9 @@ export default function Header () {
                 // onClick={handleShowEdit}
                 className='h-8 w-8 cursor-pointer rounded-full overflow-hidden ring ring-gray-600 ring-offset-2 hover:ring-blue-400'
               >
-                {user.data.registeredUser.avatar ? (
+                {user.data.registeredUser.avatar !== '' ? (
                   <img
-                    src={user.data.registeredUser.avatar}
+                    src={user.data.registeredUser.avatar.url}
                     alt=''
                     className='w-full'
                   />
@@ -124,7 +124,7 @@ export default function Header () {
         </nav>
 
         <div className='relative'>
-          {user && (
+          {user && showMenu && (
             <span className='flex h-3 w-3 absolute -right-0.5 top-0.5'>
               <span className='animate-ping absolute inline-flex h-3 w-3 rounded-full bg-green-300 opacity-75'></span>
               <span className='relative inline-flex rounded-full h-3 w-3 bg-emerald-500'></span>
@@ -168,7 +168,7 @@ export default function Header () {
               >
                 {user.data.registeredUser.avatar ? (
                   <img
-                    src={user.data.registeredUser.avatar}
+                    src={user.data.registeredUser.avatar.url}
                     alt=''
                     className='w-full'
                   />
