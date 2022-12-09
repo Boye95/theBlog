@@ -1,73 +1,159 @@
 import React from 'react'
-import avatar from '../../assets/avatar.png'
+// import avatar from '../../assets/avatar.png'
 import { RiImageAddLine } from 'react-icons/ri'
+import { VscEye, VscEyeClosed } from 'react-icons/vsc'
+import { useUpdateUser } from '../../hooks/useUpdateUser'
 
-const EditProfile = () => {
+const EditProfile = ({ user, dispatch }) => {
+  const { updateUser, isLoading, isError, isSuccess } = useUpdateUser()
+
+  const [showPass, setShowPass] = useState(false)
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [about, setAbout] = useState('')
+  const [avatar, setAvatar] = useState('')
+  const [error, setError] = useState('')
+
+  const handleUpdate = e => {
+    e.preventDefault()
+    // check passowrd equals confirm password
+    if (password !== confirmPassword) {
+      setError('Passwords do not match.')
+      return
+    } else {
+      setError('')
+    }
+    const updated = { name, email, password, avatar, about }
+    updateUser(updated)
+    if (isError === '') {
+      setIsError('')
+    }
+    console.log(updated)
+  }
+
+  let handleShowPass = () => {
+    setShowPass(!showPass)
+  }
+
   return (
     <div className=''>
       <h2 className='text-xl font-nysmall bg-green-100 p-1 w-fit border-black border-b-2 sm:text-lg'>
         Update Your Profile.
       </h2>
-      <form className='mt-[2rem] mb-8 flex flex-col items-center font-sfprod'>
+      <form
+        className='mt-[2rem] mb-8 flex flex-col items-center font-sfprod'
+        onSubmit={handleUpdate}
+      >
         <div className=''>
-          <label
-            htmlFor='changeAvatar'
-            className='flex justify-center w-[10rem] h-[10rem] cursor-pointer'
-          >
-            <input type='file' id='changeAvatar' className='hidden' />
-            <div className='h-[8rem] w-[8rem] border-2 border-emerald-200 ring-2 ring-emerald-400 ring-offset-2 hover:ring-emerald-700 rounded-full overflow-hidden'>
-              <RiImageAddLine className='text-3xl opacity-60 relative top-[40%] left-[50%] -translate-x-[50%]' />
-
-              <img src={avatar} alt='' className='h-full w-full opacity-20' />
+          {error ? (
+            <div className='w-full bg-red-500 p-2 rounded-lg font-sfmono'>
+              {error}
             </div>
-          </label>
+          ) : isError ? (
+            isError === 'Password not strong enough' ? (
+              <div className='flex flex-col bg-red-500 p-2 rounded-lg font-sfmono'>
+                {isError}
+                <ul className='font-mono list-disc pl-5 text-sm'>
+                  <li>Min. of 8 characters</li>
+                  <li>Must contain at least one number</li>
+                  <li>Must contain at least one special character</li>
+                  <li>
+                    Must contain a combination of uppercase and lowercase
+                    letters
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <div className='w-full bg-red-500 p-2 rounded-lg font-sfmono'>
+                {isError}
+              </div>
+            )
+          ) : null}
         </div>
-
-        <div className='flex flex-col gap-4'>
-          <label htmlFor='changeName' className='flex flex-col'>
-            Name:
+        <div className='grid grid-cols-2 gap-6 font-sfprotr sm:grid-cols-1'>
+          <div className='flex flex-col '>
+            <label htmlFor='name'>Name</label>
             <input
+              className='mt-2 h-8 border border-gray-700 rounded outline-none p-2 ring-2 transition-all focus:ring-4 ring-black ring-offset-2'
               type='text'
-              id='changeName'
-              placeholder='Update your name...'
-              className='caret-red-700 rounded border-2 border-emerald-200 ring-2 ring-emerald-500 ring-inset ring-offset-2 ring-offset-emerald-400 w-[20rem] p-2 focus:ring-offset-1 focus:outline-none'
+              id='full-name'
+              name='name'
+              onChange={e => setName(e.target.value)}
+              required
             />
-          </label>
-          <label htmlFor='changeMail' className='flex flex-col'>
-            Email:
-            <input
-              type='email'
-              id='changeMail'
-              placeholder='Update your email...'
-              className='caret-red-700 rounded border-2 border-emerald-200 ring-2 ring-emerald-500 ring-inset ring-offset-2 ring-offset-emerald-400 w-[20rem] p-2 focus:ring-offset-1 focus:outline-none'
-            />
-          </label>
-          <label htmlFor='changePass' className='flex flex-col'>
-            Password:
-            <input
-              type='password'
-              id='changePass'
-              placeholder='New Password...'
-              className='caret-red-700 rounded border-2 border-emerald-200 ring-2 ring-emerald-500 ring-inset ring-offset-2 ring-offset-emerald-400 w-[20rem] p-2 focus:ring-offset-1 focus:outline-none'
-            />
-          </label>
-          <label htmlFor='changePass2' className='flex flex-col'>
-            Confirm Password:
-            <input
-              type='password'
-              id='changePass2'
-              placeholder='Confirm your new password...'
-              className='caret-red-700 rounded border-2 border-emerald-200 ring-2 ring-emerald-500 ring-inset ring-offset-2 ring-offset-emerald-400 w-[20rem] p-2 focus:ring-offset-1 focus:outline-none'
-            />
-          </label>
+          </div>
 
-          <button 
-          type="submit"
-          className='bg-emerald-600 text-white rounded border-2 border-emerald-200 ring-2 ring-emerald-500 ring-inset ring-offset-2 ring-offset-emerald-400 w-[20rem] p-2 focus:ring-offset-1 focus:outline-none'
-          >
-            Update Profile
-          </button>
+          <div className='flex flex-col'>
+            <label htmlFor='mail'>Email</label>
+            <input
+              className='mt-2 h-8 border border-gray-700 rounded outline-none p-2 ring-2 transition-all focus:ring-4 ring-black ring-offset-2'
+              type='email'
+              id='mail'
+              name='mail'
+              onChange={e => setEmail(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className='flex flex-col'>
+            <label htmlFor='pass'>Password</label>
+            <div className='flex items-center mt-2 h-8  border border-gray-700 rounded outline-none ring-2 transition-all focus-within:ring-4 ring-black ring-offset-2'>
+              <input
+                className='h-7 w-5/6 outline-none p-2'
+                type={showPass ? 'text' : 'password'}
+                id='pass'
+                name='pass'
+                onChange={e => setPassword(e.target.value)}
+                required
+              />
+              {showPass ? (
+                <VscEyeClosed
+                  className='mx-auto cursor-pointer'
+                  onClick={handleShowPass}
+                />
+              ) : (
+                <VscEye
+                  className='mx-auto cursor-pointer'
+                  onClick={handleShowPass}
+                />
+              )}
+            </div>
+          </div>
+
+          <div className='flex flex-col'>
+            <label htmlFor='pass2'>Confirm Password</label>
+            <div className='flex items-center mt-2 h-8  border border-gray-700 rounded outline-none ring-2 transition-all focus-within:ring-4 ring-black ring-offset-2'>
+              <input
+                className='h-7 w-5/6 outline-none p-2'
+                type={showPass ? 'text' : 'password'}
+                id='pass2'
+                name='pass2'
+                onChange={e => setConfirmPassword(e.target.value)}
+                required
+              />
+              {showPass ? (
+                <VscEyeClosed
+                  className='mx-auto cursor-pointer'
+                  onClick={handleShowPass}
+                />
+              ) : (
+                <VscEye
+                  className='mx-auto cursor-pointer'
+                  onClick={handleShowPass}
+                />
+              )}
+            </div>
+          </div>
         </div>
+
+        <button
+          type='submit'
+          className='w-fit justify-center mt-7 flex mx-auto px-8 ring-black ring-offset-2 ring-2 py-1 text-gray-100 font-bold font-sfprotr text-md bg-black rounded-lg outline-none transition-colors hover:ring-0 sm:w-full'
+        >
+          Register Me
+        </button>
       </form>
     </div>
   )

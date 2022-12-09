@@ -16,7 +16,6 @@ import EditProfile from './EditProfile'
 const Profile = () => {
   const { user } = useContext(AuthContext)
 
-
   const [active, setActive] = useState('profile')
 
   return (
@@ -95,10 +94,8 @@ const Profile = () => {
           ) : active === 'posts' ? (
             <PersonalBlog />
           ) : active === 'edit' ? (
-            <EditProfile />
-          ) : (
-            undefined
-          )}
+            <EditProfile user={user} dispatch={dispatch} />
+          ) : undefined}
         </div>
       </div>
     </div>
