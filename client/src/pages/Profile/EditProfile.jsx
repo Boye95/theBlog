@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 // import avatar from '../../assets/avatar.png'
-import { RiImageAddLine } from 'react-icons/ri'
+import { IoIosAddCircleOutline } from 'react-icons/io'
 import { VscEye, VscEyeClosed } from 'react-icons/vsc'
 import { useUpdateUser } from '../../hooks/useUpdateUser'
 
@@ -16,9 +16,11 @@ const EditProfile = ({ user, dispatch }) => {
   const [avatar, setAvatar] = useState('')
   const [error, setError] = useState('')
 
+  // console.log(password)
+  // console.log(error)
   const handleUpdate = e => {
     e.preventDefault()
-    // check passowrd equals confirm password
+    // check password equals confirm password
     if (password !== confirmPassword) {
       setError('Passwords do not match.')
       return
@@ -41,36 +43,49 @@ const EditProfile = ({ user, dispatch }) => {
     <div className=''>
       <h2 className='text-xl font-nysmall bg-green-100 p-1 w-fit border-black border-b-2 sm:text-lg'>
         Update Your Profile.
-      </h2>
+      </h2>{' '}
+      {/* <div className=''>
+        {error ? (
+          <div className='w-full bg-red-500 p-2 rounded-lg font-sfmono'>
+            {error}
+          </div>
+        ) : isError ? (
+          isError === 'Password not strong enough' ? (
+            <div className='flex flex-col bg-red-500 p-2 rounded-lg font-sfmono'>
+              {isError}
+              <ul className='font-mono list-disc pl-5 text-sm'>
+                <li>Min. of 8 characters</li>
+                <li>Must contain at least one number</li>
+                <li>Must contain at least one special character</li>
+                <li>
+                  Must contain a combination of uppercase and lowercase letters
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <div className='w-full bg-red-500 p-2 rounded-lg font-sfmono'>
+              {isError}
+            </div>
+          )
+        ) : null}
+      </div> */}
       <form
         className='mt-[2rem] mb-8 flex flex-col items-center font-sfprod'
         onSubmit={handleUpdate}
       >
-        <div className=''>
-          {error ? (
-            <div className='w-full bg-red-500 p-2 rounded-lg font-sfmono'>
-              {error}
-            </div>
-          ) : isError ? (
-            isError === 'Password not strong enough' ? (
-              <div className='flex flex-col bg-red-500 p-2 rounded-lg font-sfmono'>
-                {isError}
-                <ul className='font-mono list-disc pl-5 text-sm'>
-                  <li>Min. of 8 characters</li>
-                  <li>Must contain at least one number</li>
-                  <li>Must contain at least one special character</li>
-                  <li>
-                    Must contain a combination of uppercase and lowercase
-                    letters
-                  </li>
-                </ul>
-              </div>
-            ) : (
-              <div className='w-full bg-red-500 p-2 rounded-lg font-sfmono'>
-                {isError}
-              </div>
-            )
-          ) : null}
+        <div className='h-[10rem] w-[10rem] border-2 border-emerald-200 ring-2 ring-emerald-400 ring-offset-2 hover:ring-emerald-700 rounded-full overflow-hidden'>
+          {/* avatar input */}
+          <label htmlFor='avatar' className='flex h-full items-center'>
+            <IoIosAddCircleOutline className='' />
+
+            <input
+              type='file'
+              name='avatar'
+              id='avatar'
+              className='hidden'
+              onChange={e => setAvatar(e.target.files[0])}
+            />
+          </label>
         </div>
         <div className='grid grid-cols-2 gap-6 font-sfprotr sm:grid-cols-1'>
           <div className='flex flex-col '>
@@ -81,7 +96,6 @@ const EditProfile = ({ user, dispatch }) => {
               id='full-name'
               name='name'
               onChange={e => setName(e.target.value)}
-              required
             />
           </div>
 
@@ -93,7 +107,6 @@ const EditProfile = ({ user, dispatch }) => {
               id='mail'
               name='mail'
               onChange={e => setEmail(e.target.value)}
-              required
             />
           </div>
 
@@ -106,7 +119,6 @@ const EditProfile = ({ user, dispatch }) => {
                 id='pass'
                 name='pass'
                 onChange={e => setPassword(e.target.value)}
-                required
               />
               {showPass ? (
                 <VscEyeClosed
@@ -131,7 +143,6 @@ const EditProfile = ({ user, dispatch }) => {
                 id='pass2'
                 name='pass2'
                 onChange={e => setConfirmPassword(e.target.value)}
-                required
               />
               {showPass ? (
                 <VscEyeClosed

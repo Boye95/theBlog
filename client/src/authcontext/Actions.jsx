@@ -11,3 +11,9 @@ export const Logout = () => {
     }
 }
 
+export const Update = (user) => {
+    return {
+        type: "UPDATE",
+        payload: user,
+    }
+}
