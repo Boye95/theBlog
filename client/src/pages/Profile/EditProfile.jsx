@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 // import avatar from '../../assets/avatar.png'
 import { RiImageAddLine } from 'react-icons/ri'
 import { VscEye, VscEyeClosed } from 'react-icons/vsc'
 import { useUpdateUser } from '../../hooks/useUpdateUser'
 
 const EditProfile = ({ user, dispatch }) => {
-  const { updateUser, isLoading, isError, isSuccess } = useUpdateUser()
+  const { updateUserHandler, isLoading, isError, isSuccess } = useUpdateUser()
 
   const [showPass, setShowPass] = useState(false)
   const [name, setName] = useState('')
@@ -26,10 +26,10 @@ const EditProfile = ({ user, dispatch }) => {
       setError('')
     }
     const updated = { name, email, password, avatar, about }
-    updateUser(updated)
-    if (isError === '') {
-      setIsError('')
-    }
+    updateUserHandler(updated)
+    // if (isError === '') {
+    //   setIsError('')
+    // }
     console.log(updated)
   }
 

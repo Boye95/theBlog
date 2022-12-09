@@ -10,7 +10,7 @@ export const useUpdateUser = () => {
   const [isError, setIsError] = useState('')
   const [isSuccess, setIsSuccess] = useState(false)
   const token = user?.data?.token
-  const userId = user?.data?.user?._id
+  const userId = user?.data?.registeredUser?._id
 
   // patch user with axios
   const updateUser = async data => {

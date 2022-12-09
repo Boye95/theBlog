@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react'
-import avatar from '../../assets/avatar.png'
+// import avatar from '../../assets/avatar.png'
 import { Link } from 'react-router-dom'
 import { FaUserCog } from 'react-icons/fa'
 import { BiArrowBack } from 'react-icons/bi'
@@ -15,6 +15,7 @@ import EditProfile from './EditProfile'
 
 const Profile = () => {
   const { user } = useContext(AuthContext)
+  const avatar = user?.data?.registeredUser?.avatar
 
   const [active, setActive] = useState('profile')
 
@@ -42,7 +43,15 @@ const Profile = () => {
                 // onClick={handleShowEdit}
                 className='h-8 w-8 cursor-pointer rounded-full overflow-hidden ring ring-gray-600 ring-offset-2 hover:ring-blue-400'
               >
-                <img src={avatar} alt='' className='h-full w-full' />
+                {avatar !== '' ? (
+                  <img src={avatar.url} alt='' className='h-full w-full' />
+                ) : (
+                  <img
+                    src='https://t3.ftcdn.net/jpg/01/18/01/98/360_F_118019822_6CKXP6rXmVhDOzbXZlLqEM2ya4HhYzSV.jpg'
+                    alt=''
+                    className='h-full w-full '
+                  />
+                )}
               </div>
             </Link>
           </div>
@@ -94,7 +103,7 @@ const Profile = () => {
           ) : active === 'posts' ? (
             <PersonalBlog />
           ) : active === 'edit' ? (
-            <EditProfile user={user} dispatch={dispatch} />
+            <EditProfile user={user} />
           ) : undefined}
         </div>
       </div>
