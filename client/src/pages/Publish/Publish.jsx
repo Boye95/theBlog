@@ -1,12 +1,10 @@
 import React, { useState, useContext } from 'react'
-import avatar from '../../assets/avatar.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { BiArrowBack } from 'react-icons/bi'
 import { IoIosAddCircleOutline } from 'react-icons/io'
 import { Editor } from '@tinymce/tinymce-react'
 
 import { AuthContext } from '../../AuthContext/Context'
-
 
 // import TagItem component
 import TagItem from './TagItem'
@@ -20,8 +18,14 @@ const getTags = async () => {
   return data
 }
 export default function Publish () {
-  const {user, isLoading: postLoading, isError: postError} = useContext(AuthContext)
+  const {
+    user,
+    isLoading: postLoading,
+    isError: postError
+  } = useContext(AuthContext)
   const token = user?.data?.token
+
+  const avatar = user?.data?.registeredUser?.avatar
 
   // states for each input in the form
   const [title, setTitle] = useState('')
@@ -86,7 +90,6 @@ export default function Publish () {
   }
   // console.log(postLoading)
 
-
   return (
     <div className='mt-5'>
       <div className='w-full mx-auto flex justify-between px-6 py-4 mb-5 bg-white border-b-4 shadow-xl border-gray-600 fixed top-0 z-10 ham:w-full sm:px-4 '>
@@ -111,12 +114,20 @@ export default function Publish () {
             <p className='sm:text-[13px] sm:hidden'>Blog Home</p>
           </Link>
           <Link to='/profile' className='relative '>
-            <span className='flex h-3 w-3 absolute -right-2 top-0'>
+            <span className='flex h-3 w-3 absolute -right-2 -top-2'>
               <span className='animate-ping absolute inline-flex h-3 w-3 rounded-full bg-green-400 opacity-75'></span>
               <span className='relative inline-flex rounded-full h-3 w-3 bg-emerald-500'></span>
             </span>
-            <div className='h-8 w-8 cursor-pointer rounded-full overflow-hidden ring ring-gray-600 ring-offset-2 hover:ring-blue-400'>
-              <img src={avatar} alt='' className='h-full w-full' />
+            <div className='h-8 w-8 cursor-pointer rounded-sm border shadow-xl overflow-hidden ring-1 ring-gray-600 ring-offset-2 transition-shadow hover:ring-2 hover:ring-emerald-400'>
+              {avatar !== '' ? (
+                <img src={avatar.url} alt='' className='h-full w-full' />
+              ) : (
+                <img
+                  src='https://t3.ftcdn.net/jpg/01/18/01/98/360_F_118019822_6CKXP6rXmVhDOzbXZlLqEM2ya4HhYzSV.jpg'
+                  alt=''
+                  className='h-full w-full '
+                />
+              )}
             </div>
           </Link>
         </div>

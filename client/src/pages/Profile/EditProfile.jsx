@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 // import avatar from '../../assets/avatar.png'
-import { IoIosAddCircleOutline } from 'react-icons/io'
+import { BsPencilFill } from 'react-icons/bs'
 import { VscEye, VscEyeClosed } from 'react-icons/vsc'
 import { useUpdateUser } from '../../hooks/useUpdateUser'
 
@@ -73,10 +73,11 @@ const EditProfile = ({ user, dispatch }) => {
         className='mt-[2rem] mb-8 flex flex-col items-center font-sfprod'
         onSubmit={handleUpdate}
       >
-        <div className='h-[10rem] w-[10rem] border-2 border-emerald-200 ring-2 ring-emerald-400 ring-offset-2 hover:ring-emerald-700 rounded-full overflow-hidden'>
-          {/* avatar input */}
-          <label htmlFor='avatar' className='flex h-full items-center'>
-            <IoIosAddCircleOutline className='' />
+        <div className='relative'>
+          <label htmlFor='avatar' className='absolute -bottom-[4.1rem] -right-4 cursor-pointer flex h-full items-center'>
+            <p className='border-black border-2 rounded-[50%] h-fit w-fit p-1'>
+              <BsPencilFill className='' />
+            </p>
 
             <input
               type='file'
@@ -86,6 +87,9 @@ const EditProfile = ({ user, dispatch }) => {
               onChange={e => setAvatar(e.target.files[0])}
             />
           </label>
+          <div className='h-[10rem] w-[10rem] border-2 border-emerald-200 ring-2 ring-emerald-400 ring-offset-2 hover:ring-emerald-700 rounded-full overflow-hidden'>
+            {/* avatar input */}
+          </div>
         </div>
         <div className='grid grid-cols-2 gap-6 font-sfprotr sm:grid-cols-1'>
           <div className='flex flex-col '>
