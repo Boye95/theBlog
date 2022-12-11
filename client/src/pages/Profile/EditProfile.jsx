@@ -5,29 +5,46 @@ import { VscEye, VscEyeClosed } from 'react-icons/vsc'
 import { useUpdateUser } from '../../hooks/useUpdateUser'
 
 const EditProfile = ({ user, dispatch }) => {
+  // current user info
+  const oldAvatar = user?.data?.registeredUser?.avatar
+  const oldName = user?.data?.registeredUser?.name
+  const oldEmail = user?.data?.registeredUser?.email
+  const oldAbout = user?.data?.registeredUser?.about
+
   const { updateUserHandler, isLoading, isError, isSuccess } = useUpdateUser()
 
   const [showPass, setShowPass] = useState(false)
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
+  const [name, setName] = useState(oldName)
+  const [email, setEmail] = useState(oldEmail)
+  const [oldPassword, setOldPassword] = useState('')
   const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [about, setAbout] = useState('')
+  const [about, setAbout] = useState(oldAbout)
   const [avatar, setAvatar] = useState('')
   const [error, setError] = useState('')
 
-  // console.log(password)
-  // console.log(error)
+  const handleImage = e => {
+    const file = e.target.files[0]
+    setFileToBase(file)
+  }
+
+  const setFileToBase = file => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => {
+      setAvatar(reader.result)
+    }
+  }
+
   const handleUpdate = e => {
     e.preventDefault()
     // check password equals confirm password
-    if (password !== confirmPassword) {
-      setError('Passwords do not match.')
-      return
-    } else {
-      setError('')
-    }
-    const updated = { name, email, password, avatar, about }
+    // if (password !== confirmPassword) {
+    //   setError('Passwords do not match.')
+    //   return
+    // } else {
+    //   setError('')
+    // }
+    const updated = { name, email, oldPassword, password, avatar, about }
     updateUserHandler(updated)
     // if (isError === '') {
     //   setIsError('')
@@ -70,13 +87,17 @@ const EditProfile = ({ user, dispatch }) => {
         ) : null}
       </div> */}
       <form
-        className='mt-[2rem] mb-8 flex flex-col items-center font-sfprod'
+        className='mx-auto mt-[2rem] mb-8 flex flex-col items-center font-sfprod'
+        encType='multipart/form-data'
         onSubmit={handleUpdate}
       >
         <div className='relative'>
-          <label htmlFor='avatar' className='absolute -bottom-[4.1rem] -right-4 cursor-pointer flex h-full items-center'>
-            <p className='border-black border-2 rounded-[50%] h-fit w-fit p-1'>
-              <BsPencilFill className='' />
+          <label
+            htmlFor='avatar'
+            className='absolute -bottom-[4.1rem] right-0 cursor-pointer flex h-full items-center'
+          >
+            <p className='p-1.5 border-black border-1 rounded-tl-lg rounded-br-lg shadow-xl bg-gray-500 h-fit w-fit'>
+              <BsPencilFill className='text-white' />
             </p>
 
             <input
@@ -84,14 +105,33 @@ const EditProfile = ({ user, dispatch }) => {
               name='avatar'
               id='avatar'
               className='hidden'
-              onChange={e => setAvatar(e.target.files[0])}
+              onChange={handleImage}
             />
           </label>
-          <div className='h-[10rem] w-[10rem] border-2 border-emerald-200 ring-2 ring-emerald-400 ring-offset-2 hover:ring-emerald-700 rounded-full overflow-hidden'>
-            {/* avatar input */}
+          <div className='h-[10rem] w-[10rem] border-2 border-gray-400 shadow-xl rounded-lg ring-1 ring-black ring-offset-2 hover:ring-emerald-700 overflow-hidden'>
+            {avatar ? (
+              <img src={avatar} alt='avatar' className='w-full h-full' />
+            ) : (
+              <img
+                src={oldAvatar.url}
+                alt='avatar'
+                className='w-full h-full object-cover rounded'
+              />
+            )}
           </div>
         </div>
         <div className='grid grid-cols-2 gap-6 font-sfprotr sm:grid-cols-1'>
+          <div className='flex flex-col col-span-2'>
+            <label htmlFor='about'>About</label>
+            <textarea
+              name='about'
+              id='about'
+              className='h-[10rem] mt-2
+               border border-gray-700 rounded outline-none p-2 ring-2 transition-all focus:ring-4 ring-black ring-offset-2'
+              value={about}
+              onChange={e => setAbout(e.target.value)}
+            ></textarea>
+          </div>
           <div className='flex flex-col '>
             <label htmlFor='name'>Name</label>
             <input
@@ -99,6 +139,7 @@ const EditProfile = ({ user, dispatch }) => {
               type='text'
               id='full-name'
               name='name'
+              value={name}
               onChange={e => setName(e.target.value)}
             />
           </div>
@@ -110,19 +151,20 @@ const EditProfile = ({ user, dispatch }) => {
               type='email'
               id='mail'
               name='mail'
+              value={email}
               onChange={e => setEmail(e.target.value)}
             />
           </div>
 
           <div className='flex flex-col'>
-            <label htmlFor='pass'>Password</label>
+            <label htmlFor='pass'>Old Password</label>
             <div className='flex items-center mt-2 h-8  border border-gray-700 rounded outline-none ring-2 transition-all focus-within:ring-4 ring-black ring-offset-2'>
               <input
                 className='h-7 w-5/6 outline-none p-2'
                 type={showPass ? 'text' : 'password'}
                 id='pass'
                 name='pass'
-                onChange={e => setPassword(e.target.value)}
+                onChange={e => setOldPassword(e.target.value)}
               />
               {showPass ? (
                 <VscEyeClosed
@@ -139,14 +181,14 @@ const EditProfile = ({ user, dispatch }) => {
           </div>
 
           <div className='flex flex-col'>
-            <label htmlFor='pass2'>Confirm Password</label>
+            <label htmlFor='pass2'>New Password</label>
             <div className='flex items-center mt-2 h-8  border border-gray-700 rounded outline-none ring-2 transition-all focus-within:ring-4 ring-black ring-offset-2'>
               <input
                 className='h-7 w-5/6 outline-none p-2'
                 type={showPass ? 'text' : 'password'}
                 id='pass2'
                 name='pass2'
-                onChange={e => setConfirmPassword(e.target.value)}
+                onChange={e => setPassword(e.target.value)}
               />
               {showPass ? (
                 <VscEyeClosed

@@ -11,14 +11,16 @@ cloudinary.config({
 
 // Register a  new user
 exports.registerUser = async (req, res) => {
-  const { name, email, password, avatar, about } = req.body;
+  const { name, email, password } = req.body;
   try {
-    // save avatar to cloudinary
-    const result = await cloudinary.uploader.upload(avatar, {
-      folder: "avatars",
-    });
+    // // save avatar to cloudinary
+    // if (avatar) {
+    //   const result = await cloudinary.uploader.upload(avatar, {
+    //     folder: "avatars",
+    //   });
+    // }
     // Check if user already exists
-    let user = await User.findOne({ email });
+    const user = await User.findOne({ email });
     if (user) {
       return res.status(400).json({ errors: { msg: "User already exists" } });
     }
@@ -49,12 +51,12 @@ exports.registerUser = async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      avatar: {
-        url: result.secure_url,
-        public_id: result.public_id,
-      },
-      about,
     });
+
+    // if (avatar) {
+    //   newUser.avatar = result.secure_url;
+    //   newUser.avatar.public_id = result.public_id;
+    // }
 
     // Create a token
     const token = jwt.sign({ id: newUser._id }, process.env.SECRET, {

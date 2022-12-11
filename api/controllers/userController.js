@@ -11,17 +11,30 @@ cloudinary.config({
 
 // update a user
 exports.updateUser = async (req, res) => {
-  const { name, email, password, avatar, about } = req.body;
+  const { name, email, oldPassword, password, avatar, about } = req.body;
   if (req.userId === req.params.id) {
-    console.log(req.userId);
-    console.log(req.params.id);
-
     try {
+      if (oldPassword && password) {
+        // check if user submitted the correct 'oldPassword'
+        const currentPass = await User.findById(req.params.id);
+        const isMatch = await bcrypt.compare(oldPassword, currentPass.password);
+        if (!isMatch) {
+          return res
+            .status(400)
+            .json({ errors: { msg: "Password not correct" } });
+        }
+      }
       if (password) {
+        if (!oldPassword) {
+          return res
+            .status(400)
+            .json({ errors: { msg: "Please submit your old password" } });
+        }
         // hash password
         const salt = await bcrypt.genSalt(10);
-        var hashedPassword = await bcrypt.hash(password, salt);
+        const hashedPassword = await bcrypt.hash(password, salt);
       }
+      
       // delete old avatar from cloudinary
       // get avatar public_id from db
       const avatarId = await User.findById(req.params.id).select(
@@ -44,7 +57,8 @@ exports.updateUser = async (req, res) => {
         return res
           .status(400)
           .json({ errors: { msg: "Email already exists" } });
-      }
+      } 
+      
 
       // Check if email is valid
       if (email) {

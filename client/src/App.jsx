@@ -1,4 +1,4 @@
-import {useContext} from 'react'
+import { useContext } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Header, Layout } from './components'
 import {
@@ -12,11 +12,10 @@ import {
   PostsByTag
 } from './pages'
 
-import {AuthContext} from './authcontext/Context'
-
+import { AuthContext } from './authcontext/Context'
 
 function App () {
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
 
   return (
     <>
@@ -27,10 +26,22 @@ function App () {
           <Route path='/tags' element={<Tags />} />
           <Route path='/tags/:tag' element={<PostsByTag />} />
         </Route>
-        <Route path='/login' element={!user ? <Login /> : <Navigate to='/' />} />
-        <Route path='/register' element={!user ? <Register /> : <Navigate to='/' />} />
-        <Route path='/publish' element={user ? <Publish /> : <Navigate to='/login' />} />
-        <Route path='/profile' element={user ? <Profile /> : <Navigate to='/login' />} />
+        <Route
+          path='/login'
+          element={!user ? <Login /> : <Navigate to='/' />}
+        />
+        <Route
+          path='/register'
+          element={!user ? <Register /> : <Navigate to='/' />}
+        />
+        <Route
+          path='/publish'
+          element={user ? <Publish /> : <Navigate to='/login' />}
+        />
+        <Route
+          path='/profile'
+          element={user ? <Profile /> : <Navigate to='/login' />}
+        />
       </Routes>
     </>
   )
