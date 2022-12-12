@@ -43,7 +43,7 @@ const Profile = () => {
                 // onClick={handleShowEdit}
                 className='h-8 w-8 cursor-pointer shadow-xl rounded-sm overflow-hidden border ring-1 ring-gray-600 ring-offset-2 transition-shadow hover:ring-2'
               >
-                {avatar !== '' ? (
+                {avatar ? (
                   <img src={avatar.url} alt='' className='h-full w-full' />
                 ) : (
                   <img

@@ -47,7 +47,7 @@ exports.registerUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     // Create a new user
-    let newUser = await User.create({
+    let registeredUser = await User.create({
       name,
       email,
       password: hashedPassword,
@@ -59,13 +59,13 @@ exports.registerUser = async (req, res) => {
     // }
 
     // Create a token
-    const token = jwt.sign({ id: newUser._id }, process.env.SECRET, {
+    const token = jwt.sign({ id: registeredUser._id }, process.env.SECRET, {
       expiresIn: "30d",
     });
     res.status(200).json({
       status: "success",
       data: {
-        newUser,
+        registeredUser,
         token,
       },
     });

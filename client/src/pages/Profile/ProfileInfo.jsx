@@ -9,7 +9,7 @@ const ProfileInfo = ({ user }) => {
   return (
     <div className='w-11/12 mx-auto flex flex-col items-center mt-8'>
       <div className='h-[10rem] w-[10rem] border-2 border-gray-400 shadow-xl rounded-lg ring-1 ring-black ring-offset-2 hover:ring-emerald-700 overflow-hidden'>
-        {avatar !== '' ? (
+        {avatar ? (
           <img src={avatar.url} alt='' className='h-full w-full' />
         ) : (
           <img

@@ -21,7 +21,7 @@ exports.updateUser = async (req, res) => {
         if (!isMatch) {
           return res
             .status(400)
-            .json({ errors: { msg: "Password not correct" } });
+            .json({ errors: { msg: "Old password not correct" } });
         }
       }
       if (password) {
@@ -32,7 +32,7 @@ exports.updateUser = async (req, res) => {
         }
         // hash password
         const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
+        var hashedPassword = await bcrypt.hash(password, salt);
       }
       
       // delete old avatar from cloudinary
@@ -76,33 +76,38 @@ exports.updateUser = async (req, res) => {
       }
 
       // update user
-      const updatedUser = {
-        name,
-        email,
-        password: hashedPassword,
-        avatar: {
-          url: result.secure_url,
-          public_id: result.public_id,
-        },
-        about,
-      };
+      // const updatedUser = {
+      //   name,
+      //   email,
+      //   password: hashedPassword,
+      //   about,
+      // };
 
-      const userUpdated = await User.findByIdAndUpdate(
+      const registeredUser = await User.findByIdAndUpdate(
         req.params.id,
-        updatedUser,
+        {
+          name,
+          email,
+          password: hashedPassword,
+          avatar: {
+            url: result.secure_url,
+            public_id: result.public_id,
+          },
+          about,
+        },
         {
           new: true,
         }
       );
 
-      const token = jwt.sign({ id: userUpdated._id }, process.env.SECRET, {
+      const token = jwt.sign({ id: registeredUser._id }, process.env.SECRET, {
         expiresIn: "30d",
       });
 
       res.status(200).json({
         status: "success",
         data: {
-          userUpdated,
+          registeredUser,
           token,
         },
       });

@@ -44,7 +44,23 @@ const EditProfile = ({ user, dispatch }) => {
     // } else {
     //   setError('')
     // }
-    const updated = { name, email, oldPassword, password, avatar, about }
+    const updated = {avatar}
+    // check if user wants to update an item
+    if (name !== oldName) {
+      updated.name = name
+    }
+    if (email !== oldEmail) {
+      updated.email = email
+    }
+    if (oldPassword) {
+      updated.oldPassword = oldPassword
+    }
+    if (password) {
+      updated.password = password
+    }
+    if (about !== oldAbout) {
+      updated.about = about
+    }
     updateUserHandler(updated)
     // if (isError === '') {
     //   setIsError('')
@@ -58,7 +74,7 @@ const EditProfile = ({ user, dispatch }) => {
 
   return (
     <div className=''>
-      <h2 className='text-xl font-nysmall bg-green-100 p-1 w-fit border-black border-b-2 sm:text-lg'>
+      <h2 className='text-xl font-sfpro bg-green-100 p-1 w-fit border-black border-b-2 sm:text-lg'>
         Update Your Profile.
       </h2>{' '}
       {/* <div className=''>
@@ -96,7 +112,7 @@ const EditProfile = ({ user, dispatch }) => {
             htmlFor='avatar'
             className='absolute -bottom-[4.1rem] right-0 cursor-pointer flex h-full items-center'
           >
-            <p className='p-1.5 border-black border-1 rounded-tl-lg rounded-br-lg shadow-xl bg-gray-500 h-fit w-fit'>
+            <p className='p-1.5 border-black border-1 rounded-tl-lg rounded-br-lg shadow-xl bg-gray-500 h-fit w-fit transition-shadow hover:bg-black'>
               <BsPencilFill className='text-white' />
             </p>
 
@@ -111,9 +127,15 @@ const EditProfile = ({ user, dispatch }) => {
           <div className='h-[10rem] w-[10rem] border-2 border-gray-400 shadow-xl rounded-lg ring-1 ring-black ring-offset-2 hover:ring-emerald-700 overflow-hidden'>
             {avatar ? (
               <img src={avatar} alt='avatar' className='w-full h-full' />
-            ) : (
+            ) : oldAvatar ? (
               <img
                 src={oldAvatar.url}
+                alt='avatar'
+                className='w-full h-full object-cover rounded'
+              />
+            ) : (
+              <img
+                src='https://t3.ftcdn.net/jpg/01/18/01/98/360_F_118019822_6CKXP6rXmVhDOzbXZlLqEM2ya4HhYzSV.jpg'
                 alt='avatar'
                 className='w-full h-full object-cover rounded'
               />
@@ -209,7 +231,7 @@ const EditProfile = ({ user, dispatch }) => {
           type='submit'
           className='w-fit justify-center mt-7 flex mx-auto px-8 ring-black ring-offset-2 ring-2 py-1 text-gray-100 font-bold font-sfprotr text-md bg-black rounded-lg outline-none transition-colors hover:ring-0 sm:w-full'
         >
-          Register Me
+          Update Me
         </button>
       </form>
     </div>
