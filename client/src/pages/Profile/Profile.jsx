@@ -23,8 +23,8 @@ const Profile = () => {
     <div className='flex'>
       <div className='scroll-no flex flex-col mx-auto pt-9 w-[90%] max-w-[1300px] ham:w-full'>
         <div className='w-full flex justify-between py-4 px-11 fixed top-0 left-[50%] -translate-x-[50%] z-10 bg-white shadow-lg sm:px-4'>
-          <div className='text-xl font-sfprotr font-semibold sm:text-[17px]'>
-            Welcome Home, Boye.
+          <div className='text-xl font-nylarge font-semibold sm:text-[17px]'>
+            {`Welcome Home, ${user?.data?.registeredUser?.name}.`}
           </div>
           <div className='relative flex gap-3 items-center'>
             <Link
@@ -58,7 +58,7 @@ const Profile = () => {
         </div>
 
         <div
-          className='w-full h-[3rem] bg-green-200 flex justify-between items-center font-sfprod text-lg shadow-lg mt-[2rem] mb-8 
+          className='w-full h-[3rem] bg-green-200 flex justify-between items-center font-nymedium text-lg shadow-lg mt-[2rem] mb-8 
           [&>*]:h-full [&>*]:cursor-pointer [&>*]:w-2/6 [&>*]:flex [&>*]:items-center [&>*]:justify-center [&>*]:gap-2 
           [&>*]:p-1 [&>*]:sm:text-3xl ham:w-full fixed left-0'
         >

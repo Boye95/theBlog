@@ -78,14 +78,6 @@ exports.updateUser = async (req, res) => {
         }
       }
 
-      // update user
-      // const updatedUser = {
-      //   name,
-      //   email,
-      //   password: hashedPassword,
-      //   about,
-      // };
-
       const registeredUser = await User.findByIdAndUpdate(
         req.params.id,
         {
@@ -127,3 +119,33 @@ exports.updateUser = async (req, res) => {
     });
   }
 };
+
+// delete a user
+exports.deleteUser = async (req, res) => {
+  if (req.userId === req.params.id) {
+    try {
+      // delete user from db
+      const user = await User.findByIdAndDelete(req.params.id);
+      // delete avatar from cloudinary
+      const avatarId = await User.findById(req.params.id).select(
+        "avatar.public_id"
+      );
+      const avatarPID = avatarId.avatar.public_id;
+      await cloudinary.uploader.destroy(avatarPID);
+      res.status(200).json({
+        status: "success",
+        data: null,
+      });
+    } catch (error) {
+      res.status(400).json({
+        status: "fail",
+        message: error,
+      });
+    }
+  } else {
+    res.status(400).json({
+      status: "fail",
+      message: "You are not authorized to delete this user",
+    });
+  }
+}

@@ -33,11 +33,10 @@ const ProfileInfo = ({ user }) => {
         </p>
       </div>
       <Link
-        to='/'
-        className='flex items-center gap-2 bg-blue-400 p-2 mt-4 rounded font-sfprod transition hover:bg-blue-200'
+        to='/publish'
+        className='flex items-center gap-2 border ring-1 ring-offset-2 ring-black p-2 mt-4 rounded font-sfprod transition hover:bg-blue-200'
       >
-        <p className=''>Edit Your Profile </p>
-        <FaUserCog />
+        <p className=''>Publish a Post</p>
       </Link>
     </div>
   )
