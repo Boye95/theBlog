@@ -19,9 +19,7 @@ const getTags = async () => {
 }
 export default function Publish () {
   const {
-    user,
-    isLoading: postLoading,
-    isError: postError
+    user
   } = useContext(AuthContext)
   const token = user?.data?.token
 
@@ -54,7 +52,7 @@ export default function Publish () {
   }
 
   const navigate = useNavigate()
-  const fetchTags = async data => {
+  const createPost = async data => {
     const res = await axios.post('http://127.0.0.1:4000/api/blogposts', data, {
       headers: {
         Authorization: `Bearer ${token}`
@@ -63,7 +61,7 @@ export default function Publish () {
     return res
   }
 
-  const { mutate, isLoading, isError, isSuccess } = useMutation(fetchTags, {
+  const { mutate, isLoading: postLoading, isError, isSuccess } = useMutation(createPost, {
     onSuccess: () => {
       console.log('success')
       navigate('/')
@@ -86,9 +84,7 @@ export default function Publish () {
       mutate(post)
     }
     console.log(post)
-    // console.log(postLoading)
   }
-  // console.log(postLoading)
 
   return (
     <div className='mt-5'>
@@ -104,7 +100,7 @@ export default function Publish () {
             className='text-white bg-black rounded p-1 font-sfprod px-8 ring-2 ring-gray-700 ring-offset-2 transition hover:bg-gray-600 hover:ring-gray-400 sm:px-4 disabled:opacity-50 disabled:cursor-not-allowed'
             disabled={postLoading}
           >
-            Publish
+            {postLoading ? 'Publishing...' : 'Publish'}
           </button>
           <Link
             to='/'

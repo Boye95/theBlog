@@ -98,7 +98,6 @@ const ConfirmDeletePost = ({ path, deleteState }) => {
 export default function BlogPost () {
   const { user, isAuth, dispatch } = useContext(AuthContext)
   const token = user?.data?.token
-  // console.log(token)
 
   const [wannaDelete, setWannaDelete] = useState(false)
 
@@ -134,8 +133,11 @@ export default function BlogPost () {
 
   const post = data?.data?.post
   // track image selection
-  // console.log(post)
   const readTime = data?.data?.readTime
+
+  // author info
+  const authorAbout = post?.authorInfo?.about
+  const authorAvatar = post?.authorInfo?.avatar?.url
 
   const postBody = post?.body
   const clean = DOMPurify.sanitize(postBody, {
@@ -187,7 +189,6 @@ export default function BlogPost () {
     }
   })
 
-  // console.log(updateMode)
   var yemi
   {
     !trackImageSelection
@@ -364,9 +365,9 @@ export default function BlogPost () {
                 <div id='postinfo' className='mt-8 flex sm:flex-col sm:gap-5'>
                   <div className='flex gap-2 w-4/6 sm:w-full'>
                     <div className='w-12 h-12 rounded-3xl overflow-hidden'>
-                      {post.authorInfo.avatar ? (
+                      {authorAvatar ? (
                         <img
-                          src={post.authorInfo.avatar}
+                          src={authorAvatar}
                           alt=''
                           className='w-full'
                         />
@@ -455,13 +456,12 @@ export default function BlogPost () {
                   <div className='mt-9 border-t-2 border-dotted border-black'>
                     <div className='mt-4 flex items-center gap-4 sm:text-sm'>
                       <div className='w-32 rounded-full overflow-hidden'>
-                        <img src={avatar} alt='' className='w-full h-full' />
+                        {authorAvatar ? (
+                        <img src={authorAvatar } alt='' className='w-full h-full' />
+                        ) : null}
                       </div>
                       <p className='font-nymedium'>
-                        <span className='font-sfproth'>ADEBOYE FOLARANMI</span>{' '}
-                        is a Design Founder & Advisor, Berlin School of Creative
-                        Leadership Executive MBA participant, Zippie advisor,
-                        Wolt co-founder, and Nordic Rose stakeholder.
+                        {authorAbout ? authorAbout : null}
                       </p>
                     </div>
                   </div>

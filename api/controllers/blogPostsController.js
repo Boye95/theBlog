@@ -2,6 +2,7 @@ const BlogPost = require("../models/blogPostsModel");
 const User = require("../models/userModel");
 const mongoose = require("mongoose");
 const { calculate } = require("calculate-readtime");
+const validator = require("validator");
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
@@ -11,8 +12,6 @@ cloudinary.config({
 // Get all blog posts
 exports.getAllBlogPosts = async (req, res) => {
   tagName = req.query.tags;
-  // query for blogpost by a particular author
-  authorId = req.query.authorId;
 
   try {
     let posts;
@@ -22,14 +21,7 @@ exports.getAllBlogPosts = async (req, res) => {
           $in: [tagName],
         },
       });
-    } else if(authorId) {
-      // query nested object property
-      posts = await BlogPost.find({
-        authorInfo: {
-          $in: {_id: authorId}
-        }
-      })
-    }else {
+    } else {
       posts = await BlogPost.find().sort({ createdAt: -1 });
     }
     res.status(200).json({
@@ -89,7 +81,6 @@ exports.createBlogPost = async (req, res) => {
     // add author info to req.body
     const userInfo = req.userId;
     const getAuthorInfo = await User.findById(userInfo);
-    // console.log(getAuthorInfo)
     const newPost = await BlogPost.create({
       title,
       subtitle,
@@ -149,8 +140,10 @@ exports.updateBlogPost = async (req, res) => {
 
   try {
     const getBlog = await BlogPost.findById(req.params.id);
-    if (displayImage !== getBlog.displayImage.url) {
-      await cloudinary.uploader.destroy(getBlog.displayImage.public_id);
+    const postPID = getBlog?.displayImage?.public_id;
+    console.log(postPID)
+    if (displayImage) {
+      await cloudinary.uploader.destroy(postPID);
     }
     const result = await cloudinary.uploader.upload(displayImage, {
       folder: "boye",

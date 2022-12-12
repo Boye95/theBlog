@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { FiMenu } from 'react-icons/fi'
 import { GrClose } from 'react-icons/gr'
@@ -26,6 +26,19 @@ export default function Header () {
       document.body.style.overflow = 'auto'
     }
   }
+
+  // set viewport width
+  const [width, setWidth] = useState(window.innerWidth < 900)
+
+  const updateWidth = () => {
+    setWidth(window.innerWidth < 900)
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', updateWidth)
+    return () => window.removeEventListener('resize', updateWidth)
+  }, [width])
+
   // This styling will be applied to a <NavLink> when the
   // route that it links to is currently selected.
   let activeStyle = {
@@ -124,7 +137,7 @@ export default function Header () {
         </nav>
 
         <div className='relative'>
-          {user && (
+          {user && width && (
             <span className='flex h-3 w-3 absolute -right-0.5 top-0.5'>
               <span className='animate-ping absolute inline-flex h-3 w-3 rounded-full bg-green-300 opacity-75'></span>
               <span className='relative inline-flex rounded-full h-3 w-3 bg-emerald-500'></span>
