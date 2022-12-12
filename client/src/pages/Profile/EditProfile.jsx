@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-// import avatar from '../../assets/avatar.png'
 import { BsPencilFill } from 'react-icons/bs'
 import { VscEye, VscEyeClosed } from 'react-icons/vsc'
 import { useUpdateUser } from '../../hooks/useUpdateUser'
@@ -11,7 +10,7 @@ const EditProfile = ({ user, dispatch }) => {
   const oldEmail = user?.data?.registeredUser?.email
   const oldAbout = user?.data?.registeredUser?.about
 
-  const { updateUserHandler, isLoading, isError, isSuccess } = useUpdateUser()
+  const { updateUserHandler, updateLoading, isSuccess, error } = useUpdateUser()
 
   const [showPass, setShowPass] = useState(false)
   const [name, setName] = useState(oldName)
@@ -20,7 +19,6 @@ const EditProfile = ({ user, dispatch }) => {
   const [password, setPassword] = useState('')
   const [about, setAbout] = useState(oldAbout)
   const [avatar, setAvatar] = useState('')
-  const [error, setError] = useState('')
 
   const handleImage = e => {
     const file = e.target.files[0]
@@ -34,17 +32,11 @@ const EditProfile = ({ user, dispatch }) => {
       setAvatar(reader.result)
     }
   }
+  
 
   const handleUpdate = e => {
     e.preventDefault()
-    // check password equals confirm password
-    // if (password !== confirmPassword) {
-    //   setError('Passwords do not match.')
-    //   return
-    // } else {
-    //   setError('')
-    // }
-    const updated = {avatar}
+    const updated = {}
     // check if user wants to update an item
     if (name !== oldName) {
       updated.name = name
@@ -61,10 +53,10 @@ const EditProfile = ({ user, dispatch }) => {
     if (about !== oldAbout) {
       updated.about = about
     }
+    if (avatar) {
+      updated.avatar = avatar
+    }
     updateUserHandler(updated)
-    // if (isError === '') {
-    //   setIsError('')
-    // }
     console.log(updated)
   }
 
@@ -77,31 +69,6 @@ const EditProfile = ({ user, dispatch }) => {
       <h2 className='text-xl font-sfpro bg-green-100 p-1 w-fit border-black border-b-2 sm:text-lg'>
         Update Your Profile.
       </h2>{' '}
-      {/* <div className=''>
-        {error ? (
-          <div className='w-full bg-red-500 p-2 rounded-lg font-sfmono'>
-            {error}
-          </div>
-        ) : isError ? (
-          isError === 'Password not strong enough' ? (
-            <div className='flex flex-col bg-red-500 p-2 rounded-lg font-sfmono'>
-              {isError}
-              <ul className='font-mono list-disc pl-5 text-sm'>
-                <li>Min. of 8 characters</li>
-                <li>Must contain at least one number</li>
-                <li>Must contain at least one special character</li>
-                <li>
-                  Must contain a combination of uppercase and lowercase letters
-                </li>
-              </ul>
-            </div>
-          ) : (
-            <div className='w-full bg-red-500 p-2 rounded-lg font-sfmono'>
-              {isError}
-            </div>
-          )
-        ) : null}
-      </div> */}
       <form
         className='mx-auto mt-[2rem] mb-8 flex flex-col items-center font-sfprod'
         encType='multipart/form-data'
@@ -229,10 +196,37 @@ const EditProfile = ({ user, dispatch }) => {
 
         <button
           type='submit'
-          className='w-fit justify-center mt-7 flex mx-auto px-8 ring-black ring-offset-2 ring-2 py-1 text-gray-100 font-bold font-sfprotr text-md bg-black rounded-lg outline-none transition-colors hover:ring-0 sm:w-full'
+          className='w-fit justify-center mt-7 flex mx-auto px-8 ring-black ring-offset-2 ring-2 py-1 text-gray-100 font-bold 
+          font-sfprotr text-md bg-black rounded-lg outline-none transition-colors hover:ring-0 
+          sm:w-full disabled:cursor-not-allowed disabled:bg-gray-700'
+          disabled={updateLoading}
         >
-          Update Me
+          {updateLoading ? 'Updating...' : 'Update Me'}
         </button>
+
+        <div className='mt-4'>
+          {error ? (
+            <div className='w-full bg-red-500 p-2 rounded-lg font-sfmono'>
+              {error}
+            </div>
+          ) : error === 'Password not strong enough' ? (
+            <div className='flex flex-col bg-red-500 p-2 rounded-lg font-sfmono'>
+              {error}
+              <ul className='font-mono list-disc pl-5 text-sm'>
+                <li>Min. of 8 characters</li>
+                <li>Must contain at least one number</li>
+                <li>Must contain at least one special character</li>
+                <li>
+                  Must contain a combination of uppercase and lowercase letters
+                </li>
+              </ul>
+            </div>
+          ) : isSuccess ? (
+            <div className='w-full bg-green-400 p-2 rounded-lg font-sfmono'>
+              Profile Updated Successfully!
+            </div>
+          ) : null}
+        </div>
       </form>
     </div>
   )

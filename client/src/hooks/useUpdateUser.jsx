@@ -5,10 +5,8 @@ import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
 export const useUpdateUser = () => {
-  const { user, dispatch } = useContext(AuthContext)
-  const [isLoading, setIsLoading] = useState(false)
-  const [isError, setIsError] = useState('')
-  const [isSuccess, setIsSuccess] = useState(false)
+  const { user, isLoading, isError, dispatch } = useContext(AuthContext)
+  const [error, setError] = useState('')
   const token = user?.data?.token
   const userId = user?.data?.registeredUser?._id
 
@@ -29,29 +27,25 @@ export const useUpdateUser = () => {
   const {
     mutate,
     isLoading: updateLoading,
-    isError: updateError,
-    isSuccess: updateSuccess
+    isSuccess
   } = useMutation(updateUser)
 
+  
   const updateUserHandler = updated => {
     mutate(updated, {
       onSuccess: data => {
-        dispatch({ type: 'UPDATE', payload: data })
+        dispatch({ type: 'UPDATE_SUCCESS', payload: data })
         localStorage.setItem('user', JSON.stringify(data))
         window.location.reload()
       },
       onError: error => {
-        setIsError(error.response.data.errors.msg)
+        dispatch({ type: 'UPDATE_ERROR' })
+        if (error.response.data.message) {
+            setError(error.response.data.message.message)
+        }
+        setError(error.response.data.errors.msg)
       }
     })
-
-    if (updateLoading) {
-      setIsLoading(true)
-    }
-    if (updateSuccess) {
-      setIsSuccess(true)
-    }
   }
-
-  return { updateUserHandler, isLoading, isError, setIsError, isSuccess }
+  return { updateUserHandler, updateLoading, isSuccess, error }
 }

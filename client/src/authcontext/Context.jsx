@@ -3,8 +3,8 @@ import { authReducer } from "./Reducer";
 
 const INITIAL_STATE = {
     user: JSON.parse(localStorage.getItem("user")) || null,
-    isAuth: false,
-    error: false,
+    isLoading: false,
+    isError: false,
 }
 
 export const AuthContext = createContext(INITIAL_STATE);
@@ -18,8 +18,8 @@ export const AuthContextProvider = ({ children }) => {
         <AuthContext.Provider
             value={{
                 user: state.user,
-                isAuth: state.isAuth,
-                isError: state.error,
+                isLoading: state.isLoading,
+                isError: state.isError,
                 dispatch,
             }}
         >

@@ -93,7 +93,7 @@ const Profile = () => {
             onClick={() => setActive('edit')}
           >
             <FaUserCog />
-            <p className='sm:hidden'>Edit Your Profile</p>
+            <p className='sm:hidden'>Settings</p>
           </div>
         </div>
 

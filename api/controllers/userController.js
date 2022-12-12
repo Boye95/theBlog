@@ -40,16 +40,19 @@ exports.updateUser = async (req, res) => {
       const avatarId = await User.findById(req.params.id).select(
         "avatar.public_id"
       );
+      const avatarPID = avatarId.avatar.public_id;
       if (avatar) {
         // delete avatar from cloudinary
-        if (avatarId || avatarId === "") {
-          await cloudinary.uploader.destroy(avatarId);
+        if (avatarId) {
+          await cloudinary.uploader.destroy(avatarPID);
         }
       }
       // save avatar to cloudinary
-      const result = await cloudinary.uploader.upload(avatar, {
-        folder: "avatars",
-      });
+      if (avatar){
+        var result = await cloudinary.uploader.upload(avatar, {
+          folder: "avatars",
+        });
+      }
 
       // validate user update information
       let user = await User.findOne({ email });
