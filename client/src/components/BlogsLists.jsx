@@ -24,23 +24,23 @@ export default function BlogsLists () {
             className='flex flex-col items-center border-gray-400 border-b-2 pb-11'
           >
             <Link
-              to={`/blogpost/${posts[0]._id}`}
+              to={`/blogpost/${posts[0]?._id}`}
               className='w-4/5 lg:w-full lg:mx-auto'
             >
               <img
-                src={posts[0].displayImage.url}
+                src={posts[0]?.displayImage?.url}
                 alt='mainpost'
                 className='lg:mx-auto w-full'
               />
             </Link>
             <Link
-              to={`/blogpost/${posts[0]._id}`}
+              to={`/blogpost/${posts[0]?._id}`}
               className='font-nylarge w-4/5 text-4xl text-center mt-7 md:text-xl hover:underline'
             >
-              <h1>{posts[0].title}</h1>
+              <h1>{posts[0]?.title}</h1>
             </Link>
             <h3 className='font-sfmono text-lg w-3/5 text-center mt-8 md:text-base md:w-4/5'>
-              {posts[0].subtitle}
+              {posts[0]?.subtitle}
             </h3>
           </div>
 
@@ -55,7 +55,7 @@ export default function BlogsLists () {
             >
               {posts.map((post, index) => {
                 if (index > 0) {
-                  return <Post key={post._id} post={post} />
+                  return <Post key={post?._id} post={post} />
                 }
               })}
             </div>

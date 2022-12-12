@@ -98,6 +98,7 @@ const ConfirmDeletePost = ({ path, deleteState }) => {
 export default function BlogPost () {
   const { user, isAuth, dispatch } = useContext(AuthContext)
   const token = user?.data?.token
+  const userID = user?.data?.registeredUser?._id
 
   const [wannaDelete, setWannaDelete] = useState(false)
 
@@ -138,6 +139,7 @@ export default function BlogPost () {
   // author info
   const authorAbout = post?.authorInfo?.about
   const authorAvatar = post?.authorInfo?.avatar?.url
+  const authorID = post?.authorInfo?._id
 
   const postBody = post?.body
   const clean = DOMPurify.sanitize(postBody, {
@@ -398,19 +400,19 @@ export default function BlogPost () {
                     </div>
                   </div>
                   <div className='flex w-3/6 justify-end items-center gap-2 sm:w-full sm:[&>*]:w-3/6'>
-                    {user && (<div
+                    {userID === authorID && (<div
                       className='border-2 rounded py-1 w-16 cursor-pointer ring-gray-700 transition-all hover:border-gray-400 hover:ring-1'
                       onClick={() => setUpdateMode(true)}
                     >
                       <BiEdit className='w-8 h-6 mx-auto' />
                     </div>)}
-                    {user && (<div
+                    {userID === authorID && (<div
                       className='border-2 rounded py-1 w-16 cursor-pointer ring-gray-700 transition-all hover:border-gray-400 hover:ring-1'
                       onClick={() => setWannaDelete(!wannaDelete)}
                     >
                       <AiOutlineDelete className='w-8 h-6 mx-auto' />
                     </div>)}
-                    {!user && (<div className='border-2 rounded py-1 w-16 cursor-pointer ring-gray-700 transition-all hover:border-gray-400 hover:ring-1'>
+                    {userID !== authorID && (<div className='border-2 rounded py-1 w-16 cursor-pointer ring-gray-700 transition-all hover:border-gray-400 hover:ring-1'>
                       <FaFacebookSquare className='w-8 h-6 mx-auto' />
                     </div>)}
                     <div className='border-2 rounded py-1 w-16 cursor-pointer ring-gray-700 transition-all hover:border-gray-400 hover:ring-1'>

@@ -62,6 +62,29 @@ exports.getSingleBlogPost = async (req, res) => {
   }
 };
 
+// get post by a particular author
+exports.getPostByAuthor = async (req, res) => {
+  // if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+  //   return res.status(400).json({ message: "Invalid ID" });
+  // }
+
+  try {
+    const posts = await BlogPost.find({ "authorInfo._id": req.params.id });
+    console.log(posts);
+    res.status(200).json({
+      status: "success",
+      data: {
+        posts,
+      },
+    });
+  } catch (error) {
+    res.status(404).json({
+      status: "fail",
+      message: error,
+    });
+  }
+};
+
 // Create a new blog post
 exports.createBlogPost = async (req, res) => {
   const { title, subtitle, body, displayImage, tags, authorInfo } = req.body;
@@ -112,20 +135,27 @@ exports.deleteBlogPost = async (req, res) => {
     return res.status(400).json({ message: `Can't delete non-existent post` });
   }
 
-  try {
-    const getBlog = await BlogPost.findById(req.params.id);
-    await cloudinary.uploader.destroy(getBlog.displayImage.public_id);
-    const post = await BlogPost.findByIdAndDelete(req.params.id);
-    res.status(200).json({
-      status: "success",
-      data: {
-        post,
-      },
-    });
-  } catch (error) {
+  if (req.userId === req.params.id) {
+    try {
+      const getBlog = await BlogPost.findById(req.params.id);
+      await cloudinary.uploader.destroy(getBlog.displayImage.public_id);
+      const post = await BlogPost.findByIdAndDelete(req.params.id);
+      res.status(200).json({
+        status: "success",
+        data: {
+          post,
+        },
+      });
+    } catch (error) {
+      res.status(400).json({
+        status: "fail",
+        message: error,
+      });
+    }
+  } else {
     res.status(400).json({
       status: "fail",
-      message: error,
+      message: "You can't delete a post you didn't create",
     });
   }
 };
@@ -138,40 +168,51 @@ exports.updateBlogPost = async (req, res) => {
     return res.status(400).json({ message: `Can't update non-existent post` });
   }
 
-  try {
-    const getBlog = await BlogPost.findById(req.params.id);
-    const postPID = getBlog?.displayImage?.public_id;
-    console.log(postPID)
-    if (displayImage) {
-      await cloudinary.uploader.destroy(postPID);
+  if (req.userId === req.params.id) {
+    try {
+      const getBlog = await BlogPost.findById(req.params.id);
+      const postPID = getBlog?.displayImage?.public_id;
+      console.log(postPID);
+      if (displayImage) {
+        await cloudinary.uploader.destroy(postPID);
+      }
+      const result = await cloudinary.uploader.upload(displayImage, {
+        folder: "boye",
+      });
+      const updatedPost = {
+        title,
+        subtitle,
+        body,
+        displayImage: {
+          url: result.secure_url,
+          public_id: result.public_id,
+        },
+        tags,
+      };
+      const post = await BlogPost.findByIdAndUpdate(
+        req.params.id,
+        updatedPost,
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+      res.status(200).json({
+        status: "success",
+        data: {
+          post,
+        },
+      });
+    } catch (error) {
+      res.status(400).json({
+        status: "fail",
+        message: error,
+      });
     }
-    const result = await cloudinary.uploader.upload(displayImage, {
-      folder: "boye",
-    });
-    const updatedPost = {
-      title,
-      subtitle,
-      body,
-      displayImage: {
-        url: result.secure_url,
-        public_id: result.public_id,
-      },
-      tags,
-    };
-    const post = await BlogPost.findByIdAndUpdate(req.params.id, updatedPost, {
-      new: true,
-      runValidators: true,
-    });
-    res.status(200).json({
-      status: "success",
-      data: {
-        post,
-      },
-    });
-  } catch (error) {
+  } else {
     res.status(400).json({
       status: "fail",
-      message: error,
+      message: "You can't update a post you didn't create",
     });
   }
 };

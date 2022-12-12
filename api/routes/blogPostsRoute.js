@@ -4,6 +4,7 @@ const express = require("express");
 const {
   getAllBlogPosts,
   getSingleBlogPost,
+  getPostByAuthor,
   createBlogPost,
   deleteBlogPost,
   updateBlogPost,
@@ -17,6 +18,9 @@ router.get("/", getAllBlogPosts);
 
 // Get single blog post
 router.get("/:id", getSingleBlogPost);
+
+// get post by a particular author
+router.get("/author/:id", getPostByAuthor);
 
 // Create a new blog post
 router.post("/", authWare, createBlogPost);
