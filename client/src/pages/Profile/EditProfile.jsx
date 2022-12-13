@@ -198,7 +198,7 @@ const EditProfile = ({ user, dispatch }) => {
           type='submit'
           className='w-fit justify-center mt-7 flex mx-auto px-8 ring-black ring-offset-2 ring-2 py-1 text-gray-100 font-bold 
           font-sfprotr text-md bg-black rounded-lg outline-none transition-colors hover:ring-0 
-          sm:w-full disabled:cursor-not-allowed disabled:bg-gray-700'
+          disabled:cursor-not-allowed disabled:bg-gray-700'
           disabled={updateLoading}
         >
           {updateLoading ? 'Updating...' : 'Update Me'}
@@ -206,7 +206,7 @@ const EditProfile = ({ user, dispatch }) => {
 
         <div className='mt-4'>
           {error ? (
-            <div className='w-full bg-red-500 p-2 rounded-lg font-sfmono'>
+            <div className='w-fit bg-red-500 p-2 rounded-lg font-sfmono'>
               {error}
             </div>
           ) : error === 'Password not strong enough' ? (
@@ -222,7 +222,7 @@ const EditProfile = ({ user, dispatch }) => {
               </ul>
             </div>
           ) : isSuccess ? (
-            <div className='w-full bg-green-400 p-2 rounded-lg font-sfmono'>
+            <div className='w-fit bg-green-400 p-2 rounded-lg font-sfmono'>
               Profile Updated Successfully!
             </div>
           ) : null}

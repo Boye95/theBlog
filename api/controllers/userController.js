@@ -34,34 +34,33 @@ exports.updateUser = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         var hashedPassword = await bcrypt.hash(password, salt);
       }
-      
+
       // delete old avatar from cloudinary
       // get avatar public_id from db
-      const avatarId = await User.findById(req.params.id).select(
-        "avatar.public_id"
-      );
-      const avatarPID = avatarId.avatar.public_id;
+      let result;
       if (avatar) {
         // delete avatar from cloudinary
+        const avatarId = await User.findById(req.params.id).select(
+          "avatar.public_id"
+        );
+        const avatarPID = avatarId.avatar.public_id;
         if (avatarId) {
           await cloudinary.uploader.destroy(avatarPID);
         }
       }
       // save avatar to cloudinary
-      if (avatar){
-        var result = await cloudinary.uploader.upload(avatar, {
+      if (avatar) {
+        result = await cloudinary.uploader.upload(avatar, {
           folder: "avatars",
         });
       }
-
       // validate user update information
       let user = await User.findOne({ email });
       if (user) {
         return res
           .status(400)
           .json({ errors: { msg: "Email already exists" } });
-      } 
-      
+      }
 
       // Check if email is valid
       if (email) {
@@ -77,19 +76,22 @@ exports.updateUser = async (req, res) => {
             .json({ errors: { msg: "Password not strong enough" } });
         }
       }
+      const userFields = {
+        name,
+        email,
+        password: hashedPassword,
+        about
+      };
+      if (avatar) {
+        userFields.avatar = {
+          url: result.secure_url,
+          public_id: result.public_id,
+        };
+      }
 
       const registeredUser = await User.findByIdAndUpdate(
         req.params.id,
-        {
-          name,
-          email,
-          password: hashedPassword,
-          avatar: {
-            url: result.secure_url,
-            public_id: result.public_id,
-          },
-          about,
-        },
+        { $set: userFields },
         {
           new: true,
         }
@@ -148,4 +150,4 @@ exports.deleteUser = async (req, res) => {
       message: "You are not authorized to delete this user",
     });
   }
-}
+};

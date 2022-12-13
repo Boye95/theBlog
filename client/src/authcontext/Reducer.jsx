@@ -39,6 +39,19 @@ export const authReducer = (state, action) => {
         isLoading: false,
         isError: true
       }
+    case 'DELETE_USER':
+      return {
+        ...state,
+        user: null,
+        isLoading: false,
+        isError: false
+      }
+    case 'DELETE_ERROR':
+      return {
+        ...state,
+        isLoading: false,
+        isError: true
+      }
     default:
       return state
   }
