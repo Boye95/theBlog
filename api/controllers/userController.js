@@ -1,4 +1,5 @@
 const User = require("../models/userModel");
+const BlogPost = require("../models/blogPostsModel");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -14,6 +15,9 @@ exports.updateUser = async (req, res) => {
   const { name, email, oldPassword, password, avatar, about } = req.body;
   if (req.userId === req.params.id) {
     try {
+      // update author info in blogpost if user changes information
+      const authorPosts = await BlogPost.find({ "authorInfo": { $elemMatch: { "_id": req.userId } } });
+      console.log(authorPosts);
       if (oldPassword && password) {
         // check if user submitted the correct 'oldPassword'
         const currentPass = await User.findById(req.params.id);

@@ -383,7 +383,7 @@ export default function BlogPost () {
                     </div>
                     <div className=''>
                       <Link to='/profile' className='font-sfproth'>
-                        {post?.authorInfo?.name.toUpperCase()}
+                        {post?.authorInfo?.name?.toUpperCase()}
                       </Link>
                       <div className='font-sfprotr flex justify-between gap-2 xl:text-sm'>
                         <div className='flex flex-col'>

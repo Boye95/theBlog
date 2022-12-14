@@ -64,15 +64,20 @@ exports.getSingleBlogPost = async (req, res) => {
 
 // get post by a particular author
 exports.getPostByAuthor = async (req, res) => {
-  // if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-  //   return res.status(400).json({ message: "Invalid ID" });
-  // }
-
+  // query by user
+  // const authorId = req.query.authorInfo;
   try {
-    const posts = await BlogPost.find({ "authorInfo._id": req.params.id });
-    console.log(posts);
+    // fetch posts by author query
+    const posts = await BlogPost.find({
+      authorInfo: req.params.id,
+    }).populate(
+      "authorInfo",
+      ["avatar", "name", "about", "_id"]
+    );
+    // console.log(posts)
     res.status(200).json({
       status: "success",
+      results: posts.length,
       data: {
         posts,
       },
@@ -103,7 +108,7 @@ exports.createBlogPost = async (req, res) => {
 
     // add author info to req.body
     const userInfo = req.userId;
-    const getAuthorInfo = await User.findById(userInfo);
+    // const getAuthorInfo = await User.findById(userInfo);
     const newPost = await BlogPost.create({
       title,
       subtitle,
@@ -113,7 +118,7 @@ exports.createBlogPost = async (req, res) => {
         public_id: result.public_id,
       },
       tags,
-      authorInfo: getAuthorInfo,
+      authorInfo: userInfo,
     });
     res.status(201).json({
       status: "success",

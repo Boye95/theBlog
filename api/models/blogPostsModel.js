@@ -30,8 +30,8 @@ const BlogPostSchema = new Schema({
         required: false
     },
     authorInfo: {
-        type: Object,
-        required: true
+        type: Schema.Types.ObjectId,
+        ref: 'user'
     },
 }, { timestamps: true })
 
