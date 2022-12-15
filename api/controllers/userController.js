@@ -130,14 +130,18 @@ exports.updateUser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   if (req.userId === req.params.id) {
     try {
-      // delete user from db
-      const user = await User.findByIdAndDelete(req.params.id);
       // delete avatar from cloudinary
       const avatarId = await User.findById(req.params.id).select(
         "avatar.public_id"
       );
       const avatarPID = avatarId.avatar.public_id;
       await cloudinary.uploader.destroy(avatarPID);
+      
+      // delete all blogposts from user
+      const blogPosts = await BlogPost.find({ authorInfo : req.params.id }).delete;
+
+      // delete user from db
+      const user = await User.findByIdAndDelete(req.params.id);
       res.status(200).json({
         status: "success",
         data: null,

@@ -97,7 +97,7 @@ export default function Publish () {
     <div className='mt-5'>
       <div className='w-full mx-auto flex justify-between px-6 py-4 mb-5 bg-white border-b-4 shadow-xl border-gray-600 fixed top-0 z-10 ham:w-full sm:px-4 '>
         <h1 className='text-xl font-nylarge font-semibold sm:text-[17px]'>
-          {`Tell a Story, ${user?.data?.registeredUser?.name}`}
+          {`✍️, ${user?.data?.registeredUser?.name}`}
         </h1>
 
         <div className='flex gap-3 items-center'>

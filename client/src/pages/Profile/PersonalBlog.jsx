@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
-import img4 from '../../assets/postimages/4.png'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { AuthContext } from '../../AuthContext/Context'
+import Post from '../../components/Post'
 
 const PersonalBlog = () => {
   const { user } = useContext(AuthContext)
@@ -16,32 +16,57 @@ const PersonalBlog = () => {
     return post.data
   }
 
-  const { data, isLoading, isError, isSuccess } = useQuery(['authorpost'], fetchByAuthor, {
-    onSuccess: (data) => {
-      console.log(data)
-
-    }
-  })
-  // console.log(data)
+  const { data, isLoading, isError, isSuccess } = useQuery(
+    ['authorpost'],
+    fetchByAuthor
+  )
+  const posts = data?.data?.posts
 
   return (
-    <div
-      className='w-11/12 flex flex-wrap gap-6 mb-9 mx-auto 
-    sm:justify-center [&>*]:xl:h-[22rem] [&>*]:xl:w-[18rem]'
-    >
-      <Link
-        to='/blogpost'
-        className='flex flex-col gap-3 h-[25rem] w-[20rem] border-4 rounded-md transition hover:ring-blue-400 hover:ring-2 hover:ring-offset-2'
-      >
-        <img src={img4} alt='' className='w-full rounded-sm' />
-        <div className='overflow-hidden w-full p-1 text-justify'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio adipisci
-          esse voluptatibus quos perspiciatis laborum minima laudantium eum ab
-          libero, dolore, facere optio alias nostrum debitis exercitationem
-          commodi nam? Quibusdam? Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Odio adipisci esse voluptatibus quos perspiciatis
+    <div className='w-11/12 mx-auto flex flex-col gap-2 items-center'>
+      {data && (
+        <div className='flex gap-2 text-2xl font-bold  '>
+          <p className=''>Post Count:</p>
+          <div className='flex'>
+            <p className='relative top-0 left-1 text-emerald-500'>
+              {posts?.length}
+            </p>
+            <p className='relative top-0 -left-2.5 text-red-700 transition-all hover:-translate-y-0.5'>
+              {posts?.length}
+            </p>
+            <p className='relative top-0 -left-7 transition-all hover:-translate-y-0.5'>
+              {posts?.length}
+            </p>
+          </div>
         </div>
-      </Link>
+      )}
+      <div id='bloglists' className='mt-1 flex flex-wrap gap-6 md:flex-col'>
+        {isLoading
+          ? 'Loading...'
+          : isError
+          ? 'Error getting posts'
+          : isSuccess
+          ? posts.map((post, index) => {
+              return (
+                <div
+                  id='blog'
+                  key={index}
+                  className='flex flex-col bg-gray-100 w-[15rem] rounded-lg  
+                  gap-2 transition-shadow hover:shadow-md'
+                >
+                  <Link to={`/blogpost/${post?._id}`}>
+                    <img src={post?.displayImage.url} alt='' className='w-80' />
+                  </Link>
+                  <Link to={`/blogpost/${post?._id}`}>
+                    <p className='font-sfprod p-2 text-center hover:underline'>
+                      {post?.title}
+                    </p>
+                  </Link>
+                </div>
+              )
+            })
+          : null}
+      </div>
     </div>
   )
 }

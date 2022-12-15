@@ -7,6 +7,7 @@ import { CgProfile } from 'react-icons/cg'
 import { GoBook } from 'react-icons/go'
 
 import { AuthContext } from '../../AuthContext/Context'
+import { useSignout } from '../../hooks/useSignout'
 
 // import profile components
 import ProfileInfo from './ProfileInfo'
@@ -16,7 +17,10 @@ import EditProfile from './EditProfile'
 const Profile = () => {
   const { user } = useContext(AuthContext)
   const avatar = user?.data?.registeredUser?.avatar
+  const { signout } = useSignout()
 
+
+  const [showAction, setShowAction] = useState(false)
   const [active, setActive] = useState('profile')
 
   return (
@@ -24,7 +28,7 @@ const Profile = () => {
       <div className='scroll-no flex flex-col mx-auto pt-9 w-[90%] max-w-[1300px] ham:w-full'>
         <div className='w-full flex justify-between py-4 px-11 fixed top-0 left-[50%] -translate-x-[50%] z-10 bg-white shadow-lg sm:px-4'>
           <div className='text-xl font-nylarge font-semibold sm:text-[17px]'>
-            {`Welcome Home, ${user?.data?.registeredUser?.name}.`}
+            {`Hi 👋, ${user?.data?.registeredUser?.name}.`}
           </div>
           <div className='relative flex gap-3 items-center'>
             <Link
@@ -34,15 +38,17 @@ const Profile = () => {
               <BiArrowBack className='sm:text-2xl' />
               <p className='sm:text-[13px] sm:hidden'>Blog Home</p>
             </Link>
-            <Link to='/profile' className='relative'>
+            <div
+              className='relative'
+              onClick={() => {
+                setShowAction(!showAction)
+              }}
+            >
               <span className='flex h-3 w-3 absolute -right-2 -top-2'>
                 <span className='animate-ping absolute inline-flex h-3 w-3 rounded-full bg-green-300 opacity-75'></span>
                 <span className='relative inline-flex rounded-full h-3 w-3 bg-emerald-500'></span>
               </span>
-              <div
-                // onClick={handleShowEdit}
-                className='h-8 w-8 cursor-pointer shadow-xl rounded-sm overflow-hidden border ring-1 ring-gray-600 ring-offset-2 transition-shadow hover:ring-2'
-              >
+              <div className='h-8 w-8 cursor-pointer shadow-xl rounded-sm overflow-hidden border ring-1 ring-gray-600 ring-offset-2 transition-shadow hover:ring-2'>
                 {avatar ? (
                   <img src={avatar.url} alt='' className='h-full w-full' />
                 ) : (
@@ -53,7 +59,22 @@ const Profile = () => {
                   />
                 )}
               </div>
-            </Link>
+              {showAction && (
+                <div className='absolute mt-1 -right-1 bg-black text-white rounded-sm shadow-lg font-sfprod transition-shadow'>
+                  <Link
+                    to='/profile'
+                    className='py-2 px-4 transition-all hover:opacity-40'
+                  >
+                    Profile
+                  </Link>
+                  <button 
+                  onClick={signout}
+                  className='py-1 px-3 transition-all hover:opacity-40'>
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 

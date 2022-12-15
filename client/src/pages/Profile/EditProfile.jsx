@@ -1,7 +1,71 @@
 import React, { useState, useEffect } from 'react'
 import { BsPencilFill } from 'react-icons/bs'
 import { VscEye, VscEyeClosed } from 'react-icons/vsc'
+import { CgDanger } from 'react-icons/cg'
 import { useUpdateUser } from '../../hooks/useUpdateUser'
+import { useDeleteUser } from '../../hooks/useDeleteUser'
+
+const DeleteDialogue = ({ setShowDelete }) => {
+  const [deleteName, setDeleteName] = useState('')
+  const [deleteNameError, setDeleteNameError] = useState(false)
+
+  const { user, handleDelete, isDeleting, isDeleteSuccess, error } =
+    useDeleteUser()
+
+  const handleDeleteUser = e => {
+    e.preventDefault()
+    if (deleteName === user?.data?.registeredUser?.name) {
+      handleDelete()
+    } else {
+      setDeleteNameError(true)
+    }
+  }
+
+  return (
+    <div className='absolute z-10 top-0 left-0 w-screen h-screen bg-black bg-opacity-50'>
+      <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+       bg-white w-96 h-fit p-2 rounded-md shadow-md md:w-[90%]'>
+        <div className='flex flex-col items-center justify-center h-full'>
+          <h2 className='text-xl font-sfpro'>Are you sure?</h2>
+          <p className='text-sm font-sfpro text-gray-500'>
+            This action cannot be undone
+          </p>
+
+          <div className='w-[90%] flex flex-col items-center gap-2'>
+            <p className='text-sm text-center'>
+              Type{' '}
+              <span className='font-bold'>
+                {user?.data?.registeredUser?.name}
+              </span>{' '}
+              to confirm deletion
+            </p>
+            <input
+              type='text'
+              className={`w-[90%] mx-auto border-2 border-black ring-2 ring-emerald-400 p-1 ${deleteNameError && 'ring-2 ring-red-500'} ring-offset-2 rounded-lg focus:outline-none focus:ring-offset-1`}
+              onChange={e => setDeleteName(e.target.value)}
+            />
+          </div>
+          <div className='flex mt-4 gap-4'>
+            <button
+              onClick={() => setShowDelete(false)}
+              className='bg-gray-200 text-gray-500 text-sm font-sfprod w-24 h-8 rounded-md shadow-sm 
+              ring-1 ring-gray-500 ring-offset-2 transition-all hover:bg-gray-600 hover:ring-offset-1 hover:bg-gray-300'
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleDeleteUser}
+              className='bg-red-500 text-white text-sm font-sfprod w-24 h-8 
+              rounded-md shadow-sm ring-1 ring-red-500 ring-offset-2 transition-all hover:bg-red-600 hover:ring-offset-1'
+            >
+              {isDeleting ? 'Deleting...' : isDeleteSuccess ? 'Deleted' : 'Delete'}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 const EditProfile = ({ user, dispatch }) => {
   // current user info
@@ -20,6 +84,7 @@ const EditProfile = ({ user, dispatch }) => {
   const [about, setAbout] = useState(oldAbout)
   const [avatar, setAvatar] = useState('')
   const [noAction, setNoAction] = useState(false)
+  const [showDelete, setShowDelete] = useState(false)
 
   const handleImage = e => {
     const file = e.target.files[0]
@@ -82,16 +147,29 @@ const EditProfile = ({ user, dispatch }) => {
 
   return (
     <div className=''>
-      <div className='flex '>
-        <h2 className='text-xl font-sfpro bg-green-100 p-1 w-fit border-black 
-        rounded-sm ring-1 ring-black sm:text-lg
+      {showDelete && <DeleteDialogue setShowDelete={setShowDelete} />}
+      <div className='flex justify-between items-center w-[90%] mx-auto md:w-[95%]'>
+        <h2
+          className='text-xl font-sfpro bg-green-100 p-1 w-fit border-black 
+        rounded-sm ring-1 ring-black md:text-[0.9rem]
         ring-offset-2 shadow-sm'
         >
           Update Your Profile.
-        </h2>{' '}
+        </h2>
+        <button
+          onClick={() => {
+            setShowDelete(!showDelete)
+          }}
+          className='w-fit h-fit flex items-center gap-1 rounded-lg p-1.5
+          bg-red-500 text-white font-sfprod ring-1 ring-red-500 ring-offset-1 transition-shadow
+          hover:ring-offset-2 hover:shadow-xl'
+        >
+          Danger <CgDanger />
+        </button>
       </div>
       <form
-        className='mx-auto mt-[2rem] mb-8 flex flex-col items-center font-sfprod'
+        className='mx-auto mt-[2rem] mb-8 flex flex-col items-center font-sfprod 
+        sm:w-[90%]'
         encType='multipart/form-data'
         onSubmit={handleUpdate}
       >
@@ -130,7 +208,7 @@ const EditProfile = ({ user, dispatch }) => {
             )}
           </div>
         </div>
-        <div className='grid grid-cols-2 gap-6 font-sfprotr sm:grid-cols-1'>
+        <div className='grid grid-cols-2 gap-6 font-sfprotr sm:w-full'>
           <div className='flex flex-col col-span-2'>
             <label htmlFor='about'>About</label>
             <textarea
@@ -142,7 +220,7 @@ const EditProfile = ({ user, dispatch }) => {
               onChange={e => setAbout(e.target.value)}
             ></textarea>
           </div>
-          <div className='flex flex-col '>
+          <div className='flex flex-col sm:col-span-2'>
             <label htmlFor='name'>Name</label>
             <input
               className='mt-2 h-8 border border-gray-700 rounded outline-none p-2 ring-2 transition-all focus:ring-4 ring-black ring-offset-2'
@@ -154,7 +232,7 @@ const EditProfile = ({ user, dispatch }) => {
             />
           </div>
 
-          <div className='flex flex-col'>
+          <div className='flex flex-col sm:col-span-2'>
             <label htmlFor='mail'>Email</label>
             <input
               className='mt-2 h-8 border border-gray-700 rounded outline-none p-2 ring-2 transition-all focus:ring-4 ring-black ring-offset-2'
@@ -166,7 +244,7 @@ const EditProfile = ({ user, dispatch }) => {
             />
           </div>
 
-          <div className='flex flex-col'>
+          <div className='flex flex-col sm:col-span-2'>
             <label htmlFor='pass'>Old Password</label>
             <div className='flex items-center mt-2 h-8  border border-gray-700 rounded outline-none ring-2 transition-all focus-within:ring-4 ring-black ring-offset-2'>
               <input
@@ -190,7 +268,7 @@ const EditProfile = ({ user, dispatch }) => {
             </div>
           </div>
 
-          <div className='flex flex-col'>
+          <div className='flex flex-col sm:col-span-2'>
             <label htmlFor='pass2'>New Password</label>
             <div className='flex items-center mt-2 h-8  border border-gray-700 rounded outline-none ring-2 transition-all focus-within:ring-4 ring-black ring-offset-2'>
               <input
