@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BsPencilFill } from 'react-icons/bs'
 import { VscEye, VscEyeClosed } from 'react-icons/vsc'
 import { useUpdateUser } from '../../hooks/useUpdateUser'
@@ -19,6 +19,7 @@ const EditProfile = ({ user, dispatch }) => {
   const [password, setPassword] = useState('')
   const [about, setAbout] = useState(oldAbout)
   const [avatar, setAvatar] = useState('')
+  const [noAction, setNoAction] = useState(false)
 
   const handleImage = e => {
     const file = e.target.files[0]
@@ -32,7 +33,22 @@ const EditProfile = ({ user, dispatch }) => {
       setAvatar(reader.result)
     }
   }
-  
+
+  useEffect(() => {
+    // stop the user from updating if no changes are made
+    if (
+      name === oldName &&
+      email === oldEmail &&
+      oldPassword === '' &&
+      password === '' &&
+      about === oldAbout &&
+      avatar === ''
+    ) {
+      setNoAction(true)
+    } else {
+      setNoAction(false)
+    }
+  })
 
   const handleUpdate = e => {
     e.preventDefault()
@@ -66,9 +82,14 @@ const EditProfile = ({ user, dispatch }) => {
 
   return (
     <div className=''>
-      <h2 className='text-xl font-sfpro bg-green-100 p-1 w-fit border-black border-b-2 sm:text-lg'>
-        Update Your Profile.
-      </h2>{' '}
+      <div className='flex '>
+        <h2 className='text-xl font-sfpro bg-green-100 p-1 w-fit border-black 
+        rounded-sm ring-1 ring-black sm:text-lg
+        ring-offset-2 shadow-sm'
+        >
+          Update Your Profile.
+        </h2>{' '}
+      </div>
       <form
         className='mx-auto mt-[2rem] mb-8 flex flex-col items-center font-sfprod'
         encType='multipart/form-data'
@@ -199,7 +220,7 @@ const EditProfile = ({ user, dispatch }) => {
           className='w-fit justify-center mt-7 flex mx-auto px-8 ring-black ring-offset-2 ring-2 py-1 text-gray-100 font-bold 
           font-sfprotr text-md bg-black rounded-lg outline-none transition-colors hover:ring-0 
           disabled:cursor-not-allowed disabled:bg-gray-700'
-          disabled={updateLoading}
+          disabled={updateLoading || noAction}
         >
           {updateLoading ? 'Updating...' : 'Update Me'}
         </button>

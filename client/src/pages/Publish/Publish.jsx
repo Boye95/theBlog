@@ -5,6 +5,7 @@ import { IoIosAddCircleOutline } from 'react-icons/io'
 import { Editor } from '@tinymce/tinymce-react'
 
 import { AuthContext } from '../../AuthContext/Context'
+import { useSignout } from '../../hooks/useSignout'
 
 // import TagItem component
 import TagItem from './TagItem'
@@ -18,12 +19,13 @@ const getTags = async () => {
   return data
 }
 export default function Publish () {
-  const {
-    user
-  } = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
   const token = user?.data?.token
 
   const avatar = user?.data?.registeredUser?.avatar
+  const { signout } = useSignout()
+
+  const [showAction, setShowAction] = useState(false)
 
   // states for each input in the form
   const [title, setTitle] = useState('')
@@ -61,7 +63,12 @@ export default function Publish () {
     return res
   }
 
-  const { mutate, isLoading: postLoading, isError, isSuccess } = useMutation(createPost, {
+  const {
+    mutate,
+    isLoading: postLoading,
+    isError,
+    isSuccess
+  } = useMutation(createPost, {
     onSuccess: () => {
       console.log('success')
       navigate('/')
@@ -109,7 +116,12 @@ export default function Publish () {
             <BiArrowBack className='sm:text-2xl' />
             <p className='sm:text-[13px] sm:hidden'>Blog Home</p>
           </Link>
-          <Link to='/profile' className='relative '>
+          <div
+            onClick={() => {
+              setShowAction(!showAction)
+            }}
+            className='relative '
+          >
             <span className='flex h-3 w-3 absolute -right-2 -top-2'>
               <span className='animate-ping absolute inline-flex h-3 w-3 rounded-full bg-green-400 opacity-75'></span>
               <span className='relative inline-flex rounded-full h-3 w-3 bg-emerald-500'></span>
@@ -125,7 +137,23 @@ export default function Publish () {
                 />
               )}
             </div>
-          </Link>
+            {showAction && (
+              <div className='absolute mt-1 -right-1 bg-black text-white rounded-sm shadow-lg font-sfprod transition-shadow'>
+                <Link
+                  to='/profile'
+                  className='py-2 px-4 transition-all hover:opacity-40'
+                >
+                  Profile
+                </Link>
+                <button
+                  onClick={signout}
+                  className='py-1 px-3 transition-all hover:opacity-40'
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
