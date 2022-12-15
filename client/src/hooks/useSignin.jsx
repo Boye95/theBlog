@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react'
 import { AuthContext } from '../authcontext/Context'
-import {useLocation, useNavigate} from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
@@ -12,9 +12,7 @@ const loginUser = async user => {
 
 export const useSignin = () => {
   const { dispatch } = useContext(AuthContext)
-  const [isLoading, setIsLoading] = useState(false)
-  const [isError, setIsError] = useState('')
-  const [isSuccess, setIsSuccess] = useState(false)
+  const [error, setError] = useState('')
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -23,7 +21,6 @@ export const useSignin = () => {
     data,
     mutate,
     isLoading: signinLoading,
-    isError: signupError,
     isSuccess: signinSuccess
   } = useMutation(loginUser)
 
@@ -36,18 +33,13 @@ export const useSignin = () => {
         window.location.reload()
       },
       onError: error => {
-        setIsError(error.response.data.errors.msg)
+        if (error.response.data.message) {
+          setError(error.response.data.message.message)
+        }
+        setError(error.response.data.errors.msg)
       }
     })
-
-    if (signinLoading) {
-      setIsLoading(true)
-    }
-    if (signinSuccess) {
-      setIsSuccess(true)
-    }
   }
-  
 
-  return { signin, isLoading, isError, setIsError, isSuccess }
+  return { signin, signinLoading, error, signinSuccess }
 }

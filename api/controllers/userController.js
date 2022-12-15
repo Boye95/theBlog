@@ -16,8 +16,8 @@ exports.updateUser = async (req, res) => {
   if (req.userId === req.params.id) {
     try {
       // update author info in blogpost if user changes information
-      const authorPosts = await BlogPost.find({ "authorInfo": { $elemMatch: { "_id": req.userId } } });
-      console.log(authorPosts);
+      // const authorPosts = await BlogPost.find({ authorInfo: req.params.id });
+      // console.log(authorPosts);
       if (oldPassword && password) {
         // check if user submitted the correct 'oldPassword'
         const currentPass = await User.findById(req.params.id);
@@ -84,7 +84,7 @@ exports.updateUser = async (req, res) => {
         name,
         email,
         password: hashedPassword,
-        about
+        about,
       };
       if (avatar) {
         userFields.avatar = {
@@ -93,7 +93,7 @@ exports.updateUser = async (req, res) => {
         };
       }
 
-      const registeredUser = await User.findByIdAndUpdate(
+      const existingUser = await User.findByIdAndUpdate(
         req.params.id,
         { $set: userFields },
         {
@@ -101,9 +101,21 @@ exports.updateUser = async (req, res) => {
         }
       );
 
-      const token = jwt.sign({ id: registeredUser._id }, process.env.SECRET, {
+      const token = jwt.sign({ id: existingUser._id }, process.env.SECRET, {
         expiresIn: "30d",
       });
+
+      const registeredUser = {
+        _id: existingUser._id,
+        name: existingUser.name,
+        email: existingUser.email,
+      };
+      if (existingUser.avatar) {
+        registeredUser.avatar = existingUser.avatar;
+      }
+      if (existingUser.about) {
+        registeredUser.about = about;
+      }
 
       res.status(200).json({
         status: "success",
@@ -134,11 +146,14 @@ exports.deleteUser = async (req, res) => {
       const avatarId = await User.findById(req.params.id).select(
         "avatar.public_id"
       );
-      const avatarPID = avatarId.avatar.public_id;
-      await cloudinary.uploader.destroy(avatarPID);
-      
+      const avatarPID = avatarId?.avatar?.public_id;
+      if (avatarPID) {
+        await cloudinary.uploader.destroy(avatarPID);
+      }
+
       // delete all blogposts from user
-      const blogPosts = await BlogPost.find({ authorInfo : req.params.id }).delete;
+      // const blogPosts = await BlogPost.find({ authorInfo: req.params.id })
+      //   .delete;
 
       // delete user from db
       const user = await User.findByIdAndDelete(req.params.id);

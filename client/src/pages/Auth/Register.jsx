@@ -9,7 +9,7 @@ import { useSignup } from '../../hooks/useSignup'
 
 export default function Register () {
   // destructure signup function from useSignup hook
-  const { signup, isLoading, isError, setIsError, isSuccess } = useSignup()
+  const { signup, signupLoading, isError, setIsError, signupSuccess } = useSignup()
   // show/hide password logic
   const [showPass, setShowPass] = useState(false)
 
@@ -36,7 +36,6 @@ export default function Register () {
     if (isError === '') {
       setIsError('')
     }
-    console.log(user)
   }
 
   let handleShowPass = () => {
@@ -175,7 +174,7 @@ export default function Register () {
               <button
                 type='submit'
                 className='w-fit justify-center mt-7 flex mx-auto px-8 ring-black ring-offset-2 ring-2 py-1 text-gray-100 font-bold font-sfprotr text-md bg-black rounded-lg outline-none transition-colors hover:ring-0 sm:w-full'
-                disabled={isLoading}
+                disabled={signupLoading}
               >
                 Register Me
               </button>

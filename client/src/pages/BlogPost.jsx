@@ -433,12 +433,14 @@ export default function BlogPost () {
                 </div>
 
                 <div className=''>
-                  <div className='mt-8 flex w-full items-center gap-2'>
-                    <div className='border-2 rounded py-2 w-3/6 flex justify-center items-center font-sfprotr cursor-pointer ring-gray-700 transition-all hover:border-gray-400 hover:ring-1'>
+                  <div className='mt-8 flex w-full items-center gap-2 sm:flex-col'>
+                    <div className='border-2 rounded py-2 w-3/6 flex justify-center items-center font-sfprotr cursor-pointer
+                     ring-gray-700 transition-all hover:border-gray-400 hover:ring-1 sm:w-full'>
                       <FaFacebookSquare className='w-8 h-6' />
                       <p className='sm:text-[13px]'>Share on Facebook</p>
                     </div>
-                    <div className='border-2 rounded py-2 w-3/6 flex justify-center items-center font-sfprotr cursor-pointer ring-gray-700 transition-all hover:border-gray-400 hover:ring-1'>
+                    <div className='border-2 rounded py-2 w-3/6 flex justify-center items-center font-sfprotr cursor-pointer
+                     ring-gray-700 transition-all hover:border-gray-400 hover:ring-1 sm:w-full'>
                       <FaTwitterSquare className='w-8 h-6' />
                       <p className='sm:text-[14px]'>Share on Twitter</p>
                     </div>

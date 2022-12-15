@@ -9,7 +9,7 @@ import { useSignin } from '../../hooks/useSignin'
 
 export default function Login () {
   // destructure signin function from useSignin hook
-  const { signin, isLoading, isError, setIsError, isSuccess } = useSignin()
+  const { signin, signinLoading, error, signinSuccess } = useSignin()
 
   // show/hide password logic
   const [showPass, setShowPass] = useState(false)
@@ -56,8 +56,8 @@ export default function Login () {
               encType='multipart/form-data'
               onSubmit={handleLogin}
             >
-              {isError && <div className='w-full bg-red-500 rounded-lg p-2 font-sfmono mb-2'>
-                {isError}
+              {error && <div className='w-full bg-red-500 rounded-lg p-2 font-sfmono mb-2'>
+                {error}
               </div>}
               <div className='flex flex-col gap-6 font-sfprotr'>
                 <div className='flex flex-col'>
@@ -100,7 +100,7 @@ export default function Login () {
                 <button
                   type='submit'
                   className='w-full justify-center mt-2 flex mx-auto px-8 ring-black ring-offset-2 ring-2 py-1 text-gray-100 font-bold font-sfprotr text-md bg-black rounded-lg outline-none transition-colors hover:ring-0'
-                  disabled={isLoading}
+                  disabled={signinLoading}
                 >
                   Login
                 </button>

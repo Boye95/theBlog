@@ -53,10 +53,6 @@ exports.registerUser = async (req, res) => {
       password: hashedPassword,
     });
 
-    // if (avatar) {
-    //   newUser.avatar = result.secure_url;
-    //   newUser.avatar.public_id = result.public_id;
-    // }
 
     // Create a token
     const token = jwt.sign({ id: registeredUser._id }, process.env.SECRET, {
@@ -65,7 +61,11 @@ exports.registerUser = async (req, res) => {
     res.status(200).json({
       status: "success",
       data: {
-        registeredUser,
+        registeredUser: {
+          _id: registeredUser._id,
+          name: registeredUser.name,
+          email: registeredUser.email,
+        },
         token,
       },
     });
@@ -82,19 +82,34 @@ exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
   try {
     // Check if user exists
-    let registeredUser = await User.findOne({ email });
-    if (!registeredUser) {
+    let existingUser = await User.findOne({ email });
+    if (!existingUser) {
       return res.status(400).json({ errors: { msg: "Invalid credentials" } });
     }
-    const isMatch = await bcrypt.compare(password, registeredUser.password);
+    const isMatch = await bcrypt.compare(password, existingUser.password);
     if (!isMatch) {
       return res.status(400).json({ errors: { msg: "Invalid credentials" } });
     }
 
     // Create a token
-    const token = jwt.sign({ id: registeredUser._id }, process.env.SECRET, {
+    const token = jwt.sign({ id: existingUser._id }, process.env.SECRET, {
       expiresIn: "30d",
     });
+
+
+    const registeredUser = {
+      _id: existingUser._id,
+      name: existingUser.name,
+      email: existingUser.email,
+    }
+
+    if (existingUser.avatar) {
+      registeredUser.avatar = existingUser.avatar;
+    }
+    if (existingUser.about) {
+      registeredUser.about = existingUser.about;
+    }
+
     res.status(200).json({
       status: "success",
       data: {

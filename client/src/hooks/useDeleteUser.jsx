@@ -12,9 +12,9 @@ export const useDeleteUser = () => {
   const userId = user?.data?.registeredUser?._id
   const navigate = useNavigate()
 
-  const deleteUser = async id => {
+  const deleteUser = async () => {
     const { data } = await axios.delete(
-      `http://127.0.0.1:4000/api/users/${id}`,
+      `http://127.0.0.1:4000/api/modifyuser/${userId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`
@@ -27,25 +27,25 @@ export const useDeleteUser = () => {
   const {
     mutate,
     isLoading: isDeleting,
-    isSuccess: isDeleteSuccess,
-  } = useMutation(deleteUser)
-
-  const handleDelete = id => {
-    mutate(id, {
-      onSuccess: () => {
-        dispatch({ type: 'DELETE_USER' })
-        localStorage.removeItem('user')
-        navigate('/')
-        window.location.reload()
-      },
-      onError: error => {
-        dispatch({ type: 'DELETE_ERROR' })
-        if (error.response.data.message) {
-          setError(error.response.data.message.message)
-        }
-        setError(error.response.data.errors.msg)
+    isSuccess: isDeleteSuccess
+  } = useMutation(deleteUser, {
+    onSuccess: () => {
+      dispatch({ type: 'DELETE_USER' })
+      localStorage.removeItem('user')
+      navigate('/')
+      window.location.reload()
+    },
+    onError: error => {
+      dispatch({ type: 'DELETE_ERROR' })
+      if (error.response.data.message) {
+        setError(error.response.data.message.message)
       }
-    })
+      setError(error.response.data.errors.msg)
+    }
+  })
+
+  const handleDelete = () => {
+    mutate()
   }
 
   return { user, handleDelete, isDeleting, isDeleteSuccess, error }
