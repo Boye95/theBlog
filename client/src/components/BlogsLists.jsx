@@ -35,7 +35,7 @@ export default function BlogsLists () {
             </Link>
             <Link
               to={`/blogpost/${posts[0]?._id}`}
-              className='font-nylarge w-4/5 text-4xl text-center mt-7 md:text-xl hover:underline'
+              className='font-nylarge w-4/5 text-4xl text-center mt-7 sm:w-[95%] md:text-xl hover:underline'
             >
               <h1>{posts[0]?.title}</h1>
             </Link>

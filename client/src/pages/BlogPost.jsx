@@ -350,7 +350,7 @@ export default function BlogPost () {
           ) : (
             <div className=''>
               <div id='article1' className='flex flex-col items-center'>
-                <h1 className='font-nylarge w-3/6 text-4xl text-center mt-7 ham:w-5/6 sm:w-11/12 sm:text-3xl '>
+                <h1 className='font-nylarge w-3/6 text-4xl text-center mt-7 ham:w-5/6 sm:w-11/12 sm:text-2xl '>
                   {post?.title}
                 </h1>
                 <h3 className='font-sfmono text-lg w-2/5 text-center mt-8 ham:w-3/5 sm:w-11/12 sm:text-sm'>
@@ -382,9 +382,13 @@ export default function BlogPost () {
                       )}
                     </div>
                     <div className=''>
-                      <Link to='/profile' className='font-sfproth'>
+                      {userID === authorID ? (<Link to='/profile' className='font-sfproth'>
                         {post?.authorInfo?.name?.toUpperCase()}
-                      </Link>
+                      </Link>) : (
+                        <div className='font-sfproth'>
+                        {post?.authorInfo?.name?.toUpperCase()}
+                      </div>
+                      )}
                       <div className='font-sfprotr flex justify-between gap-2 xl:text-sm'>
                         <div className='flex flex-col'>
                           <span>{moment(post?.createdAt).format('lll')}</span>
@@ -457,7 +461,7 @@ export default function BlogPost () {
 
                   <div className='mt-9 border-t-2 border-dotted border-black'>
                     <div className='mt-4 flex items-center gap-4 sm:text-sm'>
-                      <div className='w-32 rounded-full overflow-hidden'>
+                      <div className='w-[5rem] rounded-full overflow-hidden'>
                         {authorAvatar ? (
                         <img src={authorAvatar } alt='' className='w-full h-full' />
                         ) : null}

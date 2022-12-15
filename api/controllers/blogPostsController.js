@@ -46,7 +46,12 @@ exports.getSingleBlogPost = async (req, res) => {
   }
 
   try {
-    const post = await BlogPost.findById(req.params.id);
+    const post = await BlogPost.findById(req.params.id).populate("authorInfo", [
+      "avatar",
+      "name",
+      "about",
+      "_id",
+    ]);
     res.status(200).json({
       status: "success",
       data: {
@@ -70,10 +75,7 @@ exports.getPostByAuthor = async (req, res) => {
     // fetch posts by author query
     const posts = await BlogPost.find({
       authorInfo: req.params.id,
-    }).populate(
-      "authorInfo",
-      ["avatar", "name", "about", "_id"]
-    );
+    }).populate("authorInfo", ["avatar", "name", "about", "_id"]);
     // console.log(posts)
     res.status(200).json({
       status: "success",

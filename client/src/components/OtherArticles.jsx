@@ -19,6 +19,10 @@ export default function OtherArticles({post, path}) {
         if (otherPost._id !== path) {
           return <Post key={otherPost._id} post={otherPost} />
         }
+        if (otherPost.length === 0) return <p>There are no other posts</p>
+        if (otherPost.length > 6) {
+          return
+        }
       })}
     </div>
   )

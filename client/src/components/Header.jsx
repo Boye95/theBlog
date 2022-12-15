@@ -10,6 +10,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Header () {
   const { user, dispatch } = useContext(AuthContext)
+  const username = user?.data?.registeredUser?.name
   const { signout } = useSignout()
 
   // Navbar display script
@@ -52,9 +53,9 @@ export default function Header () {
       <div className='w-5/6 mx-auto h-20 flex justify-between items-center ham:w-full ham:px-4'>
         <NavLink
           to='/'
-          className='uppercase w-3/6 font-zeit text-4xl md:text-2xl md:w-4/6 lg:text-3xl'
+          className='w-3/6 font-zeit text-4xl md:text-2xl md:w-4/6 lg:text-3xl'
         >
-          ónyé ńkúzí
+          {user ? username.toUpperCase() : 'ÓNYÉ ŃKÚZÍ'}
         </NavLink>
         <nav className='w-3/6 h-full flex justify-between items-center font-nysmall ham:hidden'>
           <NavLink
