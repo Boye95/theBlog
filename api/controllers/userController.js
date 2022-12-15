@@ -15,9 +15,6 @@ exports.updateUser = async (req, res) => {
   const { name, email, oldPassword, password, avatar, about } = req.body;
   if (req.userId === req.params.id) {
     try {
-      // update author info in blogpost if user changes information
-      // const authorPosts = await BlogPost.find({ authorInfo: req.params.id });
-      // console.log(authorPosts);
       if (oldPassword && password) {
         // check if user submitted the correct 'oldPassword'
         const currentPass = await User.findById(req.params.id);
@@ -42,15 +39,13 @@ exports.updateUser = async (req, res) => {
       // delete old avatar from cloudinary
       // get avatar public_id from db
       let result;
-      if (avatar) {
-        // delete avatar from cloudinary
-        const avatarId = await User.findById(req.params.id).select(
-          "avatar.public_id"
-        );
-        const avatarPID = avatarId.avatar.public_id;
-        if (avatarId) {
-          await cloudinary.uploader.destroy(avatarPID);
-        }
+      // delete avatar from cloudinary
+      const avatarId = await User.findById(req.params.id).select(
+        "avatar.public_id"
+      );
+      const avatarPID = avatarId.avatar.public_id;
+      if (avatarPID) {
+        await cloudinary.uploader.destroy(avatarPID);
       }
       // save avatar to cloudinary
       if (avatar) {
@@ -152,8 +147,7 @@ exports.deleteUser = async (req, res) => {
       }
 
       // delete all blogposts from user
-      // const blogPosts = await BlogPost.find({ authorInfo: req.params.id })
-      //   .delete;
+      const blogPosts = await BlogPost.deleteMany({ authorInfo: req.params.id });
 
       // delete user from db
       const user = await User.findByIdAndDelete(req.params.id);

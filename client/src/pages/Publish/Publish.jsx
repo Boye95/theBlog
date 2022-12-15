@@ -127,7 +127,7 @@ export default function Publish () {
               <span className='relative inline-flex rounded-full h-3 w-3 bg-emerald-500'></span>
             </span>
             <div className='h-8 w-8 cursor-pointer rounded-sm border shadow-xl overflow-hidden ring-1 ring-gray-600 ring-offset-2 transition-shadow hover:ring-2 hover:ring-emerald-400'>
-              {avatar !== '' ? (
+              {avatar && avatar !== '' ? (
                 <img src={avatar.url} alt='' className='h-full w-full' />
               ) : (
                 <img
