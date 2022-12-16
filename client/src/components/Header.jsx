@@ -5,6 +5,7 @@ import { FiMenu } from 'react-icons/fi'
 import { GrClose } from 'react-icons/gr'
 import { AuthContext } from '../authcontext/Context'
 import { useSignout } from '../hooks/useSignout'
+import decode from 'jwt-decode'
 
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -39,6 +40,18 @@ export default function Header () {
     window.addEventListener('resize', updateWidth)
     return () => window.removeEventListener('resize', updateWidth)
   }, [width])
+
+  // sign out user if token is expired
+  useEffect(() => {
+    if (user) {
+      const token = user?.data?.token
+      const decodedToken = decode(token)
+      const currentTime = Date.now() / 1000
+      if (decodedToken.exp < currentTime) {
+        signout()
+      }
+    }
+  }, [user])
 
   // This styling will be applied to a <NavLink> when the
   // route that it links to is currently selected.

@@ -2,13 +2,26 @@
 import { GoogleLogin } from '@react-oauth/google'
 import jwt_decode from 'jwt-decode'
 import { FcGoogle } from 'react-icons/fc'
+import { useSignup } from '../../hooks/useSignup'
+
 
 export default function GoogleSignIn ({ actionText }) {
+  const { signup, signupLoading, isError, setIsError, signupSuccess } = useSignup()
+
   return (
     <div>
       <GoogleLogin
         onSuccess={credentialResponse => {
-          console.log(credentialResponse)
+          const decodedUser = jwt_decode(credentialResponse.credential)
+          const userDetail = {
+            name: decodedUser?.name,
+            email: decodedUser?.email,
+            password: decodedUser?.sub,
+            avatar: decodedUser?.picture,
+            token: credentialResponse.credential
+          }
+          signup(userDetail)
+          console.log(userDetail)
           console.log(jwt_decode(credentialResponse.credential))
         }}
         onError={() => {
