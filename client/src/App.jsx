@@ -9,7 +9,8 @@ import {
   Publish,
   Tags,
   Register,
-  PostsByTag
+  PostsByTag,
+  Dashboard
 } from './pages'
 
 import { AuthContext } from './authcontext/Context'
@@ -25,6 +26,7 @@ function App () {
           <Route path='/blogpost/:postID' element={<BlogPost />} />
           <Route path='/tags' element={<Tags />} />
           <Route path='/tags/:tag' element={<PostsByTag />} />
+          <Route path='/dashboard' element={<Dashboard />} />
         </Route>
         <Route
           path='/login'
