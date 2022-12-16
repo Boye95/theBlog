@@ -1,6 +1,5 @@
 const express = require("express");
 
-
 const {
   getAllBlogPosts,
   getSingleBlogPost,
@@ -11,7 +10,7 @@ const {
 } = require("../controllers/blogPostsController");
 
 const router = express.Router();
-const authWare = require("../middleware/authWare");
+const { authWare, adminWare } = require("../middleware/authWare");
 
 // Get all blog posts
 router.get("/", getAllBlogPosts);

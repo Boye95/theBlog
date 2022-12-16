@@ -223,3 +223,7 @@ exports.updateBlogPost = async (req, res) => {
     });
   }
 };
+
+
+// admin controllers
+// 

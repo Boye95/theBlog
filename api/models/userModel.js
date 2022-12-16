@@ -15,7 +15,7 @@ const UserSchema = new Schema(
     },
     password: {
       type: String,
-      required: true,
+      required: false,
     },
     avatar: {
       url: {
@@ -37,6 +37,11 @@ const UserSchema = new Schema(
         ref: "BlogPost",
       }
     ],
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user",
+    }
   },
   { timestamp: true }
 );

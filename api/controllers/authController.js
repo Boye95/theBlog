@@ -11,69 +11,111 @@ cloudinary.config({
 
 // Register a  new user
 exports.registerUser = async (req, res) => {
-  const { name, email, password } = req.body;
-  try {
-    // // save avatar to cloudinary
-    // if (avatar) {
-    //   const result = await cloudinary.uploader.upload(avatar, {
-    //     folder: "avatars",
-    //   });
-    // }
-    // Check if user already exists
-    const user = await User.findOne({ email });
-    if (user) {
-      return res.status(400).json({ errors: { msg: "User already exists" } });
-    }
+  // Register for a user with google sign in
+  if (req.body.googleToken) {
+    const { name, email, avatar, googleToken } = req.body;
 
-    // Check if email is valid
-    if (!validator.isEmail(email)) {
-      return res.status(400).json({ errors: { msg: "Invalid email" } });
-    }
-    // Check if password is valid
-    if (!validator.isStrongPassword(password)) {
-      return res
-        .status(400)
-        .json({ errors: { msg: "Password not strong enough" } });
-    }
-    // check if fields are empty
-    if (!name || !email || !password) {
-      return res
-        .status(400)
-        .json({ errors: { msg: "Please fill all fields" } });
-    }
+    try {
+      const googoleUser = await User.findOne({ email });
+      if (googoleUser) {
+        return res.status(400).json({ errors: { msg: "User already exists" } });
+      }
 
-    // hash password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+      if (!name || !email || !avatar) {
+        return res
+          .status(400)
+          .json({ errors: { msg: "Some fileds are missing" } });
+      }
 
-    // Create a new user
-    let registeredUser = await User.create({
-      name,
-      email,
-      password: hashedPassword,
-    });
+      // save avatar to cloudinary
+      const result = await cloudinary.uploader.upload(avatar, {
+        folder: "avatars",
+      });
 
+      // Create a new user
+      let registeredUser = await User.create({
+        name,
+        email,
+        avatar: {
+          url: result.secure_url,
+          public_id: result.public_id,
+        }
+      });
 
-    // Create a token
-    const token = jwt.sign({ id: registeredUser._id }, process.env.SECRET, {
-      expiresIn: "30d",
-    });
-    res.status(200).json({
-      status: "success",
-      data: {
-        registeredUser: {
-          _id: registeredUser._id,
-          name: registeredUser.name,
-          email: registeredUser.email,
+      const token = jwt.sign({ id: registeredUser._id }, process.env.SECRET, {
+        expiresIn: "30d",
+      });
+
+      res.status(200).json({
+        status: "success",
+        data: {
+          registeredUser,
         },
         token,
-      },
-    });
-  } catch (error) {
-    res.status(404).json({
-      status: "fail",
-      message: error,
-    });
+      });
+    } catch(error) {
+      res.status(404).json({
+        status: "fail",
+        message: error,
+      });
+    }
+  } else {
+    const { name, email, password } = req.body;
+    try {
+      const user = await User.findOne({ email });
+      if (user) {
+        return res.status(400).json({ errors: { msg: "User already exists" } });
+      }
+
+      // Check if email is valid
+      if (!validator.isEmail(email)) {
+        return res.status(400).json({ errors: { msg: "Invalid email" } });
+      }
+      // Check if password is valid
+      if (!validator.isStrongPassword(password)) {
+        return res
+          .status(400)
+          .json({ errors: { msg: "Password not strong enough" } });
+      }
+      // check if fields are empty
+      if (!name || !email || !password) {
+        return res
+          .status(400)
+          .json({ errors: { msg: "Please fill all fields" } });
+      }
+
+      // hash password
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
+
+      // Create a new user
+      let registeredUser = await User.create({
+        name,
+        email,
+        password: hashedPassword,
+      });
+
+      // Create a token
+      const token = jwt.sign({ id: registeredUser._id }, process.env.SECRET, {
+        expiresIn: "30d",
+      });
+      res.status(200).json({
+        status: "success",
+        data: {
+          registeredUser: {
+            _id: registeredUser._id,
+            name: registeredUser.name,
+            email: registeredUser.email,
+          },
+          token,
+        },
+      });
+    } catch (error) {
+      res.status(404).json({
+        status: "fail",
+        message: error,
+      });
+    }
   }
 };
 
@@ -96,12 +138,11 @@ exports.loginUser = async (req, res) => {
       expiresIn: "30d",
     });
 
-
     const registeredUser = {
       _id: existingUser._id,
       name: existingUser.name,
       email: existingUser.email,
-    }
+    };
 
     if (existingUser.avatar) {
       registeredUser.avatar = existingUser.avatar;

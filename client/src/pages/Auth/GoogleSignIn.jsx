@@ -16,9 +16,8 @@ export default function GoogleSignIn ({ actionText }) {
           const userDetail = {
             name: decodedUser?.name,
             email: decodedUser?.email,
-            password: decodedUser?.sub,
             avatar: decodedUser?.picture,
-            token: credentialResponse.credential
+            googleToken: credentialResponse.credential
           }
           signup(userDetail)
           console.log(userDetail)
