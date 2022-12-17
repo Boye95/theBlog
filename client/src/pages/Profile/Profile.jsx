@@ -23,12 +23,15 @@ const Profile = () => {
   const [showAction, setShowAction] = useState(false)
   const [active, setActive] = useState('profile')
 
+  // slice user first name out if they have one
+  const firstName = user?.data?.registeredUser?.name.split(' ')[0]
+
   return (
     <div className='flex'>
       <div className='scroll-no flex flex-col mx-auto pt-9 w-[90%] max-w-[1300px] ham:w-full'>
         <div className='w-full flex justify-between py-4 px-11 fixed top-0 left-[50%] -translate-x-[50%] z-10 bg-white shadow-lg sm:px-4'>
           <div className='text-xl font-nylarge font-semibold sm:text-[17px]'>
-            {`Hi 👋, ${user?.data?.registeredUser?.name}.`}
+            {`Hi 👋, ${firstName}.`}
           </div>
           <div className='relative flex gap-3 items-center'>
             <Link

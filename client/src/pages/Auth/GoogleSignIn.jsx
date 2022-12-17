@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode'
 import { FcGoogle } from 'react-icons/fc'
 import { useSignup } from '../../hooks/useSignup'
 
-export default function GoogleSignIn () {
+export default function GoogleSignIn ({ buttonText}) {
   const { signup, signupLoading, isError, setIsError, signupSuccess } =
     useSignup()
 
@@ -19,7 +19,7 @@ export default function GoogleSignIn () {
 
   return (
     <button className='flex items-center gap-2' onClick={() => login()}>
-      Sign up with Google <FcGoogle />
+      {buttonText} <FcGoogle />
     </button>
   )
 }
