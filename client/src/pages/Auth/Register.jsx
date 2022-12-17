@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { VscEye, VscEyeClosed } from 'react-icons/vsc'
 import typew from '../../assets/typewriter.png'
 import GoogleSignIn from './GoogleSignIn'
-import { useGoogleLogin } from '@react-oauth/google'
 
 
 import { useSignup } from '../../hooks/useSignup'

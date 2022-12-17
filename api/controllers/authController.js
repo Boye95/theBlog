@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const validator = require("validator");
+const axios = require("axios");
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
@@ -13,35 +14,66 @@ cloudinary.config({
 exports.registerUser = async (req, res) => {
   // Register for a user with google sign in
   if (req.body.googleToken) {
-    const { name, email, avatar, googleToken } = req.body;
+    const { googleToken } = req.body;
+
+    const getUserDetails = await axios.get(
+      "https://www.googleapis.com/oauth2/v3/userinfo",
+      {
+        headers: {
+          Authorization: `Bearer ${googleToken}`,
+        },
+      }
+    );
+
+    const { email, picture, name } = getUserDetails.data;
 
     try {
-      const googoleUser = await User.findOne({ email });
-      if (googoleUser) {
-        return res.status(400).json({ errors: { msg: "User already exists" } });
+      const existingUser = await User.findOne({ email });
+
+      if (existingUser) {
+        const token = jwt.sign({ id: existingUser._id }, process.env.SECRET, {
+          expiresIn: "30d",
+        });
+
+        const registeredUser = {
+          _id: existingUser._id,
+          name: existingUser.name,
+          email: existingUser.email,
+          avatar: existingUser.avatar,
+        };
+
+        if (existingUser.about) {
+          registeredUser.about = existingUser.about;
+        }
+
+        return res.status(200).json({
+          status: "success",
+          data: {
+            registeredUser,
+            token,
+          },
+        });
       }
 
-      if (!name || !email || !avatar) {
-        return res
-          .status(400)
-          .json({ errors: { msg: "Some fileds are missing" } });
-      }
-
-      // save avatar to cloudinary
-      const result = await cloudinary.uploader.upload(avatar, {
+      // save picture to cloudinary
+      const result = await cloudinary.uploader.upload(picture, {
         folder: "avatars",
-      });
+      })
 
-      // Create a new user
-      let registeredUser = await User.create({
+      const userFields = {
         name,
         email,
         avatar: {
           url: result.secure_url,
           public_id: result.public_id,
-        }
-      });
+        },
+      };
+      // console.log(userFields);
 
+      // Create a new user
+      const registeredUser = await User.create(userFields);
+
+      // Create a token
       const token = jwt.sign({ id: registeredUser._id }, process.env.SECRET, {
         expiresIn: "30d",
       });
@@ -50,10 +82,10 @@ exports.registerUser = async (req, res) => {
         status: "success",
         data: {
           registeredUser,
+          token,
         },
-        token,
       });
-    } catch(error) {
+    } catch (error) {
       res.status(404).json({
         status: "fail",
         message: error,
