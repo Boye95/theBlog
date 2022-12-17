@@ -27,7 +27,7 @@ const ProfileInfo = ({ user }) => {
       <div className='flex flex-col items-start mt-4 w-3/6 sm:w-full sm:items-center'>
         <p className='font-sfprod italic '>About me</p>
         <p className='font-sfprotr sm:text-center'>
-          {about !== ''
+          {about && about !== ''
             ? about
             : 'No about me yet!. Edit your profile to add one.'}
         </p>

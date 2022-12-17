@@ -10,6 +10,26 @@ cloudinary.config({
   secure: true,
 });
 
+// get all users by admin
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json({
+      status: "success",
+      results: users.length,
+      data: {
+        users,
+      },
+    });
+  } catch (error) {
+    res.status(404).json({
+      status: "fail",
+      message: error,
+    });
+  }
+}
+
+
 // update a user
 exports.updateUser = async (req, res) => {
   const { name, email, oldPassword, password, avatar, about } = req.body;

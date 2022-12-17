@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.2.1",
     "bcrypt": "^5.1.0",
     "calculate-readtime": "^0.0.3",
     "cloudinary": "^1.32.0",

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { VscEye, VscEyeClosed } from 'react-icons/vsc'
 import typew from '../../assets/typewriter.png'
 import GoogleSignIn from './GoogleSignIn'
+import { useGoogleLogin } from '@react-oauth/google'
+
 
 import { useSignup } from '../../hooks/useSignup'
 
@@ -54,7 +56,7 @@ export default function Register () {
           </h2>
           <div id='form-body' className='mt-24 sm:mt-12'>
             <div className='font-sfprotr flex items-center justify-center mx-auto gap-2 py-1 w-60 border-2 border-black rounded-2xl hover:border-gray-400'>
-              <GoogleSignIn actionText='signup_with' />
+              <GoogleSignIn />
             </div>
             <p className='mx-4 my-4 font-sfprotr text-lg sm:text-center'>or</p>
             <h1 className='font-bold font-sfprod text-2xl text-gray-700 mx-4 sm:text-center'>
