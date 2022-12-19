@@ -92,7 +92,7 @@ exports.registerUser = async (req, res) => {
       });
     }
   } else {
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
     try {
       const user = await User.findOne({ email });
       if (user) {
@@ -119,13 +119,19 @@ exports.registerUser = async (req, res) => {
       // hash password
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);
-
-      // Create a new user
-      let registeredUser = await User.create({
+      
+      const userFields = {
         name,
         email,
         password: hashedPassword,
-      });
+      }
+
+      if (role) {
+        userFields.role = role;
+      }
+
+      // Create a new user
+      let registeredUser = await User.create(userFields);
 
       // Create a token
       const token = jwt.sign({ id: registeredUser._id }, process.env.SECRET, {
