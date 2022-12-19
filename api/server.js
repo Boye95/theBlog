@@ -13,6 +13,7 @@ const userRoute = require("./routes/userRoute");
 app.use(express.json({ limit: "50mb" }));
 app.use(cors());
 
+
 // API routes
 app.use("/api/blogposts", blogPostsRoute);
 app.use("/api/tags", tagsRoute);

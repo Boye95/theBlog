@@ -9,6 +9,8 @@ cloudinary.config({
   secure: true,
 });
 
+
+
 // Get all blog posts
 exports.getAllBlogPosts = async (req, res) => {
   tagName = req.query.tags;
@@ -131,7 +133,7 @@ exports.createBlogPost = async (req, res) => {
     author.posts.push(newPost._id);
     await author.save();
 
-    
+
     res.status(201).json({
       status: "success",
       data: {

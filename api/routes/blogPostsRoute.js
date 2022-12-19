@@ -1,4 +1,5 @@
 const express = require("express");
+const session = require("express-session")
 
 const {
   getAllBlogPosts,
@@ -8,6 +9,8 @@ const {
   deleteBlogPost,
   updateBlogPost,
 } = require("../controllers/blogPostsController");
+
+
 
 const router = express.Router();
 const { authWare, adminWare } = require("../middleware/authWare");

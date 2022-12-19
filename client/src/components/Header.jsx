@@ -239,6 +239,15 @@ export default function Header () {
           >
             Blog
           </NavLink>
+          {admin && (
+            <NavLink
+              to='/dashboard'
+              className='navlinks'
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              Dashboard
+            </NavLink>
+          )}
           <NavLink
             to='/tags'
             className='navlinks'
