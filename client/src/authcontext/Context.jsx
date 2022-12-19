@@ -13,7 +13,7 @@ export const AuthContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(authReducer, INITIAL_STATE);
     
     
-    console.log(state);
+    // console.log(state);
     return (
         <AuthContext.Provider
             value={{

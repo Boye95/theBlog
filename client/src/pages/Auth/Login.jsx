@@ -25,7 +25,7 @@ export default function Login () {
       password
     }
     signin(user)
-    console.log(user)
+    // console.log(user)
   }
 
   let handleShowPass = () => {

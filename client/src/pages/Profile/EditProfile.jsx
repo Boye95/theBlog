@@ -138,7 +138,7 @@ const EditProfile = ({ user, dispatch }) => {
       updated.avatar = avatar
     }
     updateUserHandler(updated)
-    console.log(updated)
+    // console.log(updated)
   }
 
   let handleShowPass = () => {

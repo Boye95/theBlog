@@ -190,7 +190,7 @@ export default function BlogPost () {
     onSuccess: () => {
       window.location.reload()
       setUpdateMode(false)
-      console.log('updated')
+      // console.log('updated')
     },
     onError: () => {
       console.log('error')
@@ -215,7 +215,7 @@ export default function BlogPost () {
     if (user) {
       isUpdate(newEdits)
     }
-    console.log(newEdits)
+    // console.log(newEdits)
   }
   // console.log(post)
   return (
