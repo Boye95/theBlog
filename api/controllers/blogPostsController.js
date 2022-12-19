@@ -108,9 +108,11 @@ exports.createBlogPost = async (req, res) => {
       });
     }
 
+    
+
+
     // add author info to req.body
     const userInfo = req.userId;
-    // const getAuthorInfo = await User.findById(userInfo);
     const newPost = await BlogPost.create({
       title,
       subtitle,
@@ -122,6 +124,14 @@ exports.createBlogPost = async (req, res) => {
       tags,
       authorInfo: userInfo,
     });
+
+    // save post to authors schema
+    const author = await User.findById(req.userId);
+
+    author.posts.push(newPost._id);
+    await author.save();
+
+    
     res.status(201).json({
       status: "success",
       data: {

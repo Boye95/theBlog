@@ -40,6 +40,7 @@ exports.registerUser = async (req, res) => {
           name: existingUser.name,
           email: existingUser.email,
           avatar: existingUser.avatar,
+          role: existingUser.role,
         };
 
         if (existingUser.about) {
@@ -144,6 +145,7 @@ exports.registerUser = async (req, res) => {
             _id: registeredUser._id,
             name: registeredUser.name,
             email: registeredUser.email,
+            role: registeredUser.role,
           },
           token,
         },
@@ -180,6 +182,7 @@ exports.loginUser = async (req, res) => {
       _id: existingUser._id,
       name: existingUser.name,
       email: existingUser.email,
+      role: existingUser.role,
     };
 
     if (existingUser.avatar) {

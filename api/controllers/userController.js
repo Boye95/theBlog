@@ -14,11 +14,25 @@ cloudinary.config({
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await User.find();
+
+    const allUsers = users.map((user) => {
+      return {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar,
+        posts: user.posts,
+        about: user.about,
+        role: user.role,
+        createdAt: user.createdAt,
+      };
+    })
+
     res.status(200).json({
       status: "success",
       results: users.length,
       data: {
-        users,
+        allUsers,
       },
     });
   } catch (error) {
@@ -28,6 +42,11 @@ exports.getAllUsers = async (req, res) => {
     });
   }
 }
+
+// delete any user by admin
+// exports.deleteAnyUser = async (req, res) => {
+
+// }
 
 
 // update a user
@@ -124,6 +143,7 @@ exports.updateUser = async (req, res) => {
         _id: existingUser._id,
         name: existingUser.name,
         email: existingUser.email,
+        role: existingUser.role,
       };
       if (existingUser.avatar) {
         registeredUser.avatar = existingUser.avatar;
