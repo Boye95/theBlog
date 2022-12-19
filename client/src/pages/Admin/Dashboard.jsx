@@ -40,7 +40,7 @@ export default function Dashboard () {
   console.log(users)
 
   return (
-    <div className='w-4/6 mx-auto my-5'>
+    <div className='w-4/6 mx-auto my-5 sm:w-[90%]'>
       {/* total number of regsitered users */}
       <div
         className='border-2 border-violet-700 shadow-[5px_5px_0px_0px_rgba(109,40,217)]
@@ -71,18 +71,44 @@ export default function Dashboard () {
         <div className='flex flex-col'>
           {users?.map(user => (
             <div
-              className='flex justify-between items-center my-2 border-2 border-violet-700 shadow-[5px_5px_0px_0px_rgba(109,40,217)]
+              className='flex justify-between items-center gap-3 my-2 border-2 border-violet-700 shadow-[5px_5px_0px_0px_rgba(109,40,217)]
             font-nylarge text-center p-5 rounded-lg'
             >
-              <div className=''>
-                <div className='font-sfprod'>
-                  <h1 className=''>{user.name}</h1>
+              <div className='w-full'>
+                <div className='flex justify-between sm:flex-col sm:items-start sm:gap-3'>
+                  <div className='flex items-center gap-2'>
+                    <div
+                      className='h-8 w-8 cursor-pointer rounded-sm border overflow-hidden border-violet-700 shadow-[5px_5px_0px_0px_rgba(109,40,217)] ring-1 ring-gray-600 ring-offset-2
+                   transition-shadow hover:ring-2 hover:ring-violet-400'
+                    >
+                      {user.avatar ? (
+                        <img src={user.avatar.url} alt='' className='w-full' />
+                      ) : (
+                        <img
+                          src='https://t3.ftcdn.net/jpg/01/18/01/98/360_F_118019822_6CKXP6rXmVhDOzbXZlLqEM2ya4HhYzSV.jpg'
+                          alt=''
+                          className='w-full'
+                        />
+                      )}
+                    </div>
+                    <h1 className=''>{user.name}</h1>
+                  </div>
                   <p className=''>{`Joined: ${moment(user.createdAt).format(
                     'lll'
                   )}`}</p>
                 </div>
-
-                <h1 className='text-[2rem] font-sfprod'>{user.role}</h1>
+                <div className='flex flex-col items-center gap-2 font-sfprotr'>
+                  <div className='w-2/6'>
+                    <p className='font-nylarge text-xl'>{user.posts.length}</p>
+                    <h1 className=''>Total Posts</h1>
+                  </div>
+                  <div className='4/6'>
+                    <p className=''>
+                      <h1 className='font-nymedium'>About</h1>
+                      {user?.about ? user?.about : 'No about'}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
