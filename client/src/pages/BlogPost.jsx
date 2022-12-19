@@ -16,6 +16,12 @@ import { Editor } from '@tinymce/tinymce-react'
 import DOMPurify from 'isomorphic-dompurify'
 
 import { AuthContext } from '../AuthContext/Context'
+import {
+  TwitterShareButton,
+  TwitterIcon,
+  FacebookShareButton,
+  FacebookIcon
+} from 'react-share'
 
 // axios and react query
 import { useMutation } from '@tanstack/react-query'
@@ -368,11 +374,7 @@ export default function BlogPost () {
                   <div className='flex gap-2 w-4/6 sm:w-full'>
                     <div className='w-12 h-12 rounded-3xl overflow-hidden'>
                       {authorAvatar ? (
-                        <img
-                          src={authorAvatar}
-                          alt=''
-                          className='w-full'
-                        />
+                        <img src={authorAvatar} alt='' className='w-full' />
                       ) : (
                         <img
                           src='https://t3.ftcdn.net/jpg/01/18/01/98/360_F_118019822_6CKXP6rXmVhDOzbXZlLqEM2ya4HhYzSV.jpg'
@@ -382,12 +384,14 @@ export default function BlogPost () {
                       )}
                     </div>
                     <div className=''>
-                      {userID === authorID ? (<Link to='/profile' className='font-sfproth'>
-                        {post?.authorInfo?.name?.toUpperCase()}
-                      </Link>) : (
+                      {userID === authorID ? (
+                        <Link to='/profile' className='font-sfproth'>
+                          {post?.authorInfo?.name?.toUpperCase()}
+                        </Link>
+                      ) : (
                         <div className='font-sfproth'>
-                        {post?.authorInfo?.name?.toUpperCase()}
-                      </div>
+                          {post?.authorInfo?.name?.toUpperCase()}
+                        </div>
                       )}
                       <div className='font-sfprotr flex justify-between gap-2 xl:text-sm'>
                         <div className='flex flex-col'>
@@ -404,23 +408,41 @@ export default function BlogPost () {
                     </div>
                   </div>
                   <div className='flex w-3/6 justify-end items-center gap-2 sm:w-full sm:[&>*]:w-3/6'>
-                    {userID === authorID && (<div
-                      className='border-2 rounded py-1 w-16 cursor-pointer ring-gray-700 transition-all hover:border-gray-400 hover:ring-1'
-                      onClick={() => setUpdateMode(true)}
-                    >
-                      <BiEdit className='w-8 h-6 mx-auto' />
-                    </div>)}
-                    {userID === authorID && (<div
-                      className='border-2 rounded py-1 w-16 cursor-pointer ring-gray-700 transition-all hover:border-gray-400 hover:ring-1'
-                      onClick={() => setWannaDelete(!wannaDelete)}
-                    >
-                      <AiOutlineDelete className='w-8 h-6 mx-auto' />
-                    </div>)}
-                    {userID !== authorID && (<div className='border-2 rounded py-1 w-16 cursor-pointer ring-gray-700 transition-all hover:border-gray-400 hover:ring-1'>
-                      <FaFacebookSquare className='w-8 h-6 mx-auto' />
-                    </div>)}
+                    {userID === authorID && (
+                      <div
+                        className='border-2 rounded py-1 w-16 cursor-pointer ring-gray-700 transition-all hover:border-gray-400 hover:ring-1'
+                        onClick={() => setUpdateMode(true)}
+                      >
+                        <BiEdit className='w-8 h-6 mx-auto' />
+                      </div>
+                    )}
+                    {userID === authorID && (
+                      <div
+                        className='border-2 rounded py-1 w-16 cursor-pointer ring-gray-700 transition-all hover:border-gray-400 hover:ring-1'
+                        onClick={() => setWannaDelete(!wannaDelete)}
+                      >
+                        <AiOutlineDelete className='w-8 h-6 mx-auto' />
+                      </div>
+                    )}
+                    {userID !== authorID && (
+                      <div className='border-2 rounded py-1 w-16 cursor-pointer ring-gray-700 transition-all hover:border-gray-400 hover:ring-1'>
+                        <FacebookShareButton
+                          title={post?.title}
+                          url={window.location.href}
+                          className='w-full h-full flex justify-center items-center'
+                        >
+                          <FaFacebookSquare className='w-8 h-6 mx-auto' />
+                        </FacebookShareButton>
+                      </div>
+                    )}
                     <div className='border-2 rounded py-1 w-16 cursor-pointer ring-gray-700 transition-all hover:border-gray-400 hover:ring-1'>
-                      <FaTwitterSquare className='w-8 h-6 mx-auto' />
+                      <TwitterShareButton
+                        title={post?.title}
+                        url={window.location.href}
+                        className='w-full h-full flex justify-center items-center'
+                      >
+                        <FaTwitterSquare className='w-8 h-6 mx-auto' />
+                      </TwitterShareButton>
                     </div>
                   </div>
                 </div>
@@ -434,15 +456,31 @@ export default function BlogPost () {
 
                 <div className=''>
                   <div className='mt-8 flex w-full items-center gap-2 sm:flex-col'>
-                    <div className='border-2 rounded py-2 w-3/6 flex justify-center items-center font-sfprotr cursor-pointer
-                     ring-gray-700 transition-all hover:border-gray-400 hover:ring-1 sm:w-full'>
-                      <FaFacebookSquare className='w-8 h-6' />
-                      <p className='sm:text-[13px]'>Share on Facebook</p>
+                    <div
+                      className='border-2 rounded py-2 w-3/6 flex justify-center items-center font-sfprotr cursor-pointer
+                     ring-gray-700 transition-all hover:border-gray-400 hover:ring-1 sm:w-full'
+                    >
+                      <FacebookShareButton
+                        title={post?.title}
+                        url={window.location.href}
+                        className='w-fit h-full flex mx-auto justify-center items-center'
+                      >
+                        <FaFacebookSquare className='w-8 h-6 mx-auto' />
+                        <p className='sm:text-[13px]'>Share on Facebook</p>
+                      </FacebookShareButton>
                     </div>
-                    <div className='border-2 rounded py-2 w-3/6 flex justify-center items-center font-sfprotr cursor-pointer
-                     ring-gray-700 transition-all hover:border-gray-400 hover:ring-1 sm:w-full'>
-                      <FaTwitterSquare className='w-8 h-6' />
-                      <p className='sm:text-[14px]'>Share on Twitter</p>
+                    <div
+                      className='border-2 rounded py-2 w-3/6 flex justify-center items-center font-sfprotr cursor-pointer
+                     ring-gray-700 transition-all hover:border-gray-400 hover:ring-1 sm:w-full'
+                    >
+                      <TwitterShareButton
+                        title={post?.title}
+                        url={window.location.href}
+                        className='w-fit h-full flex mx-auto justify-center items-center'
+                      >
+                        <FaTwitterSquare className='w-8 h-6 mx-auto' />
+                        <p className='sm:text-[13px]'>Share on Twitter</p>
+                      </TwitterShareButton>
                     </div>
                   </div>
 
@@ -465,7 +503,11 @@ export default function BlogPost () {
                     <div className='mt-4 flex items-center gap-4 sm:text-sm'>
                       <div className='w-[5rem] rounded-full overflow-hidden'>
                         {authorAvatar ? (
-                        <img src={authorAvatar } alt='' className='w-full h-full' />
+                          <img
+                            src={authorAvatar}
+                            alt=''
+                            className='w-full h-full'
+                          />
                         ) : null}
                       </div>
                       <p className='font-nymedium'>
