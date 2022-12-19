@@ -17,6 +17,7 @@ import { AuthContext } from './authcontext/Context'
 
 function App () {
   const { user } = useContext(AuthContext)
+  const admin = user?.data?.registeredUser?.role === 'admin'
 
   return (
     <>
@@ -26,7 +27,7 @@ function App () {
           <Route path='/blogpost/:postID' element={<BlogPost />} />
           <Route path='/tags' element={<Tags />} />
           <Route path='/tags/:tag' element={<PostsByTag />} />
-          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/dashboard' element={admin && <Dashboard />} />
         </Route>
         <Route
           path='/login'

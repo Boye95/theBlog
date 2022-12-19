@@ -73,7 +73,7 @@ export default function Publish () {
     isSuccess
   } = useMutation(createPost, {
     onSuccess: () => {
-      console.log('success')
+      // console.log('success')
       navigate('/')
       window.location.reload()
     },
@@ -93,7 +93,7 @@ export default function Publish () {
     if (user) {
       mutate(post)
     }
-    console.log(post)
+    // console.log(post)
   }
 
   return (

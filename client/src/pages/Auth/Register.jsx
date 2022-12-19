@@ -47,7 +47,7 @@ export default function Register () {
     <div className='w-screen h-screen flex items-center justify-center sm:h-auto sm:w-full'>
       <div className='flex w-[65%] h-[80%] rounded-lg xl:w-[70%] lg:w-[80%]
       shadow-[5px_5px_rgba(0,_0,_0,_0.4),_10px_10px_rgba(0,_0,_0,_0.3),_15px_15px_rgba(0,_0,_0,_0.2),_20px_20px_rgba(0,_0,_0,_0.1),_25px_25px_rgba(0,_0,_0,_0.05)]
-      sm:shadow-none '
+      sm:shadow-none border-2 border-black sm:border-none'
       >
         <div className='rounded-lg w-2/6 bg-gradient-to-b from-orange-300 to-orange-700 flex justify-center items-center ham:hidden'>
           <img src={typew} alt='' className='h-3/5 w-auto' />

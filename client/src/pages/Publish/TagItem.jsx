@@ -22,8 +22,8 @@ export default function TagItem ({ tag, tagState, setTagState }) {
       <label
         htmlFor={tag._id}
         className={`flex items-center gap-2 cursor-pointer
-        border-2 border-gray-700 ring-gray-700 ring-offset-2 ring-2 
-                  rounded-md px-2 py-1 my-2 mx-2 transition-all hover:text-white
+        border-2 border-violet-700 shadow-[5px_5px_0px_0px_rgba(109,40,217)]
+                  text-center p-5 rounded-lg px-2 py-1 my-2 mx-2 transition-all hover:text-white
                   hover:bg-gray-700 hover:border-gray-800 
                   hover:ring-gray-800
                   ${tagSelected ? 'text-white bg-gray-700 border-gray-800 ring-offset-1' : ''}`}

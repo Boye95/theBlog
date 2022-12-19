@@ -13,6 +13,8 @@ export default function Header () {
   const { user, dispatch } = useContext(AuthContext)
   // const username = user?.data?.registeredUser?.name
   const { signout } = useSignout()
+  // admin check
+  const admin = user?.data?.registeredUser?.role === 'admin'
 
   // slice user first name out if they have one
   const firstName = user?.data?.registeredUser?.name.split(' ')[0]
@@ -81,6 +83,16 @@ export default function Header () {
           >
             Blog
           </NavLink>
+
+          {admin && (
+            <NavLink
+              to='/dashboard'
+              className='navlink'
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              Dashboard
+            </NavLink>
+          )}
           <NavLink
             to='/tags'
             className='navlink'
