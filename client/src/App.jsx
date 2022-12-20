@@ -13,7 +13,7 @@ import {
   Dashboard
 } from './pages'
 
-import AuthContext from './AuthContext/Context.jsx'
+import AuthContext from './AuthContext/context'
 
 function App () {
   const { user } = useContext(AuthContext)
