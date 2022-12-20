@@ -3,7 +3,7 @@ import { useState, useContext, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { FiMenu } from 'react-icons/fi'
 import { GrClose } from 'react-icons/gr'
-import { AuthContext } from '../authcontext/Context'
+import AuthContext from '../AuthContext/Context'
 import { useSignout } from '../hooks/useSignout'
 import decode from 'jwt-decode'
 

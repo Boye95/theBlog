@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import { AuthContext } from '../authcontext/Context'
+import AuthContext from '../authcontext/Context'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { useMutation } from '@tanstack/react-query'

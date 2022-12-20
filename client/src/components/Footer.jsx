@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import Marquee from 'react-fast-marquee'
-import { AuthContext } from '../authcontext/Context'
+import AuthContext from '../AuthContext/Context'
 
 let Tick = () => {
   return (

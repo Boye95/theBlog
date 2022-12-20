@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import { AuthContext } from '../../AuthContext/Context'
+import AuthContext from '../../AuthContext/Context'
 import Post from '../../components/Post'
 
 const PersonalBlog = () => {

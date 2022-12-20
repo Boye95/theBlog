@@ -6,7 +6,7 @@ import { BiArrowBack } from 'react-icons/bi'
 import { CgProfile } from 'react-icons/cg'
 import { GoBook } from 'react-icons/go'
 
-import { AuthContext } from '../../AuthContext/Context'
+import AuthContext from '../../AuthContext/Context'
 import { useSignout } from '../../hooks/useSignout'
 
 // import profile components

@@ -7,7 +7,7 @@ const INITIAL_STATE = {
     isError: false,
 }
 
-export default AuthContext = createContext(INITIAL_STATE);
+const AuthContext = createContext(INITIAL_STATE);
 
 export const AuthContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(authReducer, INITIAL_STATE);
@@ -27,3 +27,5 @@ export const AuthContextProvider = ({ children }) => {
         </AuthContext.Provider>
     )
 }
+
+export default AuthContext
