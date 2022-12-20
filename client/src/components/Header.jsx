@@ -10,8 +10,7 @@ import decode from 'jwt-decode'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Header () {
-  const { user, dispatch } = useContext(AuthContext)
-  // const username = user?.data?.registeredUser?.name
+  const { user } = useContext(AuthContext)
   const { signout } = useSignout()
   // admin check
   const admin = user?.data?.registeredUser?.role === 'admin'
