@@ -28,7 +28,7 @@ mongoose
     app.listen(process.env.PORT, () => {
       console.log(
         "Mongodb is connected && Server is running on port",
-        process.env.PORT
+        process.env.PORT || 4000
       );
     });
   })
