@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import Marquee from 'react-fast-marquee'
-import AuthContext from '../AuthContext/Context'
+// import AuthContext from '../AuthContext/Context'
 
-let Tick = () => {
+const Tick = () => {
   return (
     <>
       <Marquee speed={70} gradient={false}>
@@ -37,15 +37,16 @@ let Tick = () => {
 }
 
 export default function Footer () {
-  const { user } = useContext(AuthContext)
-  const username = user?.data?.registeredUser?.name
+  // const { user } = useContext(AuthContext)
+  // const username = user?.data?.registeredUser?.name
 
   return (
     <footer className='w-full bg-black text-white h-auto pb-4 overflow-hidden'>
       <Tick />
       <div className='mt-24 flex flex-col items-center gap-6 sm:mt-16'>
         <div className='font-zeit text-3xl sm:text-2xl'>
-          {user ? username.toUpperCase() : 'ÓNYÉ ŃKÚZÍ'}
+          {/* {user ? username.toUpperCase() : 'ÓNYÉ ŃKÚZÍ'} */}
+          ÓNYÉ ŃKÚZÍ
         </div>
         <p className='w-2/6 text-center font-nysmall text-sm ham:w-4/6'>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu velit
