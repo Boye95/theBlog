@@ -27,9 +27,10 @@ import {
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
-const ConfirmDeletePost = ({ path, deleteState }) => {
-  const { user } = useContext(AuthContext)
-
+const ConfirmDeletePost = ({ path, deleteState, user }) => {
+  // const { user } = useContext(AuthContext)
+  console.log(user)
+  console.log(path)
   const token = user?.data?.token
   // console.log(token)
   const deletePost = async () => {
@@ -103,7 +104,7 @@ const ConfirmDeletePost = ({ path, deleteState }) => {
 }
 
 export default function BlogPost () {
-  const { user, isAuth, dispatch } = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
   const token = user?.data?.token
   const userID = user?.data?.registeredUser?._id
 
@@ -347,7 +348,7 @@ export default function BlogPost () {
         <>
           {wannaDelete && (
             <div className='absolute p-3 h-screen w-screen flex justify-center items-center z-20'>
-              <ConfirmDeletePost path={path} deleteState={setWannaDelete} />
+              <ConfirmDeletePost path={path} deleteState={setWannaDelete} user={user} />
             </div>
           )}
           {isLoading ? (

@@ -9,8 +9,6 @@ cloudinary.config({
   secure: true,
 });
 
-
-
 // Get all blog posts
 exports.getAllBlogPosts = async (req, res) => {
   tagName = req.query.tags;
@@ -110,9 +108,6 @@ exports.createBlogPost = async (req, res) => {
       });
     }
 
-    
-
-
     // add author info to req.body
     const userInfo = req.userId;
     const newPost = await BlogPost.create({
@@ -133,7 +128,6 @@ exports.createBlogPost = async (req, res) => {
     author.posts.push(newPost._id);
     await author.save();
 
-
     res.status(201).json({
       status: "success",
       data: {
@@ -153,8 +147,12 @@ exports.deleteBlogPost = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     return res.status(400).json({ message: `Can't delete non-existent post` });
   }
+  console.log(req.params.id);
+  console.log(req.userId);
 
   if (req.userId === req.params.id) {
+    console.log(req.userId);
+
     try {
       const getBlog = await BlogPost.findById(req.params.id);
       await cloudinary.uploader.destroy(getBlog.displayImage.public_id);
@@ -236,6 +234,5 @@ exports.updateBlogPost = async (req, res) => {
   }
 };
 
-
 // admin controllers
-// 
+//
