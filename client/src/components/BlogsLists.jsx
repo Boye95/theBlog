@@ -12,7 +12,7 @@ const fetchPosts = async () => {
 export default function BlogsLists () {
   const { data, isLoading, error } = useQuery(['posts'], fetchPosts)
   const posts = data?.data?.posts
-  // console.log(posts)
+  console.log(posts)
   return (
     <div className='w-3/5 mx-auto mt-9 xl:w-4/5 lg:w-full'>
       {isLoading && <p>Loading...</p>}

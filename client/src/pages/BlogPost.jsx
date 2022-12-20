@@ -15,7 +15,7 @@ import { Editor } from '@tinymce/tinymce-react'
 
 import DOMPurify from 'isomorphic-dompurify'
 
-import { AuthContext } from '../AuthContext/Context'
+import AuthContext from '../AuthContext/Context'
 import {
   TwitterShareButton,
   TwitterIcon,
@@ -348,7 +348,11 @@ export default function BlogPost () {
         <>
           {wannaDelete && (
             <div className='absolute p-3 h-screen w-screen flex justify-center items-center z-20'>
-              <ConfirmDeletePost path={path} deleteState={setWannaDelete} user={user} />
+              <ConfirmDeletePost
+                path={path}
+                deleteState={setWannaDelete}
+                user={user}
+              />
             </div>
           )}
           {isLoading ? (

@@ -147,11 +147,9 @@ exports.deleteBlogPost = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     return res.status(400).json({ message: `Can't delete non-existent post` });
   }
-  console.log(req.params.id);
-  console.log(req.userId);
 
-  if (req.userId === req.params.id) {
-    console.log(req.userId);
+  // if (req.userId === req.params.id) {
+  //   console.log(req.userId);
 
     try {
       const getBlog = await BlogPost.findById(req.params.id);
@@ -169,12 +167,12 @@ exports.deleteBlogPost = async (req, res) => {
         message: error,
       });
     }
-  } else {
-    res.status(400).json({
-      status: "fail",
-      message: "You can't delete a post you didn't create",
-    });
-  }
+  // } else {
+  //   res.status(400).json({
+  //     status: "fail",
+  //     message: "You can't delete a post you didn't create",
+  //   });
+  // }
 };
 
 // Update a blog post
@@ -185,11 +183,11 @@ exports.updateBlogPost = async (req, res) => {
     return res.status(400).json({ message: `Can't update non-existent post` });
   }
 
-  if (req.userId === req.params.id) {
+  // if (req.userId === req.params.id) {
     try {
       const getBlog = await BlogPost.findById(req.params.id);
       const postPID = getBlog?.displayImage?.public_id;
-      console.log(postPID);
+      // console.log(postPID);
       if (displayImage) {
         await cloudinary.uploader.destroy(postPID);
       }
@@ -226,12 +224,12 @@ exports.updateBlogPost = async (req, res) => {
         message: error,
       });
     }
-  } else {
-    res.status(400).json({
-      status: "fail",
-      message: "You can't update a post you didn't create",
-    });
-  }
+  // } else {
+  //   res.status(400).json({
+  //     status: "fail",
+  //     message: "You can't update a post you didn't create",
+  //   });
+  // }
 };
 
 // admin controllers
