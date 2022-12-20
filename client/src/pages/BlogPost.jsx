@@ -15,7 +15,7 @@ import { Editor } from '@tinymce/tinymce-react'
 
 import DOMPurify from 'isomorphic-dompurify'
 
-import AuthContext from '../AuthContext/Context'
+import AuthContext from '../AuthContext/Context.jsx'
 import {
   TwitterShareButton,
   TwitterIcon,
