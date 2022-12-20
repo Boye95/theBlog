@@ -28,7 +28,8 @@ import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
 const ConfirmDeletePost = ({ path, deleteState }) => {
-  const { user, isAuth, dispatch } = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
+
   const token = user?.data?.token
   // console.log(token)
   const deletePost = async () => {
