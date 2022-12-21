@@ -11,7 +11,7 @@ const PersonalBlog = () => {
 
   const fetchByAuthor = async () => {
     const post = await axios.get(
-      `http://localhost:4000/api/blogposts/author/${authorID}`
+      `https://theblogxapi.onrender.com/api/blogposts/author/${authorID}`
     )
     return post.data
   }

@@ -10,7 +10,7 @@ export default function Dashboard () {
 
   // fetch all users from db
   const fetchUsers = async () => {
-    const res = await axios.get('http://localhost:4000/api/modifyuser', {
+    const res = await axios.get('https://theblogxapi.onrender.com/api/modifyuser', {
       headers: {
         Authorization: `Bearer ${token}`
       }

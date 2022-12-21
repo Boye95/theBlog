@@ -13,7 +13,7 @@ export const useUpdateUser = () => {
   // patch user with axios
   const updateUser = async data => {
     let updater = await axios.patch(
-      `http://localhost:4000/api/modifyuser/${userId}`,
+      `https://theblogxapi.onrender.com/api/modifyuser/${userId}`,
       data,
       {
         headers: {

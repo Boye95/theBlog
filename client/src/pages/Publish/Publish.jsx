@@ -15,7 +15,7 @@ import { useMutation, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 const getTags = async () => {
-  const { data } = await axios.get('http://127.0.0.1:4000/api/tags')
+  const { data } = await axios.get('https://theblogxapi.onrender.com/api/tags')
   return data
 }
 export default function Publish () {

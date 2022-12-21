@@ -14,7 +14,7 @@ export const useDeleteUser = () => {
 
   const deleteUser = async () => {
     const { data } = await axios.delete(
-      `http://127.0.0.1:4000/api/modifyuser/${userId}`,
+      `https://theblogxapi.onrender.com/api/modifyuser/${userId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`

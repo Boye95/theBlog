@@ -6,7 +6,7 @@ import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
 const registerUser = async user => {
-  const res = await axios.post('http://127.0.0.1:4000/api/users/register', user)
+  const res = await axios.post('https://theblogxapi.onrender.com/api/users/register', user)
   return res.data
 }
 

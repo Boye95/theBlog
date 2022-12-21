@@ -35,7 +35,7 @@ const ConfirmDeletePost = ({ path, deleteState, user }) => {
   // console.log(token)
   const deletePost = async () => {
     const del = await axios.delete(
-      `http://localhost:4000/api/blogposts/${path}`,
+      `https://theblogxapi.onrender.com/api/blogposts/${path}`,
       {
         headers: {
           Authorization: `Bearer ${token}`

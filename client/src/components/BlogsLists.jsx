@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query'
 import Post from './Post'
 
 const fetchPosts = async () => {
-  const res = await fetch('http://localhost:4000/api/blogposts')
+  const res = await fetch('https://theblogxapi.onrender.com/api/blogposts')
   return res.json()
 }
 
