@@ -52,7 +52,7 @@ export default function Register () {
         <div className='rounded-lg w-2/6 bg-gradient-to-b from-orange-300 to-orange-700 flex justify-center items-center ham:hidden'>
           <img src={typew} alt='' className='h-3/5 w-auto' />
         </div>
-        <div className='w-4/6 ham:w-full'>
+        <div className='w-4/6 flex items-center justify-center ham:w-full'>
           <div id='signup' className='bg-white flex flex-col items-center gap-5'>
             <h2 className='font-nylarge font-bold text-gray-800 text-2xl text-center mx-auto sm:text-xl sm:mt-9'>
               Register and Get your Blog On!

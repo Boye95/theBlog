@@ -40,7 +40,7 @@ export default function Login () {
         <div className='rounded-lg w-2/6 bg-gradient-to-b from-gray-300 to-black  flex justify-center items-center ham:hidden'>
           <img src={type} alt='' className='h-3/5 w-auto' />
         </div>
-        <div className='w-4/6 ham:w-full'>
+        <div className='w-4/6 flex items-center justify-center ham:w-full'>
           <div id='signin' className='bg-white flex flex-col items-center gap-5'>
             <h2 className='font-nylarge font-bold text-gray-800 text-3xl text-center mx-auto sm:text-2xl sm:mt-9'>
               It's nice to have you back!

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-// import { AuthContext } from './context/Context'
+import { AuthContext } from './context/Context'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Header, Layout } from './components'
 import {
@@ -15,9 +15,7 @@ import {
 } from './pages'
 
 function App () {
-  // get user from localhost
-  const user = JSON.parse(localStorage.getItem('user'))
-  // const { user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
   const admin = user?.data?.registeredUser?.role === 'admin'
 
   return (
