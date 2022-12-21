@@ -25,11 +25,13 @@ export default function Header () {
     setShowMenu(!showMenu)
 
     // Disables Background Scrolling whilst the SideDrawer/Modal is open
-    if (typeof window != 'undefined' && window.document) {
-      document.body.style.overflow = 'hidden'
-    }
+    // if (typeof window != 'undefined' && window.document) {
+    //   document.body.style.overflow = 'hidden'
+    //   console.log("hiddedn")
+    // }
     if (showMenu) {
       document.body.style.overflow = 'auto'
+      // console.log("not hidden")
     }
   }
 
