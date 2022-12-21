@@ -6,7 +6,7 @@ import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios'
 
 const fetchPostsByTag = async tag => {
-  const res = await axios.get(`http://localhost:4000/api/blogposts?tags=${tag}`)
+  const res = await axios.get(`https://theblogxapi.onrender.com/api/blogposts?tags=${tag}`)
   return res.data
 }
 

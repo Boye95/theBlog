@@ -29,8 +29,8 @@ import axios from 'axios'
 
 const ConfirmDeletePost = ({ path, deleteState, user }) => {
   // const { user } = useContext(AuthContext)
-  console.log(user)
-  console.log(path)
+  // console.log(user)
+  // console.log(path)
   const token = user?.data?.token
   // console.log(token)
   const deletePost = async () => {
@@ -125,7 +125,7 @@ export default function BlogPost () {
   const path = location.pathname.split('/')[2]
 
   const fetchSinglePost = async () => {
-    const res = await fetch(`http://localhost:4000/api/blogposts/${path}`)
+    const res = await fetch(`https://theblogxapi.onrender.com/api/blogposts/${path}`)
     return res.json()
   }
 
