@@ -172,7 +172,7 @@ export default function BlogPost () {
 
   const updatePost = async data => {
     const res = await axios.patch(
-      `http://localhost:4000/api/blogposts/${path}`,
+      `https://theblogxapi.onrender.com/api/blogposts/${path}`,
       data,
       {
         headers: {
