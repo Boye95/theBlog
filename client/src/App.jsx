@@ -1,4 +1,5 @@
-import { useContext } from 'react'
+import React, { useContext } from 'react'
+import AuthContext from './AuthContext/Context'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Header, Layout } from './components'
 import {
@@ -13,7 +14,6 @@ import {
   Dashboard
 } from './pages'
 
-import AuthContext from './AuthContext/Context'
 
 function App () {
   const { user } = useContext(AuthContext)

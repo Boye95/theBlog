@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react'
+import AuthContext from '../AuthContext/Context'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import moment from 'moment'
@@ -15,7 +16,6 @@ import { Editor } from '@tinymce/tinymce-react'
 
 import DOMPurify from 'isomorphic-dompurify'
 
-import AuthContext from '../AuthContext/Context'
 import {
   TwitterShareButton,
   TwitterIcon,
