@@ -146,7 +146,7 @@ const EditProfile = ({ user, dispatch }) => {
   }
 
   return (
-    <div className=''>
+    <div className='mb-8'>
       {showDelete && <DeleteDialogue setShowDelete={setShowDelete} />}
       <div className='flex justify-between items-center w-[90%] mx-auto md:w-[95%]'>
         <h2
