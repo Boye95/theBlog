@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import AuthContext from '../AuthContext/Context'
+import { AuthContext } from '../context/Context'
 
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
@@ -30,7 +30,6 @@ export const useUpdateUser = () => {
     isSuccess
   } = useMutation(updateUser)
 
-  
   const updateUserHandler = updated => {
     mutate(updated, {
       onSuccess: data => {
@@ -41,7 +40,7 @@ export const useUpdateUser = () => {
       onError: error => {
         dispatch({ type: 'UPDATE_ERROR' })
         if (error.response.data.message) {
-            setError(error.response.data.message.message)
+          setError(error.response.data.message.message)
         }
         setError(error.response.data.errors.msg)
       }

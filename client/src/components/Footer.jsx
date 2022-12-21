@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import Marquee from 'react-fast-marquee'
-// import AuthContext from '../AuthContext/Context'
+// import { AuthContext } from '../context/Context'
 // eror
 
 const Tick = () => {

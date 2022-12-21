@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import AuthContext from './AuthContext/Context'
+// import { AuthContext } from './context/Context'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Header, Layout } from './components'
 import {
@@ -14,9 +14,10 @@ import {
   Dashboard
 } from './pages'
 
-
 function App () {
-  const { user } = useContext(AuthContext)
+  // get user from localhost
+  const user = JSON.parse(localStorage.getItem('user'))
+  // const { user } = useContext(AuthContext)
   const admin = user?.data?.registeredUser?.role === 'admin'
 
   return (
@@ -27,7 +28,10 @@ function App () {
           <Route path='/blogpost/:postID' element={<BlogPost />} />
           <Route path='/tags' element={<Tags />} />
           <Route path='/tags/:tag' element={<PostsByTag />} />
-          <Route path='/dashboard' element={admin && <Dashboard />} />
+          <Route
+            path='/dashboard'
+            element={admin ? <Dashboard /> : <Navigate to='/' />}
+          />
         </Route>
         <Route
           path='/login'

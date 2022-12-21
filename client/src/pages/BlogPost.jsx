@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import AuthContext from '../AuthContext/Context'
+import { AuthContext } from '../context/Context'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import moment from 'moment'
@@ -348,7 +348,11 @@ export default function BlogPost () {
         <>
           {wannaDelete && (
             <div className='absolute p-3 h-screen w-screen flex justify-center items-center z-20'>
-              <ConfirmDeletePost path={path} deleteState={setWannaDelete} user={user} />
+              <ConfirmDeletePost
+                path={path}
+                deleteState={setWannaDelete}
+                user={user}
+              />
             </div>
           )}
           {isLoading ? (

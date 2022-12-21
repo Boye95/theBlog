@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import './index.css'
 import { GoogleOAuthProvider } from '@react-oauth/google'
-import { AuthContextProvider } from './authcontext/Context'
+import { AuthContextProvider } from './context/Context'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 

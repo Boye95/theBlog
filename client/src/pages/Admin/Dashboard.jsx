@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import AuthContext from '../../authcontext/Context'
+import { AuthContext } from '../../context/Context'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import moment from 'moment'

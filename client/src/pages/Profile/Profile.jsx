@@ -6,7 +6,7 @@ import { BiArrowBack } from 'react-icons/bi'
 import { CgProfile } from 'react-icons/cg'
 import { GoBook } from 'react-icons/go'
 
-import AuthContext from '../../AuthContext/Context'
+import { AuthContext } from '../../context/Context'
 import { useSignout } from '../../hooks/useSignout'
 
 // import profile components
@@ -18,7 +18,6 @@ const Profile = () => {
   const { user } = useContext(AuthContext)
   const avatar = user?.data?.registeredUser?.avatar
   const { signout } = useSignout()
-
 
   const [showAction, setShowAction] = useState(false)
   const [active, setActive] = useState('profile')
@@ -70,9 +69,10 @@ const Profile = () => {
                   >
                     Profile
                   </Link>
-                  <button 
-                  onClick={signout}
-                  className='py-1 px-3 transition-all hover:opacity-40'>
+                  <button
+                    onClick={signout}
+                    className='py-1 px-3 transition-all hover:opacity-40'
+                  >
                     Logout
                   </button>
                 </div>

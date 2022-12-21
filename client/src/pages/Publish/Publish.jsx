@@ -4,7 +4,7 @@ import { BiArrowBack } from 'react-icons/bi'
 import { IoIosAddCircleOutline } from 'react-icons/io'
 import { Editor } from '@tinymce/tinymce-react'
 
-import AuthContext from '../../AuthContext/Context'
+import { AuthContext } from '../../context/Context'
 import { useSignout } from '../../hooks/useSignout'
 
 // import TagItem component
