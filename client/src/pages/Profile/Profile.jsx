@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 // import avatar from '../../assets/avatar.png'
 import { Link } from 'react-router-dom'
 import { FaUserCog } from 'react-icons/fa'
@@ -24,6 +24,11 @@ const Profile = () => {
 
   // slice user first name out if they have one
   const firstName = user?.data?.registeredUser?.name.split(' ')[0]
+
+  // set body overflow to to visible when page loads
+  useEffect(() => {
+    document.body.style.overflow = 'auto'
+  }, [])
 
   return (
     <div className='flex h-auto'>
@@ -62,7 +67,7 @@ const Profile = () => {
                 )}
               </div>
               {showAction && (
-                <div className='absolute mt-1 -right-1 bg-black text-white rounded-sm shadow-lg font-sfprod transition-shadow'>
+                <div className='z-50 absolute mt-1 -right-1 bg-black text-white rounded-sm shadow-lg font-sfprod transition-shadow'>
                   <Link
                     to='/profile'
                     className='py-2 px-4 transition-all hover:opacity-40'

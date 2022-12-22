@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { BiArrowBack } from 'react-icons/bi'
 import { IoIosAddCircleOutline } from 'react-icons/io'
@@ -95,6 +95,11 @@ export default function Publish () {
     }
     // console.log(post)
   }
+
+  // set body overflow to auto when page loads
+  useEffect(() => {
+    document.body.style.overflow = 'auto'
+  }, [])
 
   return (
     <div className='mt-5'>

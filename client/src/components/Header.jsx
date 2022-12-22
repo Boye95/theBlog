@@ -39,9 +39,12 @@ export default function Header () {
   useEffect(() => {
     if (showMenu) {
       document.body.style.overflow = 'hidden'
-      // console.log('hidden')
-    } else {
-      document.body.style.overflow = 'unset'
+      console.log('hidden')
+    } 
+    if (!showMenu) {
+      document.body.style.overflow = 'visible'
+      console.log(showMenu)
+      console.log('not hidden')
     }
   }, [showMenu])
 
