@@ -201,12 +201,15 @@ exports.updateBlogPost = async (req, res) => {
       title,
       subtitle,
       body,
-      displayImage: {
-        url: result.secure_url,
-        public_id: result.public_id,
-      },
       tags,
     };
+
+    if (displayImage) {
+      updatedPost.displayImage = {
+        url: result.secure_url,
+        public_id: result.public_id,
+      };
+    }
     const post = await BlogPost.findByIdAndUpdate(req.params.id, updatedPost, {
       new: true,
       runValidators: true,
