@@ -225,10 +225,10 @@ export default function BlogPost () {
   return (
     <div className='relative'>
       {updateMode ? (
-        <div className='h-auto mt-[1rem] mb-[5rem] relative'>
+        <div className='max-w-[1050px] mx-auto h-auto mt-[1rem] mb-[5rem] sm:w-full relative'>
           <div
-            className='z-10 bg-white shadow-sm flex justify-between w-full p-3
-          font-nysmall'
+            className='w-[80%] mx-auto z-10 bg-white shadow-sm flex justify-between p-3
+          font-nysmall ham:w-[95%]'
           >
             <button
               className='border-2 border-violet-700 shadow-[5px_5px_0px_0px_rgba(109,40,217)]
@@ -257,7 +257,7 @@ export default function BlogPost () {
             onSubmit={handleUpdate}
           >
             {displayImage ? (
-              <div className='h-[30rem] w-full rounded mx-auto my-2 md:h-[15rem]'>
+              <div className='h-[30rem] w-full max-w-[1050px] rounded mx-auto my-2 md:h-[15rem]'>
                 <img
                   src={displayImage}
                   alt='blog post display'

@@ -17,7 +17,7 @@ export default function Tags () {
   const taglist = data?.data?.tags
 
   return (
-    <div className='flex flex-col justify-center'>
+    <div className='max-w-[80%] mx-auto mt-4 flex flex-col justify-center sm:max-w-full'>
       <div className='flex flex-wrap justify-center'>
         {data &&
           taglist.map(tag => {
