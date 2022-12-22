@@ -507,7 +507,7 @@ export default function BlogPost () {
 
                   <div className='mt-9 border-t-2 border-dotted border-black'>
                     <div className='mt-4 flex items-center gap-4 sm:text-sm'>
-                      <div className='w-[5rem] rounded-full overflow-hidden'>
+                      <div className='w-[4rem] rounded-full overflow-hidden'>
                         {authorAvatar ? (
                           <img
                             src={authorAvatar}

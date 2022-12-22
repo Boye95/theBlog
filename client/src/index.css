@@ -53,13 +53,14 @@
   background: #b1b0b0;
 }
 
-iframe {
-  @apply mx-auto;
-}
+
 
 
 /* vanilla css for footer item child elements */
 @layer components {
+  iframe {
+    @apply mx-auto max-w-full sm:aspect-video;
+  }
   .navlink {
     @apply h-full px-4 flex items-center hover:text-gray-400;
   }
