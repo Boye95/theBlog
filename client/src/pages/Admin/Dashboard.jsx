@@ -27,7 +27,7 @@ export default function Dashboard () {
 
   // get all posts
   const fetchPosts = async () => {
-    const res = await axios.get('http://localhost:4000/api/blogposts')
+    const res = await axios.get('https://theblogxapi.onrender.com/api/blogposts')
     return res.data
   }
 
@@ -37,7 +37,7 @@ export default function Dashboard () {
     error: postsError,
     isSuccess: postsSuccess
   } = useQuery(['allposts'], fetchPosts)
-  console.log(users)
+  // console.log(users)
 
   return (
     <div className='w-4/6 mx-auto my-5 sm:w-[90%]'>
@@ -103,10 +103,10 @@ export default function Dashboard () {
                     <h1 className=''>Total Posts</h1>
                   </div>
                   <div className='4/6'>
-                    <p className=''>
+                    <div className=''>
                       <h1 className='font-nymedium'>About</h1>
                       {user?.about ? user?.about : 'No about'}
-                    </p>
+                    </div>
                   </div>
                 </div>
               </div>

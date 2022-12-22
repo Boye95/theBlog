@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { AuthContext } from './context/Context'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Header, Layout } from './components'
@@ -15,6 +15,11 @@ import {
 } from './pages'
 
 function App () {
+  // scroll to the top on page load using useEffect
+  useEffect(() => {
+    window.scrollTo(0, 0, 'smooth')
+  }, [])
+
   const { user } = useContext(AuthContext)
   const admin = user?.data?.registeredUser?.role === 'admin'
 

@@ -29,11 +29,20 @@ export default function Header () {
     //   document.body.style.overflow = 'hidden'
     //   console.log("hiddedn")
     // }
-    if (showMenu) {
-      document.body.style.overflow = 'auto'
-      // console.log("not hidden")
-    }
+    // if (showMenu) {
+    //   document.body.style.overflow = 'auto'
+    //   // console.log("not hidden")
+    // }
   }
+
+  // useEffect for hamburger menu body overflow
+  useEffect(() => {
+    if (showMenu) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+  }, [showMenu])
 
   // set viewport width
   const [width, setWidth] = useState(window.innerWidth < 900)
@@ -246,6 +255,7 @@ export default function Header () {
               to='/dashboard'
               className='navlinks'
               style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              onClick={handleShowMenu}
             >
               Dashboard
             </NavLink>
