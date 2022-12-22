@@ -39,8 +39,9 @@ export default function Header () {
   useEffect(() => {
     if (showMenu) {
       document.body.style.overflow = 'hidden'
+      // console.log('hidden')
     } else {
-      document.body.style.overflow = 'auto'
+      document.body.style.overflow = 'unset'
     }
   }, [showMenu])
 
@@ -196,7 +197,7 @@ export default function Header () {
         transition={{ ease: 'easeOut', duration: 0.1 }}
         className={
           showMenu
-            ? 'z-10 flex flex-col absolute top-0 right-0 pt-5 bg-gray-50 h-screen w-full rounded shadow-2xl overflow-hidden'
+            ? 'z-10 flex flex-col fixed top-0 right-0 pt-5 bg-gray-50 h-screen w-full rounded shadow-2xl overflow-hidden'
             : 'hidden'
         }
       >
@@ -210,6 +211,7 @@ export default function Header () {
               to='/profile'
               className='relative'
               style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              onClick={handleShowMenu}
             >
               <span className='flex h-3 w-3 absolute -right-2 -top-2'>
                 <span className='animate-ping absolute inline-flex h-3 w-3 rounded-full bg-green-300 opacity-75'></span>
