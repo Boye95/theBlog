@@ -151,22 +151,22 @@ exports.deleteBlogPost = async (req, res) => {
   // if (req.userId === req.params.id) {
   //   console.log(req.userId);
 
-    try {
-      const getBlog = await BlogPost.findById(req.params.id);
-      await cloudinary.uploader.destroy(getBlog.displayImage.public_id);
-      const post = await BlogPost.findByIdAndDelete(req.params.id);
-      res.status(200).json({
-        status: "success",
-        data: {
-          post,
-        },
-      });
-    } catch (error) {
-      res.status(400).json({
-        status: "fail",
-        message: error,
-      });
-    }
+  try {
+    const getBlog = await BlogPost.findById(req.params.id);
+    await cloudinary.uploader.destroy(getBlog.displayImage.public_id);
+    const post = await BlogPost.findByIdAndDelete(req.params.id);
+    res.status(200).json({
+      status: "success",
+      data: {
+        post,
+      },
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "fail",
+      message: error,
+    });
+  }
   // } else {
   //   res.status(400).json({
   //     status: "fail",
@@ -184,46 +184,45 @@ exports.updateBlogPost = async (req, res) => {
   }
 
   // if (req.userId === req.params.id) {
-    try {
-      const getBlog = await BlogPost.findById(req.params.id);
-      const postPID = getBlog?.displayImage?.public_id;
-      // console.log(postPID);
-      if (displayImage) {
+  try {
+    const getBlog = await BlogPost.findById(req.params.id);
+    const postPID = getBlog?.displayImage?.public_id;
+    // console.log(postPID);
+    let result;
+    if (displayImage) {
+      if (postPID) {
         await cloudinary.uploader.destroy(postPID);
       }
-      const result = await cloudinary.uploader.upload(displayImage, {
+      result = await cloudinary.uploader.upload(displayImage, {
         folder: "boye",
       });
-      const updatedPost = {
-        title,
-        subtitle,
-        body,
-        displayImage: {
-          url: result.secure_url,
-          public_id: result.public_id,
-        },
-        tags,
-      };
-      const post = await BlogPost.findByIdAndUpdate(
-        req.params.id,
-        updatedPost,
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
-      res.status(200).json({
-        status: "success",
-        data: {
-          post,
-        },
-      });
-    } catch (error) {
-      res.status(400).json({
-        status: "fail",
-        message: error,
-      });
     }
+    const updatedPost = {
+      title,
+      subtitle,
+      body,
+      displayImage: {
+        url: result.secure_url,
+        public_id: result.public_id,
+      },
+      tags,
+    };
+    const post = await BlogPost.findByIdAndUpdate(req.params.id, updatedPost, {
+      new: true,
+      runValidators: true,
+    });
+    res.status(200).json({
+      status: "success",
+      data: {
+        post,
+      },
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "fail",
+      message: error,
+    });
+  }
   // } else {
   //   res.status(400).json({
   //     status: "fail",
