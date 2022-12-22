@@ -39,12 +39,12 @@ export default function Header () {
   useEffect(() => {
     if (showMenu) {
       document.body.style.overflow = 'hidden'
-      console.log('hidden')
+      // console.log('hidden')
     } 
     if (!showMenu) {
       document.body.style.overflow = 'visible'
       console.log(showMenu)
-      console.log('not hidden')
+      // console.log('not hidden')
     }
   }, [showMenu])
 
