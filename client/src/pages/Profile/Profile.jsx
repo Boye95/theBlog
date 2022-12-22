@@ -82,7 +82,7 @@ const Profile = () => {
         </div>
 
         <div
-          className='w-full h-[3rem] bg-green-200 flex justify-between items-center font-nymedium text-lg shadow-lg mt-[2rem] mb-8 
+          className='z-10 w-full h-[3rem] bg-green-200 flex justify-between items-center font-nymedium text-lg shadow-lg mt-[2rem] mb-8 
           [&>*]:h-full [&>*]:cursor-pointer [&>*]:w-2/6 [&>*]:flex [&>*]:items-center [&>*]:justify-center [&>*]:gap-2 
           [&>*]:p-1 [&>*]:sm:text-3xl ham:w-full fixed left-0'
         >

@@ -125,7 +125,9 @@ export default function BlogPost () {
   const path = location.pathname.split('/')[2]
 
   const fetchSinglePost = async () => {
-    const res = await fetch(`https://theblogxapi.onrender.com/api/blogposts/${path}`)
+    const res = await fetch(
+      `https://theblogxapi.onrender.com/api/blogposts/${path}`
+    )
     return res.json()
   }
 
@@ -223,19 +225,31 @@ export default function BlogPost () {
   return (
     <div className='relative'>
       {updateMode ? (
-        <div className='h-auto mt-[2rem] mb-[5rem] relative'>
-          <button
-            type='submit'
-            form='form'
-            className='fixed right-2 text-white bg-black
-             rounded p-1 font-sfprod px-8 ring-2 ring-black
-             z-10 
-             ring-offset-2 ring-offset-gray-600 transition hover:bg-gray-600 hover:ring-gray-400 sm:px-4 
-             disabled:opacity-80 disabled:cursor-not-allowed'
-            disabled={isUpdating}
+        <div className='h-auto mt-[1rem] mb-[5rem] relative'>
+          <div
+            className='z-10 bg-white shadow-sm flex justify-between w-full p-3
+          font-nysmall'
           >
-            {isUpdating ? 'Updating...' : isUpdated ? 'Updated' : 'Update'}
-          </button>
+            <button
+              className='border-2 border-violet-700 shadow-[5px_5px_0px_0px_rgba(109,40,217)]
+            px-2 py-1 transition-shadow hover:bg-violet-500 hover:text-white'
+            onClick={() => setUpdateMode(false)}
+            >
+              Cancel
+            </button>
+            <button
+              type='submit'
+              form='form'
+              className='text-white bg-black
+             rounded sm:px-4 
+             border-2 border-violet-700 shadow-[5px_5px_0px_0px_rgba(109,40,217)]
+            px-2 py-1 transition-shadow hover:bg-violet-500 hover:text-white
+             disabled:opacity-80 disabled:cursor-not-allowed'
+              disabled={isUpdating}
+            >
+              {isUpdating ? 'Updating...' : isUpdated ? 'Updated' : 'Update'}
+            </button>
+          </div>
           <form
             id='form'
             className='w-[80%] mx-auto ham:w-[95%]'
@@ -507,7 +521,7 @@ export default function BlogPost () {
 
                   <div className='mt-9 border-t-2 border-dotted border-black'>
                     <div className='mt-4 flex items-center gap-4 sm:text-sm'>
-                      <div className='w-[4rem] rounded-full overflow-hidden'>
+                      <div className='w-[4rem] min-w-[4rem] rounded-full overflow-hidden'>
                         {authorAvatar ? (
                           <img
                             src={authorAvatar}

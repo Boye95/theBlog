@@ -184,9 +184,10 @@ export default function Header () {
       {/* Hamburger nav conditional display code */}
       <motion.div
         animate={{ x: showMenu ? 0 : '100%' }}
+        transition={{ ease: 'easeOut', duration: 0.1 }}
         className={
           showMenu
-            ? 'z-10 flex flex-col absolute top-0 right-0 pt-5 bg-gray-50 h-full w-full rounded shadow-2xl overflow-hidden'
+            ? 'z-10 flex flex-col absolute top-0 right-0 pt-5 bg-gray-50 h-screen w-full rounded shadow-2xl overflow-hidden'
             : 'hidden'
         }
       >
