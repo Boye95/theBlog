@@ -208,19 +208,28 @@ export default function BlogPost () {
       ? (yemi = post?.displayImage.url)
       : (yemi = displayImage)
   }
+
+  let newEdits = {}
+
+  if (title !== post?.title) {
+    newEdits.title = title
+  }
+  if (subtitle !== post?.subtitle) {
+    newEdits.subtitle = subtitle
+  }
+  if (body !== post?.body) {
+    newEdits.body = body
+  }
+  if (yemi !== post?.displayImage.url) {
+    newEdits.displayImage = yemi
+  }
+  // if (tags !== post?.tags) {}
   const handleUpdate = e => {
     e.preventDefault()
-    const newEdits = {
-      title,
-      subtitle,
-      body,
-      displayImage: yemi,
-      tags
-    }
     if (user) {
       isUpdate(newEdits)
     }
-    // console.log(newEdits)
+    console.log(newEdits)
   }
   // console.log(post)
   return (
