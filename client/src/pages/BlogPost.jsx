@@ -202,11 +202,11 @@ export default function BlogPost () {
     }
   })
 
-  var yemi
+  let displayImageTracker
   {
     !trackImageSelection
-      ? (yemi = post?.displayImage.url)
-      : (yemi = displayImage)
+      ? (displayImageTracker = post?.displayImage.url)
+      : (displayImageTracker = displayImage)
   }
 
   let newEdits = {}
@@ -220,8 +220,8 @@ export default function BlogPost () {
   if (body !== post?.body) {
     newEdits.body = body
   }
-  if (yemi !== post?.displayImage.url) {
-    newEdits.displayImage = yemi
+  if (displayImageTracker !== post?.displayImage.url) {
+    newEdits.displayImage = displayImageTracker
   }
   // if (tags !== post?.tags) {}
   const handleUpdate = e => {
@@ -229,7 +229,7 @@ export default function BlogPost () {
     if (user) {
       isUpdate(newEdits)
     }
-    console.log(newEdits)
+    // console.log(newEdits)
   }
   // console.log(post)
   return (

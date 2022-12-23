@@ -85,10 +85,13 @@ const EditProfile = ({ user, dispatch }) => {
   const [avatar, setAvatar] = useState('')
   const [noAction, setNoAction] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
+  const [trackImageSelection, setTrackImageSelection] = useState(false)
+
 
   const handleImage = e => {
     const file = e.target.files[0]
     setFileToBase(file)
+    setTrackImageSelection(true)
   }
 
   const setFileToBase = file => {
@@ -115,6 +118,13 @@ const EditProfile = ({ user, dispatch }) => {
     }
   })
 
+  let avatarTrack
+  {
+    !trackImageSelection
+      ? (avatarTrack = oldAvatar.url)
+      : (avatarTrack = avatar)
+  }
+
   const handleUpdate = e => {
     e.preventDefault()
     const updated = {}
@@ -134,8 +144,8 @@ const EditProfile = ({ user, dispatch }) => {
     if (about !== oldAbout) {
       updated.about = about
     }
-    if (avatar) {
-      updated.avatar = avatar
+    if (avatarTrack !== oldAvatar.url) {
+      updated.avatar = avatarTrack
     }
     updateUserHandler(updated)
     // console.log(updated)
