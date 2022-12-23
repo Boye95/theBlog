@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { AiFillTag } from 'react-icons/ai'
 import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios'
+import { Helmet } from 'react-helmet-async'
 
 const fetchPostsByTag = async tag => {
   const res = await axios.get(
@@ -26,6 +27,14 @@ export default function PostByTag () {
 
   return (
     <div className='font-sfproth w-3/6 border-b-2 border-black mx-auto ham:w-11/12 xl:w-4/6'>
+      <Helmet>
+        <title>{`${tagWithoutPercentage} | theBlogX`}</title>
+        <meta
+          name='description'
+          content={`This page contains a list of blog posts with the ${tagWithoutPercentage} tag`}
+        />
+        <link rel='canonical' href={`/tags/${tag}`} />
+      </Helmet>
       <header className='mt-5 flex items-center gap-2 border-b-2 border-black'>
         <AiFillTag className='text-2xl' />
         <h1 className='text-3xl font-bold text-gray-800'>

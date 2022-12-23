@@ -14,6 +14,7 @@ import { OtherArticles, Newsletter } from '../components'
 import { Editor } from '@tinymce/tinymce-react'
 // import { Base64, encode, decode } from 'js-base64'
 
+import { Helmet } from 'react-helmet-async'
 import DOMPurify from 'isomorphic-dompurify'
 
 import {
@@ -224,6 +225,14 @@ export default function BlogPost () {
   // console.log(post)
   return (
     <div className='relative'>
+      <Helmet>
+        <title>{`${post?.title}`}</title>
+        <meta
+          name='description'
+          content={`${post?.body}`}
+        />
+        <link rel='canonical' href={`/blogpost/${path}`} />
+      </Helmet>
       {updateMode ? (
         <div className='max-w-[1050px] mx-auto h-auto mt-[1rem] mb-[5rem] sm:w-full relative'>
           <div
@@ -233,7 +242,7 @@ export default function BlogPost () {
             <button
               className='border-2 border-violet-700 shadow-[5px_5px_0px_0px_rgba(109,40,217)]
             px-2 py-1 transition-shadow hover:bg-violet-500 hover:text-white'
-            onClick={() => setUpdateMode(false)}
+              onClick={() => setUpdateMode(false)}
             >
               Cancel
             </button>

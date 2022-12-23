@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { BiArrowBack } from 'react-icons/bi'
 import { IoIosAddCircleOutline } from 'react-icons/io'
 import { Editor } from '@tinymce/tinymce-react'
+import { Helmet } from 'react-helmet-async'
 
 import { AuthContext } from '../../context/Context'
 import { useSignout } from '../../hooks/useSignout'
@@ -58,11 +59,15 @@ export default function Publish () {
 
   const navigate = useNavigate()
   const createPost = async data => {
-    const res = await axios.post('https://theblogxapi.onrender.com/api/blogposts', data, {
-      headers: {
-        Authorization: `Bearer ${token}`
+    const res = await axios.post(
+      'https://theblogxapi.onrender.com/api/blogposts',
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       }
-    })
+    )
     return res
   }
 
@@ -103,6 +108,14 @@ export default function Publish () {
 
   return (
     <div className='mt-5'>
+      <Helmet>
+        <title>{user ? `${firstName} | Publish` : 'theBlogX'}</title>
+        <meta
+          name='description'
+          content={`This is the page where blog posts are written`}
+        />
+        <link rel='canonical' href={`/dashboard`} />
+      </Helmet>
       <div className='w-full mx-auto flex justify-between px-6 py-4 mb-5 bg-white border-b-4 shadow-xl border-gray-600 fixed top-0 z-10 ham:w-full sm:px-4 '>
         <h1 className='text-xl font-nylarge font-semibold sm:text-[17px]'>
           {`✍️, ${firstName}`}
@@ -218,8 +231,10 @@ export default function Publish () {
               />
             </div>
           </div>
-          <div className='mx-auto mt-7 w-full min-h-[30rem] max-w-[1050px] font-nymedium rounded-tr-[10px] rounded-tl-[10px] 
-          ring-gray-700 ring-offset-2 ring-2 border-2 transition focus-within:border-emerald-300 focus-within:ring-emerald-300 focus-within:shadow-emerald-300 focus-within:shadow-[0_0_25px]'>
+          <div
+            className='mx-auto mt-7 w-full min-h-[30rem] max-w-[1050px] font-nymedium rounded-tr-[10px] rounded-tl-[10px] 
+          ring-gray-700 ring-offset-2 ring-2 border-2 transition focus-within:border-emerald-300 focus-within:ring-emerald-300 focus-within:shadow-emerald-300 focus-within:shadow-[0_0_25px]'
+          >
             <Editor
               apiKey={import.meta.env.VITE_TINY_API_KEY}
               // onInit={(evt, editor) => (editorRef.current = editor)}

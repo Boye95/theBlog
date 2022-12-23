@@ -41,8 +41,19 @@ export default function Dashboard () {
   } = useQuery(['allposts'], fetchPosts)
   // console.log(users)
 
+  const firstName = user?.data?.registeredUser?.name.split(' ')[0]
+  const admin = user?.data?.registeredUser?.role === 'admin'
+
   return (
     <div className='w-4/6 mx-auto my-5 sm:w-[90%]'>
+    <Helmet>
+      <title>{user ? `${firstName} | Profile` : 'theBlogX'}</title>
+      <meta
+        name='description'
+        content={`This is the profile page of ${firstName}`}
+      />
+      <link rel='canonical' href={`/dashboard`} />
+    </Helmet>
       {/* total number of regsitered users */}
       <div
         className='border-2 border-violet-700 shadow-[5px_5px_0px_0px_rgba(109,40,217)]

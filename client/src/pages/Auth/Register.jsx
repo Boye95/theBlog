@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { VscEye, VscEyeClosed } from 'react-icons/vsc'
 import typew from '../../assets/typewriter.png'
 import GoogleSignIn from './GoogleSignIn'
+import { Helmet } from 'react-helmet-async'
 
 import { useSignup } from '../../hooks/useSignup'
 
@@ -45,7 +46,16 @@ export default function Register () {
 
   return (
     <div className='w-screen h-screen flex items-center justify-center sm:h-auto sm:w-full'>
-      <div className='flex w-[65%] h-[80%] rounded-lg xl:w-[70%] lg:w-[80%]
+      <Helmet>
+        <title>{`Register | theBlogX`}</title>
+        <meta
+          name='description'
+          content={`This is the Register page for would-be users of theBlogX`}
+        />
+        <link rel='canonical' href={`/register`} />
+      </Helmet>
+      <div
+        className='flex w-[65%] h-[80%] rounded-lg xl:w-[70%] lg:w-[80%]
       shadow-[5px_5px_rgba(0,_0,_0,_0.4),_10px_10px_rgba(0,_0,_0,_0.3),_15px_15px_rgba(0,_0,_0,_0.2),_20px_20px_rgba(0,_0,_0,_0.1),_25px_25px_rgba(0,_0,_0,_0.05)]
       sm:shadow-none border-2 border-black sm:border-none'
       >
@@ -53,7 +63,10 @@ export default function Register () {
           <img src={typew} alt='' className='h-3/5 w-auto' />
         </div>
         <div className='w-4/6 flex items-center justify-center ham:w-full'>
-          <div id='signup' className='bg-white flex flex-col items-center gap-5'>
+          <div
+            id='signup'
+            className='bg-white flex flex-col items-center gap-5'
+          >
             <h2 className='font-nylarge font-bold text-gray-800 text-2xl text-center mx-auto sm:text-xl sm:mt-9'>
               Register and Get your Blog On!
             </h2>

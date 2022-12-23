@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { VscEye, VscEyeClosed } from 'react-icons/vsc'
 import type from '../../assets/typewriter.png'
 import GoogleSignIn from './GoogleSignIn'
+import { Helmet } from 'react-helmet-async'
 
 import { useSignin } from '../../hooks/useSignin'
 
@@ -34,14 +35,27 @@ export default function Login () {
 
   return (
     <div className='w-screen h-screen flex items-center justify-center sm:h-auto sm:w-full'>
-      <div className='flex w-[65%] h-[80%] rounded-lg xl:w-[70%] lg:w-[80%]
+      <Helmet>
+        <title>{`Login | theBlogX`}</title>
+        <meta
+          name='description'
+          content={`This is the Login page for users of theBlogX`}
+        />
+        <link rel='canonical' href={`/login`} />
+      </Helmet>
+      <div
+        className='flex w-[65%] h-[80%] rounded-lg xl:w-[70%] lg:w-[80%]
       shadow-[5px_5px_rgba(0,_0,_0,_0.4),_10px_10px_rgba(0,_0,_0,_0.3),_15px_15px_rgba(0,_0,_0,_0.2),_20px_20px_rgba(0,_0,_0,_0.1),_25px_25px_rgba(0,_0,_0,_0.05)]
-      sm:shadow-none border-2 border-black sm:border-none'>
+      sm:shadow-none border-2 border-black sm:border-none'
+      >
         <div className='rounded-lg w-2/6 bg-gradient-to-b from-gray-300 to-black  flex justify-center items-center ham:hidden'>
           <img src={type} alt='' className='h-3/5 w-auto' />
         </div>
         <div className='w-4/6 flex items-center justify-center ham:w-full'>
-          <div id='signin' className='bg-white flex flex-col items-center gap-5'>
+          <div
+            id='signin'
+            className='bg-white flex flex-col items-center gap-5'
+          >
             <h2 className='font-nylarge font-bold text-gray-800 text-3xl text-center mx-auto sm:text-2xl sm:mt-9'>
               It's nice to have you back!
             </h2>
