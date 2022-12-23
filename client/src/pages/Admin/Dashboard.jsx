@@ -3,6 +3,8 @@ import { AuthContext } from '../../context/Context'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import moment from 'moment'
+import { Helmet } from 'react-helmet-async'
+
 
 export default function Dashboard () {
   const { user } = useContext(AuthContext)
@@ -69,8 +71,9 @@ export default function Dashboard () {
           List of Users
         </h1>
         <div className='flex flex-col'>
-          {users?.map(user => (
+          {users?.map((user, index) => (
             <div
+              key={index}
               className='flex justify-between items-center gap-3 my-2 border-2 border-violet-700 shadow-[5px_5px_0px_0px_rgba(109,40,217)]
             font-nylarge text-center p-5 rounded-lg'
             >

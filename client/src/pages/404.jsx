@@ -8,10 +8,10 @@ export default function ErrorPage () {
         <p>Sorry, an unexpected error has occurred.</p>
 
           <div className='flex flex-col justify-center items-center gap-4'>
-            <p>
+            <div>
               <p className='text-[10rem] font-nylarge text-center sm:text-[4rem]'>404</p>
               <p className="text-center">Remember the road that will lead you home</p>
-            </p>
+            </div>
             <Link
               to='/'
               className='w-fit border-2 border-emerald-100 rounded-lg py-1 px-4 text-white bg-emerald-500 shadow-lg ring-2 ring-emerald-200 ring-offset-2 transition-all hover:text-black hover:bg-white hover:shadow-sm hover:ring-offset-1 sm:text-sm'
