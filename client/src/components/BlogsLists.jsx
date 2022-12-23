@@ -30,7 +30,7 @@ export default function BlogsLists () {
               <img
                 src={posts[0]?.displayImage?.url}
                 alt='mainpost'
-                className='lg:mx-auto w-full'
+                className='lg:mx-auto w-full aspect-video object-cover'
               />
             </Link>
             <Link

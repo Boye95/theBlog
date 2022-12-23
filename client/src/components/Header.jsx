@@ -43,7 +43,7 @@ export default function Header () {
     } 
     if (!showMenu) {
       document.body.style.overflow = 'visible'
-      console.log(showMenu)
+      // console.log(showMenu)
       // console.log('not hidden')
     }
   }, [showMenu])

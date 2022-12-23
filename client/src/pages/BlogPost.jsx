@@ -261,7 +261,7 @@ export default function BlogPost () {
                 <img
                   src={displayImage}
                   alt='blog post display'
-                  className='w-full h-full object-cover rounded'
+                  className='w-full aspect-video object-cover rounded'
                 />
               </div>
             ) : (
@@ -269,7 +269,7 @@ export default function BlogPost () {
                 <img
                   src={post?.displayImage.url}
                   alt='blog post display'
-                  className='w-full h-full object-cover rounded'
+                  className='w-full aspect-video object-cover rounded'
                 />
               </div>
             )}
@@ -385,7 +385,7 @@ export default function BlogPost () {
                 <img
                   src={post?.displayImage.url}
                   alt='post image'
-                  className='mt-8 w-3/6 ham:w-11/12 xl:w-4/6'
+                  className='mt-8 w-3/6 ham:w-11/12 xl:w-4/6 aspect-video object-cover'
                 />
               </div>
 

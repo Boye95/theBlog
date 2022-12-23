@@ -28,13 +28,13 @@ const PersonalBlog = () => {
         <div className='flex gap-2 text-2xl font-bold  '>
           <p className=''>Post Count:</p>
           <div className='flex'>
-            <p className='relative top-0 left-1 text-emerald-500'>
+            {/* <p className='relative top-0 left-1 text-emerald-500'>
               {posts?.length}
             </p>
             <p className='relative top-0 -left-2.5 text-red-700 transition-all hover:-translate-y-0.5'>
               {posts?.length}
-            </p>
-            <p className='relative top-0 -left-7 transition-all hover:-translate-y-0.5'>
+            </p> */}
+            <p className='relative transition-all hover:-translate-y-0.5'>
               {posts?.length}
             </p>
           </div>
