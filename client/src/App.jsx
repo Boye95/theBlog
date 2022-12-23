@@ -11,7 +11,8 @@ import {
   Tags,
   Register,
   PostsByTag,
-  Dashboard
+  Dashboard,
+  ErrorPage
 } from './pages'
 
 function App () {
@@ -52,6 +53,7 @@ function App () {
           path='/profile'
           element={user ? <Profile /> : <Navigate to='/login' />}
         />
+        <Route path='*' element={<ErrorPage />} />
       </Routes>
     </>
   )
