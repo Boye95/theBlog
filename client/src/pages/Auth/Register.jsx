@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { VscEye, VscEyeClosed } from 'react-icons/vsc'
 import typew from '../../assets/typewriter.png'
@@ -43,6 +43,11 @@ export default function Register () {
   let handleShowPass = () => {
     setShowPass(!showPass)
   }
+
+  // set body overflow to to visible when page loads
+  useEffect(() => {
+    document.body.style.overflow = 'auto'
+  }, [])
 
   return (
     <div className='w-screen h-screen flex items-center justify-center sm:h-auto sm:w-full'>
