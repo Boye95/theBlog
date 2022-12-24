@@ -49,9 +49,10 @@ export default function Footer () {
           {user ? username.toUpperCase() : 'ÓNYÉ ŃKÚZÍ'}
         </div>
         <p className='w-2/6 text-center font-nysmall text-sm ham:w-4/6'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu velit
-          tempus erat egestas efficitur. In hac habitasse platea dictumst. Fusce
-          a nunc eget ligula suscipit finibus.
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book.
         </p>
         <div className='flex gap-4 font-sfprotr text-sm [&>*]:underline'>
           <a href='https://www.boyei.tech/' className='hover:no-underline'>
