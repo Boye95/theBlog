@@ -40,7 +40,7 @@ export default function Header () {
     if (showMenu) {
       document.body.style.overflow = 'hidden'
       // console.log('hidden')
-    } 
+    }
     if (!showMenu) {
       document.body.style.overflow = 'visible'
       // console.log(showMenu)
@@ -115,13 +115,21 @@ export default function Header () {
             Tags
           </NavLink>
           {/* {user && ( */}
-            <NavLink
-              to='/publish'
-              className='navlink'
-              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          <NavLink
+            to='/publish'
+            className='navlink relative'
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
+            Publish
+            {/* new ai notification */}
+            <span
+              className='font-mono text-xs bg-violet-700 text-white w-fit h-fit px-1 
+              rounded-md absolute -right-0.5 top-5
+              '
             >
-              Publish
-            </NavLink>
+              AI
+            </span>
+          </NavLink>
           {/* )} */}
           {user ? (
             <button onClick={signout} className='navlink'>
@@ -274,14 +282,14 @@ export default function Header () {
             Tags
           </NavLink>
           {/* {user && ( */}
-            <NavLink
-              to='/publish'
-              className='navlinks'
-              style={({ isActive }) => (isActive ? activeStyle : undefined)}
-              onClick={handleShowMenu}
-            >
-              Publish
-            </NavLink>
+          <NavLink
+            to='/publish'
+            className='navlinks'
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            onClick={handleShowMenu}
+          >
+            Publish
+          </NavLink>
           {/* )} */}
           {user ? (
             <button
