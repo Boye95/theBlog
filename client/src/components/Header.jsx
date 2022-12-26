@@ -114,7 +114,7 @@ export default function Header () {
           >
             Tags
           </NavLink>
-          {user && (
+          {/* {user && ( */}
             <NavLink
               to='/publish'
               className='navlink'
@@ -122,7 +122,7 @@ export default function Header () {
             >
               Publish
             </NavLink>
-          )}
+          {/* )} */}
           {user ? (
             <button onClick={signout} className='navlink'>
               Logout
@@ -273,7 +273,7 @@ export default function Header () {
           >
             Tags
           </NavLink>
-          {user && (
+          {/* {user && ( */}
             <NavLink
               to='/publish'
               className='navlinks'
@@ -282,7 +282,7 @@ export default function Header () {
             >
               Publish
             </NavLink>
-          )}
+          {/* )} */}
           {user ? (
             <button
               onClick={() => {

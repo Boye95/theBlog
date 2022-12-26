@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { VscEye, VscEyeClosed } from 'react-icons/vsc'
+import { BiArrowBack } from 'react-icons/bi'
 import type from '../../assets/typewriter.png'
 import GoogleSignIn from './GoogleSignIn'
 import { Helmet } from 'react-helmet-async'
@@ -39,7 +40,7 @@ export default function Login () {
   }, [])
 
   return (
-    <div className='w-screen h-screen flex items-center justify-center sm:h-auto sm:w-full'>
+    <div className='w-screen h-screen flex flex-col items-center justify-center sm:h-auto sm:w-full'>
       <Helmet>
         <title>{`Login | theBlogX`}</title>
         <meta
@@ -48,10 +49,19 @@ export default function Login () {
         />
         <link rel='canonical' href={`/login`} />
       </Helmet>
+      <Link
+        to='/'
+        className='flex self-start absolute top-0 text-2xl font-bold text-gray-800 ml-4 mt-4 sm:text-2xl
+        items-center gap-2 bg-gray-300 rounded p-1 transition hover:bg-gray-100
+        border-2 border-violet-700 shadow-[5px_5px_0px_0px_rgba(109,40,217)]'
+      >
+        <BiArrowBack className='sm:text-2xl' />
+        <p className='sm:text-[13px] sm:hidden'>Blog Home</p>
+      </Link>
       <div
         className='flex w-[65%] h-[80%] rounded-lg xl:w-[70%] lg:w-[80%]
       shadow-[5px_5px_rgba(0,_0,_0,_0.4),_10px_10px_rgba(0,_0,_0,_0.3),_15px_15px_rgba(0,_0,_0,_0.2),_20px_20px_rgba(0,_0,_0,_0.1),_25px_25px_rgba(0,_0,_0,_0.05)]
-      sm:shadow-none border-2 border-black sm:border-none'
+      sm:shadow-none border-2 border-black sm:border-none sm:mt-5'
       >
         <div className='rounded-lg w-2/6 bg-gradient-to-b from-gray-300 to-black  flex justify-center items-center ham:hidden'>
           <img src={type} alt='' className='h-3/5 w-auto' />
@@ -66,7 +76,7 @@ export default function Login () {
             </h2>
             <div id='form-bodylogin' className='sm:mt-12'>
               <div className='font-sfprotr flex items-center justify-center mx-auto gap-2 py-1 w-60 border-2 border-black rounded-2xl hover:border-gray-400'>
-                <GoogleSignIn buttonText='Sign In with Google' />
+                <GoogleSignIn buttonText='Continue with Google' />
               </div>
               <p className='mx-4 my-4 font-sfprotr text-lg sm:text-center'>
                 or
