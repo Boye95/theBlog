@@ -41,6 +41,9 @@ export default function Publish () {
   const [tags, setTags] = useState([])
   // console.log(tags)
 
+  // prompt state for Open Ai
+  const [prompt, setPrompt] = useState('')
+
   // state for switching between PublishByAi and PublishByHuman
   const [publishBy, setPublishBy] = useState('human')
 
@@ -218,7 +221,7 @@ export default function Publish () {
                 setBody={setBody}
               />
             ) : (
-              <PublishByAi />
+              <PublishByAi setPrompt={setPrompt} />
             )}
           </div>
 

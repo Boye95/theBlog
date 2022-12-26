@@ -2,12 +2,20 @@ const BlogPost = require("../models/blogPostsModel");
 const User = require("../models/userModel");
 const mongoose = require("mongoose");
 const { calculate } = require("calculate-readtime");
-const validator = require("validator");
+// const validator = require("validator");
+const { Configuration, OpenAIApi } = require("openai");
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
   secure: true,
 });
+
+// openAI config
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+const openai = new OpenAIApi(configuration);
 
 // Get all blog posts
 exports.getAllBlogPosts = async (req, res) => {
@@ -96,49 +104,108 @@ exports.getPostByAuthor = async (req, res) => {
 exports.createBlogPost = async (req, res) => {
   const { title, subtitle, body, displayImage, tags, authorInfo } = req.body;
 
-  try {
-    const result = await cloudinary.uploader.upload(displayImage, {
-      folder: "boye",
-    });
-    // tags length should less than or equal to 3
-    if (tags.length > 3) {
-      return res.status(400).json({
+  // logic for posts created using openAI
+  if (req.body.prompt) {
+    const prompt = req.body.prompt;
+
+    try {
+      // creating image from prompt
+      const response = await openai.createImage({
+        prompt: prompt,
+        n: 1,
+        size: "1024x1024",
+      });
+      const imageUrl = response.data.data[0].url;
+
+      // uploading image to cloudinary
+      const result = await cloudinary.uploader.upload(imageUrl, {
+        folder: "boye",
+      });
+
+      // tags length should less than or equal to 3
+      if (tags.length > 3) {
+        return res.status(400).json({
+          status: "fail",
+          message: "You can only add a maximum of 3 tags",
+        });
+      }
+
+      // add author info to req.body
+      const userInfo = req.userId;
+      const newPost = await BlogPost.create({
+        title: "DALLE-TITLE",
+        subtitle: "DALLE-SUBTITLE",
+        body: "DALLE-BODY",
+        displayImage: {
+          url: result.secure_url,
+          public_id: result.public_id,
+        },
+        tags: ["DIY"],
+        authorInfo: userInfo,
+      });
+
+      // save post to authors schema
+      const author = await User.findById(req.userId);
+      author.posts.push(newPost._id);
+      await author.save();
+
+      res.status(201).json({
+        status: "success",
+        data: {
+          post: newPost,
+        },
+      });
+    } catch (error) {
+      res.status(400).json({
         status: "fail",
-        message: "You can only add a maximum of 3 tags",
+        message: error,
       });
     }
+  } else {
+    try {
+      const result = await cloudinary.uploader.upload(displayImage, {
+        folder: "boye",
+      });
+      // tags length should less than or equal to 3
+      if (tags.length > 3) {
+        return res.status(400).json({
+          status: "fail",
+          message: "You can only add a maximum of 3 tags",
+        });
+      }
 
-    // add author info to req.body
-    const userInfo = req.userId;
-    const newPost = await BlogPost.create({
-      title,
-      subtitle,
-      body,
-      displayImage: {
-        url: result.secure_url,
-        public_id: result.public_id,
-      },
-      tags,
-      authorInfo: userInfo,
-    });
+      // add author info to req.body
+      const userInfo = req.userId;
+      const newPost = await BlogPost.create({
+        title,
+        subtitle,
+        body,
+        displayImage: {
+          url: result.secure_url,
+          public_id: result.public_id,
+        },
+        tags,
+        authorInfo: userInfo,
+      });
 
-    // save post to authors schema
-    const author = await User.findById(req.userId);
+      // save post to authors schema
+      const author = await User.findById(req.userId);
 
-    author.posts.push(newPost._id);
-    await author.save();
+      author.posts.push(newPost._id);
+      await author.save();
 
-    res.status(201).json({
-      status: "success",
-      data: {
-        post: newPost,
-      },
-    });
-  } catch (error) {
-    res.status(400).json({
-      status: "fail",
-      message: error,
-    });
+      res.status(201).json({
+        status: "success",
+        data: {
+          post: newPost,
+        },
+      });
+    } catch (error) {
+      res.status(400).json({
+        status: "fail",
+        message: error,
+      });
+    }
   }
 };
 
