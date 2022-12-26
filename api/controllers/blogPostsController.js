@@ -143,6 +143,7 @@ exports.createBlogPost = async (req, res) => {
         tags: ["DIY"],
         authorInfo: userInfo,
       });
+      console.log(newPost);
 
       // save post to authors schema
       const author = await User.findById(req.userId);

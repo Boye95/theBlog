@@ -104,17 +104,24 @@ export default function Publish () {
   })
   const handleSubmit = e => {
     e.preventDefault()
-    const post = {
-      title,
-      subtitle,
-      body,
-      displayImage,
-      tags
+    let post
+    if (prompt !== '') {
+      post = {
+        prompt
+      }
+    } else {
+      post = {
+        title,
+        subtitle,
+        body,
+        displayImage,
+        tags
+      }
     }
     if (user) {
       mutate(post)
     }
-    // console.log(post)
+    console.log(post)
   }
 
   // set body overflow to auto when page loads
