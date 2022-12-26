@@ -123,19 +123,19 @@ exports.createBlogPost = async (req, res) => {
       });
 
       // tags length should less than or equal to 3
-      if (tags.length > 3) {
-        return res.status(400).json({
-          status: "fail",
-          message: "You can only add a maximum of 3 tags",
-        });
-      }
+      // if (tags.length > 3) {
+      //   return res.status(400).json({
+      //     status: "fail",
+      //     message: "You can only add a maximum of 3 tags",
+      //   });
+      // }
 
       // add author info to req.body
       const userInfo = req.userId;
       const newPost = await BlogPost.create({
         title: "DALLE-TITLE",
         subtitle: "DALLE-SUBTITLE",
-        body: "DALLE-BODY",
+        body: "DALLE-BODYw",
         displayImage: {
           url: result.secure_url,
           public_id: result.public_id,
