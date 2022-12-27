@@ -113,47 +113,42 @@ exports.createBlogPost = async (req, res) => {
       const response = await openai.createImage({
         prompt: prompt,
         n: 1,
-        size: "1024x1024",
+        size: "512x512",
       });
       const imageUrl = response.data.data[0].url;
-
-      // uploading image to cloudinary
-      const result = await cloudinary.uploader.upload(imageUrl, {
-        folder: "boye",
-      });
-
-      // tags length should less than or equal to 3
-      // if (tags.length > 3) {
-      //   return res.status(400).json({
-      //     status: "fail",
-      //     message: "You can only add a maximum of 3 tags",
-      //   });
-      // }
-
-      // add author info to req.body
-      const userInfo = req.userId;
-      const newPost = await BlogPost.create({
-        title: "DALLE-TITLE",
-        subtitle: "DALLE-SUBTITLE",
-        body: "DALLE-BODYw",
-        displayImage: {
-          url: result.secure_url,
-          public_id: result.public_id,
-        },
-        tags: ["DIY"],
-        authorInfo: userInfo,
-      });
-      console.log(newPost);
-
-      // save post to authors schema
-      const author = await User.findById(req.userId);
-      author.posts.push(newPost._id);
-      await author.save();
 
       res.status(201).json({
         status: "success",
         data: {
-          post: newPost,
+          post: imageUrl,
+        },
+      });
+    } catch (error) {
+      res.status(400).json({
+        status: "fail",
+        message: error,
+      });
+    }
+  } else if (req.body.postPrompt) {
+    const postPrompt = req.body.postPrompt;
+
+    try {
+      const response = await openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: postPrompt,
+        temperature: 0.7,
+        max_tokens: 256,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+      });
+
+      const aiPost = response.data.choices[0].text;
+
+      res.status(201).json({
+        status: "success",
+        data: {
+          postAi: aiPost,
         },
       });
     } catch (error) {

@@ -76,7 +76,7 @@ export default function Publish () {
   const navigate = useNavigate()
   const createPost = async data => {
     const res = await axios.post(
-      'https://theblogxapi.onrender.com/api/blogposts',
+      'http://localhost:4000/api/blogposts',
       data,
       {
         headers: {
@@ -228,7 +228,7 @@ export default function Publish () {
                 setBody={setBody}
               />
             ) : (
-              <PublishByAi setPrompt={setPrompt} />
+              <PublishByAi setPrompt={setPrompt} token={token} />
             )}
           </div>
 
