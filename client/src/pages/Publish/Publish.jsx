@@ -75,15 +75,11 @@ export default function Publish () {
 
   const navigate = useNavigate()
   const createPost = async data => {
-    const res = await axios.post(
-      'http://localhost:4000/api/blogposts',
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+    const res = await axios.post('http://localhost:4000/api/blogposts', data, {
+      headers: {
+        Authorization: `Bearer ${token}`
       }
-    )
+    })
     return res
   }
 
@@ -202,16 +198,23 @@ export default function Publish () {
       </div>
 
       <div className='h-screen mt-[9rem] mb-[10rem]'>
-        <button
-          onClick={handleSwitch}
-          className='w-[80%] mx-auto ham:w-[95%] flex items-center justify-center gap-2 font-nylarge cursor-pointer
-        h-[3rem] text-2xl my-4 text-black max-w-[1050px] border-2 border-violet-700 shadow-[5px_5px_0px_0px_rgba(109,40,217)]
-          rounded transition hover:bg-gray-800 hover:text-white'
-        >
-          {publishBy === 'ai'
-            ? 'Create Post with AI'
-            : 'Create Post with Yourself'}
-        </button>
+        <div className='flex justify-center items-center h-[2rem] my-4'>
+          <button
+            onClick={handleSwitch}
+            className='flex items-center justify-center gap-2 font-nylarge cursor-pointer
+         text-black rounded transition hover:bg-gray-800 hover:text-white'
+          >
+            Compose Yourself
+          </button>
+          <div className="w-[2px] h-full bg-black"></div>
+          <button
+            onClick={handleSwitch}
+            className='flex items-center justify-center gap-2 font-nylarge cursor-pointer
+         text-black rounded transition hover:bg-gray-800 hover:text-white'
+          >
+            Compose with AI
+          </button>
+        </div>
         <form
           id='form'
           className='w-[80%] mx-auto ham:w-[95%]'
@@ -228,7 +231,12 @@ export default function Publish () {
                 setBody={setBody}
               />
             ) : (
-              <PublishByAi setPrompt={setPrompt} token={token} />
+              <PublishByAi
+                setBody={setBody}
+                setTitle={setTitle}
+                setSubtitle={setSubtitle}
+                token={token}
+              />
             )}
           </div>
 
