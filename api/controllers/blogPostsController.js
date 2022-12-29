@@ -105,8 +105,8 @@ exports.createBlogPost = async (req, res) => {
   const { title, subtitle, body, displayImage, tags, authorInfo } = req.body;
 
   // logic for posts created using openAI
-  if (req.body.prompt) {
-    const prompt = req.body.prompt;
+  if (req.body.imagePrompt) {
+    const prompt = req.body.imagePrompt;
 
     try {
       // creating image from prompt
@@ -137,7 +137,7 @@ exports.createBlogPost = async (req, res) => {
         model: "text-davinci-003",
         prompt: postPrompt,
         temperature: 0.7,
-        max_tokens: 256,
+        max_tokens: 512,
         top_p: 1,
         frequency_penalty: 0,
         presence_penalty: 0,
@@ -149,6 +149,62 @@ exports.createBlogPost = async (req, res) => {
         status: "success",
         data: {
           postAi: aiPost,
+        },
+      });
+    } catch (error) {
+      res.status(400).json({
+        status: "fail",
+        message: error,
+      });
+    }
+  } else if (req.body.titlePrompt) {
+    const titlePrompt = req.body.titlePrompt;
+
+    try {
+      const response = await openai.createCompletion({
+        model: "davinci",
+        prompt: titlePrompt,
+        temperature: 0.7,
+        max_tokens: 64,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+      });
+
+      const titleAi = response.data.choices[0].text;
+
+      res.status(201).json({
+        status: "success",
+        data: {
+          aiTitle: titleAi,
+        },
+      });
+    } catch (error) {
+      res.status(400).json({
+        status: "fail",
+        message: error,
+      });
+    }
+  } else if (req.body.subtitlePrompt) {
+    const subtitlePrompt = req.body.subtitlePrompt;
+
+    try {
+      const response = await openai.createCompletion({
+        model: "davinci",
+        prompt: subtitlePrompt,
+        temperature: 0.7,
+        max_tokens: 64,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+      });
+
+      const subtitleAi = response.data.choices[0].text;
+
+      res.status(201).json({
+        status: "success",
+        data: {
+          aiSubtitle: subtitleAi,
         },
       });
     } catch (error) {

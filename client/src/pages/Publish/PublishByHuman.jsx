@@ -86,7 +86,15 @@ export default function PublishByHuman ({
               'table',
               'code',
               'help',
-              'wordcount'
+              'wordcount',
+              'emoticons',
+              'template',
+              'save',
+              'pagebreak',
+              'codesample',
+              'directionality',
+              'visualchars',
+              'nonbreaking',
             ],
             menubar: 'file edit view insert format tools table help',
             toolbar:
