@@ -233,6 +233,7 @@ export default function Publish () {
             ) : (
               <PublishByAi
                 setBody={setBody}
+                body={body}
                 setTitle={setTitle}
                 setSubtitle={setSubtitle}
                 token={token}
