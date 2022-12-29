@@ -232,10 +232,13 @@ export default function Publish () {
               />
             ) : (
               <PublishByAi
+                setDisplayImage={setDisplayImage}
                 setBody={setBody}
                 body={body}
                 setTitle={setTitle}
+                title={title}
                 setSubtitle={setSubtitle}
+                subtitle={subtitle}
                 token={token}
               />
             )}

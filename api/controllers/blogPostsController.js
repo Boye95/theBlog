@@ -157,62 +157,6 @@ exports.createBlogPost = async (req, res) => {
         message: error,
       });
     }
-  } else if (req.body.titlePrompt) {
-    const titlePrompt = req.body.titlePrompt;
-
-    try {
-      const response = await openai.createCompletion({
-        model: "davinci",
-        prompt: titlePrompt,
-        temperature: 0.7,
-        max_tokens: 64,
-        top_p: 1,
-        frequency_penalty: 0,
-        presence_penalty: 0,
-      });
-
-      const titleAi = response.data.choices[0].text;
-
-      res.status(201).json({
-        status: "success",
-        data: {
-          aiTitle: titleAi,
-        },
-      });
-    } catch (error) {
-      res.status(400).json({
-        status: "fail",
-        message: error,
-      });
-    }
-  } else if (req.body.subtitlePrompt) {
-    const subtitlePrompt = req.body.subtitlePrompt;
-
-    try {
-      const response = await openai.createCompletion({
-        model: "davinci",
-        prompt: subtitlePrompt,
-        temperature: 0.7,
-        max_tokens: 64,
-        top_p: 1,
-        frequency_penalty: 0,
-        presence_penalty: 0,
-      });
-
-      const subtitleAi = response.data.choices[0].text;
-
-      res.status(201).json({
-        status: "success",
-        data: {
-          aiSubtitle: subtitleAi,
-        },
-      });
-    } catch (error) {
-      res.status(400).json({
-        status: "fail",
-        message: error,
-      });
-    }
   } else {
     try {
       const result = await cloudinary.uploader.upload(displayImage, {
