@@ -18,6 +18,7 @@ export default function PublishByAi ({
   const [topic, setTopic] = useState('')
   const [postLength, setPostLength] = useState('')
   const [postTone, setPostTone] = useState('')
+  const [postStyle, setPostStyle] = useState('')
 
   const generateImage = async image => {
     const res = await axios.post('http://localhost:4000/api/blogposts', image, {
@@ -173,12 +174,46 @@ export default function PublishByAi ({
             type='text'
             name='postPrompt'
             id='postPrompt'
-            placeholder='Generate post...'
-            onChange={e => setPostPrompt(e.target.value)}
+            placeholder='Your topic...'
+            onChange={e => setTopic(e.target.value)}
             className='w-5/6 ring-gray-700 ring-offset-2 text-xl px-3 font-nylarge transition 
                 focus:border-violet-300 focus:ring-violet-300 focus:shadow-violet-300 focus:shadow-[0_0_15px] sm:text-2xl'
             required
           />
+          {/* select element for post tone */}
+          <select
+            name='tone'
+            id='tone'
+            onChange={e => setTone(e.target.value)}
+            className='w-1/6 ring-gray-700 ring-offset-2 text-xl px-3 font-nylarge transition
+                focus:border-violet-300 focus:ring-violet-300 focus:shadow-violet-300 focus:shadow-[0_0_15px] sm:text-2xl'
+            required
+          >
+            <option value=''>Tone</option>
+            <option value='friendly'>Friendly</option>
+            <option value='informal'>Informal</option>
+            <option value='formal'>Formal</option>
+            <option value='interview'>Interview</option>
+            <option value='academic'>Academic</option>
+            <option value='business'>Business</option>
+            <option value='scientific'>Scientific</option>
+          </select>
+
+          {/* select element for post length */}
+          <select
+            name='length'
+            id='length'
+            onChange={e => setLength(e.target.value)}
+            className='w-1/6 ring-gray-700 ring-offset-2 text-xl px-3 font-nylarge transition
+                    focus:border-violet-300 focus:ring-violet-300 focus:shadow-violet-300 focus:shadow-[0_0_15px] sm:text-2xl'
+            required
+          >
+            <option value=''>Length</option>
+            <option value='short'>Short</option>
+            <option value='medium'>Medium</option>
+            <option value='long'>Long</option>
+          </select>
+
           <button
             onClick={handleGeneratePost}
             className='w-1/6 py-2 h-full border-2 border-violet-700 shadow-[5px_5px_0px_0px_rgba(109,40,217)]
