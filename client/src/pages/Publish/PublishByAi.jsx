@@ -14,12 +14,12 @@ export default function PublishByAi ({
   subtitle
 }) {
   const [imagePrompt, setImagePrompt] = useState('')
-  const [postPrompt, setPostPrompt] = useState('')
+  // const [postPrompt, setPostPrompt] = useState('')
   const [topic, setTopic] = useState('')
   const [postLength, setPostLength] = useState('')
   const [postTone, setPostTone] = useState('')
-  const [postStyle, setPostStyle] = useState('')
 
+  // console.log(postTone)
   const generateImage = async image => {
     const res = await axios.post('http://localhost:4000/api/blogposts', image, {
       headers: {
@@ -73,9 +73,11 @@ export default function PublishByAi ({
     getImage(data)
   }
 
+  const postPrompt = `Write a well detailed blog post divided into sections with a title and a subtitle with all the necessary html tags\n\nTopic: ${topic}\nLength: ${postLength}\nTone: ${postTone}`
+  console.log(postPrompt)
+
   const handleGeneratePost = e => {
     e.preventDefault()
-    set
     const data = {
       postPrompt
     }
@@ -172,8 +174,8 @@ export default function PublishByAi ({
         <div className='flex gap-2'>
           <input
             type='text'
-            name='postPrompt'
-            id='postPrompt'
+            name='postTopic'
+            id='postTopic'
             placeholder='Your topic...'
             onChange={e => setTopic(e.target.value)}
             className='w-5/6 ring-gray-700 ring-offset-2 text-xl px-3 font-nylarge transition 
@@ -184,7 +186,8 @@ export default function PublishByAi ({
           <select
             name='tone'
             id='tone'
-            onChange={e => setTone(e.target.value)}
+            value={postTone}
+            onChange={e => setPostTone(e.target.value)}
             className='w-1/6 ring-gray-700 ring-offset-2 text-xl px-3 font-nylarge transition
                 focus:border-violet-300 focus:ring-violet-300 focus:shadow-violet-300 focus:shadow-[0_0_15px] sm:text-2xl'
             required
@@ -203,7 +206,8 @@ export default function PublishByAi ({
           <select
             name='length'
             id='length'
-            onChange={e => setLength(e.target.value)}
+            value={postLength}
+            onChange={e => setPostLength(e.target.value)}
             className='w-1/6 ring-gray-700 ring-offset-2 text-xl px-3 font-nylarge transition
                     focus:border-violet-300 focus:ring-violet-300 focus:shadow-violet-300 focus:shadow-[0_0_15px] sm:text-2xl'
             required
