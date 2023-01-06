@@ -201,23 +201,19 @@ export default function Publish () {
         <div className='flex justify-center items-center h-[2rem] my-4'>
           <button
             onClick={handleSwitch}
-            className='flex items-center justify-center gap-2 font-nylarge cursor-pointer
-         text-black rounded transition hover:bg-gray-800 hover:text-white'
+            className='bg-violet-500 text-white p-2 flex items-center justify-center gap-2 font-nylarge cursor-pointer
+         rounded transition hover:bg-gray-800 hover:text-white'
           >
-            Compose Yourself
-          </button>
-          <div className="w-[2px] h-full bg-black"></div>
-          <button
-            onClick={handleSwitch}
-            className='flex items-center justify-center gap-2 font-nylarge cursor-pointer
-         text-black rounded transition hover:bg-gray-800 hover:text-white'
-          >
-            Compose with AI
+            {publishBy === 'ai' ? (
+              'Switch to Human'
+            ) : (
+              'Switch to AI'
+            )}
           </button>
         </div>
         <form
           id='form'
-          className='w-[80%] mx-auto ham:w-[95%]'
+          className='w-[80%] mx-auto ham:w-[95%] xl:w-[90%]'
           encType='multipart/form-data'
           onSubmit={handleSubmit}
         >

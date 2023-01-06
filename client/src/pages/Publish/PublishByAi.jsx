@@ -118,24 +118,24 @@ export default function PublishByAi ({
   return (
     <div className='flex flex-col items-center w-full mx-auto'>
       {/* form to create blogposts using Open Ai */}
-      <div className='w-full flex flex-col gap-2 max-w-[1050px] mx-auto '>
-        <div className='flex gap-2'>
+      <div className='w-full flex flex-col gap-4 max-w-[1050px] mx-auto '>
+        <div className='flex gap-2 lexical:flex-col'>
           <input
             type='text'
             name='imagePrompt'
             id='imagePrompt'
-            placeholder='Prompt...'
+            placeholder='Write a Prompt for Image...'
             onChange={e => setImagePrompt(e.target.value)}
-            className='w-5/6 ring-gray-700 ring-offset-2 ring-2 border-2 text-xl px-3 font-nylarge transition 
-                rounded-sm 
+            className='w-5/6 ring-gray-700 ring-offset-2 border-2 text-xl px-3 font-nylarge transition 
+                rounded-sm h-[3rem] lexical:w-full lexical:text-lg
                 focus:border-violet-300 focus:ring-violet-300 focus:shadow-violet-300 focus:shadow-[0_0_15px] sm:text-2xl'
             required
           />
           <button
             type='submit'
             onClick={handleGenerateImage}
-            className={`w-1/6 py-2 h-full border-2 border-violet-700 shadow-[5px_5px_0px_0px_rgba(109,40,217)]
-            disabled:cursor-not-allowed`}
+            className={`w-1/6 font-nysmall flex items-center justify-center h-[3rem] border-2 border-violet-700 shadow-[5px_5px_0px_0px_rgba(109,40,217)]
+            disabled:cursor-not-allowed ham:w-2/6 lexical:w-full`}
             disabled={imageLoading || !imagePrompt}
           >
             {imageLoading ? (
@@ -171,15 +171,16 @@ export default function PublishByAi ({
         )}
 
         {/* input element to generate post title */}
-        <div className='flex gap-2'>
+        <div className='flex gap-2 lg:grid lg:grid-cols-3 lexical:grid-cols-2'>
           <input
             type='text'
             name='postTopic'
             id='postTopic'
             placeholder='Your topic...'
             onChange={e => setTopic(e.target.value)}
-            className='w-5/6 ring-gray-700 ring-offset-2 text-xl px-3 font-nylarge transition 
-                focus:border-violet-300 focus:ring-violet-300 focus:shadow-violet-300 focus:shadow-[0_0_15px] sm:text-2xl'
+            className='w-5/6 h-[3rem] ring-gray-700 ring-offset-2 text-xl px-3 border-2 rounded border-gray-500  font-nylarge transition 
+                focus:border-violet-300 focus:ring-violet-300 focus:shadow-violet-300 focus:shadow-[0_0_15px] sm:text-2xl
+                lg:w-full lg:col-span-3 lexical:col-span-2 lexical:text-lg'
             required
           />
           {/* select element for post tone */}
@@ -188,8 +189,9 @@ export default function PublishByAi ({
             id='tone'
             value={postTone}
             onChange={e => setPostTone(e.target.value)}
-            className='w-1/6 ring-gray-700 ring-offset-2 text-xl px-3 font-nylarge transition
-                focus:border-violet-300 focus:ring-violet-300 focus:shadow-violet-300 focus:shadow-[0_0_15px] sm:text-2xl'
+            className='w-1/6 h-[3rem] ring-gray-700 ring-offset-2 text-xl px-3 border-2 rounded border-gray-500  font-nylarge transition
+                focus:border-violet-300 focus:ring-violet-300 focus:shadow-violet-300 focus:shadow-[0_0_15px] sm:text-2xl
+                lg:w-full lg:col-span-1 lexical:col-span-1 lexical:text-base'
             required
           >
             <option value=''>Tone</option>
@@ -208,8 +210,9 @@ export default function PublishByAi ({
             id='length'
             value={postLength}
             onChange={e => setPostLength(e.target.value)}
-            className='w-1/6 ring-gray-700 ring-offset-2 text-xl px-3 font-nylarge transition
-                    focus:border-violet-300 focus:ring-violet-300 focus:shadow-violet-300 focus:shadow-[0_0_15px] sm:text-2xl'
+            className='w-1/6 h-[3rem] ring-gray-700 ring-offset-2 text-xl px-3 border-2 rounded border-gray-500  font-nylarge transition
+                    focus:border-violet-300 focus:ring-violet-300 focus:shadow-violet-300 focus:shadow-[0_0_15px] sm:text-2xl
+                    lg:w-full lg:col-span-1 lexical:col-span-1 lexical:text-base'
             required
           >
             <option value=''>Length</option>
@@ -220,9 +223,10 @@ export default function PublishByAi ({
 
           <button
             onClick={handleGeneratePost}
-            className='w-1/6 py-2 h-full border-2 border-violet-700 shadow-[5px_5px_0px_0px_rgba(109,40,217)]
-              disabled:cursor-not-allowed'
-            disabled={postLoading}
+            className='w-1/6 font-nysmall flex items-center justify-center h-[3rem] border-2 border-violet-700 shadow-[5px_5px_0px_0px_rgba(109,40,217)]
+              disabled:cursor-not-allowed
+              lg:w-full lg:col-span-1 lexical:col-span-2'
+            disabled={postLoading || !topic || !postTone || !postLength}
           >
             {postLoading ? (
               <svg
@@ -253,7 +257,7 @@ export default function PublishByAi ({
             id='blogTitle'
             value={title}
             placeholder='Title...'
-            className='w-full max-w-[1050px] mx-auto ring-gray-700 ring-offset-2 ring-2 border-2 text-3xl px-3 font-nylarge 
+            className='w-full max-w-[1050px] mx-auto ring-gray-700 ring-offset-2 border-2 text-3xl px-3 font-nylarge 
             transition focus:border-violet-300 focus:ring-violet-300 focus:shadow-violet-300 focus:shadow-[0_0_15px] sm:text-2xl'
             onChange={e => setTitle(e.target.value)}
             required
@@ -264,7 +268,7 @@ export default function PublishByAi ({
             id='blogSubtitle'
             value={subtitle}
             placeholder='Subtitle...'
-            className='ring-gray-700 ring-offset-2 ring-2 border-2 w-full max-w-[1050px] mx-auto mt-2 text-2xl px-3 font-sfmono 
+            className='ring-gray-700 ring-offset-2 border-2 w-full max-w-[1050px] mx-auto mt-2 text-2xl px-3 font-sfmono 
             transition focus:border-violet-300 focus:ring-violet-300 focus:shadow-violet-300 focus:shadow-[0_0_15px] sm:text-xl'
             onChange={e => setSubtitle(e.target.value)}
             required
@@ -274,7 +278,7 @@ export default function PublishByAi ({
         {/* generate post body using ai */}
         <div
           className='flex flex-col gap-3 mx-auto mt-7 p-2 w-full min-h-[30rem] max-w-[1050px] font-nymedium rounded-tr-[10px] rounded-tl-[10px] 
-        ring-gray-700 ring-offset-2 ring-2 border-2 transition focus-within:border-violet-300 focus-within:ring-violet-300 
+        ring-gray-700 ring-offset-2 border-2 border-gray-500 transition focus-within:border-violet-300 focus-within:ring-violet-300 
         focus-within:shadow-violet-300 focus-within:shadow-[0_0_25px]'
         >
           <Editor
