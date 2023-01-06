@@ -17,24 +17,32 @@ export default function PublishByAi ({
   // const [postPrompt, setPostPrompt] = useState('')
   const [topic, setTopic] = useState('')
   const [postLength, setPostLength] = useState('')
-  const [postTone, setPostTone] = useState('')
+  const [postStyle, setPostStyle] = useState('')
 
   // console.log(postTone)
   const generateImage = async image => {
-    const res = await axios.post('https://theblogxapi.onrender.com/api/blogposts', image, {
-      headers: {
-        Authorization: `Bearer ${token}`
+    const res = await axios.post(
+      'https://theblogxapi.onrender.com/api/blogposts',
+      image,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       }
-    })
+    )
     return res
   }
 
   const generatePost = async post => {
-    const res = await axios.post('https://theblogxapi.onrender.com/api/blogposts', post, {
-      headers: {
-        Authorization: `Bearer ${token}`
+    const res = await axios.post(
+      'https://theblogxapi.onrender.com/api/blogposts',
+      post,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       }
-    })
+    )
     return res
   }
 
@@ -63,7 +71,7 @@ export default function PublishByAi ({
   })
 
   let aiImage = image?.data?.data?.post
-  //   console.log(aiImage)
+  // console.log(aiImage)
   const handleGenerateImage = e => {
     e.preventDefault()
     const data = {
@@ -73,7 +81,8 @@ export default function PublishByAi ({
     getImage(data)
   }
 
-  const postPrompt = `Write a well detailed blog post divided into sections with a title and a subtitle with all the necessary html tags\n\nTopic: ${topic}\nLength: ${postLength}\nTone: ${postTone}`
+  const postPrompt = `Write a well detailed blog post divided into sections with a title and a subtitle with all the necessary html tags
+  Topic: ${topic}\nPost Length: ${postLength}\nWriting Style: ${postStyle}`
   // console.log(postPrompt)
 
   const handleGeneratePost = e => {
@@ -111,9 +120,15 @@ export default function PublishByAi ({
     setBody(aiPost)
     setTitle(getTitle)
     setSubtitle(getSubtitle)
-    setDisplayImage(aiImage)
     // console.log(aiPost)
   }, [aiPost])
+
+  // set displayImage to aiImage
+  useEffect(() => {
+    if (aiImage) {
+      setDisplayImage(aiImage)
+    }
+  }, [aiImage])
 
   return (
     <div className='flex flex-col items-center w-full mx-auto'>
@@ -185,22 +200,22 @@ export default function PublishByAi ({
           />
           {/* select element for post tone */}
           <select
-            name='tone'
-            id='tone'
-            value={postTone}
-            onChange={e => setPostTone(e.target.value)}
+            name='style'
+            id='style'
+            value={postStyle}
+            onChange={e => setPostStyle(e.target.value)}
             className='w-1/6 h-[3rem] ring-gray-700 ring-offset-2 text-xl px-3 border-2 rounded border-gray-500  font-nylarge transition
                 focus:border-violet-300 focus:ring-violet-300 focus:shadow-violet-300 focus:shadow-[0_0_15px] sm:text-2xl
                 lg:w-full lg:col-span-1 lexical:col-span-1 lexical:text-base'
             required
           >
-            <option value=''>Tone</option>
+            <option value=''>Style</option>
             <option value='friendly'>Friendly</option>
             <option value='informal'>Informal</option>
             <option value='formal'>Formal</option>
-            <option value='interview'>Interview</option>
+            <option value='technical article'>Technical Article</option>
             <option value='academic'>Academic</option>
-            <option value='business'>Business</option>
+            <option value='business'>Exploratory</option>
             <option value='scientific'>Scientific</option>
           </select>
 
@@ -226,7 +241,7 @@ export default function PublishByAi ({
             className='w-1/6 font-nysmall flex items-center justify-center h-[3rem] border-2 border-violet-700 shadow-[5px_5px_0px_0px_rgba(109,40,217)]
               disabled:cursor-not-allowed
               lg:w-full lg:col-span-1 lexical:col-span-2'
-            disabled={postLoading || !topic || !postTone || !postLength}
+            disabled={postLoading || !topic || !postStyle || !postLength}
           >
             {postLoading ? (
               <svg

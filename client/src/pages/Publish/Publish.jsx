@@ -117,7 +117,7 @@ export default function Publish () {
     if (user) {
       mutate(post)
     }
-    console.log(post)
+    // console.log(post)
   }
 
   // set body overflow to auto when page loads
