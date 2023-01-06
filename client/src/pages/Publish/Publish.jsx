@@ -75,7 +75,7 @@ export default function Publish () {
 
   const navigate = useNavigate()
   const createPost = async data => {
-    const res = await axios.post('http://localhost:4000/api/blogposts', data, {
+    const res = await axios.post('https://theblogxapi.onrender.com/api/blogposts', data, {
       headers: {
         Authorization: `Bearer ${token}`
       }
