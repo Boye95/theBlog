@@ -46,7 +46,7 @@ export default function PublishByAi ({
     isSuccess: imageSuccess
   } = useMutation(generateImage, {
     onSuccess: image => {
-      console.log(image)
+      // console.log(image)
     }
   })
 
@@ -58,7 +58,7 @@ export default function PublishByAi ({
     isSuccess: postSuccess
   } = useMutation(generatePost, {
     onSuccess: post => {
-      console.log(post)
+      // console.log(post)
     }
   })
 
@@ -74,7 +74,7 @@ export default function PublishByAi ({
   }
 
   const postPrompt = `Write a well detailed blog post divided into sections with a title and a subtitle with all the necessary html tags\n\nTopic: ${topic}\nLength: ${postLength}\nTone: ${postTone}`
-  console.log(postPrompt)
+  // console.log(postPrompt)
 
   const handleGeneratePost = e => {
     e.preventDefault()
