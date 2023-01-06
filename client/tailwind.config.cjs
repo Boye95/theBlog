@@ -4,6 +4,9 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
     "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
   ],
+  corePlugins: {
+    aspectRatio: false,
+  },
   theme: {
     screens: {
       "2xl": { max: "1535px" },
@@ -47,7 +50,34 @@ module.exports = {
       // },
     },
   },
-  plugins: [require("flowbite/plugin")],
+  plugins: [
+    ({ matchUtilities, theme }) => {
+      matchUtilities(
+        // https://codepen.io/henry/pen/WNMVVKq?editors=1010
+        {
+          aspect: (value) => ({
+            "@supports (aspect-ratio: 1 / 1)": {
+              aspectRatio: value,
+            },
+            "@supports not (aspect-ratio: 1 / 1)": {
+              // https://github.com/takamoso/postcss-aspect-ratio-polyfill
+
+              "&::before": {
+                content: '""',
+                float: "left",
+                paddingTop: `calc(100% / (${value}))`,
+              },
+              "&::after": {
+                clear: "left",
+                content: '""',
+                display: "block",
+              },
+            },
+          }),
+        },
+        { values: theme("aspectRatio") }
+      );
+    },
+    require("flowbite/plugin"),
+  ],
 };
-
-
