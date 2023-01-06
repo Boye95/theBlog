@@ -21,7 +21,7 @@ export default function PublishByAi ({
 
   // console.log(postTone)
   const generateImage = async image => {
-    const res = await axios.post('http://localhost:4000/api/blogposts', image, {
+    const res = await axios.post('https://theblogxapi.onrender.com/api/blogposts', image, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -30,7 +30,7 @@ export default function PublishByAi ({
   }
 
   const generatePost = async post => {
-    const res = await axios.post('http://localhost:4000/api/blogposts', post, {
+    const res = await axios.post('https://theblogxapi.onrender.com/api/blogposts', post, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -112,7 +112,7 @@ export default function PublishByAi ({
     setTitle(getTitle)
     setSubtitle(getSubtitle)
     setDisplayImage(aiImage)
-    console.log(aiPost)
+    // console.log(aiPost)
   }, [aiPost])
 
   return (
