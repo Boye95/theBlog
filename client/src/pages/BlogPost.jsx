@@ -407,7 +407,11 @@ export default function BlogPost () {
               </div>
             </div>
           ) : error ? (
-            <div className=''>{error}</div>
+            <div className='flex justify-center items-center h-screen'>
+              <h1 className='text-2xl font-nylarge'>
+                Something went wrong {error}
+              </h1>
+            </div>
           ) : (
             <div className=''>
               <div id='article1' className='flex flex-col items-center'>
